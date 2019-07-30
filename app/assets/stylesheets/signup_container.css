@@ -1,0 +1,22 @@
+.session-form {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+}
+
+.session-form .greeting {
+    padding-top: 17px;
+}
+
+.session-form h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo_orange {
+    height: 70px;
+    width: 70px;
+}

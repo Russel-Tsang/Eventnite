@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "./css_reset.css";
+ @import "./navbar.css";
+ @import "./body.css";
+ @import "./signup_container.css";
+ @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
