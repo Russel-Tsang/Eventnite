@@ -29,7 +29,8 @@ class SessionForm extends React.Component {
         let addressUrl = formType === 'login' ? 'signup' : 'login';
         return (
             <div className="session-form">
-                <img className="logo_orange" src={"assets/logo_orange.png"}/>
+                {/* <img className="logo_orange" src={"assets/logo_orange.png"}/> */}
+                <img src={window.logo} alt="logo"/>
                 <div className="session-form greeting">
                     <h2>Let's get started</h2>
                     <p>Use Facebook or email to get started.</p>
