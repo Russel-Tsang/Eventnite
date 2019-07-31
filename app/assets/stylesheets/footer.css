@@ -1,0 +1,27 @@
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    background-color: #1e0a3d;
+    color: #d2d0db;
+    height: 54px;
+    padding: 0px 24px;
+    border: 1px black solid;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+footer ul {
+    display: flex;
+}
+
+footer ul li {
+    margin: 0px 12px;
+}
+
+footer ul li:nth-of-type(1) {
+    list-style: none;
+}
