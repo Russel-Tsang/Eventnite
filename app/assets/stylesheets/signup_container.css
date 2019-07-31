@@ -4,11 +4,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px black solid;
 }
 
 .session-form .greeting {
+    display: flex;
     padding-top: 17px;
+}
+
+.session-form .greeting p {
+    color: #6F7287;
+    margin-top: 10px;
 }
 
 .session-form h2 {
@@ -16,7 +21,33 @@
     font-weight: bold;
 }
 
-.logo_orange {
+.session-form p {
+    font-size: 13px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin-top: 25px;
+    padding: 12px;
+    width: 300px;
+    height: 20px;
+}
+
+form input[type="submit"] {
+    height: 46px;
+    width: 330px;
+    background-color: rgb(209, 65, 12);
+    border-radius: 5px;
+    color: white;
+    font-size: 13px;
+}
+
+.greeting-icon {
     height: 70px;
     width: 70px;
 }
+
