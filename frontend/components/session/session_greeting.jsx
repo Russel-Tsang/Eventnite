@@ -9,5 +9,4 @@ const SessionGreeting = ({ imageSrc, alt, greetingHeaderText, greetingMessage })
         </div>
     </>
 )
-
 export default SessionGreeting

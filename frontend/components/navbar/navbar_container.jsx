@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import NavBar from './navbar';
 // import { logout } from '../../actions/session';
 
-const mapStateToProps = (state) => ({
-    currentUser: state.session.currentUser
+const mapStateToProps = state => ({
+    currentUser: state.session.id
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout())
 })
 

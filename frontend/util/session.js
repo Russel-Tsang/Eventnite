@@ -23,3 +23,12 @@ export const deleteSession = () => {
         method: 'DELETE'
     });
 };
+
+// check if user is in database 
+export const verifyUser = (email) => {
+    return $.ajax({
+        url: '/api/verify_user',
+        method: 'GET',
+        data: { user: { email } }
+    });
+}

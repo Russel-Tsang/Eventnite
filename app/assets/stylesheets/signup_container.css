@@ -28,14 +28,16 @@
 form {
     display: flex;
     flex-direction: column;
+
 }
 
 form input {
-    margin-top: 25px;
+    margin-top: 30px;
     padding: 12px;
     width: 300px;
-    height: 20px;
+    height: 25px;
     font-size: 12px;
+    border: 1px solid #dbdae3;
 }
 
 form input[type="submit"] {
@@ -45,6 +47,34 @@ form input[type="submit"] {
     border-radius: 5px;
     color: white;
     font-size: 13px;
+}
+
+form input:focus {
+    border: 1px solid #1f45e0;
+}
+
+form a {
+    margin: 15px auto;
+    font-size: 14px;
+    color: #3659E3;
+}
+
+form a:hover {
+    text-decoration-line: underline;
+    color: #4b6ae7;
+}
+
+.first-last-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+form input[placeholder="First Name"] {
+    width: 130px;
+}
+
+form input[placeholder="Last Name"] {
+    width: 130px;
 }
 
 .greeting-icon {

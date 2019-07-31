@@ -8,5 +8,6 @@ Rails.application.routes.draw do
       resources :follows, only: [:create, :destroy]
     end
     resource :session, only: [:create, :destroy]
+    get "/verify_user", to: "users#verify_user"
   end
 end
