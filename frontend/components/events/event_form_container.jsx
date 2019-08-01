@@ -1,14 +1,13 @@
-import { login, signup, verifyUser } from '../../actions/session';
+import { postEvent } from '../../actions/events';
 import { connect } from 'react-redux';
 import EventForm from './event_form';
 
 const msp = state => ({
-    formType: "Get Started",
     errors: state.errors.sessionErrors
 });
 
 const mdp = (dispatch) => ({
-    
+    action: (event) => dispatch(postEvent(event))
 });
 
 export default connect(msp, mdp)(EventForm);
