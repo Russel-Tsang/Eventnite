@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import { postUser } from './util/session';
+import { postEvent } from './util/events';
 import configureStore from './store/store';
 import { signup, logout, login, verifyUser } from './actions/session';
+import { fetchEvent } from './actions/events';
 
 document.addEventListener('DOMContentLoaded', () => {
     // testing
@@ -12,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.logout = logout;
     window.login = login;
     window.verifyUser = verifyUser;
+    window.fetchEvent = fetchEvent;
+    window.postEvent = postEvent;
     const root = document.getElementById('root');
     let store;
     if (window.currentUser) {
