@@ -3,9 +3,15 @@
     border: 1px black solid;
     font-size: 14px;
     justify-content: space-between;
+    background-color: #39364f;
+    color: #787a8f;
 }
 
-h1 {
+.navbar a:hover {
+    color: #5d5e6f;
+}
+
+.navbar h1 {
     float:left;
     padding: 20px;
 }

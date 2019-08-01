@@ -25,10 +25,17 @@
     font-size: 13px;
 }
 
+.session-form span {
+    width: 300px;
+    text-align: center;
+    font-size: 12px;
+    margin: 25px auto;
+    line-height: 20px;
+}
+
 form {
     display: flex;
     flex-direction: column;
-
 }
 
 form input {
@@ -36,8 +43,13 @@ form input {
     padding: 12px;
     width: 300px;
     height: 25px;
-    font-size: 12px;
-    border: 1px solid #dbdae3;
+    font-size: 13px;
+    outline: none;
+    transition: border .2s;
+}
+
+form input[type="text"] {
+    border: 2px solid #dbdae3;
 }
 
 form input[type="submit"] {
@@ -50,7 +62,7 @@ form input[type="submit"] {
 }
 
 form input:focus {
-    border: 1px solid #1f45e0;
+    border: 2px solid #1f45e0;
 }
 
 form a {
