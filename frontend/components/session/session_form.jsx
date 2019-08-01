@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SessionGreeting from './session_greeting';
+import ButtonAndMessage from './button_and_message';
 
 class SessionForm extends Component {
     constructor(props) {
@@ -18,13 +19,11 @@ class SessionForm extends Component {
     // otherwise, email is in the database, change formType to "Log In"
     handleFormType(email) {
         let formType = email === "no email" ? "Sign Up" : "Log In";
-        // debugger
         this.setState({ formType });
     }
 
     // handle whether the submit button performs sign in or sign up action
     handleSubmit(event) {
-        debugger
         event.preventDefault();
         switch (this.state.formType) {
             case "Get Started":
@@ -52,27 +51,32 @@ class SessionForm extends Component {
 
     render() {
         const { errors } = this.props;
-        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs;
+        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize;
         switch (this.state.formType) {
             case "Get Started":
-            debugger
                 imageSrc = window.logo;
                 alt = "session icon";
                 greetingHeaderText = "Let's get started";
                 greetingMessage = "Enter your email to get started.";
+                fontSize = "12px";
+                message = "By continuing, I accept the Eventbrite terms of service, community guidelines and have read the privacy policy."
                 break;
             case "Log In":
                 imageSrc = window.signinIcon;
                 alt = "signin icon";
                 greetingHeaderText = "Welcome Back";
                 greetingMessage = "Please enter your password to log in.";
-                extraInputs = <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={this.state.password} />
+                message = "Forgot password";
+                fontSize = "14px";
+                extraInputs = <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={this.state.password} />;
                 break;
             case "Sign Up":
                 imageSrc = window.signinIcon;
                 alt = "signup icon";
                 greetingHeaderText = "Welcome";
                 greetingMessage = "Create an Account";
+                message = "Log In Instead";
+                fontSize = "14px";
                 extraInputs =
                     <>
                         <input type="text" placeholder="Confirm Email" />
@@ -81,14 +85,13 @@ class SessionForm extends Component {
                             <input type="text" placeholder="Last Name" onChange={this.handleChange("lname")} value={this.state.lname} />
                         </div>
                         <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={this.state.password} />
-                    </>
+                    </>;
                 break;
         }
 
         // if there are errors, map them into list item elements
         let formErrors;
         if (errors.responseJSON) formErrors = errors.responseJSON.map((error, idx) => <li key={idx}>{error}</li>);
-        debugger
         return (
             <div className="session-form">
                 <SessionGreeting
@@ -100,8 +103,11 @@ class SessionForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.state.email} onChange={this.handleChange("email")} placeholder="Email Address" />
                     {extraInputs}
-                    <input type="submit" value={this.state.formType} />
-                    <a style={{ display: 'none' }}>Log In Instead</a>
+                    <ButtonAndMessage 
+                        type={"submit"}
+                        value={this.state.formType}
+                        message={message} 
+                        fontSize={fontSize} />
                 </form>
                 <ul>
                     {formErrors}
