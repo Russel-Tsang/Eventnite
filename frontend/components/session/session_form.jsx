@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SessionGreeting from './session_greeting';
 import ButtonAndMessage from './button_and_message';
+import { verifyUser } from '../../util/session';
 
 class SessionForm extends Component {
     constructor(props) {
@@ -30,6 +31,9 @@ class SessionForm extends Component {
                 this.props.verifyUser(this.state.email).then(
                     res => this.handleFormType(res.email)
                 )
+                // verifyUser(this.state.email).then(
+                //     res => console.log(res)
+                // )
                 break
             case "Sign Up":
                 debugger
@@ -51,7 +55,12 @@ class SessionForm extends Component {
 
     render() {
         const { errors } = this.props;
-        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize;
+        const { fname, lname, email, password, formType } = this.state;
+        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formErrors;
+        // if there are errors, map them into list item elements
+        if (errors.responseJSON) formErrors = errors.responseJSON.map((error, idx) => <li key={idx}>{error}</li>);
+        
+        // change display of form depending on formType
         switch (this.state.formType) {
             case "Get Started":
                 imageSrc = window.logo;
@@ -59,7 +68,7 @@ class SessionForm extends Component {
                 greetingHeaderText = "Let's get started";
                 greetingMessage = "Enter your email to get started.";
                 fontSize = "12px";
-                message = "By continuing, I accept the Eventbrite terms of service, community guidelines and have read the privacy policy."
+                message = "By continuing, I accept the Eventnite terms of service, community guidelines and have read the privacy policy."
                 break;
             case "Log In":
                 imageSrc = window.signinIcon;
@@ -68,7 +77,7 @@ class SessionForm extends Component {
                 greetingMessage = "Please enter your password to log in.";
                 message = "Forgot password";
                 fontSize = "14px";
-                extraInputs = <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={this.state.password} />;
+                extraInputs = <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />;
                 break;
             case "Sign Up":
                 imageSrc = window.signinIcon;
@@ -81,17 +90,14 @@ class SessionForm extends Component {
                     <>
                         <input type="text" placeholder="Confirm Email" />
                         <div className="first-last-name">
-                            <input type="text" placeholder="First Name" onChange={this.handleChange("fname")} value={this.state.fname} />
-                            <input type="text" placeholder="Last Name" onChange={this.handleChange("lname")} value={this.state.lname} />
+                            <input type="text" placeholder="First Name" onChange={this.handleChange("fname")} value={fname} />
+                            <input type="text" placeholder="Last Name" onChange={this.handleChange("lname")} value={lname} />
                         </div>
-                        <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={this.state.password} />
+                        <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />
                     </>;
                 break;
         }
 
-        // if there are errors, map them into list item elements
-        let formErrors;
-        if (errors.responseJSON) formErrors = errors.responseJSON.map((error, idx) => <li key={idx}>{error}</li>);
         return (
             <div className="session-form">
                 <SessionGreeting
@@ -101,11 +107,11 @@ class SessionForm extends Component {
                     greetingMessage={greetingMessage} />
 
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.email} onChange={this.handleChange("email")} placeholder="Email Address" />
+                    <input type="text" value={email} onChange={this.handleChange("email")} placeholder="Email Address" />
                     {extraInputs}
                     <ButtonAndMessage 
                         type={"submit"}
-                        value={this.state.formType}
+                        value={formType}
                         message={message} 
                         fontSize={fontSize} />
                 </form>
@@ -118,6 +124,3 @@ class SessionForm extends Component {
 }
 
 export default SessionForm;
-
-{/* Signup / Login link */ }
-{/* <Link to={`/${addressUrl}`}>{addressUrl}</Link> */ }
