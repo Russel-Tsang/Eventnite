@@ -6,12 +6,12 @@ class NavBar extends Component {
         const { currentUser, logout } = this.props;
         const display = currentUser ? (
             <div>
-                <h3>Welcome!</h3>
-                <button onClick={logout}>Logout</button>
+                <Link className="btn" to="/create_event">Create Event</Link>
+                <Link className="btn" onClick={logout}>Logout</Link>
             </div>
         ) : (
                 <div>
-                    <Link className="btn" to="/signup">Log In</Link>
+                    <Link className="btn" to="/create_event">Create Event</Link>
                     <Link className="btn" to="/signin">Sign In</Link>
                 </div>
         );
