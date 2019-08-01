@@ -1,0 +1,1 @@
+json.extract! @event, :id, :title, :description, :event_type, :category, :tags, :organizer, :online_event, :street, :city, :state, :zip_code
