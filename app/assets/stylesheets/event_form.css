@@ -1,0 +1,68 @@
+
+.event-container {
+    width: 800px;
+    border: 1px red solid;
+    margin: auto;
+    /* padding-left: 200px; */
+    padding-top: 42px;
+    /* font-family: Arial; */
+    font-family: Helvetica;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding-left: 110px;
+    margin-bottom: 50px;
+}
+
+.event-form h1 {
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.event-form span {
+    text-align: right;
+    
+    border: 1px black solid;
+}
+
+.event-form p {
+    font-size: 14px;
+    color: #39364F
+}
+
+.event-form input {
+    height: 42px;
+    margin: 10px 0px;
+}
+
+.event-form input[placeholder="Add keywords to your event"] {
+    width: 349px;
+    margin-right: 15px;
+}
+
+.event-form select {
+    width: 170px;
+    height: 48px;
+    margin: 10px 15px 10px 0px;
+}
+
+.flex {
+    display: flex;
+}
+
+button {
+    width: 120px;
+}
+
+hr {
+    border: 1px #eeedf2 solid;
+    margin: 30px auto; 
+}
+
+h1 + p {
+    margin-bottom: 10px;
+}
