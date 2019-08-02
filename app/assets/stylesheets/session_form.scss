@@ -9,6 +9,9 @@ $error-red: #c5162d;
 }
 
 .session-form {
+    p {
+        font-size: 13px;
+    }
     .greeting {
         display: flex;
         padding-top: 17px;
@@ -21,15 +24,15 @@ $error-red: #c5162d;
         font-size: 24px;
         font-weight: bold;
     }
-    p {
-        font-size: 13px;
-    }
     span {
         width: 300px;
         text-align: center;
         font-size: 12px;
         margin: 25px auto;
         line-height: 20px;
+    }
+    .input-caption {
+        top: 35px;
     }
 }
 
@@ -42,7 +45,6 @@ form {
     input {
         margin-top: 30px;
         padding: 12px;
-        width: 300px;
         height: 25px;
         font-size: 13px;
         outline: none;
@@ -77,6 +79,13 @@ form {
     input[placeholder="Last Name"] {
         width: 130px;
     }
+    .input-caption {
+        left: -2px;
+    }
+    .input-caption + input {
+        padding-top: 25px;
+        height: 13px;
+    }
 }
 
 .first-last-name {
@@ -97,5 +106,12 @@ form {
     right: 15px;
 }
 
+.display {
+    display: visible;
+}
+
+.display-none {
+    display: none;
+}
 
 

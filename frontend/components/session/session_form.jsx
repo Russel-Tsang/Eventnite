@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SessionGreeting from '../helper_components/session_greeting';
+import MessagedInput from '../helper_components/messagedInput';
 import ButtonAndMessage from './button_and_message';
 
 class SessionForm extends Component {
@@ -112,7 +113,18 @@ class SessionForm extends Component {
                 />
 
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={email} onChange={this.handleChange("email")} placeholder="Email Address" />
+                    <input 
+                        type="text" 
+                        value={email} 
+                        onChange={this.handleChange("email")} 
+                        placeholder="Email Address" 
+                    />
+                    {/* <MessagedInput 
+                        value={email}
+                        onChange={this.handleChange("email")}
+                        caption="Email Address"
+                    /> */}
+
                     {extraInputs}
                     <ButtonAndMessage 
                         type={"submit"}
