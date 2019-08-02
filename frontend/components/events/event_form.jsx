@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import MessagedInput from '../helper_components/messagedInput';
 
 class EventForm extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            numChars: 0,
             title: '',
             eventType: '',
             category: '',
@@ -31,10 +31,6 @@ class EventForm extends Component {
         return ({ target }) => {
             event.preventDefault();
             switch (field) {
-                case 'titleText': 
-                    let numChars = target.value.length;
-                    this.setState({ title: target.value, numChars });
-                    break;
                 case 'text':
                     this.setState({ [payload]: target.value });
                     break;
@@ -108,18 +104,20 @@ class EventForm extends Component {
             <option key={idx}>{option}</option>            
         ));
 
-        const times = () => {
-            let times = [12];
-
-        }
-
         return(
             <div className="event-container">
                 <div className="event-form">
                     <h1>Basic Info</h1>
                     <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
-                    <input type="text" placeholder="Event Title" value={this.state.title} onChange={this.handleChange("titleText", "title")}/>
-                    <span>{this.state.numChars}/75</span>
+                    <MessagedInput
+                        caption="Event Title" 
+                        placeholder="Be clear and descriptive." 
+                        value={this.state.title} 
+                        onChange={this.handleChange("text", "title")}
+                    />
+                    <span>
+                        {this.state.title.length}/75
+                    </span>
                     <div className="flex">
                         <select onChange={this.handleChange("select", "eventType")}>
                             {types}
@@ -127,12 +125,27 @@ class EventForm extends Component {
                         <select onChange={this.handleChange("select", "category")}>
                             {categories}
                         </select>
-                    </div>             
-                    <div className="flex">
-                        <input type="text" onChange={this.handleChange("text", "tag")} placeholder="Add keywords to your event" />
-                        <button onClick={this.handleSubmit("tagSubmit")}>Add</button>
-                    </div>                           
-                    <input type="text" onChange={this.handleChange("text", "organizer")} value={this.state.organizer} placeholder="Organizer" />
+                    </div>     
+                    <MessagedInput
+                        onChange={this.handleChange("text", "tag")}
+                        placeholder="Add keywords to your event"
+                        caption="Tags" 
+                    />        
+                    <div className="button-1" onClick={this.handleSubmit("tagSubmit")}>Add</div>                       
+                    <div className="tag-span">
+                        <div className="tag-span-item">{`${this.state.tags.length}/10 tags.`}</div>
+                        <div className="spacer-div"></div>
+                        <div className="tag-span-item">{`${this.state.tag.length}/75`}</div>
+                    </div>
+                    <MessagedInput 
+                        onChange={this.handleChange("text", "organizer")} 
+                        value={this.state.organizer} 
+                        placeholder="Tell attendees who is organizing this event." 
+                        caption="Organizer"
+                    />
+                    <span>
+                        {this.state.organizer.length}/75
+                    </span>
                 </div>
                 <hr />
                 <div className="event-form">
@@ -142,17 +155,23 @@ class EventForm extends Component {
                         {onlineOrVenue}
                     </select>
                     <input placeholder="Search for Address" />
-                    <hr />
+                </div>
+                <hr />
+                <div className="event-form">
                     <h1>Date and time</h1>
                     <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
-                    <input type="date" onChange={this.handleChange("date", "begin")}/>
-                    <input type="date" onChange={this.handleChange("date", "end")} />
-                    <select>
-
-                    </select>
-                    <select>
-
-                    </select>
+                    <div className="date-time">
+                        <input 
+                            type="date" 
+                            onChange={this.handleChange("date", "begin")} />
+                        <select>
+                        </select>
+                        <input 
+                            type="date" 
+                            onChange={this.handleChange("date", "end")} />
+                        <select>
+                        </select>
+                    </div>
                 </div>
             </div>
         )
