@@ -18,7 +18,7 @@ class NavBar extends Component {
 
         return (
             <header className="navbar">
-                <h1 className="logo">EVENTNITE</h1>
+                <img src={window.logoWhiteFull} className="logo" />
                 <div>
                     <div className="navbar-right">
                         {display}
