@@ -58,7 +58,6 @@ class EventForm extends Component {
                     this.props.action(this.state);
                     break;
                 case "tagSubmit":
-                    debugger
                     let newTags = this.state.tags.slice();
                     newTags.push(this.state.tag);
                     this.setState({ tags: newTags, tag: '' });
