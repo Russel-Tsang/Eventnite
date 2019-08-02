@@ -1,3 +1,6 @@
+$counter-size: 13px;
+$counter-color: #3a3650;
+$border-style: 1px solid #dbdae3;
 
 .event-container {
     width: 800px;
@@ -16,14 +19,13 @@
 
 .event-form {
     h1 {
-        margin-bottom: 5px;
-        font-size: 30px;
+        font-size: 27px;
         font-weight: bold;
     } 
     span {
         text-align: right;
         margin-top: -5px;
-        font-size: 13px;
+        font-size: $counter-size;
         color: #413d56;
     }
     p {
@@ -31,14 +33,15 @@
         color: #39364F;
         line-height: 20px;
         width: 70%;
+        margin-bottom: 15px;
     }
     input {
-        /* height: 42px; */
+        width: 97%;
         height: 35px;
         margin: 10px 0px;
         padding-left: 15px;
         font-size: 13px;
-        border: 2px solid #dbdae3;
+        border: $border-style;
         outline: none;
         transition: border .2s;
     }
@@ -64,13 +67,29 @@
         margin: 10px 15px 10px 0px;
         padding-left: 15px;
         font-size: 13px;
-        color: #504d63;
+        background-color: white;
+        border: 1px solid #dbdae3;
+    }
+    .icon {
+        width: 50px;
+    }
+    .section-head {
+        position: relative;
+        right: 73px;
+    }
+    .section-head {
+        h1  {
+            margin-left: 22px;
+        }
+        img {
+            position: relative;
+            top: 10px;
+        }
     }
 }
 
 .date-time {
     display: inline-block;
-    border: 1px black solid;
 }
 
 .date-time {
@@ -90,7 +109,7 @@
   opacity: 1; /* Firefox */
 }
 
-/* add padding to messaged inputs */
+/* messaged inputs */
 .input-caption + input {
     padding-top: 10px;
 }
@@ -99,19 +118,6 @@
 .flex {
     display: flex;
     align-items: center;
-}
-
-.button-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 43px;
-    border: 2px #a9a8b3 solid;
-    border-radius: 5px;
-    background-color: white;
-    font-size: 14px;
-    cursor: pointer;
 }
 
 .input-caption {
@@ -133,4 +139,15 @@ hr {
 
 h1 + p {
     margin-bottom: 10px;
+}
+
+.tag-spans {
+    justify-content: space-between;
+    width: 365px;
+    height: 4px;
+    position: relative;
+    left: 2px;
+    margin-bottom: 20px;
+    font-size: $counter-size;
+    color: #413356;
 }

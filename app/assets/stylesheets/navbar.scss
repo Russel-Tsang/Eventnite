@@ -1,0 +1,45 @@
+$navbar-background: #39364f;
+$navbar-text: #c2c2cc;
+
+.navbar {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    height: 59px;
+    background-color: $navbar-background;
+    color: $navbar-text;
+}
+
+.navbar {
+    .logo {
+        width: 130px;
+        height: 38px;
+        position: relative;
+        left: 10px;
+        top: 3px;
+    }
+    li:hover {
+        color: #5d5e6f;
+    }   
+    h1 {
+        float:left;
+        padding: 20px;
+    }
+}
+
+.navbar-right {
+    float: right;
+}
+
+.navbar-right {
+    .btn:hover {
+        color: white;
+    }
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+}

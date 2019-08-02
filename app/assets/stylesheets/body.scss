@@ -1,0 +1,27 @@
+$input-border-blue: #1f45e0;
+$input-caption-blue: #4b6ae7;
+
+body {
+    font-family: 'Helvetica';
+}
+
+input {
+    border-radius: 3px;
+}
+
+.blue {
+    color: $input-caption-blue;
+}
+
+.button-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 43px;
+    border: 2px #a9a8b3 solid;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
