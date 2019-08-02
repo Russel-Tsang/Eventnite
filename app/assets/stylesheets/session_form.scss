@@ -1,0 +1,101 @@
+$error-red: #c5162d;
+
+.session-form {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.session-form {
+    .greeting {
+        display: flex;
+        padding-top: 17px;
+    }
+    .greeting p {
+        color: #6F7287;
+        margin-top: 10px;
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    p {
+        font-size: 13px;
+    }
+    span {
+        width: 300px;
+        text-align: center;
+        font-size: 12px;
+        margin: 25px auto;
+        line-height: 20px;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    input {
+        margin-top: 30px;
+        padding: 12px;
+        width: 300px;
+        height: 25px;
+        font-size: 13px;
+        outline: none;
+        transition: border .2s;
+    }
+    input[type="text"] {
+        border: 2px solid #dbdae3;
+    }
+    input:focus {
+       border: 2px solid #1f45e0;
+    }
+    input[type="submit"] {
+        height: 46px;
+        width: 330px;
+        background-color: rgb(209, 65, 12);
+        border-radius: 5px;
+        color: white;
+        font-size: 13px;
+    }
+    a {
+        margin: 15px auto;
+        font-size: 14px;
+        color: #3659E3;
+    }
+    a:hover {
+        text-decoration-line: underline;
+        color: #4b6ae7;
+    }
+    input[placeholder="First Name"] {
+        width: 130px;
+    }
+    input[placeholder="Last Name"] {
+        width: 130px;
+    }
+}
+
+.first-last-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.greeting-icon {
+    height: 70px;
+    width: 70px;
+}
+
+.form-error {
+    height: 0;
+    display: flex;
+    position: relative;
+    bottom: 22px;
+    right: 15px;
+}
+
+
+

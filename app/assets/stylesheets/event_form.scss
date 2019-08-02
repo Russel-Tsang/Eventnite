@@ -1,0 +1,136 @@
+
+.event-container {
+    width: 800px;
+    margin: auto;
+    padding-top: 42px;
+    font-family: Helvetica;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding-left: 110px;
+    margin-bottom: 50px;
+}
+
+.event-form {
+    h1 {
+        margin-bottom: 5px;
+        font-size: 30px;
+        font-weight: bold;
+    } 
+    span {
+        text-align: right;
+        margin-top: -5px;
+        font-size: 13px;
+        color: #413d56;
+    }
+    p {
+        font-size: 14px;
+        color: #39364F;
+        line-height: 20px;
+        width: 70%;
+    }
+    input {
+        /* height: 42px; */
+        height: 35px;
+        margin: 10px 0px;
+        padding-left: 15px;
+        font-size: 13px;
+        border: 2px solid #dbdae3;
+        outline: none;
+        transition: border .2s;
+    }
+    input[placeholder="Add keywords to your event"] {
+        width: 349px;
+        margin-right: 15px;
+    }
+    input[placeholder="Search for Address"] {
+        height: 43px;
+    }
+    input[type="date"] {
+        height: 43px;
+    }
+    input:focus {
+        border: 2px solid #1f45e0;
+    }
+    select {
+        -webkit-appearance: none;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        width: 170px;
+        height: 46px;
+        margin: 10px 15px 10px 0px;
+        padding-left: 15px;
+        font-size: 13px;
+        color: #504d63;
+    }
+}
+
+.date-time {
+    display: inline-block;
+    border: 1px black solid;
+}
+
+.date-time {
+    input {
+        float: left;
+        width: 47%;
+    }
+    select {
+        width: 47%;
+        float: right;
+    }
+}
+
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder { 
+  color: #aeadb7;
+  opacity: 1; /* Firefox */
+}
+
+/* add padding to messaged inputs */
+.input-caption + input {
+    padding-top: 10px;
+}
+
+/* to display contained elements horizontally */
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.button-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 43px;
+    border: 2px #a9a8b3 solid;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.input-caption {
+    position: relative;
+    top: 16px;
+    left: 2px;
+    font-size: 12px;
+    height: 0;
+    z-index: 1;
+    padding-left: 15px;
+    margin-bottom: -2px;
+    color: #727589;
+}
+
+hr {
+    border: 1px #eeedf2 solid;
+    margin: 30px auto; 
+}
+
+h1 + p {
+    margin-bottom: 10px;
+}
