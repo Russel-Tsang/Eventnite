@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SessionGreeting from './session_greeting';
+import SessionGreeting from '../helper_components/session_greeting';
 import ButtonAndMessage from './button_and_message';
-import { verifyUser } from '../../util/session';
 
 class SessionForm extends Component {
     constructor(props) {
