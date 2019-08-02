@@ -1,0 +1,153 @@
+$description-card-color: #f2eef1;
+$description-card-padding-left: 33px;
+$description-card-creator-color: #6f7287;
+$follow-button-color: #3659e3;
+$follow-button-border-radius: 5px;
+$ticket-button-color: #0D8547;
+
+.banner {
+    filter: blur(8px);
+    background: black;
+    -webkit-filter: blur(15px);
+    z-index: -1;
+}
+
+.event-show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Helvetica;
+}
+
+.event-preview {
+    display: flex;
+    margin: auto;
+    max-width: 1080px;
+    width: 90%;
+    height: 360px;
+    margin-top: -460px;
+    border: 1px blue solid;
+}
+
+.ticket-bar {
+    display: flex;
+    margin: auto;
+    max-width: 1080px;
+    background-color: #FFFFFF;
+    height: 60px;
+    width: 75%;
+}
+
+.event-display {
+    width: 90%;
+    height: 900px;
+    background-color: white;
+    position: absolute;
+    top: 102px;
+    max-width: 1080px;
+}
+
+.hero-image {
+    width: 66%;
+    background-color: black;
+    height: 360px;
+    z-index: 1;
+}
+
+.description-card {
+    display: flex;
+    flex-direction: column;
+    width: 34%;
+    background-color: $description-card-color;
+    height: 360px;
+    z-index: 1;
+    border: 1px red solid;    
+}
+
+.description-card-head {
+    display: flex;
+    flex-direction: column;
+    border: 1px red solid; 
+    height: 70%;   
+    justify-content: center;
+    padding-left: $description-card-padding-left;
+}
+
+.description-card-head {
+    span:nth-of-type(1) {
+        border: 1px blue solid;
+        font-size: 20px;
+    }
+    span:nth-of-type(2) {
+        border: 1px yellow solid;
+        color: $description-card-creator-color;
+        display: flex;
+        font-size: 16px;
+        margin-top: 20px;
+        align-items: center;
+        position: relative;
+    }
+}
+
+.description-card-price {
+    border: 1px red solid;
+    padding-left: $description-card-padding-left;
+    position: relative;
+    top: 65px;
+    color: #4a465e;
+    font-size: 15px;
+}
+
+.follow-button {
+    border: 2px $follow-button-color solid;
+    border-radius: $follow-button-border-radius;
+    color: $follow-button-color;
+    width: 55px;
+    padding: 4px;
+    margin-left: 10px;
+}
+
+.ticket-bar {
+    border: 1px red solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.icons {
+    display: flex;
+    width: 65px;
+    margin-left: 22px;
+    border: 1px red solid;
+    justify-content: space-between;
+}
+
+.share-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.heart-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.ticket-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 44px;
+    font-size: 15px;
+    color: #FFFFFF;
+    background-color: $ticket-button-color;
+    margin-right: 20px;
+    border-radius: 3px;
+    transition: background-color .3s;
+    cursor: pointer;
+}
+
+.ticket-button:hover {
+    background-color: #179C55;
+}
