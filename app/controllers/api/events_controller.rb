@@ -1,6 +1,5 @@
 class Api::EventsController < ApplicationController
     def create
-        debugger
         @event = Event.new(event_params)
         if @event.save
             render :show
