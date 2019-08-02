@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MessagedInput from '../helper_components/messagedInput';
+import TagButton from '../helper_components/tag_button';
 
 class EventForm extends Component {
     constructor(props) {
@@ -107,7 +108,10 @@ class EventForm extends Component {
         return(
             <div className="event-container">
                 <div className="event-form">
-                    <h1>Basic Info</h1>
+                    <div className="section-head flex">
+                        <img className="icon" src={window.textIcon} />
+                        <h1>Basic Info</h1>
+                    </div>
                     <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
                     <MessagedInput
                         caption="Event Title" 
@@ -125,18 +129,21 @@ class EventForm extends Component {
                         <select onChange={this.handleChange("select", "category")}>
                             {categories}
                         </select>
-                    </div>     
-                    <MessagedInput
-                        onChange={this.handleChange("text", "tag")}
-                        placeholder="Add keywords to your event"
-                        caption="Tags" 
-                    />        
-                    <div className="button-1" onClick={this.handleSubmit("tagSubmit")}>Add</div>                       
-                    <div className="tag-span">
+                    </div> 
+                    <div className="flex">
+                        <MessagedInput
+                            onChange={this.handleChange("text", "tag")}
+                            value={this.state.tag}
+                            placeholder="Add keywords to your event"
+                            caption="Enter Tag" 
+                        />        
+                        <div className="button-1" onClick={this.handleSubmit("tagSubmit")}>Add</div>                       
+                    </div>    
+                    <div className="tag-spans flex">
                         <div className="tag-span-item">{`${this.state.tags.length}/10 tags.`}</div>
-                        <div className="spacer-div"></div>
                         <div className="tag-span-item">{`${this.state.tag.length}/75`}</div>
                     </div>
+                    <TagButton />
                     <MessagedInput 
                         onChange={this.handleChange("text", "organizer")} 
                         value={this.state.organizer} 
@@ -149,7 +156,10 @@ class EventForm extends Component {
                 </div>
                 <hr />
                 <div className="event-form">
-                    <h1>Location</h1>
+                    <div className="section-head flex">
+                        <img className="icon" src={window.mapIcon} />
+                        <h1>Location</h1>
+                    </div>   
                     <p>Help people in the area discover your event and let attendees know where to show up.</p>
                     <select onClick={this.handleChange("venueSelect")}>
                         {onlineOrVenue}
@@ -158,7 +168,10 @@ class EventForm extends Component {
                 </div>
                 <hr />
                 <div className="event-form">
-                    <h1>Date and time</h1>
+                    <div className="section-head flex">
+                        <img className="icon" src={window.calendarIcon} />
+                        <h1>Date and Time</h1>
+                    </div>   
                     <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
                     <div className="date-time">
                         <input 
