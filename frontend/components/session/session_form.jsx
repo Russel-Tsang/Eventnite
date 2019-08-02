@@ -77,7 +77,12 @@ class SessionForm extends Component {
                 greetingMessage = "Please enter your password to log in.";
                 message = "Forgot password";
                 fontSize = "14px";
-                extraInputs = <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />;
+                if (this.props.errors.responseJSON) formErrors = <span className="form-error">{this.props.errors.responseJSON}</span>;
+                extraInputs = 
+                    <>
+                    <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />
+                    {formErrors}
+                    </>;
                 break;
             case "Sign Up":
                 imageSrc = window.signinIcon;
@@ -104,7 +109,8 @@ class SessionForm extends Component {
                     imageSrc={imageSrc}
                     alt={alt}
                     greetingHeaderText={greetingHeaderText}
-                    greetingMessage={greetingMessage} />
+                    greetingMessage={greetingMessage} 
+                />
 
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" value={email} onChange={this.handleChange("email")} placeholder="Email Address" />
@@ -113,11 +119,9 @@ class SessionForm extends Component {
                         type={"submit"}
                         value={formType}
                         message={message} 
-                        fontSize={fontSize} />
+                        fontSize={fontSize} 
+                    />
                 </form>
-                <ul>
-                    {formErrors}
-                </ul>
             </div>
         )
     }
