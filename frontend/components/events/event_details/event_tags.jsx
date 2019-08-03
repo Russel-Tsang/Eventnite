@@ -1,4 +1,5 @@
 import React from 'react';
+import TagButton from '../../helper_components/tag_button';
 
 const EventTags = (props) => {
     return ( 
@@ -6,9 +7,9 @@ const EventTags = (props) => {
             <span className="tags-heading">
                 <h3>Tags</h3>
             </span>
-            {/* <span className="tags"> */}
-                {/* render tag components */}
-            {/* </span> */}
+            <span className="tags">
+                TagButton
+            </span>
         </div>
     );
 }

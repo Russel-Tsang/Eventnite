@@ -1,9 +1,17 @@
 import React from 'react';
 
-const TagButton = (props) => {
+export const TagButtons = (props) => {
     return (
-        <button></button>
+        <div className="tag-buttons">
+            {props.children}
+        </div>
+        
     )
 }
 
-export default TagButton;
+export const TagButton = ({ tag }) => {
+    return (
+        <span className="tag-button">{tag}<img src={window.closeIcon} /></span>
+        
+    )
+}

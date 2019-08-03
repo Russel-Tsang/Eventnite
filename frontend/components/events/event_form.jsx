@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import MessagedInput from '../helper_components/messagedInput';
-import TagButton from '../helper_components/tag_button';
+import { TagButton, TagButtons }from '../helper_components/tag_button';
 
 class EventForm extends Component {
     constructor(props) {
         super(props)
 
+        // begin time and end time data stored as minutes after 12am
         this.state = {
             title: '',
             eventType: '',
@@ -13,17 +14,19 @@ class EventForm extends Component {
             tag: '',
             tags: [],
             organizer: '',
-            online_event: false,
+            onlineEvent: false,
             street: '',
             city: '',
             state: '',
-            zip_code: '',
+            zipCode: '',
             beginDay: '',
             beginMonth: '',
             beginYear: '',
             endDay: '',
             endMonth: '',
-            endYear: ''
+            endYear: '',
+            beginTime: '',
+            endtime: ''
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -36,16 +39,23 @@ class EventForm extends Component {
                     this.setState({ [payload]: target.value });
                     break;
                 case 'select':
-                    event.preventDefault();
                     this.setState({ [payload]: target.value });
                     break;
                 case 'venueSelect':
                     let boolValue = target.value === 'Online' ? true : false; 
-                    this.setState({ online_event: boolValue });
+                    this.setState({ onlineEvent: boolValue });
                     break;
                 case 'date':
                     let dateArr = target.value.split('-');
                     this.setState({ [`${payload}Year`]: dateArr[0], [`${payload}Month`]: dateArr[1], [`${payload}Day`]: dateArr[2]});
+                case 'time':
+                    let time = this.handleTime(target.value);
+                    this.setState({[`${payload}Time`]: time});
+                case 'address':
+                    if (target.value.split(',').length === 4) {
+                        let [street, city, state, zipCode] = this.handleAddress(target.value);
+                        this.setState({ street, city, state, zipCode });
+                    }   
             }
         }
     }
@@ -66,8 +76,27 @@ class EventForm extends Component {
         }
     }
 
-    handleDate(event) {
-        console.log(event.target.value);
+    // converts time as string into integer representing number of minutes past midnight
+    handleTime(timeStr) {
+        let hour = Number(timeStr.slice(0, timeStr.indexOf(":")));
+        let pastNoon = timeStr[timeStr.length - 2] === "P" ? true : false;
+        let halfHour = timeStr[timeStr.length - 5] === "3" ? true : false;
+        let newTime;
+        if (hour === 12 && !pastNoon) {
+            newTime = 0;
+        } else if (!pastNoon || hour === 12 && pastNoon) {
+            newTime = hour * 60;
+        } else {
+            newTime = hour * 60 + 720;
+        }
+        if (halfHour) newTime += 30;
+        return newTime;
+    }
+
+    handleAddress(address) {
+        let [street, city, state, zipCode] = address.split(',');
+        [street, city, state, zipCode] = [street.trim(), city.trim(), state.trim(), zipCode.trim()];
+        return [street, city, state, zipCode];
     }
 
     render() {
@@ -92,6 +121,10 @@ class EventForm extends Component {
             'Family and Education'
         ]
 
+        const TIMES = [
+            "12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"
+        ]
+
         let types = TYPES.map((type, idx) => (
             <option key={idx}>{type}</option>
         ));
@@ -99,6 +132,19 @@ class EventForm extends Component {
         let categories = CATEGORIES.map((category, idx) => (
             <option key={idx}>{category}</option>
         ));
+
+        // create option tags with all possible times
+        let times = TIMES.map((time, idx) => (
+            <>
+                <option key={`${idx}-0`}>{`${time}:00 AM`}</option>
+                <option key={`${idx}-1`}>{`${time}:30 AM`}</option>
+            </>
+        )).concat(TIMES.map((time, idx) => (
+            <>
+                <option key={`${idx}-2`}>{`${time}:00 PM`}</option>
+                <option key={`${idx}-3`}>{`${time}:30 PM`}</option>
+            </>
+        )));
 
         let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
             <option key={idx}>{option}</option>            
@@ -142,7 +188,9 @@ class EventForm extends Component {
                         <div className="tag-span-item">{`${this.state.tags.length}/10 tags.`}</div>
                         <div className="tag-span-item">{`${this.state.tag.length}/75`}</div>
                     </div>
-                    <TagButton />
+                    <TagButtons>
+                        <TagButton tag="test"/>
+                    </TagButtons>
                     <MessagedInput 
                         onChange={this.handleChange("text", "organizer")} 
                         value={this.state.organizer} 
@@ -160,10 +208,10 @@ class EventForm extends Component {
                         <h1>Location</h1>
                     </div>   
                     <p>Help people in the area discover your event and let attendees know where to show up.</p>
-                    <select onClick={this.handleChange("venueSelect")}>
+                    <select onChange={this.handleChange("venueSelect")}>
                         {onlineOrVenue}
                     </select>
-                    <input placeholder="Search for Address" />
+                    <input id="address-search" placeholder="Search for Address" onChange={this.handleChange("address")}/>
                 </div>
                 <hr />
                 <div className="event-form">
@@ -175,16 +223,21 @@ class EventForm extends Component {
                     <div className="date-time">
                         <input 
                             type="date" 
-                            onChange={this.handleChange("date", "begin")} />
-                        <select>
+                            onChange={this.handleChange("date", "begin")} 
+                        />
+                        <select onChange={this.handleChange("time", "begin")}>
+                            {times}
                         </select>
                         <input 
                             type="date" 
-                            onChange={this.handleChange("date", "end")} />
-                        <select>
+                            onChange={this.handleChange("date", "end")} 
+                        />
+                        <select onChange={this.handleChange("time", "end")}>
+                            {times}
                         </select>
                     </div>
                 </div>
+                <button onClick={this.handleSubmit("formSubmit")}></button>
             </div>
         )
     }

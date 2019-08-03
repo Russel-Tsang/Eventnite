@@ -11,6 +11,8 @@ class NavBar extends Component {
             </div>
         ) : (
                 <div>
+                    <Link className="btn" to="/show_event_card">Event Card</Link>
+                    <Link className="btn" to="/show_event">Show Event</Link>
                     <Link className="btn" to="/create_event">Create Event</Link>
                     <Link className="btn" to="/signin">Sign In</Link>
                 </div>
