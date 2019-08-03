@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_000648) do
+ActiveRecord::Schema.define(version: 2019_08_03_222755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,13 +51,24 @@ ActiveRecord::Schema.define(version: 2019_08_02_000648) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "beginDay"
-    t.integer "beginMonth"
-    t.integer "beginYear"
-    t.integer "endDay"
-    t.integer "endMonth"
-    t.integer "endYear"
+    t.integer "begin_day"
+    t.integer "begin_month"
+    t.integer "begin_year"
+    t.integer "end_day"
+    t.integer "end_month"
+    t.integer "end_year"
+    t.integer "begin_time"
+    t.integer "end_time"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "event_id"], name: "index_tags_on_user_id_and_event_id"
   end
 
   create_table "users", force: :cascade do |t|
