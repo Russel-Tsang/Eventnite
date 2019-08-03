@@ -19,6 +19,13 @@ $ticket-button-color: #0D8547;
     font-family: Helvetica;
 }
 
+.event-show {
+    h3 {
+        font-size: 15px;
+        font-weight: none;
+    }
+}
+
 .event-preview {
     display: flex;
     margin: auto;
@@ -36,6 +43,22 @@ $ticket-button-color: #0D8547;
     background-color: #FFFFFF;
     height: 60px;
     width: 75%;
+}
+
+.description-and-location {
+    display: flex;
+    margin: auto;
+    width: 90%;
+    max-width: 1080px;
+    padding-top: 50px;
+    background-color: #FFFFFF;
+    border: 2px red solid;
+}
+
+.event-description {
+    p {
+        color: #6f7287;
+    }
 }
 
 .event-display {
@@ -150,4 +173,54 @@ $ticket-button-color: #0D8547;
 
 .ticket-button:hover {
     background-color: #179C55;
+}
+
+.description-and-location {
+    .event-description {
+        width: 66%;
+        padding-left: 105px;
+        border: 2px red solid;
+    }    
+    // .event-location {
+    //     width: 0%;
+    // }
+    // .event-refund {
+
+    // }    
+    .event-location-refund {
+        display: flex;
+        flex-direction: column;
+        width: 34%;
+        border: 1px brown solid;
+    }
+}
+
+.grey-background {
+    background-color: #f8f7fa;
+    height: 500px;
+}
+
+.event-tags {
+    display: flex;
+    margin: auto;
+    max-width: 1080px;
+    width: 90%;
+    height: 360px;
+    border: 2px red solid;
+}
+
+.tag-button {
+    display: inline-block;
+    background-color: #f8f7fa;
+    padding: 8px 12px;
+    border-radius: 18px;
+    margin-right: 15px;
+    
+    img {
+        width: 12px;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+        margin-left: 10px;
+    }
 }
