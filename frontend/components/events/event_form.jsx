@@ -26,15 +26,15 @@ class EventForm extends Component {
             endMonth: '',
             endYear: '',
             beginTime: '',
-            endtime: ''
+            endTime: ''
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(field, payload) {
+    handleChange(type, payload) {
         return ({ target }) => {
             event.preventDefault();
-            switch (field) {
+            switch (type) {
                 case 'text':
                     this.setState({ [payload]: target.value });
                     break;
@@ -48,14 +48,22 @@ class EventForm extends Component {
                 case 'date':
                     let dateArr = target.value.split('-');
                     this.setState({ [`${payload}Year`]: dateArr[0], [`${payload}Month`]: dateArr[1], [`${payload}Day`]: dateArr[2]});
+                    break;
                 case 'time':
+                    debugger
                     let time = this.handleTime(target.value);
                     this.setState({[`${payload}Time`]: time});
+                    break;
                 case 'address':
                     if (target.value.split(',').length === 4) {
                         let [street, city, state, zipCode] = this.handleAddress(target.value);
                         this.setState({ street, city, state, zipCode });
                     }   
+                    break;
+                case 'deleteTag': 
+                    let tags = this.state.tags.filter(tag => tag !== payload);
+                    this.setState({ tags });
+                    break;
             }
         }
     }
@@ -68,6 +76,7 @@ class EventForm extends Component {
                     this.props.action(this.state);
                     break;
                 case "tagSubmit":
+                    if (!this.state.tag.length) break;
                     let newTags = this.state.tags.slice();
                     newTags.push(this.state.tag);
                     this.setState({ tags: newTags, tag: '' });
@@ -133,6 +142,9 @@ class EventForm extends Component {
             <option key={idx}>{category}</option>
         ));
 
+        // generate TagButton components for TagButtons component
+        let tags = this.state.tags.map(tag => <TagButton onClick={this.handleChange("deleteTag", `${tag}`)} tag={tag} />)
+
         // create option tags with all possible times
         let times = TIMES.map((time, idx) => (
             <>
@@ -184,12 +196,12 @@ class EventForm extends Component {
                         />        
                         <div className="button-1" onClick={this.handleSubmit("tagSubmit")}>Add</div>                       
                     </div>    
-                    <div className="tag-spans flex">
+                    <div className="tag-counts flex">
                         <div className="tag-span-item">{`${this.state.tags.length}/10 tags.`}</div>
                         <div className="tag-span-item">{`${this.state.tag.length}/75`}</div>
                     </div>
                     <TagButtons>
-                        <TagButton tag="test"/>
+                        {tags}
                     </TagButtons>
                     <MessagedInput 
                         onChange={this.handleChange("text", "organizer")} 
@@ -237,7 +249,8 @@ class EventForm extends Component {
                         </select>
                     </div>
                 </div>
-                <button onClick={this.handleSubmit("formSubmit")}></button>
+                <button className="button-1" onClick={this.handleSubmit("formSubmit")} />
+                <div className="spacer" />
             </div>
         )
     }
