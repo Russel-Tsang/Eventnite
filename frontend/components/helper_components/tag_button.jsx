@@ -9,9 +9,9 @@ export const TagButtons = (props) => {
     )
 }
 
-export const TagButton = ({ tag }) => {
+export const TagButton = ({ tag, onClick }) => {
     return (
-        <span className="tag-button">{tag}<img src={window.closeIcon} /></span>
+        <div className="tag-button">{tag}<img onClick={onClick} src={window.closeIcon} /></div>
         
     )
 }
