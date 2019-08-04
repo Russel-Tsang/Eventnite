@@ -1,0 +1,96 @@
+$event-cards-width: 65%;
+$event-card-width: $event-cards-width / 3; 
+
+.splash-banner {
+    width: 100%;
+    top: -200px;
+}
+
+.events-cards {
+    display: flex;
+    width: $event-cards-width;
+    /* max-width: 1080px; */
+    margin: auto;
+    flex-wrap: wrap;
+    // justify-content: center;
+}
+
+.event-card {
+    margin: 10px;
+    width: 30%;
+    min-width: 350px;
+
+    .event-card-picture {
+        height: 190px;
+        background-size: cover;
+    }
+    .event-card-details {
+        height: 150px;
+    }
+    .event-card-details {
+        .card-buttons {
+            text-align: right;
+            margin-right: 10px;
+            position: relative;
+            bottom: 20px;
+            height: 0px;
+            margin-bottom: 20px;
+
+            .event-card-share-button {
+                width: 45px;
+                height: 45px;
+                margin: 0 5px;
+                border-radius: 40px;
+                border: 1px #efeef3 solid;
+                
+                .share-icon-img {
+                    width: 18px;
+                }
+            }
+            .event-card-heart-button {
+                width: 45px;
+                height: 45px;
+                background-color: white;
+                margin: 0 5px;
+                border-radius: 40px;
+                border: 1px #efeef3 solid;
+                
+                .heart-icon-img {
+                    width: 18px;
+                }
+            }   
+        }
+        .date-span {
+            width: 20%;
+            height: 70px;
+
+            .month {
+                display: block;
+            }
+            .date {
+                display: block;               
+            }
+        }
+        .card-details {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+
+            .card-title {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            > span {
+                margin-top: 5px;
+                color: #76798d;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.event-card:hover {
+    box-shadow: -2px 3px 10px #EEEEEE;
+    transition: box-shadow 1s;
+}

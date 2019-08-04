@@ -26,30 +26,30 @@ $ticket-button-color: #0D8547;
     }
 }
 
+.event-show-card {
+    > div {
+        display: flex;
+        max-width: 1080px;
+        width: 90%;
+    }
+}
+
 .event-preview {
-    display: flex;
     margin: auto;
-    max-width: 1080px;
-    width: 90%;
     height: 360px;
     margin-top: -460px;
     border: 1px blue solid;
 }
 
 .ticket-bar {
-    display: flex;
     margin: auto;
-    max-width: 1080px;
     background-color: #FFFFFF;
     height: 60px;
     width: 75%;
 }
 
 .description-and-location {
-    display: flex;
     margin: auto;
-    width: 90%;
-    max-width: 1080px;
     padding-top: 50px;
     background-color: #FFFFFF;
     border: 2px red solid;
@@ -181,12 +181,6 @@ $ticket-button-color: #0D8547;
         padding-left: 105px;
         border: 2px red solid;
     }    
-    // .event-location {
-    //     width: 0%;
-    // }
-    // .event-refund {
-
-    // }    
     .event-location-refund {
         display: flex;
         flex-direction: column;
@@ -201,10 +195,11 @@ $ticket-button-color: #0D8547;
 }
 
 .event-tags {
-    display: flex;
     margin: auto;
-    max-width: 1080px;
-    width: 90%;
     height: 360px;
-    border: 2px red solid;
+    border: 1px red solid;
+    
+    div {
+        padding-left: 105px;
+    }
 }
