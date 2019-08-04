@@ -1,4 +1,9 @@
 class Api::EventsController < ApplicationController
+    def index
+        @events = Event.all
+        render :index
+    end
+
     def create
         @event = Event.new(event_params)
         if @event.save
@@ -20,6 +25,6 @@ class Api::EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:title, :description, :event_type, :category, :tags, :organizer, :online_event, :street, :city, :state, :zip_code, :user_id)
+        params.require(:event).permit(:title, :description, :event_type, :category, :tags, :organizer, :online_event, :street, :city, :state, :zip_code, :user_id, :begin_day, :begin_month, :begin_year, :end_day, :end_month, :end_year, :begin_time, :end_time, :tags => [])
     end
 end
