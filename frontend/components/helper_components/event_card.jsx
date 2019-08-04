@@ -1,47 +1,56 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const EventCard = ({cardImage, month, day, date, title, time, venueName, city, state, price}) => {
-    return ( 
-        <div className="event-card">
+export const EventCards = (props) => (
+    <div className="events-cards">
+        {props.children}
+    </div>
+);
+
+export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId }) => ( 
+    <div className="event-card">
+        <Link to={`events/${eventId}`}>
             <aside className="event-card-picture" 
                 style={{backgroundImage: `url(${cardImage})`}}
             />
-            <main className="event-card-details">
-                <div className="card-buttons">
-                    <button className="event-card-share-button">
-                        <img className="share-icon-img" src={window.shareIcon}/>
-                    </button>
-                    <button className="event-card-heart-button">
-                        <img className="heart-icon-img" src={window.heartIcon}/>
-                    </button>
+        </Link>
+        <main className="event-card-details">
+            <div className="card-buttons">
+                <button className="event-card-share-button">
+                    <img className="share-icon-img" src={window.shareIcon}/>
+                </button>
+                <button className="event-card-heart-button">
+                    <img className="heart-icon-img" src={window.heartIcon}/>
+                </button>
+            </div>
+            <div className="date-details flex">
+                <div className="date-span">
+                    <span className="month">
+                        {month}
+                    </span>
+                    <span className="date">
+                        {date}
+                    </span>
                 </div>
-                <div className="date-details flex">
-                    <div className="date-span">
-                        <span className="month">
-                            {month}
-                        </span>
-                        <span className="date">
-                            {date}
-                        </span>
-                    </div>
-                    <div className="card-details">
+                <div className="card-details">
+                    <Link to={`events/${eventId}`}>
                         <span className="card-title">
                             {title}
                         </span>
-                        <span className="card-date-time">
-                            {`${day}, ${month}, ${time}`}
-                        </span>
-                        <span className="event-card-location">
-                            {`${venueName}, ${city}, ${state}`}
-                        </span>
-                        <span className="card-price">
-                            {`Starts at $${price}.00`}
-                        </span>
-                    </div>
+                    </Link>
+                    <span className="card-date-time">
+                        {`${day}, ${month}, ${time}`}
+                    </span>
+                    <span className="event-card-location">
+                        {`${venueName}, ${city}, ${state}`}
+                    </span>
+                    <span className="card-price">
+                        {`Starts at $${price}.00`}
+                    </span>
                 </div>
-            </main>
-        </div>
-    );
-}
+            </div>
+        </main>
+    </div>
+);
+
  
-export default EventCard;

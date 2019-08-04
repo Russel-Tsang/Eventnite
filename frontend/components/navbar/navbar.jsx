@@ -7,20 +7,19 @@ class NavBar extends Component {
         const display = currentUser ? (
             <div>
                 <Link className="btn" to="/create_event">Create Event</Link>
-                <Link className="btn" onClick={logout}>Logout</Link>
+                <Link className="btn" to="/" onClick={logout}>Logout</Link>
             </div>
         ) : (
                 <div>
-                    <Link className="btn" to="/show_event_card">Event Card</Link>
-                    <Link className="btn" to="/show_event">Show Event</Link>
-                    <Link className="btn" to="/create_event">Create Event</Link>
                     <Link className="btn" to="/signin">Sign In</Link>
                 </div>
         );
 
         return (
             <header className="navbar">
-                <img src={window.logoWhiteFull} className="logo" />
+                <Link to="/">
+                    <img src={window.logoWhiteFull} className="logo" />
+                </Link>
                 <div>
                     <div className="navbar-right">
                         {display}

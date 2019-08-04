@@ -36,7 +36,6 @@ class SessionForm extends Component {
                 // )
                 break
             case "Sign Up":
-                debugger
                 this.props.signUp(this.state);
                 break;
             case "Log In":
