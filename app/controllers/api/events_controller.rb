@@ -7,16 +7,17 @@ class Api::EventsController < ApplicationController
     def create
         debugger
         @event = Event.new(event_params.except(:tags))
-        if event_params[:tags]
-            event_params[:tags].each do |tag|
-                tag = Tag.create(tag_name: tag)
-                Tagging.create(tag: tag, event: @event)
-            end
-        end
-        if @event.save
-            render :show
-        else
+        if !@event.valid?
             render json: @event.errors.full_messages, status: 422
+        else
+            @event.save
+            if event_params[:tags]
+                event_params[:tags].each do |tag|
+                    tag = Tag.find_by("tag_name": tag) || Tag.create(tag_name: tag)
+                    Tagging.create(tag: tag, event: @event)
+                end
+            end
+            render :index
         end
     end
 
