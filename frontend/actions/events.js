@@ -30,9 +30,18 @@ export const fetchEvents = () => dispatch => {
     );
 }
 
+export const updateEvent = (event) => {
+    debugger
+    return ApiEventsUtil.updateEvent(event).then(
+        event => dispatch(receiveEvent(event))
+    )
+}
+
 export const postRegistration = (eventId) => dispatch => {
     return ApiEventsUtil.postRegistration(eventId).then(
         event => dispatch(receiveEvents(event))
     );
 }
+
+
 
