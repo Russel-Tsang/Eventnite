@@ -30,7 +30,10 @@ class SessionForm extends Component {
         switch (this.state.formType) {
             case "Get Started":
                 this.props.verifyUser(this.state.email).then(
-                    res => this.handleFormType(res.email)
+                    res => {
+                        debugger
+                        this.handleFormType(res.email)
+                    }
                 )
                 break
             case "Sign Up":
@@ -64,7 +67,7 @@ class SessionForm extends Component {
     render() {
         let formErrors = this.handleErrors();
         const { fname, lname, email, password, formType, confirmPassword } = this.state;
-        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, firstNameError, lastNameError, passwordError;
+        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, firstNameError, lastNameError, passwordError;
         
         // change display of form depending on formType
         switch (this.state.formType) {
@@ -105,6 +108,7 @@ class SessionForm extends Component {
                 if (formErrors && formErrors["Fname"]) firstNameError = formErrors["Fname"];
                 if (formErrors && formErrors["Lname"]) lastNameError = formErrors["Lname"];
                 if (formErrors && formErrors["Password"]) passwordError = formErrors["Password"];
+                if (formErrors && formErrors["Email"]) emailError = formErrors["Email"];
                 extraInputs =
                     <div className="signup-div">
                         <StyledInput 
@@ -155,6 +159,7 @@ class SessionForm extends Component {
                         value={email} 
                         onChange={this.handleChange("email")} 
                         label="Email Address" 
+                        error={emailError}
                     />
 
                     {extraInputs}
@@ -164,7 +169,6 @@ class SessionForm extends Component {
                         message={message} 
                         fontSize={fontSize} 
                     />
-
                 </form>
             </div>
         )
