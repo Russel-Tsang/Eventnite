@@ -22,7 +22,7 @@ class EventShow extends Component {
     render() {
         const { id, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime } = this.props.event;
         const zipCode = this.props.event.zip_code;
-        const eventTags = tags ? Object.values(tags).map(tag => <EventTag tag={tag.tag_name} />) : '';
+        const eventTags = tags ? Object.values(tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />) : '';
         
 
         return (

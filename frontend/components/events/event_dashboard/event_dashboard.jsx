@@ -19,7 +19,7 @@ class EventDashboard extends Component {
     renderComponent(component) {
         switch(component) {
             case("EditForm"): 
-                this.setState({ mainContainer: <EventFormContainer/> })
+                this.setState({ mainContainer: <EventFormContainer formType="Update" eventId={this.props.match.params.eventId}/> })
                 break;
             case("Details"): 
                 this.setState({ mainContainer: <Details/> })

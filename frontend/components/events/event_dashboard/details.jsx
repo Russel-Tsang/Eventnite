@@ -6,6 +6,7 @@ const Details = (props) => {
     return (  
         <div className="details">
             <ContentBlock imgSrc={window.textIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
+                <input type="file" />
                 {/* <img className="details-image" src={window.photoBalloons}/> */}
             </ContentBlock>
             <ContentBlock heading="Description" caption="Add more details to your event like your schedule, sponsors, or featured guests." >

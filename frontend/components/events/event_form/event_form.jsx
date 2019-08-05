@@ -3,13 +3,17 @@ import MessagedInput from '../../helper_components/messagedInput';
 import { TagButton, TagButtons }from '../../helper_components/tag_button';
 import SubmitBar from '../../helper_components/submit_bar';
 import { toMinutes } from '../../../util/calculations';
+import { withRouter } from 'react-router-dom'; 
 
 class EventForm extends Component {
     constructor(props) {
         super(props)
+        const { title, category, tags, eventType, organizer } = this.props.event || '';
 
         // begin time and end time data stored as minutes after 12am
         this.state = {
+            formType: this.props.formType,
+            eventId: this.props.eventId,
             title: '',
             eventType: '',
             category: '',
@@ -31,6 +35,18 @@ class EventForm extends Component {
             endTime: ''
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    // receive action object from fetchEvent thunk action creator, extracting event from action 
+    componentDidMount() {
+        this.props.fetchEvent(this.props.match.params.eventId).then(
+            (action) => {
+                const { event: { title, event_type, category, tags, organizer, online_event, street, state, city, zip_code, begin_day, begin_month, begin_year, end_day, end_month, end_year, begin_time, end_time, description, id } } = action;
+                let currentTags = Object.values(tags).map(tag => tag.tag_name);
+                this.setState({ title, eventType: event_type, category, tags: currentTags, organizer, onlineEvent: online_event, street, state, city, zipCode: zip_code, beginDay: begin_day, beginMonth: begin_month, beginYear: begin_year, endDay: end_day, endMonth: end_month, endYear: end_year, beginTime: begin_time, endTime: end_time, description, eventId: id });
+            }
+        );
     }
 
     handleChange(type, payload) {
@@ -48,6 +64,7 @@ class EventForm extends Component {
                     this.setState({ onlineEvent: boolValue });
                     break;
                 case 'date':
+                debugger
                     let dateArr = target.value.split('-');
                     this.setState({ [`${payload}Year`]: dateArr[0], [`${payload}Month`]: dateArr[1], [`${payload}Day`]: dateArr[2]});
                     break;
@@ -68,10 +85,16 @@ class EventForm extends Component {
             event.preventDefault();
             switch (type) {
                 case "formSubmit":
+                    // post or update event depending on the formType
+                    let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
                     const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, description: "test description" }
-                    this.props.action(requestParams);
-                    this.props.history.push("/");
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, description: "test description", id: this.state.eventId }
+                    action(requestParams).then(
+                        (action) => {
+                            const { event } = action
+                            this.props.history.push(`/dashboard/${event.id}`)
+                        }
+                    );
                     break;
                 case "tagSubmit":
                     if (!this.state.tag.length) break;
@@ -131,27 +154,27 @@ class EventForm extends Component {
         ));
 
         let categories = CATEGORIES.map((category, idx) => (
-            <option key={idx}>{category}</option>
+            <option key={`category-${idx}`}>{category}</option>
         ));
 
         // generate TagButton components for TagButtons component
-        let tags = this.state.tags.map(tag => <TagButton onClick={this.handleChange("deleteTag", `${tag}`)} tag={tag} />)
+        let tags = this.state.tags.map((tag, idx) => <TagButton key={`tag-${idx}`} onClick={this.handleChange("deleteTag", `${tag}`)} tag={tag} />)
 
         // create option tags with all possible times
         let times = TIMES.map((time, idx) => (
-            <>
-                <option key={`${idx}-0`}>{`${time}:00 AM`}</option>
-                <option key={`${idx}-1`}>{`${time}:30 AM`}</option>
-            </>
+            <React.Fragment key={`fragment-${idx}`}>
+                <option key={`option-${idx}-0`}>{`${time}:00 AM`}</option>
+                <option key={`option-${idx}-1`}>{`${time}:30 AM`}</option>
+            </React.Fragment>
         )).concat(TIMES.map((time, idx) => (
-            <>
-                <option key={`${idx}-2`}>{`${time}:00 PM`}</option>
-                <option key={`${idx}-3`}>{`${time}:30 PM`}</option>
-            </>
+            <React.Fragment key={`fragment-2-${idx}`}>
+                <option key={`option-${idx}-2`}>{`${time}:00 PM`}</option>
+                <option key={`option-${idx}-3`}>{`${time}:30 PM`}</option>
+            </React.Fragment>
         )));
 
         let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
-            <option key={idx}>{option}</option>            
+            <option key={`venue-${idx}`}>{option}</option>            
         ));
 
         return(
@@ -248,7 +271,7 @@ class EventForm extends Component {
                         </select>
                     </div>
                 </div>
-                {/* <button className="button-1" onClick={this.handleSubmit("formSubmit")} /> */}
+                <button className="button-1" onClick={this.handleSubmit("formSubmit")} />
             </div>
             <div className="spacer" />
             {this.submitBar()}
@@ -257,4 +280,4 @@ class EventForm extends Component {
     }
 }
 
-export default EventForm;
+export default withRouter(EventForm);
