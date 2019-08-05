@@ -23,6 +23,15 @@ export const fetchEvents = () => {
     })
 }
 
+export const updateEvent = (event) => {
+    debugger
+    return $.ajax({
+        method: 'PATCH',
+        url: `/api/events/${event.id}`,
+        data: { event }
+    })
+}
+
 // register for an event
 export const postRegistration = (eventId) => {
     return $.ajax({
