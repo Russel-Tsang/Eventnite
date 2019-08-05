@@ -3,7 +3,6 @@ $description-card-padding-left: 33px;
 $description-card-creator-color: #6f7287;
 $follow-button-color: #3659e3;
 $follow-button-border-radius: 5px;
-$ticket-button-color: #0D8547;
 
 .banner {
     filter: blur(8px);
@@ -40,16 +39,6 @@ $ticket-button-color: #0D8547;
     margin: auto;
     height: 360px;
     margin-top: -460px;
-}
-
-.ticket-bar {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    background-color: #FFFFFF;
-    height: 60px;
-    width: 75%;
-    justify-content: space-between;
 }
 
 .description-and-location {
@@ -145,24 +134,6 @@ $ticket-button-color: #0D8547;
     height: 22px;
 }
 
-.ticket-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 320px;
-    height: 44px;
-    font-size: 15px;
-    color: #FFFFFF;
-    background-color: $ticket-button-color;
-    margin-right: 20px;
-    border-radius: 3px;
-    transition: background-color .3s;
-    cursor: pointer;
-}
-
-.ticket-button:hover {
-    background-color: #179C55;
-}
 
 .description-and-location {
     .event-description {

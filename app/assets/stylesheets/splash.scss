@@ -96,5 +96,5 @@ $event-card-width: $event-cards-width / 3;
 
 .event-card:hover {
     box-shadow: -2px 3px 10px #EEEEEE;
-    transition: box-shadow 1s;
+    transition: box-shadow .5s;
 }

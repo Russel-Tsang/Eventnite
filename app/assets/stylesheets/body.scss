@@ -1,8 +1,7 @@
-$input-border-blue: #1f45e0;
 $input-caption-blue: #4b6ae7;
 $follow-button-color: #3659e3;
 $follow-button-border-radius: 5px;
-$error-red: #c5162d;
+
 
 body {
     font-family: 'Helvetica';
@@ -10,10 +9,6 @@ body {
 
 input {
     border-radius: 3px;
-}
-
-.blue {
-    color: $input-caption-blue;
 }
 
 .button-1 {
@@ -55,82 +50,6 @@ input {
     height: 22px;
 }
 
-.spacer {
-    height: 100px;
-}
+// input[type="file"] {
 
-.styled-input {
-    width: 320px;
-    height: 50px;
-    position: relative;
-    margin-top: 20px;
-}
-
-.styled-input input {
-    font-size: 14px;
-    width: 94.5%;
-    position: absolute;
-    background: transparent;
-}
-
-.input-label {
-    position: absolute;
-    left: 14px;
-    top: 18px;
-    color: #727589;
-    font-size: 13px;
-    transition: all .1s;
-}
-
-.label-focus {
-    top: 8px;
-    font-size: 12px;
-    color: $input-caption-blue;
-}
-
-.input-focus {
-    outline: none;
-    border: 2px $input-border-blue solid;
-    padding-bottom: 0;
-    height: 36px;
-}
-
-.label-error {
-    top: 8px;
-    font-size: 12px;
-    color: $error-red;
-}
-
-.input-error {
-    outline: none;
-    border: 2px $error-red solid;
-    padding-bottom: 0;
-    height: 36px;
-}
-
-.error-message {
-    height: 0;
-    margin-top: 10px;
-    color: $error-red;
-}
-
-.text-editor {
-    width: 40%;
-    margin-left: 68px;
-    header {
-        display: flex;
-        justify-content: space-between;
-        border: 1px black solid;
-        width: 186.5%;
-    }
-    span {
-        cursor: pointer;
-    }
-
-    .editor-right {
-        display: flex;
-        justify-content: space-around;
-        width: 10%;
-    }
-}
-
+// }

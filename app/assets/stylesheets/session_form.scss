@@ -9,9 +9,6 @@ $error-red: #c5162d;
 }
 
 .session-form {
-    p {
-        font-size: 13px;
-    }
     .greeting {
         display: flex;
         padding-top: 17px;
@@ -89,13 +86,20 @@ form {
     display: flex;
     
     div {
-        width: 42%;
-    }
-
-    div:nth-of-type(2) {
-        margin-left: 10%;
+        width: 77%;
     }
 }
+
+// .first-last-name:after {
+//     display: block;
+//     content: "";
+//     clear: both;
+// }
+
+// .first-last-name > div {
+//     width: 40%;
+//     float: left;
+// }
 
 .greeting-icon {
     height: 70px;
@@ -129,4 +133,5 @@ form {
 .password-div {
     margin-top: 20px;
 }
+
 
