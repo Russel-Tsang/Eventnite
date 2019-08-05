@@ -105,7 +105,6 @@ class SessionForm extends Component {
                 if (formErrors && formErrors["Fname"]) firstNameError = formErrors["Fname"];
                 if (formErrors && formErrors["Lname"]) lastNameError = formErrors["Lname"];
                 if (formErrors && formErrors["Password"]) passwordError = formErrors["Password"];
-                debugger
                 extraInputs =
                     <div className="signup-div">
                         <StyledInput 

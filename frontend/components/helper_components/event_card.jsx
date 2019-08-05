@@ -23,7 +23,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                     <img className="heart-icon-img" src={window.heartIcon}/>
                 </button>
             </div>
-            <div className="date-details flex">
+            <div className="splash-card-details flex">
                 <div className="date-span">
                     <span className="month">
                         {month}

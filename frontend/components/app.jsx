@@ -7,6 +7,7 @@ import Footer from './footer';
 import { AuthRoute } from '../util/route_util';
 import EventFormContainer from './events/event_form/event_form_container';
 import EventShowContainer from './events/event_show/event_show_container';
+import EventDashboard from './events/event_dashboard/event_dashboard';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
             <AuthRoute path="/signin" component={ SessionContainer } />
             <Route exact path="/create_event" component={ EventFormContainer } />
             <Route path="/events/:eventId" component={EventShowContainer} />
+            <Route path="/dashboard" component={EventDashboard} />
             {/* <Route path="/" component={ Footer } /> */}
         </div>
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { EventCards, EventCard } from '../helper_components/event_card';
+import { toMonth } from '../../util/calculations';
 
 class Splash extends Component {
     componentDidMount() {
@@ -9,13 +10,18 @@ class Splash extends Component {
     // *adjust to camelCase*
     render() {
         let eventCards = this.props.events.map(event => {
-            let { begin_month, begin_date, title, begin_time, city, state, id } = event;
+            let { begin_month, begin_day, title, begin_time, city, state, id } = event;
+            if (!begin_month) begin_month = '';
+            if (!begin_day) begin_day = '';
+            if (!begin_time) begin_time = '';
+            debugger
+
             return (
                 <EventCard
                     cardImage={window.photoBalloons}
-                    month={begin_month}
+                    month={toMonth(begin_month)}
                     day={"Sat"}
-                    date={begin_date}
+                    date={begin_day}
                     title={title}
                     time={begin_time}
                     venueName={"Blue Casino"}
