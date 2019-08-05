@@ -22,3 +22,11 @@ export const fetchEvents = () => {
         url: `/api/events/`
     })
 }
+
+// register for an event
+export const postRegistration = (eventId) => {
+    return $.ajax({
+        method: 'POST',
+        url: `/api/events/${eventId}/registrations`
+    })
+}

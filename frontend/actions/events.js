@@ -29,3 +29,11 @@ export const fetchEvents = () => dispatch => {
         events => dispatch(receiveEvents(events))
     );
 }
+
+export const postRegistration = (eventId) => dispatch => {
+    debugger
+    return ApiEventsUtil.postRegistration(eventId).then(
+        event => dispatch(receiveEvents(event))
+    );
+}
+
