@@ -1,6 +1,5 @@
 class Api::RegistrationsController < ApplicationController
     def create 
-        debugger
         @registration = Registration.new(user_id: current_user.id, event_id: params[:event_id])
         if @registration.save
             @event = @registration.event
