@@ -6,3 +6,4 @@ json.tags do
         end
     end
 end
+json.photoUrl url_for(@event.picture) if json.photoUrl
