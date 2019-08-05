@@ -1,11 +1,12 @@
 class Api::RegistrationsController < ApplicationController
     def create 
-        @registration = Registration.new(user_id: current_user.id, event_id: params[:event_id])
-        if @registration.save
-            @event = @registration.event
-            render 'api/events/show'
+        @event = Event.find(params[:event_id])
+        # if user has already signed up for the event
+        if @event.attendees.include?(current_user)
+            render json: { event: "Already registered!" }
         else
-            render json: @registration.errors.full_messages, status: 422
+            @registration = Registration.create(user_id: current_user.id, event_id: params[:event_id])
+            render 'api/events/show'
         end
     end
 end
