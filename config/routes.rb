@@ -6,8 +6,11 @@ Rails.application.routes.draw do
     resources :events, except: [:new] do
       resources :likes, only: [:create, :destroy]
       resources :follows, only: [:create, :destroy]
+      resources :registrations, only: [:create, :destroy]
     end
     resource :session, only: [:create, :destroy]
+    resource :likes, only: [:destroy]
+    resource :follows, only: [:destroy]
     get "/verify_user", to: "users#verify_user"
   end
 end
