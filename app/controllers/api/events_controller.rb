@@ -5,7 +5,14 @@ class Api::EventsController < ApplicationController
     end
 
     def create
-        @event = Event.new(event_params)
+        debugger
+        @event = Event.new(event_params.except(:tags))
+        if event_params[:tags]
+            event_params[:tags].each do |tag|
+                tag = Tag.create(tag_name: tag)
+                Tagging.create(tag: tag, event: @event)
+            end
+        end
         if @event.save
             render :show
         else
