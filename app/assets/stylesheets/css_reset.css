@@ -2,7 +2,7 @@ html, body, section, article,
 h1, h2, p, strong, em, a {
   margin: 0;
   border: 0;
-  padding: 0 !important;
+  /* padding: 0 !important; */
   outline: 0;
   box-sizing: inherit;
   font: inherit;

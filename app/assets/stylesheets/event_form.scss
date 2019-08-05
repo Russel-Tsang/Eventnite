@@ -109,11 +109,6 @@ $border-style: 2px solid #dbdae3;
   opacity: 1; /* Firefox */
 }
 
-/* messaged inputs */
-.input-caption + input {
-    padding-top: 10px;
-}
-
 /* to display contained elements horizontally */
 .flex {
     display: flex;
@@ -130,6 +125,12 @@ $border-style: 2px solid #dbdae3;
     padding-left: 15px;
     margin-bottom: -2px;
     color: #727589;
+
+    /* messaged inputs */
+    + input {
+    padding-top: 10px;
+}
+
 }
 
 hr {

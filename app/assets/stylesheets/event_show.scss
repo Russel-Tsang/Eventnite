@@ -38,21 +38,22 @@ $ticket-button-color: #0D8547;
     margin: auto;
     height: 360px;
     margin-top: -460px;
-    border: 1px blue solid;
 }
 
 .ticket-bar {
     margin: auto;
+    display: flex;
+    align-items: center;
     background-color: #FFFFFF;
     height: 60px;
     width: 75%;
+    justify-content: space-between;
 }
 
 .description-and-location {
     margin: auto;
     padding-top: 50px;
     background-color: #FFFFFF;
-    border: 2px red solid;
 }
 
 .event-description {
@@ -84,13 +85,11 @@ $ticket-button-color: #0D8547;
     background-color: $description-card-color;
     height: 360px;
     z-index: 1;
-    border: 1px red solid;    
 }
 
 .description-card-head {
     display: flex;
     flex-direction: column;
-    border: 1px red solid; 
     height: 70%;   
     justify-content: center;
     padding-left: $description-card-padding-left;
@@ -98,11 +97,9 @@ $ticket-button-color: #0D8547;
 
 .description-card-head {
     span:nth-of-type(1) {
-        border: 1px blue solid;
         font-size: 20px;
     }
     span:nth-of-type(2) {
-        border: 1px yellow solid;
         color: $description-card-creator-color;
         display: flex;
         font-size: 16px;
@@ -113,7 +110,6 @@ $ticket-button-color: #0D8547;
 }
 
 .description-card-price {
-    border: 1px red solid;
     padding-left: $description-card-padding-left;
     position: relative;
     top: 65px;
@@ -130,19 +126,10 @@ $ticket-button-color: #0D8547;
     margin-left: 10px;
 }
 
-.ticket-bar {
-    border: 1px red solid;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-}
-
 .icons {
     display: flex;
     width: 65px;
     margin-left: 22px;
-    border: 1px red solid;
     justify-content: space-between;
 }
 
@@ -179,13 +166,11 @@ $ticket-button-color: #0D8547;
     .event-description {
         width: 66%;
         padding-left: 105px;
-        border: 2px red solid;
     }    
     .event-location-refund {
         display: flex;
         flex-direction: column;
         width: 34%;
-        border: 1px brown solid;
     }
 }
 
@@ -197,7 +182,7 @@ $ticket-button-color: #0D8547;
 .event-tags {
     margin: auto;
     height: 360px;
-    border: 1px red solid;
+    background-color: #FFFFFF;
     
     div {
         padding-left: 105px;

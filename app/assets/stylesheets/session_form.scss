@@ -36,26 +36,21 @@ $error-red: #c5162d;
     }
 }
 
+
 form {
     display: flex;
     flex-direction: column;
-}
+    margin-top: 20px;
 
-form {
     input {
-        margin-top: 30px;
+        // margin-top: 20px;
         padding: 12px;
         height: 25px;
         font-size: 13px;
         outline: none;
         transition: border .2s;
     }
-    input[type="text"] {
-        border: 2px solid #dbdae3;
-    }
-    input:focus {
-       border: 2px solid #1f45e0;
-    }
+
     input[type="submit"] {
         height: 46px;
         width: 330px;
@@ -63,6 +58,8 @@ form {
         border-radius: 5px;
         color: white;
         font-size: 13px;
+        margin-top: 30px;
+        cursor: pointer;
     }
     a {
         margin: 15px auto;
@@ -90,7 +87,14 @@ form {
 
 .first-last-name {
     display: flex;
-    justify-content: space-between;
+    
+    div {
+        width: 42%;
+    }
+
+    div:nth-of-type(2) {
+        margin-left: 10%;
+    }
 }
 
 .greeting-icon {
@@ -114,4 +118,15 @@ form {
     display: none;
 }
 
+// inputs that do not include the style email input
+.signup-div {
+    display: flex;
+    flex-direction: column;
+    height: 205px;
+    justify-content: space-between;
+}
+
+.password-div {
+    margin-top: 20px;
+}
 
