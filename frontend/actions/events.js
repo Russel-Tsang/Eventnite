@@ -31,7 +31,6 @@ export const fetchEvents = () => dispatch => {
 }
 
 export const postRegistration = (eventId) => dispatch => {
-    debugger
     return ApiEventsUtil.postRegistration(eventId).then(
         event => dispatch(receiveEvents(event))
     );
