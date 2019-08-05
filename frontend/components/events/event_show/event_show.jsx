@@ -19,9 +19,8 @@ class EventShow extends Component {
     }
 
     render() {
-        const { title, description, tags, organizer, onlineEvent, street, state, city, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.props.event;
+        const { id, title, description, tags, organizer, onlineEvent, street, state, city, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.props.event;
         const zipCode = this.props.event.zip_code;
-        debugger
         return (
             <div className="event-show">
                 <Banner
@@ -35,7 +34,9 @@ class EventShow extends Component {
                             creator={`by Test Creator`}
                             price={`45`}
                         />
-                        <TicketBar />
+                        <TicketBar 
+                            onClick={() => this.props.postRegistration(id)}
+                        />
                         <EventDescription 
                             description={description}
                             street={street}
@@ -45,8 +46,7 @@ class EventShow extends Component {
                             refundStatus={"No Refunds"}
                         />
                         <EventTags>
-                            <EventTag tag="test" />
-                        </ EventTags>
+                        </EventTags>
                     </div>
                 </div>  
             </div>

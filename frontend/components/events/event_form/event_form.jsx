@@ -37,10 +37,10 @@ class EventForm extends Component {
             event.preventDefault();
             switch (type) {
                 case 'text':
-                    this.setState({ [payload]: target.value.trim() });
+                    this.setState({ [payload]: target.value });
                     break;
                 case 'select':
-                    this.setState({ [payload]: target.value.trim() });
+                    this.setState({ [payload]: target.value });
                     break;
                 case 'venueSelect':
                     let boolValue = target.value === 'Online' ? true : false; 
