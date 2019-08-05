@@ -42,7 +42,6 @@ input {
     display: flex;
     width: 65px;
     margin-left: 22px;
-    border: 1px red solid;
     justify-content: space-between;
 }
 
@@ -113,5 +112,25 @@ input {
     height: 0;
     margin-top: 10px;
     color: $error-red;
+}
+
+.text-editor {
+    width: 40%;
+    margin-left: 68px;
+    header {
+        display: flex;
+        justify-content: space-between;
+        border: 1px black solid;
+        width: 186.5%;
+    }
+    span {
+        cursor: pointer;
+    }
+
+    .editor-right {
+        display: flex;
+        justify-content: space-around;
+        width: 10%;
+    }
 }
 

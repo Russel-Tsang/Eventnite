@@ -1,0 +1,78 @@
+$panel-color: #f8f7fa;
+$red: 1px red solid;
+
+.dashboard-panel {
+    height: 100vh; 
+    min-width: 288px;
+    width: 15%;
+    background-color: $panel-color;
+    float: left;
+
+    a {
+        border: $red;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    div {
+        width: 246px;
+        font-size: 14px;
+        height: 20px;
+        border: $red;
+        display: flex;
+        align-items: center;
+    }
+
+    > * {
+        padding: 20px;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        border: $red;
+        width: 238px;
+        height: 110px;
+        padding: 24px;
+        font-size: 14px;
+        
+        span {
+            display: inline-block;
+            padding-top: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0;
+        }
+    }
+
+}
+
+.check-bar {
+    > * {
+        margin-right: 10px;
+    }
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+}
+
+.details-image {
+    width: 30%;
+    border: $red;
+}
+
+.details {
+    textarea {
+        width: 180%;
+        padding: 15px 0 0 20px;
+        font-size: 14px;
+        height: 150px;   
+        border-top: none;
+    }
+}

@@ -21,7 +21,7 @@ $ticket-button-color: #0D8547;
 
 .event-show {
     h3 {
-        font-size: 15px;
+        font-size: 18px;
         font-weight: none;
     }
 }
@@ -31,6 +31,8 @@ $ticket-button-color: #0D8547;
         display: flex;
         max-width: 1080px;
         width: 90%;
+        border-right: 1px #e8e8e9 solid;
+        border-left: 1px #e8e8e9 solid;
     }
 }
 
@@ -167,10 +169,12 @@ $ticket-button-color: #0D8547;
         width: 66%;
         padding-left: 105px;
     }    
-    .event-location-refund {
+    .event-details {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         width: 34%;
+        height: 300px;
     }
 }
 
@@ -179,7 +183,7 @@ $ticket-button-color: #0D8547;
     height: 500px;
 }
 
-.event-tags {
+.event-tags-div {
     margin: auto;
     height: 360px;
     background-color: #FFFFFF;
@@ -187,4 +191,18 @@ $ticket-button-color: #0D8547;
     div {
         padding-left: 105px;
     }
+
+    .tags {
+        display: inline-block;
+        margin-top: 40px;
+    }
+
+    .show-tag {
+        font-weight: bold;
+        background: none;
+        padding: 7px;
+        border-radius: 20px;
+        margin-right: 5px;
+    }   
 }
+

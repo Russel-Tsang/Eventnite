@@ -62,13 +62,17 @@ $event-card-width: $event-cards-width / 3;
         }
         .date-span {
             width: 20%;
-            height: 70px;
+            height: 75px;
+            text-align: center;
 
             .month {
                 display: block;
+                color: #f16349;
             }
             .date {
                 display: block;               
+                color: #6f7287;
+                margin-top: 4px;
             }
         }
         .card-details {
