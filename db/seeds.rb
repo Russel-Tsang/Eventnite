@@ -11,6 +11,9 @@ User.destroy_all
 
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('events')
+ActiveRecord::Base.connection.reset_pk_sequence!('tags')
+ActiveRecord::Base.connection.reset_pk_sequence!('taggings')
+ActiveRecord::Base.connection.reset_pk_sequence!('registrations')
 
 Alex = User.create!(email: 'alex@gmail.com', fname: 'Alex', lname: 'Smith', password: 'password')
 Tiffany = User.create!(email: 'tiff@gmail.com', fname: 'Tiffany', lname: 'Smith', password: 'password')
