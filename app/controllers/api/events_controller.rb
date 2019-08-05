@@ -6,7 +6,8 @@ class Api::EventsController < ApplicationController
 
     def create
         debugger
-        @event = Event.new(event_params.except(:tags))
+        @event = current_user.events.new(event_params.except(:tags))
+        # debugger
         if !@event.valid?
             render json: @event.errors.full_messages, status: 422
         else
@@ -17,7 +18,7 @@ class Api::EventsController < ApplicationController
                     Tagging.create(tag: tag, event: @event)
                 end
             end
-            render :index
+            render :show
         end
     end
 
@@ -27,6 +28,16 @@ class Api::EventsController < ApplicationController
             render :show
         else
             render json: @event.errors.full_messages, status: 404
+        end
+    end
+
+    def update 
+        debugger
+        @event = Event.find(params[:event][:id])
+        if @event.update(event_params.except(:id))
+            render :show
+        else
+            render json @event.errors.full_messages, status: 422
         end
     end
 
