@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_222755) do
+ActiveRecord::Schema.define(version: 2019_08_04_233327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2019_08_03_222755) do
     t.text "description", null: false
     t.string "event_type", null: false
     t.string "category", null: false
-    t.string "tags"
     t.string "organizer", null: false
     t.boolean "online_event", default: false
     t.string "street"
@@ -59,16 +58,30 @@ ActiveRecord::Schema.define(version: 2019_08_03_222755) do
     t.integer "end_year"
     t.integer "begin_time"
     t.integer "end_time"
+    t.integer "price"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "tag_name", null: false
+  create_table "registrations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "event_id"], name: "index_tags_on_user_id_and_event_id"
+    t.index ["user_id", "event_id"], name: "index_registrations_on_user_id_and_event_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id", "event_id"], name: "index_taggings_on_tag_id_and_event_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
