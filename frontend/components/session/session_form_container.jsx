@@ -4,7 +4,7 @@ import SessionForm from './session_form';
 
 const msp = state => ({
     formType: "Get Started",
-    errors: state.errors.sessionErrors
+    errors: state.errors.sessionErrors.responseJSON || ""
 });
 
 const mdp = (dispatch) => ({

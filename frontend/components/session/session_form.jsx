@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SessionGreeting from '../helper_components/session_greeting';
-import MessagedInput from '../helper_components/messagedInput';
 import ButtonAndMessage from './button_and_message';
+import StyledInput from '../helper_components/styled_input';
 
 class SessionForm extends Component {
     constructor(props) {
@@ -10,6 +10,7 @@ class SessionForm extends Component {
             formType: this.props.formType,
             email: '',
             password: '',
+            confirmPassword: '',
             fname: '',
             lname: ''
         };
@@ -31,9 +32,6 @@ class SessionForm extends Component {
                 this.props.verifyUser(this.state.email).then(
                     res => this.handleFormType(res.email)
                 )
-                // verifyUser(this.state.email).then(
-                //     res => console.log(res)
-                // )
                 break
             case "Sign Up":
                 this.props.signUp(this.state);
@@ -45,19 +43,28 @@ class SessionForm extends Component {
         }
     }
 
-    // change state of whatever 'field' is
+    // change state of 'field' argument
     handleChange(field) {
         return (event) => {
             this.setState({ [field]: event.target.value });
         }
     }
 
+    handleErrors() {
+        if (this.props.errors === "") return;
+        let errors = this.props.errors;
+        const errorsObject = {};
+        errors.forEach(error => {
+            let temp = error.split(" ");
+            errorsObject[temp[0]] = error;
+        })
+        return errorsObject;
+    }
+
     render() {
-        const { errors } = this.props;
-        const { fname, lname, email, password, formType } = this.state;
-        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formErrors;
-        // if there are errors, map them into list item elements
-        if (errors.responseJSON) formErrors = errors.responseJSON.map((error, idx) => <li key={idx}>{error}</li>);
+        let formErrors = this.handleErrors();
+        const { fname, lname, email, password, formType, confirmPassword } = this.state;
+        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, firstNameError, lastNameError, passwordError;
         
         // change display of form depending on formType
         switch (this.state.formType) {
@@ -76,12 +83,17 @@ class SessionForm extends Component {
                 greetingMessage = "Please enter your password to log in.";
                 message = "Forgot password";
                 fontSize = "14px";
-                if (this.props.errors.responseJSON) formErrors = <span className="form-error">{this.props.errors.responseJSON}</span>;
+                formError = formErrors ? formErrors["Invalid"] : "";
+
                 extraInputs = 
-                    <>
-                    <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />
-                    {formErrors}
-                    </>;
+                    <StyledInput
+                        className="password"
+                        type="password" 
+                        label="Password" 
+                        onChange={this.handleChange("password")} 
+                        value={password} 
+                        error={formError} 
+                    />
                 break;
             case "Sign Up":
                 imageSrc = window.signinIcon;
@@ -90,15 +102,42 @@ class SessionForm extends Component {
                 greetingMessage = "Create an Account";
                 message = "Log In Instead";
                 fontSize = "14px";
+                if (formErrors && formErrors["Fname"]) firstNameError = formErrors["Fname"];
+                if (formErrors && formErrors["Lname"]) lastNameError = formErrors["Lname"];
+                if (formErrors && formErrors["Password"]) passwordError = formErrors["Password"];
+                debugger
                 extraInputs =
-                    <>
-                        <input type="text" placeholder="Confirm Email" />
+                    <div className="signup-div">
+                        <StyledInput 
+                            type="text" 
+                            label="Confirm Password"
+                            onChange={this.handleChange("confirmPassword")}
+                            value={confirmPassword} 
+                        />
                         <div className="first-last-name">
-                            <input type="text" placeholder="First Name" onChange={this.handleChange("fname")} value={fname} />
-                            <input type="text" placeholder="Last Name" onChange={this.handleChange("lname")} value={lname} />
+                            <StyledInput 
+                                type="text" 
+                                label="First Name" 
+                                onChange={this.handleChange("fname")} 
+                                value={fname} 
+                                error={firstNameError}
+                            />
+                            <StyledInput 
+                                type="text" 
+                                label="Last Name" 
+                                onChange={this.handleChange("lname")} 
+                                value={lname} 
+                                error={lastNameError}
+                            />
                         </div>
-                        <input type="password" placeholder="Password" onChange={this.handleChange("password")} value={password} />
-                    </>;
+                        <StyledInput 
+                            type="password" 
+                            label="Password" 
+                            onChange={this.handleChange("password")} 
+                            value={password} 
+                            error={passwordError}
+                        />
+                    </div>;
                 break;
         }
 
@@ -112,17 +151,12 @@ class SessionForm extends Component {
                 />
 
                 <form onSubmit={this.handleSubmit}>
-                    <input 
-                        type="text" 
+                    <StyledInput 
+                        type={"text"} 
                         value={email} 
                         onChange={this.handleChange("email")} 
-                        placeholder="Email Address" 
+                        label="Email Address" 
                     />
-                    {/* <MessagedInput 
-                        value={email}
-                        onChange={this.handleChange("email")}
-                        caption="Email Address"
-                    /> */}
 
                     {extraInputs}
                     <ButtonAndMessage 
@@ -131,6 +165,7 @@ class SessionForm extends Component {
                         message={message} 
                         fontSize={fontSize} 
                     />
+
                 </form>
             </div>
         )
