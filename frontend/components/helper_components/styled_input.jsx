@@ -37,7 +37,9 @@ class StyledInput extends Component {
 
     errors() {
         if (this.props.error) {
-            return <p className="error-message">{this.props.error}</p>
+            return (
+                    <p className="error-message">{this.props.error}</p>
+            )
         }
     }
 
@@ -47,12 +49,13 @@ class StyledInput extends Component {
     }
 
     render() {
+        let marginBottom = this.props.error ? '15px' : '0px'; 
         return (
             <>
-            <div className="styled-input">
+            <div className="styled-input" style={{ marginBottom }}>
                 {this.label()}
-            </div>
             {this.errors()}
+            </div>
             </>
         )
     }
