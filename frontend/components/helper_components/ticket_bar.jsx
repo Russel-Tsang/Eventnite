@@ -8,7 +8,9 @@ const TicketBar = (props) => {
                 <img className="share-icon" src={window.shareIcon}/>
                 <img className="heart-icon" src={window.heartIcon}/>
             </div>
-            <TicketButton />
+            <TicketButton 
+                onClick={props.onClick}
+            />
         </div>
     );
 }

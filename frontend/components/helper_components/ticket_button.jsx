@@ -2,7 +2,12 @@ import React from 'react';
 
 const TicketButton = (props) => {
     return ( 
-        <div className="ticket-button">Tickets</div>
+        <div 
+            className="ticket-button"
+            onClick={props.onClick}
+        >
+            Tickets
+        </div>
     );
 }
  
