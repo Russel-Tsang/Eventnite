@@ -11,7 +11,15 @@ const EventDescription = (props) => {
                     <p>{props.description}</p>
                 </span>
             </div>
-            <div className="event-location-refund">
+            <div className="event-details">
+                <div className="event-date">
+                    <span className="event-date-heading">
+                        <h3>Date And Time</h3>
+                    </span>
+                    <span className="event-date-time">
+                        <p>{`${props.month}, ${props.day}, ${props.year}, ${props.time} `}</p>
+                    </span>
+                </div>
                 <div className="event-location">
                     <span className="location-heading">
                         <h3>Location</h3>

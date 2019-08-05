@@ -1,9 +1,8 @@
 import React from 'react';
-import TagButton from '../../helper_components/tag_button';
 
 export const EventTags = ({ children }) => {
     return ( 
-        <div className="event-tags">
+        <div className="event-tags-div">
             <div>
                 <span className="tags-heading">
                     <h3>Tags</h3>
@@ -18,7 +17,7 @@ export const EventTags = ({ children }) => {
 
 export const EventTag = ({ tag }) => {
     return ( 
-        <button className="tagButton">{tag}</button>
+        <button className="show-tag">{tag}</button>
     );
 }
  

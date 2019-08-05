@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MessagedInput from '../../helper_components/messagedInput';
 import { TagButton, TagButtons }from '../../helper_components/tag_button';
 import SubmitBar from '../../helper_components/submit_bar';
+import { toMinutes } from '../../../util/calculations';
 
 class EventForm extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class EventForm extends Component {
                     this.setState({ [`${payload}Year`]: dateArr[0], [`${payload}Month`]: dateArr[1], [`${payload}Day`]: dateArr[2]});
                     break;
                 case 'time':
-                    let time = this.handleTime(target.value);
+                    let time = toMinutes(target.value);
                     this.setState({[`${payload}Time`]: time});
                     break;
                 case 'deleteTag': 
@@ -83,21 +84,7 @@ class EventForm extends Component {
     }
 
     // converts time as string into integer representing number of minutes past midnight
-    handleTime(timeStr) {
-        let hour = Number(timeStr.slice(0, timeStr.indexOf(":")));
-        let pastNoon = timeStr[timeStr.length - 2] === "P" ? true : false;
-        let halfHour = timeStr[timeStr.length - 5] === "3" ? true : false;
-        let newTime;
-        if (hour === 12 && !pastNoon) {
-            newTime = 0;
-        } else if (!pastNoon || hour === 12 && pastNoon) {
-            newTime = hour * 60;
-        } else {
-            newTime = hour * 60 + 720;
-        }
-        if (halfHour) newTime += 30;
-        return newTime;
-    }
+
 
     // ensures no leading/trailing whitespace
     handleAddress(address) {
