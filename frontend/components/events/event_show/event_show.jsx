@@ -4,6 +4,7 @@ import Preview from '../../helper_components/event_preview';
 import TicketBar from '../../helper_components/ticket_bar';
 import EventDescription from '../event_details/event_description';
 import { EventTags, EventTag } from '../event_details/event_tags';
+import { toMonth, toTime } from '../../../util/calculations';
 
 class EventShow extends Component {
     
@@ -19,8 +20,11 @@ class EventShow extends Component {
     }
 
     render() {
-        const { id, title, description, tags, organizer, onlineEvent, street, state, city, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.props.event;
+        const { id, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime } = this.props.event;
         const zipCode = this.props.event.zip_code;
+        const eventTags = tags ? Object.values(tags).map(tag => <EventTag tag={tag.tag_name} />) : '';
+        
+
         return (
             <div className="event-show">
                 <Banner
@@ -44,8 +48,14 @@ class EventShow extends Component {
                             state={state}
                             zipCode={zipCode}
                             refundStatus={"No Refunds"}
+                            month={toMonth(begin_month)}
+                            day={begin_day}
+                            year={begin_year}
+                            time={toTime(begin_time)}
+
                         />
                         <EventTags>
+                            {eventTags}
                         </EventTags>
                     </div>
                 </div>  
