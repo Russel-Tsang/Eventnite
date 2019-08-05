@@ -1,6 +1,9 @@
 class Tag < ApplicationRecord
-    validates :tag_name, :user_id, :tag_id, presence: true
+    validates :tag_name, presence: true
 
-    belongs_to :user
-    belongs_to :event
+    has_many :taggings
+
+    has_many :tagged_events,
+        through: :taggings,
+        source: :event
 end

@@ -8,6 +8,12 @@ class User < ApplicationRecord
 
   has_many :events
 
+  has_many :registrations;
+
+  has_many :registered_events, 
+    through: :registrations,
+    source: :event
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64
   end
