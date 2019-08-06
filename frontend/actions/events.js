@@ -31,7 +31,6 @@ export const fetchEvents = () => dispatch => {
 }
 
 export const updateEvent = (event) => {
-    debugger
     return ApiEventsUtil.updateEvent(event).then(
         event => dispatch(receiveEvent(event))
     )
