@@ -19,6 +19,7 @@ const App = () => {
             <Route exact path="/create_event" component={ EventFormContainer } />
             <Route path="/events/:eventId" component={EventShowContainer} />
             <Route path="/modal" component={Modal} />
+            <Route exact path="/dashboard/" component={EventDashboard} />
             <Route exact path="/dashboard/:eventId" component={EventDashboard} />
             {/* <Route path="/" component={ Footer } /> */}
         </div>

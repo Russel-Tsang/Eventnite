@@ -31,7 +31,6 @@ class SessionForm extends Component {
             case "Get Started":
                 this.props.verifyUser(this.state.email).then(
                     res => {
-                        debugger
                         this.handleFormType(res.email)
                     }
                 )

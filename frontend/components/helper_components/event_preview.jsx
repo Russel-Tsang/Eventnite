@@ -11,7 +11,7 @@ const Preview = ({ imageSrc, eventTitle, creator, price }) => {
                         <h1>{eventTitle}</h1> 
                     </span>
                     <span>
-                        <p>{creator}</p>
+                        <p>by {creator}</p>
                         <FollowButton />
                     </span>
                 </div>
