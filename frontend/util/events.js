@@ -33,11 +33,11 @@ export const updateEvent = (event) => {
 }
 
 // submit a picture
-export const postPicture = photo => {
+export const updatePictureAndDescription = (pictureAndDescription, eventId) => {
     return $.ajax({
-        url: '/api/events',
-        method: 'events',
-        data: photo,
+        url: `/api/events/${eventId}`,
+        method: 'PATCH',
+        data: pictureAndDescription,
         contentType: false,
         processData: false
     });
