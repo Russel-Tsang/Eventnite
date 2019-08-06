@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-    validates :title, :description, :event_type, :category, :organizer, :user_id, presence: true
+    validates :title, :event_type, :category, :organizer, :user_id, presence: true
     
     belongs_to :creator,
         foreign_key: :user_id,

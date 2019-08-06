@@ -11,15 +11,16 @@ class Splash extends Component {
     render() {
         debugger
         let eventCards = this.props.events.map((event, idx) => {
-            let { begin_month, begin_day, title, begin_time, city, state, id, price } = event;
+            let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl } = event;
             if (!begin_month) begin_month = '';
             if (!begin_day) begin_day = '';
             if (!begin_time) begin_time = '';
+            let cardImage = pictureUrl || window.photoBalloons
 
             return (
                 <EventCard
                     key={idx}
-                    cardImage={window.photoBalloons}
+                    cardImage={cardImage}
                     month={toMonth(begin_month)}
                     day={"Sat"}
                     date={begin_day}
