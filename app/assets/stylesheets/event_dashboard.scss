@@ -11,6 +11,7 @@ $red: 1px red solid;
     a {
         cursor: pointer;
         display: inline-block;
+        color: #6f7287;
     }
 
     div {
@@ -25,13 +26,14 @@ $red: 1px red solid;
         padding: 20px;
     }
 
-    section {
+    .dashboard-section {
         display: flex;
         flex-direction: column;
         width: 238px;
         height: 110px;
         padding: 24px;
         font-size: 14px;
+        
         
         span {
             display: inline-block;
@@ -43,11 +45,23 @@ $red: 1px red solid;
             font-weight: 400;
             margin: 0;
         }
-    }
 
+        span:nth-of-type(2) {
+            color: #39364f;
+        }
+
+        a {
+            color: #375ae3;
+        }
+
+        a:hover {
+            text-decoration: underline; 
+        }
+    }
 }
 
 .check-bar {
+
     > * {
         margin-right: 10px;
     }
@@ -148,4 +162,8 @@ $red: 1px red solid;
     width: 100%;
     height: 50px;
     background-color: #f8f7fa;
+}
+
+.dashboard-picture {
+    width: 400px;
 }
