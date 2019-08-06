@@ -32,7 +32,7 @@ class EventDashboard extends Component {
         return (
             <>
             <aside className="dashboard-panel">
-                <Section heading={"Grad Party"} time={"3:00 PM"}/>
+                <Section heading={"Grad Party"} month={"Jul"} date={"09"} year={'2077'} time={"3:00 PM"}/>
                 <a><div className="dashboard-link">Dashboard</div></a>
                 <CheckBar onClick={() => this.renderComponent("EditForm")} label={"Basic Info"}/>
                 <CheckBar onClick={() => this.renderComponent("Details")} label={"Details"}/>

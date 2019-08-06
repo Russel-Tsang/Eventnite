@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Section = (props) => {
     return ( 
-        <section>
+        <section className="dashboard-section">
             <span>
                 <h3>{props.heading}</h3>
             </span>
             <span>
-                <p>{props.time}</p>
+                <p>{`${props.month} ${props.date}, ${props.year} ${props.time}`}</p>
             </span>
             <span>
-                <a>Switch Event</a>
+                <Link to="/dashboard">Switch Event</Link>
             </span>
         </section>
     );
