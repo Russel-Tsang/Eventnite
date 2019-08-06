@@ -6,4 +6,4 @@ json.tags do
         end
     end
 end
-json.pictureUrl url_for(@event.picture) if @event.picture
+json.pictureUrl url_for(@event.picture) if @event.picture.attached?
