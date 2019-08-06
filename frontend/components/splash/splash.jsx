@@ -9,7 +9,6 @@ class Splash extends Component {
 
     // *adjust to camelCase*
     render() {
-        debugger
         let eventCards = this.props.events.map((event, idx) => {
             let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl } = event;
             if (!begin_month) begin_month = '';

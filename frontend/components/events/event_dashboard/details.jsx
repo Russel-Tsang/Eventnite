@@ -42,7 +42,6 @@ class Details extends Component {
         const formData = new FormData();
         formData.append('event[description]', this.state.description);
         formData.append('event[picture]', this.state.photoFile);
-        debugger
         this.props.updatePictureAndDescription(formData, this.props.match.params.eventId);    
     }
 
