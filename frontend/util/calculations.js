@@ -35,7 +35,7 @@ export const toMinutes = (timeStr) => {
 }
 
 export const toTime = (minutes) => {
-    let hour = String(Math.floor(minutes / 60));
+    let hour = String(Math.floor(minutes / 60)) % 12;
     let minute = minutes % 60 === 0 ? '00' : '30';
     let period = minutes < 720 ? "AM" : "PM";
     return `${hour}:${minute} ${period}`;
