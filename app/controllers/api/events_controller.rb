@@ -6,6 +6,7 @@ class Api::EventsController < ApplicationController
 
     def create
         @event = current_user.events.new(event_params.except(:tags))
+        debugger
         if !@event.valid?
             render json: @event.errors.full_messages, status: 422
         else
@@ -68,7 +69,7 @@ class Api::EventsController < ApplicationController
             :end_year, 
             :begin_time, 
             :end_time, 
-            :photo,
+            :picture,
             :tags => []
         )
     end
