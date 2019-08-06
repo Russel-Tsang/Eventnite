@@ -9,7 +9,6 @@ $red: 1px red solid;
     float: left;
 
     a {
-        border: $red;
         cursor: pointer;
         display: inline-block;
     }
@@ -18,7 +17,6 @@ $red: 1px red solid;
         width: 246px;
         font-size: 14px;
         height: 20px;
-        border: $red;
         display: flex;
         align-items: center;
     }
@@ -30,7 +28,6 @@ $red: 1px red solid;
     section {
         display: flex;
         flex-direction: column;
-        border: $red;
         width: 238px;
         height: 110px;
         padding: 24px;
@@ -64,7 +61,6 @@ $red: 1px red solid;
 
 .details-image {
     width: 30%;
-    border: $red;
 }
 
 .details {
@@ -75,4 +71,81 @@ $red: 1px red solid;
         height: 150px;   
         border-top: none;
     }
+}
+
+// dashboard
+.dashboard-home {
+    width: 80%;
+    margin-top: 40px;
+
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+}
+
+.dashboard-search {
+    display: flex;
+    justify-content: align-items;
+
+    input, select {
+        font-size: 14px;
+        padding: 10px;
+        width: 35%;
+        height: 20px;
+        // position: absolute;
+        background: transparent;
+        margin-right: 10px;
+    }
+
+    select {
+        height: 44px;
+    } 
+}
+
+
+.dashboard-index-head {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-row {
+    display: flex;
+    align-items: center;
+    border: $red;
+    justify-content: space-between;
+    font-size: 13px;
+    
+    img {
+        width: 50px;
+        height: 50px;
+    }
+
+    span:nth-of-type(1) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > * {
+            margin-left: 5px;
+        }
+    }
+
+    // venue name and time
+    span:nth-of-type(1) span {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.dashboard-index-head {
+    // width: 500px;
+    width: 100%;
+    height: 50px;
+    background-color: #f8f7fa;
 }

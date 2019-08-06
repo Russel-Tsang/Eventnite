@@ -93,7 +93,10 @@ $error-red: #c5162d;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(57, 54, 79, 0.8)
+    background-color: rgba(57, 54, 79, 0.8);
+    position: absolute;
+    top: 0;
+    z-index: 1;
 }
 
 .modal-pane {
@@ -101,6 +104,7 @@ $error-red: #c5162d;
     width: 55%;
     height: 70%;
     background-color: white;
+    z-index: 1;
 }
 
 .modal-left {
@@ -135,7 +139,7 @@ $error-red: #c5162d;
         text-align: right;
         justify-content: flex-end;
         margin-right: 150px;
-        height: 12%;
+        height: 10%;
         padding: 0;
         border-top: #EEEDF2;
     }
