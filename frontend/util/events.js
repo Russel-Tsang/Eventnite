@@ -23,13 +23,24 @@ export const fetchEvents = () => {
     })
 }
 
+// update an event
 export const updateEvent = (event) => {
-    debugger
     return $.ajax({
         method: 'PATCH',
         url: `/api/events/${event.id}`,
-        data: { event }
+        data: { event: event }
     })
+}
+
+// submit a picture
+export const postPicture = photo => {
+    return $.ajax({
+        url: '/api/events',
+        method: 'events',
+        data: photo,
+        contentType: false,
+        processData: false
+    });
 }
 
 // register for an event
