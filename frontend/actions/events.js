@@ -42,5 +42,9 @@ export const postRegistration = (eventId) => dispatch => {
     );
 }
 
-
-
+export const updatePictureAndDescription = (pictureAndDescription, eventId) => dispatch => {
+    debugger
+    return ApiEventsUtil.updatePictureAndDescription(pictureAndDescription, eventId).then(
+        event => dispatch(receiveEvent(event))
+    );
+}
