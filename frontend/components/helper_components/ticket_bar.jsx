@@ -10,6 +10,7 @@ const TicketBar = (props) => {
             </div>
             <TicketButton 
                 onClick={props.onClick}
+                buttonText={props.buttonText}
             />
         </div>
     );

@@ -6,7 +6,7 @@ const TicketButton = (props) => {
             className="ticket-button"
             onClick={props.onClick}
         >
-            Tickets
+            {props.buttonText}
         </div>
     );
 }
