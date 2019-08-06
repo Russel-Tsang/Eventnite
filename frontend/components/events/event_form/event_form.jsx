@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MessagedInput from '../../helper_components/messagedInput';
 import { TagButton, TagButtons }from '../../helper_components/tag_button';
 import SubmitBar from '../../helper_components/submit_bar';
-import { toMinutes } from '../../../util/calculations';
+import { toMinutes, toTime } from '../../../util/calculations';
 import { withRouter } from 'react-router-dom'; 
 
 class EventForm extends Component {
@@ -40,10 +40,11 @@ class EventForm extends Component {
 
     // receive action object from fetchEvent thunk action creator, extracting event from action 
     componentDidMount() {
+        if (this.state.formType !== "Update") return;
         this.props.fetchEvent(this.props.match.params.eventId).then(
             (action) => {
                 const { event: { title, event_type, category, tags, organizer, online_event, street, state, city, zip_code, begin_day, begin_month, begin_year, end_day, end_month, end_year, begin_time, end_time, description, id } } = action;
-                let currentTags = Object.values(tags).map(tag => tag.tag_name);
+                let currentTags = tags ? Object.values(tags).map(tag => tag.tag_name) : [];
                 this.setState({ title, eventType: event_type, category, tags: currentTags, organizer, onlineEvent: online_event, street, state, city, zipCode: zip_code, beginDay: begin_day, beginMonth: begin_month, beginYear: begin_year, endDay: end_day, endMonth: end_month, endYear: end_year, beginTime: begin_time, endTime: end_time, description, eventId: id });
             }
         );
@@ -64,7 +65,6 @@ class EventForm extends Component {
                     this.setState({ onlineEvent: boolValue });
                     break;
                 case 'date':
-                debugger
                     let dateArr = target.value.split('-');
                     this.setState({ [`${payload}Year`]: dateArr[0], [`${payload}Month`]: dateArr[1], [`${payload}Day`]: dateArr[2]});
                     break;
@@ -88,7 +88,7 @@ class EventForm extends Component {
                     // post or update event depending on the formType
                     let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
                     const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, description: "test description", id: this.state.eventId }
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId }
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
@@ -176,7 +176,6 @@ class EventForm extends Component {
         let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
             <option key={`venue-${idx}`}>{option}</option>            
         ));
-
         return(
             <>
             <div className="event-container">
@@ -241,10 +240,10 @@ class EventForm extends Component {
                     </select>
                     {/* <input id="address-search" placeholder="Search for Address" onChange={this.handleChange("address")}/> */}
                     <div className="address-inputs">
-                        <input placeholder="Street" onChange={this.handleChange("text", "street")} />
-                        <input placeholder="City" onChange={this.handleChange("text", "city")} />
-                        <input placeholder="State" onChange={this.handleChange("text", "state")} />
-                        <input placeholder="Zip Code" onChange={this.handleChange("text", "zipCode")} />
+                        <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
+                        <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
+                        <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
+                        <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} />
                     </div>
                 </div>
                 <hr />
@@ -259,19 +258,18 @@ class EventForm extends Component {
                             type="date" 
                             onChange={this.handleChange("date", "begin")} 
                         />
-                        <select onChange={this.handleChange("time", "begin")}>
+                        <select value={toTime(this.state.beginTime)} onChange={this.handleChange("time", "begin")}>
                             {times}
                         </select>
                         <input 
                             type="date" 
                             onChange={this.handleChange("date", "end")} 
                         />
-                        <select onChange={this.handleChange("time", "end")}>
+                        <select value={toTime(this.state.endTime)} onChange={this.handleChange("time", "end")}>
                             {times}
                         </select>
                     </div>
                 </div>
-                <button className="button-1" onClick={this.handleSubmit("formSubmit")} />
             </div>
             <div className="spacer" />
             {this.submitBar()}

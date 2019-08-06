@@ -3,14 +3,15 @@ import Section from './section';
 import CheckBar from './check_bar';
 import EventFormContainer from '../event_form/event_form_container';
 import MainContainer from './main_container';
-import Details from './details';
+import DetailsContainer from './details_container';
+import DashboardHome from './dashboard_home';
 
 class EventDashboard extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            mainContainer: <Details />
+            mainContainer: <DashboardHome />
         }
 
         this.renderComponent = this.renderComponent.bind(this);
@@ -22,13 +23,12 @@ class EventDashboard extends Component {
                 this.setState({ mainContainer: <EventFormContainer formType="Update" eventId={this.props.match.params.eventId}/> })
                 break;
             case("Details"): 
-                this.setState({ mainContainer: <Details/> })
+                this.setState({ mainContainer: <DetailsContainer/> })
                 break;
         }
     }
 
     render() { 
-        debugger
         return (
             <>
             <aside className="dashboard-panel">
