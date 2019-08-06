@@ -4,7 +4,7 @@ import ModalPane from './modal_pane';
 const Modal = (props) => {
     return (  
         <div className="modal">
-            <ModalPane />
+            <ModalPane onClick={props.onClick}/>
         </div>
     );
 }

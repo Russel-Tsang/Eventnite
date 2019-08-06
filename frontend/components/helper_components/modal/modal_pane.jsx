@@ -13,7 +13,7 @@ const ModalPane = (props) => {
                     {/* props.date */}
                 </header>
                 <main>f</main>
-                <TicketBar />
+                <TicketBar buttonText={"Register"} onClick={props.onClick}/>
             </div>
             <aside className="modal-right">
                 <img src={window.photoBalloons} />
