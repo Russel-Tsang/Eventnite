@@ -6,6 +6,7 @@ class NavBar extends Component {
         const { currentUser, logout } = this.props;
         const display = currentUser ? (
             <div>
+                <Link className="btn" to="/dashboard">My Events</Link>
                 <Link className="btn" to="/create_event">Create Event</Link>
                 <Link className="btn" to="/" onClick={logout}>Logout</Link>
             </div>
