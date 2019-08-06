@@ -5,9 +5,7 @@ class Api::EventsController < ApplicationController
     end
 
     def create
-        debugger
         @event = current_user.events.new(event_params.except(:tags))
-        # debugger
         if !@event.valid?
             render json: @event.errors.full_messages, status: 422
         else
@@ -32,11 +30,16 @@ class Api::EventsController < ApplicationController
     end
 
     def update 
-        debugger
-        @event = Event.find(params[:event][:id])
-        if @event.update(event_params.except(:id))
+        @event = Event.find(params[:id])
+        if @event.update(event_params.except(:tags, :id))
+            # keep only the tags defined in event_params[:tags]
+            if event_params[:tags]
+                @event.tag_ids = event_params[:tags].map { |tag| Tag.create(tag_name: tag).id }
+            else
+                @event.tags.destroy_all
+            end
             render :show
-        else
+        else !@event.valid?
             render json @event.errors.full_messages, status: 422
         end
     end
@@ -44,6 +47,29 @@ class Api::EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:title, :description, :event_type, :category, :tags, :organizer, :online_event, :street, :city, :state, :zip_code, :user_id, :begin_day, :begin_month, :begin_year, :end_day, :end_month, :end_year, :begin_time, :end_time, :tags => [])
+        params.require(:event).permit(
+            :title, 
+            :description, 
+            :event_type, 
+            :category, 
+            :tags, 
+            :organizer, 
+            :online_event, 
+            :street, 
+            :city, 
+            :state, 
+            :zip_code, 
+            :user_id, 
+            :begin_day, 
+            :begin_month, 
+            :begin_year, 
+            :end_day, 
+            :end_month, 
+            :end_year, 
+            :begin_time, 
+            :end_time, 
+            :photo,
+            :tags => []
+        )
     end
 end
