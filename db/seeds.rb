@@ -88,6 +88,3 @@ Lewis = User.create!(email: 'lewis@gmail.com', fname: 'Lewis', lname: 'Smith', p
 
 NightClub = Event.create!(event1()) 
 GradParty = Event.create!(event2())
-
-file = open('../app/assets/images/splash_banner.jpg')
-GradParty.attach(io: file, filename: 'city_view.jpb')
