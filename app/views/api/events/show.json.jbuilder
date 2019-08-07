@@ -6,4 +6,7 @@ json.tags do
         end
     end
 end
+# make more efficient later
+json.registrationId Registration.find_by(user_id: current_user.id, event_id: @event.id).id if @event.attendees.include?(current_user)
+json.creatorId current_user.id if @event.creator == current_user
 json.pictureUrl url_for(@event.picture) if @event.picture.attached?
