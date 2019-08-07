@@ -16,7 +16,12 @@ const ModalPane = (props) => {
                 <TicketBar buttonText={"Register"} onClick={props.onClick}/>
             </div>
             <aside className="modal-right">
-                <img src={window.photoBalloons} />
+                <div className="modal-right-image">
+                    <span onClick={props.closeModal} className="close-icon-span">
+                        <img className="close-icon" src={window.closeIcon} />
+                    </span>
+                    <img src={window.photoBalloons} />
+                </div>
                 <div className="order-summary">
                     <div>Order Summary</div>
                     <div>
