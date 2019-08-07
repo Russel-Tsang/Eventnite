@@ -1,7 +1,9 @@
 $input-border-blue: #1f45e0;
 $input-caption-blue: #4b6ae7;
 $ticket-button-color: #0D8547;
+$search-bar-font-color: #bbb5c4;
 $error-red: #c5162d;
+$purple: #1e0a3c;
 
 // styled input component
 .styled-input {
@@ -94,9 +96,11 @@ $error-red: #c5162d;
     width: 100vw;
     height: 100vh;
     background-color: rgba(57, 54, 79, 0.8);
+    background-size: cover;
     position: absolute;
     top: 0;
-    z-index: 1;
+    bottom: 0;
+    z-index: 2;
 }
 
 .modal-pane {
@@ -185,11 +189,37 @@ $error-red: #c5162d;
         }
     }  
 
-    > div span:nth-of-type(1) {
+    > div span:nth-of-type(2) {
         display: inline-block;
         width: 45%;
     }
 }
+
+.modal-right-image {
+    position: relative;
+
+    .close-icon-span {
+        position: absolute;
+        left: 80%;
+        top: 4px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50px;
+        cursor: pointer;
+        background: rgba(248,247,250,.5);
+        transition: all .3s;
+    }
+
+    .close-icon-span:hover {
+        background: rgba(248,247,250,.9)
+    }
+
+    .close-icon {
+        border-radius: 70px;
+        height: 35%;
+        margin-top: 15px;
+    }
+} 
 
 // ticket bar
 .ticket-bar {
@@ -200,6 +230,8 @@ $error-red: #c5162d;
     height: 60px;
     width: 75%;
     justify-content: space-between;
+    border-top: 1px #dbdae3 solid;
+    border-bottom: 1px #dbdae3 solid; 
 }
 
 .ticket-button {
@@ -221,9 +253,120 @@ $error-red: #c5162d;
     background-color: #179C55;
 }
 
-// dashboard sidebar head
-// .dashboard-section {
-    
+// checkbar from dashboard   
 .checkbar-selected {
     background-color: white;
+}
+
+// splashpage searchbar 
+.search-bar {
+    display: flex;
+    width: 65%;
+    height: 90px;
+    margin: auto;
+    margin-top: -50px;
+    position: relative;
+    background-color: $purple;
+    justify-content: center;
+    color: $search-bar-font-color;
+    font-size: 12px;
+    font-weight: 0;
+
+    > div {
+        width: 30%;
+        padding: 15px;
+    }
+
+    div:nth-of-type(2) {
+        border-left: 1px white solid;
+        border-right: 1px white solid;
+    }
+
+    .search-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    input, select {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px #f05537 solid;
+        background: $purple;  
+        font-size: 18px;
+        color: #FFFFFF; 
+        width: 85%;
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+// filter bar from splash page
+.filter-bar {
+    display: flex;
+    align-items: center;
+    width: 65%;
+    margin: auto;
+    padding: 25px 0;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 52px;
+        font-weight: bold;
+        color: $purple;
+    }
+
+    select {
+        border: none;
+        background: #eeedf2;
+        display: inline-block;
+        background-color: #f8f7fa;
+        border-radius: 50px;
+        width: 100px;
+        height: 30px;
+        margin: 5px 15px 5px 0px;
+        font-size: 13px;
+    }
+}
+
+// navbar profile dropdown menu
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    color: #7c76a2;
+    font-size: 14px;
+    position: absolute;
+    right: 0px;
+    border: 1px #f8f7fa solid;
+    box-shadow: -2px 3px 10px #b3b3b3;
+    background: white;
+
+    span:nth-of-type(1) {
+        border: none;
+    }
+
+    span:nth-of-type(2) {
+        border-top: none;
+    }
+
+    > * {
+        border-top: .1px #f1eff5 solid;
+        border-bottom: .1px #f1eff5 solid;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    > :hover {
+        background: #f1f1f3;
+    }
+
+}
+
+.dropdown-logo {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
 }

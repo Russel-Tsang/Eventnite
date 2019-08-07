@@ -175,7 +175,7 @@ h1 + p {
     // border: 1px red solid;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     input {
         width: 45%;
     }
@@ -190,7 +190,6 @@ h1 + p {
     position: fixed;
     width: 100%;
     bottom: 0;
-
 
     button {
         margin-left: 15px;

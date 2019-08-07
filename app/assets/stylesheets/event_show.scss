@@ -87,10 +87,17 @@ $follow-button-border-radius: 5px;
 }
 
 .description-card-head {
-    span:nth-of-type(1) {
+    > span:nth-of-type(1) {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        bottom: 35px;
+    }
+
+    > span:nth-of-type(2) {
         font-size: 20px;
     }
-    span:nth-of-type(2) {
+    > span:nth-of-type(3) {
         color: $description-card-creator-color;
         display: flex;
         font-size: 16px;
@@ -136,6 +143,8 @@ $follow-button-border-radius: 5px;
 
 
 .description-and-location {
+    display: flex;
+    justify-content: space-between;
     .event-description {
         width: 66%;
         padding-left: 105px;
@@ -146,6 +155,10 @@ $follow-button-border-radius: 5px;
         justify-content: space-between;
         width: 34%;
         height: 300px;
+
+        h3 {
+            color: #2e1b4a;
+        }
     }
 }
 
