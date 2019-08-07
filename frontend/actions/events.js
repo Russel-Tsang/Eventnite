@@ -38,7 +38,13 @@ export const updateEvent = (event) => {
 
 export const postRegistration = (eventId) => dispatch => {
     return ApiEventsUtil.postRegistration(eventId).then(
-        event => dispatch(receiveEvents(event))
+        event => dispatch(receiveEvent(event))
+    );
+}
+
+export const deleteRegistration = (eventId, registrationId) => dispatch => {
+    return ApiEventsUtil.deleteRegistration(eventId, registrationId).then(
+        event => dispatch(receiveEvent(event))
     );
 }
 

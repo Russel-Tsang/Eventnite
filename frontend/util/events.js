@@ -50,3 +50,11 @@ export const postRegistration = (eventId) => {
         url: `/api/events/${eventId}/registrations`
     })
 }
+
+// unregister for an event
+export const deleteRegistration = (eventId, registrationId) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `/api/events/${eventId}/registrations/${registrationId}`
+    })
+}
