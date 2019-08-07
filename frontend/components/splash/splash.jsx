@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { EventCards, EventCard } from '../helper_components/event_card';
 import { toMonth } from '../../util/calculations';
+import SearchBar from '../helper_components/search_bar/search_bar';
+import FilterBar from '../splash/filter_bar';
 
 class Splash extends Component {
     componentDidMount() {
@@ -37,7 +39,9 @@ class Splash extends Component {
         return (
             // image provided by unsplash
             <div id="body">
-                <img className="splash-banner" src={window.splashBanner} /> 
+                <img className="splash-banner" src={window.splashBanner2} /> 
+                <SearchBar />
+                <FilterBar />
                 <EventCards>
                     {eventCards}
                 </EventCards>
