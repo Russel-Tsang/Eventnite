@@ -1,7 +1,6 @@
 import { RECEIVE_EVENT, RECEIVE_EVENTS } from '../actions/events';
 
 export const eventsReducer = (oldState = {}, action) => {
-    debugger
     Object.freeze(oldState);
     let newEvent;
     switch (action.type) {

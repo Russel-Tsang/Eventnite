@@ -3,7 +3,6 @@ import { updateEvent, fetchEvent, updatePictureAndDescription } from '../../../a
 import Details from './details';
 
 const msp = state => {
-    debugger 
     return {event: Object.values(state.entities.events)}
 }
 

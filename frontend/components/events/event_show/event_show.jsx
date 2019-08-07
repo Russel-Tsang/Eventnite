@@ -30,7 +30,6 @@ class EventShow extends Component {
     }
 
     toggleModal() {
-        debugger
         this.setState({ modal: !this.state.modal });
     }
 

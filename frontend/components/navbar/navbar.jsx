@@ -14,7 +14,6 @@ class NavBar extends Component {
     }
 
     toggleDisplay() {
-        debugger
         this.setState({ display: !this.state.display })
     }
 
@@ -36,7 +35,6 @@ class NavBar extends Component {
                     <Link className="btn" to="/signin">Sign In</Link>
                 </div>
         );
-            debugger
         const dropdown = this.state.display ? <ProfileDropDown user={this.props.currentUserObj.fname} userEmail={this.props.currentUserObj.email}/> : null;
 
         return (

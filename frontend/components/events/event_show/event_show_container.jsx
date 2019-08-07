@@ -4,7 +4,6 @@ import EventShow from './event_show';
 import { fetchEvent, postRegistration, deleteRegistration } from '../../../actions/events';
 
 const msp = (state, ownProps) => {
-    debugger
     // receive event
     return {
         event: state.entities.events[ownProps.match.params.eventId] || { title: '', description: '', tags: '', organizer: '', onlineEvent: '', street: '', state: '', city: '', zipCode: '', beginDay: '', beginMonth: '', beginYear: '', endDay: '', endMonth: '', endYear: '', beginTime: '', endTime: '' }
