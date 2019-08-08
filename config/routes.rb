@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resource :likes, only: [:destroy]
     resource :follows, only: [:destroy]
     get "/verify_user", to: "users#verify_user"
+    get "/created_events", to: "events#show_created_events"
   end
 end
