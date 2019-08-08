@@ -7,14 +7,23 @@ const receiveEvent = (event) => ({
     event
 });
 
-const receiveEvents = (events) => ({
-    type: RECEIVE_EVENTS,
-    events
-});
+const receiveEvents = (events) => {
+    return {
+        type: RECEIVE_EVENTS,
+        events
+    }
+    
+};
 
 export const fetchEvent = (id) => dispatch => {
     return ApiEventsUtil.fetchEvent(id).then(
         event => dispatch(receiveEvent(event))
+    );
+}
+
+export const fetchCreatedEvents = (userId) => dispatch => {
+    return ApiEventsUtil.fetchedCreatedEvents(userId).then(
+        events => dispatch(receiveEvents(events))
     );
 }
 
@@ -30,9 +39,17 @@ export const fetchEvents = () => dispatch => {
     );
 }
 
-export const updateEvent = (event) => {
+export const updateEvent = (event) => dispatch => {
     return ApiEventsUtil.updateEvent(event).then(
         event => dispatch(receiveEvent(event))
+    )
+}
+
+export const deleteEvent = (id) => dispatch => {
+    return ApiEventsUtil.deleteEvent(id).then(
+        events => {
+            return dispatch(receiveEvents(events))
+        }
     )
 }
 

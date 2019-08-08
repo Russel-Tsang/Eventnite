@@ -23,12 +23,27 @@ export const fetchEvents = () => {
     })
 }
 
+export const fetchedCreatedEvents = (userId) => {
+    return $.ajax({
+        method: 'GET',
+        url: `/api/created_events`,
+        data: { userId }
+    })
+}
+
 // update an event
 export const updateEvent = (event) => {
     return $.ajax({
         method: 'PATCH',
         url: `/api/events/${event.id}`,
         data: { event: event }
+    })
+}
+
+export const deleteEvent = (id) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `api/events/${id}`
     })
 }
 
