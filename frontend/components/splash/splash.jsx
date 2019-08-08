@@ -44,7 +44,7 @@ class Splash extends Component {
     renderEventCards() {
         let filteredEvents = this.props.events.filter(event => this.state.categories.includes(event.category));
         let eventCards = filteredEvents.map((event, idx) => {
-            let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl } = event;
+            let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl, venue_name } = event;
             if (!begin_month) begin_month = '';
             if (!begin_day) begin_day = '';
             if (!begin_time) begin_time = '';
@@ -58,7 +58,7 @@ class Splash extends Component {
                     date={begin_day}
                     title={title}
                     time={begin_time}
-                    venueName={"Blue Casino"}
+                    venueName={venue_name}
                     city={city}
                     state={state}
                     price={price}
@@ -112,11 +112,14 @@ class Splash extends Component {
         return (
             <div id="body">
                 <img className="splash-banner" src={window.splashBanner2} /> 
-                <SearchBar />
-                <FilterBar categories={this.generateCategories()} onCategoryChange={this.handleCategoryChange("category")}/>
-                <EventCards>
-                    {this.renderEventCards()}
-                </EventCards>
+                <div className="test"></div>  
+                <div className="splash-content">  
+                    <SearchBar />
+                    <FilterBar categories={this.generateCategories()} onCategoryChange={this.handleCategoryChange("category")}/>
+                    <EventCards>
+                        {this.renderEventCards()}
+                    </EventCards>
+                </div>
                 <div className="spacer"></div>
             </div>
         )

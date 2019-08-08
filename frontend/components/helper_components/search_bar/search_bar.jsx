@@ -17,6 +17,9 @@ const SearchBar = (props) => {
                     </option>
                 </select>
             </SearchSection>
+            <div className="search-button">
+                <img src={window.searchIconWhite} />
+            </div>
         </div>
     );
 }
