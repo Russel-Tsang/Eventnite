@@ -10,7 +10,7 @@ class SessionForm extends Component {
             formType: this.props.formType,
             email: '',
             password: '',
-            confirmPassword: '',
+            confirmEmail: '',
             fname: '',
             lname: ''
         };
@@ -65,7 +65,7 @@ class SessionForm extends Component {
 
     render() {
         let formErrors = this.handleErrors();
-        const { fname, lname, email, password, formType, confirmPassword } = this.state;
+        const { fname, lname, email, password, formType, confirmEmail } = this.state;
         let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, firstNameError, lastNameError, passwordError;
         
         // change display of form depending on formType
@@ -112,9 +112,9 @@ class SessionForm extends Component {
                     <div className="signup-div">
                         <StyledInput 
                             type="text" 
-                            label="Confirm Password"
-                            onChange={this.handleChange("confirmPassword")}
-                            value={confirmPassword} 
+                            label="Confirm Email"
+                            onChange={this.handleChange("confirmEmail")}
+                            value={confirmEmail} 
                         />
                         <div className="first-last-name">
                             <StyledInput 
