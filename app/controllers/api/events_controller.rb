@@ -44,6 +44,25 @@ class Api::EventsController < ApplicationController
         end
     end
 
+    def destroy
+        event = Event.find(params[:id])
+        if event.destroy
+            @events = current_user.events
+            render :index
+        else
+            render json: @event.errors.full_messages, status: 422
+        end
+    end
+
+    def show_created_events
+        @events = User.find(params[:userId]).events
+        if @events 
+            render :index
+        else
+            render json: @event.errors.full_messages, status: 404
+        end
+    end
+
     private
 
     def event_params
