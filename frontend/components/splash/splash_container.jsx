@@ -3,7 +3,7 @@ import { fetchEvents } from '../../actions/events';
 import Splash from './splash';
 
 const msp = state => ({
-    events: Object.values(state.entities.events) || { beginMonth: '', beginDay: '', title: '', city: '', state: '' }
+    events: Object.values(state.entities.events) || { beginMonth: '', beginDay: '', title: '', city: '', state: '', category: '' }
 });
 
 const mdp = dispatch => ({

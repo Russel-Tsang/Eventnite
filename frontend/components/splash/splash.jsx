@@ -5,19 +5,50 @@ import SearchBar from '../helper_components/search_bar/search_bar';
 import FilterBar from '../splash/filter_bar';
 
 class Splash extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            categories: [
+                'Category',
+                'All',
+                'Auto',
+                'Boat & Air',
+                'Business & Professional',
+                'Charities & Causes',
+                'Community & Culture',
+                'Family & Education',
+                'Fashion',
+                'Film & Media',
+                'Food & Drink',
+                'Government',
+                'Health',
+                'Hobbies',
+                'Holiday',
+                'Home & Lifestyle',
+                'Music',
+                'Performing and Visual Arts',
+                'School Activities',
+                'Science & Tech'
+            ],
+            searchterm: ''
+        }
+
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    }
+
     componentDidMount() {
         this.props.fetchEvents();
     }
 
-    // *adjust to camelCase*
-    render() {
-        let eventCards = this.props.events.map((event, idx) => {
+    renderEventCards() {
+        let filteredEvents = this.props.events.filter(event => this.state.categories.includes(event.category));
+        let eventCards = filteredEvents.map((event, idx) => {
             let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl } = event;
             if (!begin_month) begin_month = '';
             if (!begin_day) begin_day = '';
             if (!begin_time) begin_time = '';
             let cardImage = pictureUrl || window.photoBalloons
-
             return (
                 <EventCard
                     key={idx}
@@ -35,15 +66,56 @@ class Splash extends Component {
                 />
             );
         });
+        return eventCards
+    }
 
+    generateCategories() {
+        return [
+            'Category',
+            'All',
+            'Auto',
+            'Boat & Air',
+            'Business & Professional',
+            'Charities & Causes',
+            'Community & Culture',
+            'Family & Education',
+            'Fashion',
+            'Film & Media',
+            'Food & Drink',
+            'Government',
+            'Health',
+            'Hobbies',
+            'Holiday',
+            'Home & Lifestyle',
+            'Music',
+            'Performing and Visual Arts',
+            'School Activities',
+            'Science & Tech'
+        ];
+    } 
+
+    handleCategoryChange(type) {
+        return (event) => {
+            switch (type) {
+                case "category":
+                    if (event.target.value === "Category") return;
+                    event.target.value === "All" ? this.setState({ categories: this.generateCategories() }) : this.setState({ categories: [event.target.value] });
+                    break;
+            }
+        }
+        
+    }
+
+
+    // *adjust to camelCase*
+    render() {
         return (
-            // image provided by unsplash
             <div id="body">
                 <img className="splash-banner" src={window.splashBanner2} /> 
                 <SearchBar />
-                <FilterBar />
+                <FilterBar categories={this.generateCategories()} onCategoryChange={this.handleCategoryChange("category")}/>
                 <EventCards>
-                    {eventCards}
+                    {this.renderEventCards()}
                 </EventCards>
                 <div className="spacer"></div>
             </div>
