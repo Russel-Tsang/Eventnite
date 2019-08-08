@@ -145,9 +145,11 @@ $follow-button-border-radius: 5px;
 .description-and-location {
     display: flex;
     justify-content: space-between;
+
     .event-description {
         width: 66%;
         padding-left: 105px;
+        padding-right: 60px;
     }    
     .event-details {
         display: flex;

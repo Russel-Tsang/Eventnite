@@ -5,6 +5,10 @@ $follow-button-border-radius: 5px;
 
 body {
     font-family: 'Helvetica';
+
+    > * {
+        min-width: 1080px;
+    }
 }
 
 input {

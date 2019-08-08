@@ -9,7 +9,6 @@ $event-card-width: $event-cards-width / 3;
 .events-cards {
     display: flex;
     width: $event-cards-width;
-    /* max-width: 1080px; */
     margin: auto;
     flex-wrap: wrap;
     // justify-content: center;
