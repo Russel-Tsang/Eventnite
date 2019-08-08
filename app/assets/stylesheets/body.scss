@@ -54,3 +54,12 @@ input {
     height: 22px;
 }
 
+.test {
+    background: #f8f7fa;
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    height: 600px;
+    transform: skew(0deg, -4deg);
+    z-index: -1;
+}

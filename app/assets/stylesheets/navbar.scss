@@ -39,10 +39,15 @@ $navbar-text: #c2c2cc;
 
     .btn:hover {
         color: white;
+        background: #413e5b;
     }
 
     > a {
-        padding: 30px 15px;
+        padding: 20px 15px
+    }
+
+    > a:last-child {
+        padding: 8px;
     }
 
 }

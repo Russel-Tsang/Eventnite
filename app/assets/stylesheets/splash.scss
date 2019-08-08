@@ -1,5 +1,11 @@
-$event-cards-width: 65%;
+$event-cards-width: 80%;
 $event-card-width: $event-cards-width / 3; 
+
+#body {
+    > * {
+        margin: auto;
+    }
+}
 
 .splash-banner {
     width: 100%;
@@ -8,7 +14,9 @@ $event-card-width: $event-cards-width / 3;
 
 .events-cards {
     display: flex;
-    width: $event-cards-width;
+    // width: $event-cards-width;
+    // justify-content: center;
+    // margin: auto; place back later?
     margin: auto;
     flex-wrap: wrap;
     // justify-content: center;
@@ -16,8 +24,9 @@ $event-card-width: $event-cards-width / 3;
 
 .event-card {
     margin: 10px;
-    width: 30%;
+    width: 31%;
     min-width: 350px;
+    z-index: 1;
 
     .event-card-picture {
         height: 190px;
@@ -94,6 +103,10 @@ $event-card-width: $event-cards-width / 3;
 }
 
 .event-card:hover {
-    box-shadow: -2px 3px 10px #EEEEEE;
+    box-shadow: -2px 3px 10px #d9d9d9;
     transition: box-shadow .5s;
+}
+
+.splash-content {
+    width: 70%;
 }

@@ -16,7 +16,6 @@ $purple: #1e0a3c;
 .styled-input input {
     font-size: 14px;
     width: 94.5%;
-    // position: absolute;
     background: transparent;
 }
 
@@ -95,12 +94,12 @@ $purple: #1e0a3c;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(57, 54, 79, 0.8);
+    background-color: #312f42;
     background-size: cover;
     position: absolute;
     top: 0;
-    bottom: 0;
     z-index: 2;
+    position: sticky;
 }
 
 .modal-pane {
@@ -261,7 +260,6 @@ $purple: #1e0a3c;
 // splashpage searchbar 
 .search-bar {
     display: flex;
-    width: 65%;
     height: 90px;
     margin: auto;
     margin-top: -50px;
@@ -274,7 +272,7 @@ $purple: #1e0a3c;
 
     > div {
         width: 30%;
-        padding: 15px;
+        padding: 15px 0 15px 15px;
     }
 
     div:nth-of-type(2) {
@@ -301,14 +299,27 @@ $purple: #1e0a3c;
     input:focus {
         outline: none;
     }
+
+    .search-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5%;
+        img {
+            width: 60%;
+            min-width: 25px;
+            max-width: 30%;
+            padding: 10% 30%;
+            border-radius: 4px;
+            background: #d1400c;
+        }
+    }
 }
 
 // filter bar from splash page
 .filter-bar {
     display: flex;
     align-items: center;
-    width: 65%;
-    margin: auto;
     padding: 25px 0;
     justify-content: space-between;
 
