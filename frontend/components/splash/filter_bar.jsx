@@ -1,6 +1,10 @@
 import React from 'react';
 
 const FilterBar = (props) => {
+    let categories = props.categories.map((category, idx) => (
+        <option key={`category-${idx}`}>{category}</option>
+    ));
+    
     return (  
         <div className="filter-bar">
             <span>
@@ -12,13 +16,8 @@ const FilterBar = (props) => {
                         Free
                     </option>
                 </select>
-                <select selected="Any Category"> 
-                    <option>
-                        Boat or Air
-                    </option>
-                    <option>
-                        Community and Culture
-                    </option>
+                <select selected="Any Category" onChange={props.onCategoryChange}> 
+                    {categories}
                 </select>
             </span>
         </div>
