@@ -1,4 +1,4 @@
-json.extract! @event, :id, :title, :description, :event_type, :category, :organizer, :online_event, :street, :city, :state, :zip_code, :begin_day, :begin_month, :begin_year, :end_day, :end_month, :end_year, :begin_time, :end_time
+json.extract! @event, :id, :title, :description, :event_type, :category, :organizer, :online_event, :venue_name, :street, :city, :state, :zip_code, :begin_day, :begin_month, :begin_year, :end_day, :end_month, :end_year, :begin_time, :end_time, :price
 json.tags do
     @event.tags.each do |tag|
         json.set! tag.id do
