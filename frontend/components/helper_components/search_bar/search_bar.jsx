@@ -5,7 +5,7 @@ const SearchBar = (props) => {
     return (
         <div className="search-bar">
             <SearchSection label="Looking for">
-                <input type="text" />
+                <input type="text"/>
             </SearchSection>
             <SearchSection label="In">
                 <input type="text" />
