@@ -35,7 +35,8 @@ def event1
         begin_year: 2019,
         begin_time: 990,
         end_time: 1050,
-        price: rand(30)
+        price: rand(30),
+        venue_name: 'Blue Casino'
     }
 end
 
@@ -60,7 +61,8 @@ def event2
         end_year: 2019,
         begin_time: 120,
         end_time: 180,
-        price: rand(30)
+        price: rand(30),
+        venue_name: 'Liquid Lounge'
     }
 end
 
@@ -85,7 +87,8 @@ def event3
         end_year: 2019,
         begin_time: 120,
         end_time: 180,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "George's Bisco Pop"
     }
 end
 
@@ -110,7 +113,8 @@ def event4
         end_year: 2020,
         begin_time: 780,
         end_time: 990,
-        price: rand(30)
+        price: rand(30),
+        venue_name: 'Awesome Bagels'
     }
 end
 
@@ -135,7 +139,8 @@ def event5
         end_year: 2020,
         begin_time: 1110,
         end_time: 1170,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "Banh Mi Memorial Smash"
     }
 end
 
@@ -160,7 +165,8 @@ def event6
         end_year: 2020,
         begin_time: 1380,
         end_time: 1440,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "Stanford Hometown"
     }
 end
 
@@ -185,7 +191,8 @@ def event7
         end_year: 2020,
         begin_time: 780,
         end_time: 810,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "Lildocs Stadium"
     }
 end
 
@@ -210,7 +217,8 @@ def event8
         end_year: 2020,
         begin_time: 1320,
         end_time: 1350,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "Henry's Hens"
     }
 end
 
@@ -235,7 +243,8 @@ def event9
         end_year: 2019,
         begin_time: 1380,
         end_time: 1410,
-        price: rand(30)
+        price: rand(30),
+        venue_name: "Mr Rams Rodeo"
     }
 end
 
