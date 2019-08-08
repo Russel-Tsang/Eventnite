@@ -5,37 +5,70 @@ import ProfileDropDown from '../helper_components/profile_dropdown';
 class NavBar extends Component {
     constructor(props) {
         super(props) 
-        let initialState = this.props.currentUser ? true : false;
+
         this.state = {
-            display: initialState
+            display: 'display-none'
         }
 
         this.toggleDisplay = this.toggleDisplay.bind(this);
+        this.displayNone = this.displayNone.bind(this);
+        this.displayTrue = this.displayTrue.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     toggleDisplay() {
-        this.setState({ display: !this.state.display })
+        let nextState = this.state.display === 'display' ? 'display-none' : 'display';
+        this.setState({ display: nextState });
+    }
+
+    displayNone() {
+        this.setState({ display: 'display-none' });
+    }
+
+    displayTrue() {
+        this.setState({ display: 'display' });
+    }
+
+    handleLogout() {
+        this.props.history.push('/');
+        this.props.logout();
     }
 
     render() {
-        const { currentUser, logout } = this.props;
+        const { currentUser } = this.props;
         const display = currentUser ? (
-            <div>
+                <>
                 <Link className="btn" to="/dashboard">My Events</Link>
                 <Link className="btn" to="/create_event">Create Event</Link>
-                <Link className="btn" to="/" onClick={logout} onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
+                <Link className="btn" to="/" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
                     <img 
                         className="dropdown-logo" 
                         src={window.dropdownIcon} 
                     />
                 </Link>
-            </div>
+                </>
         ) : (
-                <div>
-                    <Link className="btn" to="/signin">Sign In</Link>
-                </div>
+                <Link className="btn" to="/signin">Sign In</Link>
         );
-        const dropdown = this.state.display ? <ProfileDropDown user={this.props.currentUserObj.fname} userEmail={this.props.currentUserObj.email}/> : null;
+
+        // prevents attempt to read this.props.currentUserObj upon logging out, which results in an error
+        const ProfileDropdown = () => {
+            if (this.props.currentUserObj) {
+                return (
+                    <ProfileDropDown 
+                        user={this.props.currentUserObj.fname} 
+                        userEmail={this.props.currentUserObj.email} 
+                        display={this.state.display} 
+                        onMouseEnter={this.displayTrue} 
+                        onMouseLeave={this.displayNone} 
+                        onLogout={this.handleLogout}
+                    />
+                )
+            } else {
+                return null
+            }
+        }
+        
 
         return (
             <>
@@ -43,13 +76,11 @@ class NavBar extends Component {
                 <Link to="/">
                     <img src={window.logoWhiteFull} className="logo" />
                 </Link>
-                <div>
                     <div className="navbar-right">
                         {display}
                     </div>
-                </div>
             </header>
-            {dropdown}
+            {ProfileDropdown()}
             </>
         );
     }    
