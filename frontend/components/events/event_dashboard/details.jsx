@@ -7,11 +7,8 @@ import { withRouter } from 'react-router-dom';
 class Details extends Component {
     constructor(props) {
         super(props)
-
-        let description = this.props.event[0] ? this.props.event[0].description : '';
-
         this.state = {
-            description: description,
+            description: '',
             photoFile: null 
         }
 
@@ -21,7 +18,11 @@ class Details extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchEvent(this.props.match.params.eventId);
+        this.props.fetchEvent(this.props.match.params.eventId).then(
+            action => {
+                this.setState({ description: action.event.description })
+            }
+        );
         if (this.props.event[0]) this.setState({description: this.props.event[0].description});
     }
 

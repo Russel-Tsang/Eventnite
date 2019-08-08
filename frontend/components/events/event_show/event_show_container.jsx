@@ -6,7 +6,8 @@ import { fetchEvent, postRegistration, deleteRegistration } from '../../../actio
 const msp = (state, ownProps) => {
     // receive event
     return {
-        event: state.entities.events[ownProps.match.params.eventId] || { title: '', description: '', tags: '', organizer: '', onlineEvent: '', street: '', state: '', city: '', zipCode: '', beginDay: '', beginMonth: '', beginYear: '', endDay: '', endMonth: '', endYear: '', beginTime: '', endTime: '' }
+        event: state.entities.events[ownProps.match.params.eventId] || { title: '', description: '', tags: '', organizer: '', onlineEvent: '', street: '', state: '', city: '', zipCode: '', beginDay: '', beginMonth: '', beginYear: '', endDay: '', endMonth: '', endYear: '', beginTime: '', endTime: '' },
+        currentUser: state.session.id
     }
     
     // event: state.entities.events

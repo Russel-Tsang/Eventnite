@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { updateEvent, fetchEvent, updatePictureAndDescription } from '../../../actions/events';
 import Details from './details';
 
-const msp = state => {
-    return {event: Object.values(state.entities.events)}
-}
+const msp = state => ({
+    event: Object.values(state.entities.events)
+})
 
 const mdp = dispatch => ({
     fetchEvent: (id) => dispatch(fetchEvent(id)),

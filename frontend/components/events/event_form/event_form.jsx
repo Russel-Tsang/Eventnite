@@ -133,16 +133,35 @@ class EventForm extends Component {
             'Conference',
             'Convention',
             'Dinner or Gala',
-            'Festival or Fair'
+            'Festival or Fair',
+            'Game or Competition',
+            'Meeting or Networking Event',
+            'Party or Social Gathering',
+            'Race or Endurance Event',
+            'Rally',
+            'Screening',
+            'Seminar or Talk'
         ]
         const CATEGORIES = [
             'Category',
             'Auto', 
             'Boat & Air', 
             'Business & Professional', 
-            'Charities and Causes', 
-            'Community and Culture', 
-            'Family and Education'
+            'Charities & Causes', 
+            'Community & Culture', 
+            'Family & Education',
+            'Fashion',
+            'Film & Media',
+            'Food & Drink',
+            'Government',
+            'Health',
+            'Hobbies',
+            'Holiday',
+            'Home & Lifestyle',
+            'Music',
+            'Performing and Visual Arts',
+            'School Activities',
+            'Science & Tech'
         ]
 
         const TIMES = [

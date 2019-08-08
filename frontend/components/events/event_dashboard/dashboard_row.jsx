@@ -4,17 +4,24 @@ const DashboardRow = (props) => {
     return (  
         <div className="dashboard-row">
             <span>
-                sep32
+                <span className="row-date">
+                    <span>
+                        {props.beginMonth}
+                    </span>
+                    <span>
+                        {props.beginDay}
+                    </span>
+                </span>
                 <img src={props.imgSrc}></img>
                 <span>
-                    <p>Grad Party</p>
+                    <p>{props.title}</p>
                     <span>
                         <p>Riverhead Aquarium</p>
-                        <p>1:00 PM</p>
+                        <p>{props.beginTime}</p>
                     </span>
                 </span>
             </span>
-            <span>
+            <span onClick={props.onMenuClick}>
                 - - -
             </span>
         </div>
