@@ -32,8 +32,10 @@ class EventForm extends Component {
             endMonth: '',
             endYear: '',
             beginTime: '',
-            endTime: ''
+            endTime: '',
+            venueName: ''
         }
+        this.renderAddressInputs = this.renderAddressInputs.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -87,8 +89,8 @@ class EventForm extends Component {
                 case "formSubmit":
                     // post or update event depending on the formType
                     let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
-                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId }
+                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.state;
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId }
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
@@ -115,6 +117,44 @@ class EventForm extends Component {
         [street, city, state, zipCode] = [street.trim(), city.trim(), state.trim(), zipCode.trim()];
         return [street, city, state, zipCode];
     }
+
+    // conditionally render address inputs
+    renderAddressInputs() {
+        debugger
+        return !this.state.onlineEvent ? (
+            <div className="address-inputs">
+                <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
+                <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
+                <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
+                <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} />
+            </div>
+        ) : (
+            <div className="address-inputs">
+                <input placeholder="URL" value={this.state.venueName} onChange={this.handleChange("text", "venueName")}/>
+            </div>
+        );
+    }
+
+    renderOnlineOrVenue() {
+
+        let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
+            <option key={`venue-${idx}`}>{option}</option>
+        ));
+        debugger
+        return this.state.onlineEvent ? (
+            <select onChange={this.handleChange("venueSelect")}>
+                {onlineOrVenue}
+            </select>
+        ) : (
+            <div className="flex">
+                <select onChange={this.handleChange("venueSelect")}>
+                    {onlineOrVenue}
+                </select>
+                <input type="text" id="venueNameInput" placeholder="Venue Name" value={this.state.venueName} onChange={this.handleChange("text", "venueName")} />
+            </div>
+        );
+    }
+        
 
     // conditionally render submit bar
     submitBar() {
@@ -191,10 +231,7 @@ class EventForm extends Component {
                 <option key={`option-${idx}-3`}>{`${time}:30 PM`}</option>
             </React.Fragment>
         )));
-
-        let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
-            <option key={`venue-${idx}`}>{option}</option>            
-        ));
+        
         return(
             <>
             <div className="event-container">
@@ -254,16 +291,18 @@ class EventForm extends Component {
                         <h1>Location</h1>
                     </div>   
                     <p>Help people in the area discover your event and let attendees know where to show up.</p>
-                    <select onChange={this.handleChange("venueSelect")}>
+                    {/* <select onChange={this.handleChange("venueSelect")}>
                         {onlineOrVenue}
-                    </select>
+                    </select> */}
                     {/* <input id="address-search" placeholder="Search for Address" onChange={this.handleChange("address")}/> */}
-                    <div className="address-inputs">
+                    {/* <div className="address-inputs">
                         <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
                         <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
                         <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
                         <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} />
-                    </div>
+                    </div> */}
+                    {this.renderOnlineOrVenue()}
+                    {this.renderAddressInputs()}
                 </div>
                 <hr />
                 <div className="event-form">

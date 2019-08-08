@@ -28,17 +28,38 @@ class EventShow extends Component {
         }
     }
 
+    componentWillUnmount() {
+        document.body.style.overflow = 'visible';
+    }
+
     toggleModal() {
         this.setState({ modal: !this.state.modal });
+    }
+
+    handleRegistration(id) {
+        return () => {
+            this.setState({ modal: !this.state.modal });
+            this.props.postRegistration(id);
+        }
     }
 
     render() {
         document.body.style.overflow = this.state.modal ? "hidden" : "visible";
         
-        const { id, pictureUrl, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime } = this.props.event;
+        let { id, pictureUrl, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime } = this.props.event;
+        pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
         const zipCode = this.props.event.zip_code;
         const eventTags = tags ? Object.values(tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />) : '';
-        const modal = this.state.modal ? <Modal closeModal={this.toggleModal} onClick={() => this.props.postRegistration(id)} /> : ''
+
+        // display modal depending on the component state
+        const modal = this.state.modal ? (
+            <Modal 
+                eventId={id}
+                closeModal={this.toggleModal} 
+                onClick={this.handleRegistration(id)} /> 
+            ) : (
+                null
+            )
         let ticketBar; 
         if (this.props.currentUser && this.props.currentUser.id) {
             ticketBar = <TicketBar onClick={this.toggleModal} buttonText={"Sign In"} />

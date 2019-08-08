@@ -12,7 +12,7 @@ const DashboardRow = (props) => {
                         {props.beginDay}
                     </span>
                 </span>
-                <img src={props.imgSrc}></img>
+                <img src={props.imgSrc} onClick={props.onClick}></img>
                 <span>
                     <p>{props.title}</p>
                     <span>

@@ -18,12 +18,18 @@ class EventDashboard extends Component {
         this.renderComponent = this.renderComponent.bind(this);
     }
 
+    componentDidUpdate() {
+        debugger
+    }
+
     renderComponent(component) {
         switch(component) {
             case("EditForm"): 
+                if (!this.props.match.params.eventId) return;
                 this.setState({ mainContainer: <EventFormContainer formType="Update" eventId={this.props.match.params.eventId}/> })
                 break;
             case("Details"): 
+                if (!this.props.match.params.eventId) return;
                 this.setState({ mainContainer: <DetailsContainer/> })
                 break;
         }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DashboardRow from './dashboard_row';
 import { toMonth } from '../../../util/calculations';
+import { withRouter } from 'react-router-dom';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Dashboard extends Component {
 
         this.handleMenuClick = this.handleMenuClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        // this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +31,12 @@ class Dashboard extends Component {
         this.setState({ searchTerm: event.target.value });
     }
 
+    handleRedirect(id) {
+        return () => {
+            this.props.history.push(`/dashboard/${id}`)
+        }
+    }
+
     renderDashboardRows() {
         let events = this.props.events;
         if (this.state.searchTerm) {
@@ -43,6 +51,7 @@ class Dashboard extends Component {
                 beginDay={event.begin_day}
                 beginTime={event.begin_time}
                 imgSrc={event.pictureUrl}
+                onClick={this.handleRedirect(event.id)}
                 onMenuClick={this.handleMenuClick(event.id)}
             />
         ));
@@ -56,7 +65,7 @@ class Dashboard extends Component {
                 <div><h1>Events</h1></div>
                 <div className="dashboard-search">
                     <img src={window.searchIcon}/>
-                    <input type="text" placeholder="Search events" onChange={this.handleChange} />
+                    <input type="text" placeholder="Search events   " onChange={this.handleChange} />
                 </div>
                 <header className="dashboard-index-head">
                     <span>Event</span>
@@ -67,4 +76,4 @@ class Dashboard extends Component {
     }
 }
  
-export default Dashboard;
+export default withRouter(Dashboard);
