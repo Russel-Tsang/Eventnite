@@ -1,10 +1,13 @@
 import React from 'react';
-import ModalPane from './modal_pane';
+import ModalPaneContainer from './modal_pane_container';
 
 const Modal = (props) => {
     return (  
         <div className="modal">
-            <ModalPane closeModal={props.closeModal} onClick={props.onClick}/>
+            <ModalPaneContainer
+                eventId={props.eventId} 
+                closeModal={props.closeModal} 
+                onClick={props.onClick}/>
         </div>
     );
 }

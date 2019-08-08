@@ -1,49 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TicketBar from '../ticket_bar';
+import { withRouter } from 'react-router-dom';
+import { toMonth, toTime } from '../../../util/calculations';
 
-const ModalPane = (props) => {
-    return (  
-        <div className="modal-pane">
-            <div className="modal-left">
-                <header>
-                    <h2>
-                        ROOFTOP PARTY | SATURDAY NIGHT | Sky Room NYC Tallest Rooftop
-                    </h2>
-                    <span>this is the spanniest span of all time</span>
-                    {/* props.date */}
-                </header>
-                <main>f</main>
-                <TicketBar buttonText={"Register"} onClick={props.onClick}/>
+class ModalPane extends Component {
+    componentDidMount() {
+        this.props.fetchEvent(this.props.match.params.eventId);
+    }
+
+    render() {
+        const event = this.props.events[0];
+        const { begin_month, begin_day, begin_year, begin_time, end_month, end_day, end_year, end_time } = event
+        return (
+            <div className="modal-pane">
+                <div className="modal-left">
+                    <header>
+                        <h2>
+                            {event.title}
+                        </h2>
+                        <span>{`${toMonth(begin_month)} ${begin_day}, ${begin_year} ${toTime(begin_time)} - ${toMonth(end_month)} ${end_day}, ${end_year}, ${toTime(end_time)}`}</span>
+                        {event.date}
+                    </header>
+                    <main>f</main>
+                    <TicketBar buttonText={"Register"} onClick={this.props.onClick} />
+                </div>
+                <aside className="modal-right">
+                    <div className="modal-right-image">
+                        <span onClick={this.props.closeModal} className="close-icon-span">
+                            <img className="close-icon" src={window.closeIcon} />
+                        </span>
+                        <img src={window.photoBalloons} />
+                    </div>
+                    <div className="order-summary">
+                        <div>Order Summary</div>
+                        <div>
+                            <span>
+                                1 x **ICLUBNYC LIST** ladies free before 12 / gents 20
+                        </span>
+                            <span>
+                                $0.00
+                        </span>
+                        </div>
+                        <div>
+                            <span>
+                                Total
+                        </span>
+                            <span>
+                                {`$${event.price}.00`}
+                        </span>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <aside className="modal-right">
-                <div className="modal-right-image">
-                    <span onClick={props.closeModal} className="close-icon-span">
-                        <img className="close-icon" src={window.closeIcon} />
-                    </span>
-                    <img src={window.photoBalloons} />
-                </div>
-                <div className="order-summary">
-                    <div>Order Summary</div>
-                    <div>
-                        <span>
-                            1 x **ICLUBNYC LIST** ladies free before 12 / gents 20
-                        </span>
-                        <span>
-                            $0.00
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            Total
-                        </span>
-                        <span>
-                            $0.00
-                        </span>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    );
+        );
+    }
 }
  
-export default ModalPane;
+export default withRouter(ModalPane);
