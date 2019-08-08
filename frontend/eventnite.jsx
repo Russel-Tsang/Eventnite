@@ -5,7 +5,7 @@ import { postUser } from './util/session';
 import { postEvent } from './util/events';
 import configureStore from './store/store';
 import { signup, logout, login, verifyUser } from './actions/session';
-import { fetchEvent, fetchEvents } from './actions/events';
+import { fetchEvent, fetchEvents, deleteEvent } from './actions/events';
 // import { fetchEvent } from './util/events';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchEvent = fetchEvent;
     window.fetchEvents = fetchEvents;
     window.postEvent = postEvent;
+    window.deleteEvent = deleteEvent;
     const root = document.getElementById('root');
     let store;
     if (window.currentUser) {
