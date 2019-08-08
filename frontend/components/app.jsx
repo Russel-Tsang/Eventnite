@@ -8,6 +8,7 @@ import { AuthRoute } from '../util/route_util';
 import EventFormContainer from './events/event_form/event_form_container';
 import EventShowContainer from './events/event_show/event_show_container';
 import EventDashboard from './events/event_dashboard/event_dashboard';
+// import DashboardHomeContainer from './events/event_dashboard/dashboard_home_container';
 import Modal from './helper_components/modal/modal';
 import ProfileDropdown from './helper_components/profile_dropdown';
 
