@@ -35,7 +35,6 @@ class NavBar extends Component {
     }
 
     render() {
-        debugger
         let createEvent = '';
         if (this.props.location.pathname != '/signin') {
             createEvent = <Link className="create-event btn" to="/create_event">Create Event</Link>;

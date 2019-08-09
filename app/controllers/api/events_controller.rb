@@ -89,6 +89,7 @@ class Api::EventsController < ApplicationController
             :begin_time, 
             :end_time, 
             :picture,
+            :price,
             :tags => []
         )
     end

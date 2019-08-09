@@ -213,3 +213,19 @@ h1 + p {
     border-left: none;
     border-radius: 0;
 }
+
+.price-input {
+    position: relative;
+
+    p {
+        position: absolute;
+        top: 19px;
+        left: 2px;
+        z-index: -1;
+    }
+
+    input {
+        background: transparent;
+    }
+
+}

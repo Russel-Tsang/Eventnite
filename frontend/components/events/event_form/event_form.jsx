@@ -4,6 +4,7 @@ import { TagButton, TagButtons }from '../../helper_components/tag_button';
 import SubmitBar from '../../helper_components/submit_bar';
 import { toMinutes, toTime } from '../../../util/calculations';
 import { withRouter } from 'react-router-dom'; 
+import PriceInput from './price_input';
 
 class EventForm extends Component {
     constructor(props) {
@@ -32,7 +33,8 @@ class EventForm extends Component {
             endYear: '',
             beginTime: '',
             endTime: '',
-            venueName: ''
+            venueName: '',
+            price: ''
         }
         this.renderAddressInputs = this.renderAddressInputs.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -44,9 +46,9 @@ class EventForm extends Component {
         if (this.state.formType !== "Update") return;
         this.props.fetchEvent(this.props.match.params.eventId).then(
             (action) => {
-                const { event: { title, event_type, category, tags, organizer, online_event, street, state, city, zip_code, begin_day, begin_month, begin_year, end_day, end_month, end_year, begin_time, end_time, description, id } } = action;
+                const { event: { title, event_type, category, tags, organizer, online_event, street, state, city, zip_code, begin_day, begin_month, begin_year, end_day, end_month, end_year, begin_time, end_time, description, id, price, venue_name } } = action;
                 let currentTags = tags ? Object.values(tags).map(tag => tag.tag_name) : [];
-                this.setState({ title, eventType: event_type, category, tags: currentTags, organizer, onlineEvent: online_event, street, state, city, zipCode: zip_code, beginDay: begin_day, beginMonth: begin_month, beginYear: begin_year, endDay: end_day, endMonth: end_month, endYear: end_year, beginTime: begin_time, endTime: end_time, description, eventId: id });
+                this.setState({ title, eventType: event_type, category, tags: currentTags, organizer, onlineEvent: online_event, street, state, city, zipCode: zip_code, beginDay: begin_day, beginMonth: begin_month, beginYear: begin_year, endDay: end_day, endMonth: end_month, endYear: end_year, beginTime: begin_time, endTime: end_time, description, eventId: id, price, venueName: venue_name });
             }
         );
     }
@@ -89,7 +91,7 @@ class EventForm extends Component {
                     // post or update event depending on the formType
                     let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
                     const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId }
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId, price: this.state.price }
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
@@ -280,6 +282,9 @@ class EventForm extends Component {
                     <span>
                         {this.state.organizer.length}/75
                     </span>
+                    {/* <input type="text" id="venueNameInput" placeholder="$ Price per ticket" value={this.state.price} onChange={this.handleChange("text", "price")} /> */}
+                    <PriceInput value={this.state.price} onChange={this.handleChange("text", "price")}/>
+
                 </div>
                 <hr />
                 <div className="event-form">

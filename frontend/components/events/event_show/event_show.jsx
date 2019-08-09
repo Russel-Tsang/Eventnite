@@ -39,13 +39,16 @@ class EventShow extends Component {
 
     handleRegistration(id) {
         return () => {
+            if (!this.state.currentUser) {
+                this.props.history.push('/signin');
+                return;
+            } 
             this.setState({ modal: !this.state.modal });
             this.props.postRegistration(id);
         }
     }
 
     renderEventTags() {
-        debugger
         if (this.props.event.tags) {
             let eventTags = Object.values(this.props.event.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />);
             return (
