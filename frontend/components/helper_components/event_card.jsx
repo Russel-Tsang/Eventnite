@@ -39,7 +39,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                         </span>
                     </Link>
                     <span className="card-date-time">
-                        {`${day}, ${month}, ${time}`}
+                        {`${day}, ${month} ${date}, ${time}`}
                     </span>
                     <span className="event-card-location">
                         {`${venueName}, ${city}, ${state}`}

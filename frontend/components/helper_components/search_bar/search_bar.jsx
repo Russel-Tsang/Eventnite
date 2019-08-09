@@ -5,15 +5,15 @@ const SearchBar = (props) => {
     return (
         <div className="search-bar">
             <SearchSection label="Looking for">
-                <input type="text"/>
+                <input placeholder="Event" type="text"/>
             </SearchSection>
             <SearchSection label="In">
-                <input type="text" />
+                <input placeholder="New York" type="text" />
             </SearchSection>
             <SearchSection label="On">
-                <select>
+                <select selected="Any Date">
                     <option>
-                        test
+                        Any Date
                     </option>
                 </select>
             </SearchSection>
