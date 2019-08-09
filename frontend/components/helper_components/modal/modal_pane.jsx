@@ -10,18 +10,28 @@ class ModalPane extends Component {
 
     render() {
         const event = this.props.events[0];
-        const { begin_month, begin_day, begin_year, begin_time, end_month, end_day, end_year, end_time } = event
+        const { title, begin_month, begin_day, begin_year, begin_time, end_month, end_day, end_year, end_time, description } = event
         return (
             <div className="modal-pane">
                 <div className="modal-left">
                     <header>
                         <h2>
-                            {event.title}
+                            {title}
                         </h2>
                         <span>{`${toMonth(begin_month)} ${begin_day}, ${begin_year} ${toTime(begin_time)} - ${toMonth(end_month)} ${end_day}, ${end_year}, ${toTime(end_time)}`}</span>
                         {event.date}
                     </header>
-                    <main>f</main>
+                    <main>
+                        <div className="modal-details">
+                            <span>
+                                <h3>***{title}***</h3>
+                            </span>
+                            <span>
+                                {description}
+                            </span>
+                            <hr/>
+                        </div>
+                    </main>
                     <TicketBar buttonText={"Register"} onClick={this.props.onClick} />
                 </div>
                 <aside className="modal-right">
@@ -35,11 +45,11 @@ class ModalPane extends Component {
                         <div>Order Summary</div>
                         <div>
                             <span>
-                                1 x **ICLUBNYC LIST** ladies free before 12 / gents 20
-                        </span>
+                                price: 
+                            </span>
                             <span>
-                                $0.00
-                        </span>
+                                {`$${event.price}.00`}
+                            </span>
                         </div>
                         <div>
                             <span>
