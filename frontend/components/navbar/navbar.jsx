@@ -35,20 +35,28 @@ class NavBar extends Component {
     }
 
     render() {
+        debugger
+        let createEvent = '';
+        if (this.props.location.pathname != '/signin') {
+            createEvent = <Link className="create-event btn" to="/create_event">Create Event</Link>;
+        }
         const { currentUser } = this.props;
         const display = currentUser ? (
                 <>
                 <Link className="btn" to="/dashboard">My Events</Link>
-                <Link className="btn" to="/create_event">Create Event</Link>
-                <Link className="btn" to="/" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
+                <Link className="create-event btn" to="/create_event">Create Event</Link>
+                <Link className="sign-out-logo btn" to="/" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
                     <img 
                         className="dropdown-logo" 
-                        src={window.dropdownIcon} 
+                        src={"https://aa-file-upload-dev.s3.amazonaws.com/profile_icon.svg"} 
                     />
                 </Link>
                 </>
         ) : (
+                <>
+                {createEvent}
                 <Link className="btn" to="/signin">Sign In</Link>
+                </>
         );
 
         // prevents attempt to read this.props.currentUserObj upon logging out, which results in an error
@@ -74,11 +82,11 @@ class NavBar extends Component {
             <>
             <header className="navbar">
                 <Link to="/">
-                    <img src={window.logoWhiteFull} className="logo" />
+                        <img src={"https://aa-file-upload-dev.s3.amazonaws.com/eventnite_logo.png"} className="logo" />
                 </Link>
-                    <div className="navbar-right">
-                        {display}
-                    </div>
+                <div className="navbar-right">
+                    {display}
+                </div>
             </header>
             {ProfileDropdown()}
             </>
