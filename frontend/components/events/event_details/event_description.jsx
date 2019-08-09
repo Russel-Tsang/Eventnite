@@ -24,6 +24,9 @@ const EventDescription = (props) => {
                     <span className="location-heading">
                         <h3>Location</h3>
                     </span>
+                    <span className="location-heading">
+                        <p>{props.venueName}</p>
+                    </span>
                     <span className="location-street">
                         <p>{props.street}</p>
                     </span>

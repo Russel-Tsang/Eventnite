@@ -1,4 +1,5 @@
 import React from 'react';
+import { toTime } from '../../../util/calculations'
 
 const DashboardRow = (props) => {
     return (  
@@ -14,15 +15,15 @@ const DashboardRow = (props) => {
                 </span>
                 <img src={props.imgSrc} onClick={props.onClick}></img>
                 <span>
-                    <p>{props.title}</p>
+                    <span>{props.title}</span>
                     <span>
-                        <p>Riverhead Aquarium</p>
-                        <p>{props.beginTime}</p>
+                        <p>{props.venueName}</p>
+                        <p>{toTime(props.beginTime)}</p>
                     </span>
                 </span>
             </span>
             <span onClick={props.onMenuClick}>
-                - - -
+                <img className="menu_icon" src="https://aa-file-upload-dev.s3.amazonaws.com/menu_icon.svg" />
             </span>
         </div>
     );

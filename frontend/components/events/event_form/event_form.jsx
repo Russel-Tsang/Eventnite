@@ -9,7 +9,6 @@ class EventForm extends Component {
     constructor(props) {
         super(props)
         const { title, category, tags, eventType, organizer } = this.props.event || '';
-
         // begin time and end time data stored as minutes after 12am
         this.state = {
             formType: this.props.formType,
@@ -120,7 +119,6 @@ class EventForm extends Component {
 
     // conditionally render address inputs
     renderAddressInputs() {
-        debugger
         return !this.state.onlineEvent ? (
             <div className="address-inputs">
                 <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
@@ -140,7 +138,6 @@ class EventForm extends Component {
         let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
             <option key={`venue-${idx}`}>{option}</option>
         ));
-        debugger
         return this.state.onlineEvent ? (
             <select onChange={this.handleChange("venueSelect")}>
                 {onlineOrVenue}
@@ -312,20 +309,24 @@ class EventForm extends Component {
                     </div>   
                     <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
                     <div className="date-time">
-                        <input 
-                            type="date" 
-                            onChange={this.handleChange("date", "begin")} 
-                        />
-                        <select value={toTime(this.state.beginTime)} onChange={this.handleChange("time", "begin")}>
-                            {times}
-                        </select>
-                        <input 
-                            type="date" 
-                            onChange={this.handleChange("date", "end")} 
-                        />
-                        <select value={toTime(this.state.endTime)} onChange={this.handleChange("time", "end")}>
-                            {times}
-                        </select>
+                        <span>
+                            <input 
+                                type="date" 
+                                onChange={this.handleChange("date", "begin")} 
+                            />
+                            <select value={toTime(this.state.beginTime)} onChange={this.handleChange("time", "begin")}>
+                                {times}
+                            </select>
+                        </span>
+                        <span>
+                            <input 
+                                type="date" 
+                                onChange={this.handleChange("date", "end")} 
+                            />
+                            <select value={toTime(this.state.endTime)} onChange={this.handleChange("time", "end")}>
+                                {times}
+                            </select>
+                        </span>
                     </div>
                 </div>
             </div>

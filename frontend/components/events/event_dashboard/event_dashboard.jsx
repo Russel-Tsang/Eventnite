@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
 import Section from './section';
 import CheckBar from './check_bar';
-import EventFormContainer from '../event_form/event_form_container';
 import MainContainer from './main_container';
-import DetailsContainer from './details_container';
-import DashboardHomeContainer from './dashboard_home_container';
 import { Link } from 'react-router-dom';
 
 class EventDashboard extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            mainContainer: <DashboardHomeContainer />
+            mainContainer: "home"
         }
-
         this.renderComponent = this.renderComponent.bind(this);
     }
 
-    componentDidUpdate() {
-        debugger
+    showEventForm() {
+        this.setState({ mainContainer: "event form" })
     }
 
     renderComponent(component) {
         switch(component) {
             case("EditForm"): 
                 if (!this.props.match.params.eventId) return;
-                this.setState({ mainContainer: <EventFormContainer formType="Update" eventId={this.props.match.params.eventId}/> })
+                this.setState({ mainContainer: "event form" })
                 break;
             case("Details"): 
                 if (!this.props.match.params.eventId) return;
-                this.setState({ mainContainer: <DetailsContainer/> })
+                this.setState({ mainContainer: "details" })
                 break;
         }
     }
@@ -45,9 +40,7 @@ class EventDashboard extends Component {
                 <CheckBar onClick={() => this.renderComponent("Details")} label={"Details"}/>
                 <CheckBar label={"Tickets"}/>
             </aside>
-            <MainContainer>
-                {this.state.mainContainer}
-            </MainContainer>
+            <MainContainer showEventForm={this.showEventForm.bind(this)} component={this.state.mainContainer} />
             </>
         );
     }

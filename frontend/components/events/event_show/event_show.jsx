@@ -16,6 +16,7 @@ class EventShow extends Component {
         }
 
         this.toggleModal = this.toggleModal.bind(this);
+        this.renderEventTags = this.renderEventTags.bind(this);
     }
     
     componentDidMount() {
@@ -43,10 +44,29 @@ class EventShow extends Component {
         }
     }
 
+    renderEventTags() {
+        debugger
+        if (this.props.event.tags) {
+            let eventTags = Object.values(this.props.event.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />);
+            return (
+                <EventTags>
+                    {eventTags}
+                </EventTags> 
+            );
+        }
+        return null;
+    }
+
     render() {
         document.body.style.overflow = this.state.modal ? "hidden" : "visible";
         
-        let { id, pictureUrl, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime } = this.props.event;
+        let { id, pictureUrl, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime, venue_name } = this.props.event;
+        // temporary fix: if there is no physical location, show the online Url
+        if (!street) {
+            street = venue_name;
+            state = '';
+            city = '';
+        }
         pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
         const zipCode = this.props.event.zip_code;
         const eventTags = tags ? Object.values(tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />) : '';
@@ -89,17 +109,15 @@ class EventShow extends Component {
                             street={street}
                             city={city}
                             state={state}
+                            venueName={venue_name}
                             zipCode={zipCode}
                             refundStatus={"No Refunds"}
                             month={toMonth(begin_month)}
                             day={begin_day}
                             year={begin_year}
                             time={toTime(begin_time)}
-
                         />
-                        <EventTags>
-                            {eventTags}
-                        </EventTags>
+                        {this.renderEventTags()}
                     </div>
                 </div>  
             </div>

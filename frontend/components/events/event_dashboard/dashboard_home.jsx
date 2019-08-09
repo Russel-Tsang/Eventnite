@@ -33,7 +33,7 @@ class Dashboard extends Component {
 
     handleRedirect(id) {
         return () => {
-            this.props.history.push(`/dashboard/${id}`)
+            this.props.history.push(`/dashboard/${id}`);
         }
     }
 
@@ -47,6 +47,7 @@ class Dashboard extends Component {
             <DashboardRow
                 key={`row-${idx}`}
                 title={event.title}
+                venueName={event.venue_name}
                 beginMonth={toMonth(event.begin_month)}
                 beginDay={event.begin_day}
                 beginTime={event.begin_time}
@@ -65,7 +66,7 @@ class Dashboard extends Component {
                 <div><h1>Events</h1></div>
                 <div className="dashboard-search">
                     <img src={window.searchIcon}/>
-                    <input type="text" placeholder="Search events   " onChange={this.handleChange} />
+                    <input type="text" placeholder="Search events" onChange={this.handleChange} />
                 </div>
                 <header className="dashboard-index-head">
                     <span>Event</span>

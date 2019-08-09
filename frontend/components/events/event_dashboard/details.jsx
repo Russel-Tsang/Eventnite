@@ -20,10 +20,9 @@ class Details extends Component {
     componentDidMount() {
         this.props.fetchEvent(this.props.match.params.eventId).then(
             action => {
-                this.setState({ description: action.event.description })
+                this.setState({ description: action.event.description, photoFile: action.event.pictureUrl })
             }
         );
-        if (this.props.event[0]) this.setState({description: this.props.event[0].description});
     }
 
     componentDidUpdate(prevProps) {
@@ -55,19 +54,30 @@ class Details extends Component {
         return this.state.description ? <SubmitBar onClick={this.handleSubmit}/> : null
     }
 
-    photo() {
-        return this.props.event[0] ? <img className="dashboard-picture" src={ this.props.event[0].pictureUrl } /> : null
-    }
-
     render() {
+        let imageSpace = this.state.photoFile ? (
+            <ContentBlock imgSrc={window.imageIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
+                <img className="dashboard-picture" src={this.state.photoFile} />
+            </ContentBlock>
+        ) : (
+            <ContentBlock imgSrc={window.imageIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
+                <div className="image-upload-div">
+                    <img src={window.imageIcon} />
+                    <input type="file" onChange={this.handleFile} />
+                    <span className="file-input-text">
+                        <h2>Drag &amp; drop or click to add main event image.</h2>
+                        <p>JPEG or PNG, no larger than 10MB.</p>
+                    </span>
+                </div>
+            </ContentBlock>
+        );
+
         return (
             <>
-            <div className="details" >
-                <ContentBlock imgSrc={window.textIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
-                    <input type="file" onChange={this.handleFile}/>
-                    {this.photo()}
-                </ContentBlock>
-                <ContentBlock heading="Description" caption="Add more details to your event like your schedule, sponsors, or featured guests." >
+            <div className="details">
+                {imageSpace}
+                <hr/>
+                <ContentBlock imgSrc={window.textIcon} heading="Description" caption="Add more details to your event like your schedule, sponsors, or featured guests." >
                     <TextEditor value={this.state.description} onChange={this.handleChange}/>
                 </ContentBlock>
             </div>
