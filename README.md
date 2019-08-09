@@ -1,24 +1,24 @@
-# README
+# Eventnite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Eventnite is an Eventbrite clone, originally intended for night-time events but now welcomes all types of occasions. It replicates the ability to create, register, and view events. This project demonstrates strong adherence to principles of CRUD operations and user-friendly interfaces. 
 
-Things you may want to cover:
+## Technologies
+* React
+* Redux 
+* SCSS
+* Ruby on Rails
+* postgreSQL
+* Webpack 
+* jQuery-rails
+* Heroku
+* AWS
 
-* Ruby version
+## Features
+* Signing in / User auth
+* Creating / Reading / Updating / Deleting events
+* Registering for events
+* Liking / following events
+* Attaching tags to events
+* Uploading images to events
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<img src="https://aa-file-upload-dev.s3.amazonaws.com/eventnite_splash.png" />
