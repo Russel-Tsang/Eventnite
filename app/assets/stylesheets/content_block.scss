@@ -7,7 +7,6 @@
         align-items: center;
     }
 
-    border: 1px red solid;
     h1 {
         font-size: 27px;
         font-weight: bold;
@@ -16,11 +15,13 @@
 
     p {
         font-size: 14px;
-        width: 70%;
+        width: 65%;
         line-height: 20px;
         margin: 5px 0;
         margin-left: 68px;
+        color: #5b586d;
     }
+
     .content-block-image {
         width: 6%;
         height: 4%;

@@ -74,7 +74,8 @@ $purple: #1e0a3c;
         display: flex;
         justify-content: space-between;
         border: 1px black solid;
-        width: 186.5%;
+        width: 100%;
+        height: 40px;
     }
     span {
         cursor: pointer;
@@ -85,6 +86,7 @@ $purple: #1e0a3c;
         justify-content: space-around;
         width: 10%;
     }
+
 }
 
 // modal 
@@ -114,6 +116,7 @@ $purple: #1e0a3c;
     width: 65%; 
 
     .ticket-button {
+        background: #d1400c;
         width: 25%;
     }
 
@@ -129,12 +132,30 @@ $purple: #1e0a3c;
         text-align: center;
         font-size: 19px;
         padding-top: 10px;
-        height: 10%;
-        border-bottom: #EEEDF2;
+        height: 8%;
+        border-bottom: 1px #f8f8f9 solid;
     }
 
     main {
         height: 78%;
+
+        .modal-details {
+            width: 85%;
+            margin: 0 auto;
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                font-size: 18px;
+                font-weight: bold;
+                color: #3d3a52;
+            }
+
+            hr {
+                width: 100%;
+            }
+        }
     }
 
     .ticket-bar {
@@ -260,7 +281,7 @@ $purple: #1e0a3c;
 // splashpage searchbar 
 .search-bar {
     display: flex;
-    height: 90px;
+    height: 110px;
     margin: auto;
     margin-top: -50px;
     position: relative;
@@ -269,6 +290,7 @@ $purple: #1e0a3c;
     color: $search-bar-font-color;
     font-size: 12px;
     font-weight: 0;
+    min-width: 1050px;
 
     > div {
         width: 30%;
@@ -284,6 +306,7 @@ $purple: #1e0a3c;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        padding-left: 30px;
     }
 
     input, select {
@@ -309,9 +332,11 @@ $purple: #1e0a3c;
             width: 60%;
             min-width: 25px;
             max-width: 30%;
-            padding: 10% 30%;
+            padding: 12% 34%;
             border-radius: 4px;
             background: #d1400c;
+            position: relative;
+            right: 22px;
         }
     }
 }
@@ -333,10 +358,10 @@ $purple: #1e0a3c;
         border: none;
         background: #eeedf2;
         display: inline-block;
-        background-color: #f8f7fa;
-        border-radius: 50px;
-        width: 100px;
-        height: 30px;
+        background-color: #eeedf2;
+        border-radius: 100px;
+        width: 110px;
+        height: 40px;
         margin: 5px 15px 5px 0px;
         font-size: 13px;
     }

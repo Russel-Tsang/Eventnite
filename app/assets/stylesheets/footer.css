@@ -9,9 +9,8 @@ footer {
     padding: 0px 24px;
     border: 1px black solid;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    top: 2000px;
+    width: 100%;
 }
 
 footer ul {

@@ -1,5 +1,5 @@
-$navbar-background: #39364f;
-$navbar-text: #c2c2cc;
+$navbar-background: white;
+$navbar-text: #717388;
 
 .navbar {
     display: flex;
@@ -10,6 +10,7 @@ $navbar-text: #c2c2cc;
     font-family: Helvetica;
     background-color: $navbar-background;
     color: $navbar-text;
+    border-bottom: 1px #f2f1f5 solid;
 
     .logo {
         width: 130px;
@@ -38,16 +39,24 @@ $navbar-text: #c2c2cc;
     float: right;
 
     .btn:hover {
-        color: white;
-        background: #413e5b;
+        color: #3d3a52;
     }
 
     > a {
-        padding: 20px 15px
+        padding: 20px 20px
     }
 
-    > a:last-child {
+    .sign-out-logo {
         padding: 8px;
+        padding-right: 16px;
+    }
+
+    .create-event {
+        color: #3c64ff;
+    }
+
+    .create-event:hover {
+        color: #3c64ff;
     }
 
 }
@@ -89,8 +98,11 @@ $navbar-text: #c2c2cc;
 }
 
 .dropdown-logo {
-    height: 40px;
-    width: 40px;
+    height: 20px;
+    width: 20px;
+    padding: 10px;
+    border-radius: 50px;
+    background: #edecef;
     object-fit: contain;
 }
 

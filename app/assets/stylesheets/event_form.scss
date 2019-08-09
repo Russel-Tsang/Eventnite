@@ -90,16 +90,18 @@ $border-style: 2px solid #dbdae3;
 
 .date-time {
     display: inline-block;
-}
-
-.date-time {
     input {
         float: left;
-        width: 47%;
+        width: 48%;
     }
     select {
-        width: 47%;
+        width: 48%;
         float: right;
+    }
+
+    > span {
+        display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -188,7 +190,7 @@ h1 + p {
     padding: 15px;
     justify-content: center;
     position: fixed;
-    width: 100%;
+    width: 119%;
     bottom: 0;
 
     button {

@@ -1,4 +1,4 @@
-$event-cards-width: 80%;
+$event-cards-width: 85%;
 $event-card-width: $event-cards-width / 3; 
 
 #body {
@@ -15,6 +15,7 @@ $event-card-width: $event-cards-width / 3;
 .events-cards {
     display: flex;
     // width: $event-cards-width;
+    min-width: 1190px;
     // justify-content: center;
     // margin: auto; place back later?
     margin: auto;
@@ -24,8 +25,9 @@ $event-card-width: $event-cards-width / 3;
 
 .event-card {
     margin: 10px;
-    width: 31%;
-    min-width: 350px;
+    // width: 31%;
+    width: 28%;
+    // min-width: 350px;
     z-index: 1;
 
     .event-card-picture {
@@ -108,5 +110,5 @@ $event-card-width: $event-cards-width / 3;
 }
 
 .splash-content {
-    width: 70%;
+    width: 68%;
 }
