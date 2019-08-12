@@ -115,7 +115,7 @@ class Splash extends Component {
         return (
             <div id="body">
                 <img className="splash-banner" src={window.splashBanner2} /> 
-                <div className="test"></div>  
+                <div className="splash-grey-background"></div>  
                 <div className="splash-content">  
                     <SearchBar />
                     <FilterBar categories={this.generateCategories()} onCategoryChange={this.handleCategoryChange("category")}/>

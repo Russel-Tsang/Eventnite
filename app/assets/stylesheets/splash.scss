@@ -1,12 +1,3 @@
-$event-cards-width: 85%;
-$event-card-width: $event-cards-width / 3; 
-
-#body {
-    > * {
-        margin: auto;
-    }
-}
-
 .splash-banner {
     width: 100%;
     top: -200px;
@@ -14,25 +5,19 @@ $event-card-width: $event-cards-width / 3;
 
 .events-cards {
     display: flex;
-    // width: $event-cards-width;
-    min-width: 1190px;
-    // justify-content: center;
-    // margin: auto; place back later?
-    margin: auto;
     flex-wrap: wrap;
-    // justify-content: center;
+    justify-content: space-between;
 }
 
 .event-card {
-    margin: 10px;
-    // width: 31%;
-    width: 28%;
-    // min-width: 350px;
-    z-index: 1;
+    width: 32%;
+    border-radius: 5px;
+    margin-bottom: 2%;
 
     .event-card-picture {
         height: 190px;
         background-size: cover;
+        border-radius: 5px;
     }
     .event-card-details {
         height: 150px;
@@ -110,5 +95,6 @@ $event-card-width: $event-cards-width / 3;
 }
 
 .splash-content {
-    width: 68%;
+    margin: auto;
+    width: 87%;
 }

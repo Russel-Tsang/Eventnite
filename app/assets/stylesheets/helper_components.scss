@@ -281,7 +281,7 @@ $purple: #1e0a3c;
 // splashpage searchbar 
 .search-bar {
     display: flex;
-    height: 110px;
+    height: 90px;
     margin: auto;
     margin-top: -50px;
     position: relative;
@@ -294,7 +294,7 @@ $purple: #1e0a3c;
 
     > div {
         width: 30%;
-        padding: 15px 0 15px 15px;
+        padding: 10px 0 15px 10px;
     }
 
     div:nth-of-type(2) {
@@ -349,7 +349,7 @@ $purple: #1e0a3c;
     justify-content: space-between;
 
     h1 {
-        font-size: 52px;
+        font-size: 45px;
         font-weight: bold;
         color: $purple;
     }
@@ -361,7 +361,7 @@ $purple: #1e0a3c;
         background-color: #eeedf2;
         border-radius: 100px;
         width: 110px;
-        height: 40px;
+        height: 30px;
         margin: 5px 15px 5px 0px;
         font-size: 13px;
     }

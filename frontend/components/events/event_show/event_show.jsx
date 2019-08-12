@@ -38,8 +38,9 @@ class EventShow extends Component {
     }
 
     handleRegistration(id) {
+        debugger
         return () => {
-            if (!this.state.currentUser) {
+            if (!this.props.currentUser) {
                 this.props.history.push('/signin');
                 return;
             } 

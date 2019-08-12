@@ -39,7 +39,7 @@ class Api::EventsController < ApplicationController
                 @event.tags.destroy_all
             end
             render :show
-        else !@event.valid?
+        elsif !@event.valid?
             render json @event.errors.full_messages, status: 422
         end
     end
