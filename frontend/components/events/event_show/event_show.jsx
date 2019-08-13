@@ -50,7 +50,6 @@ class EventShow extends Component {
     }
 
     handleFollow() {
-        debugger
         if (!this.props.currentUser) {
             this.props.history.push('/signin');
             return;
