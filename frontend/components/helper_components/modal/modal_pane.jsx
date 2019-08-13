@@ -10,7 +10,7 @@ class ModalPane extends Component {
 
     render() {
         const event = this.props.events[0];
-        const { title, begin_month, begin_day, begin_year, begin_time, end_month, end_day, end_year, end_time, description } = event
+        const { title, beginMonth, beginDay, beginYear, beginTime, endMonth, endDay, endYear, endTime, description } = event
         return (
             <div className="modal-pane">
                 <div className="modal-left">
@@ -18,7 +18,7 @@ class ModalPane extends Component {
                         <h2>
                             {title}
                         </h2>
-                        <span>{`${toMonth(begin_month)} ${begin_day}, ${begin_year} ${toTime(begin_time)} - ${toMonth(end_month)} ${end_day}, ${end_year}, ${toTime(end_time)}`}</span>
+                        <span>{`${toMonth(beginMonth)} ${beginDay}, ${beginYear} ${toTime(beginTime)} - ${toMonth(endMonth)} ${endDay}, ${endYear}, ${toTime(endTime)}`}</span>
                         {event.date}
                     </header>
                     <main>

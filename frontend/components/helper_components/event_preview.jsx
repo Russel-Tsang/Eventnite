@@ -1,7 +1,15 @@
 import React from 'react';
 import FollowButton from '../helper_components/follow_button';
 
-const Preview = ({ imageSrc, eventTitle, creator, price, month, date }) => {
+const Preview = ({ imageSrc, eventTitle, creator, price, month, date, onFollowClick, followStatus }) => {
+    const renderFollowButton = () => {
+        return followStatus ? (
+            <FollowButton onFollowClick={onFollowClick} buttonText={'Following'}/>
+        ) : (
+            <FollowButton onFollowClick={onFollowClick} buttonText={'Follow'} />
+        );
+    }
+
     return ( 
         <div className="event-preview"> 
             <img className="hero-image" src={imageSrc}/>
@@ -16,7 +24,7 @@ const Preview = ({ imageSrc, eventTitle, creator, price, month, date }) => {
                     </span>
                     <span>
                         <p>by {creator}</p>
-                        <FollowButton />
+                        {renderFollowButton()}
                     </span>
                 </div>
                 <div className="description-card-price">
