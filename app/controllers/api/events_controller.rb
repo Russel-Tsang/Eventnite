@@ -21,7 +21,7 @@ class Api::EventsController < ApplicationController
     end
 
     def show
-        @event = Event.find(params[:event][:id])
+        @event = Event.find(params[:id])
         if @event 
             render :show
         else
