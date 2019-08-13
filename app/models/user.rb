@@ -8,10 +8,14 @@ class User < ApplicationRecord
 
   has_many :events
 
-  has_many :registrations;
-
+  has_many :registrations
   has_many :registered_events, 
     through: :registrations,
+    source: :event
+
+  has_many :follows
+  has_many :followed_events,
+    through: :follows,
     source: :event
 
   def self.generate_session_token
