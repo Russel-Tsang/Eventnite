@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_150435) do
+ActiveRecord::Schema.define(version: 2019_08_12_204208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2019_08_08_150435) do
     t.string "venue_name", null: false
     t.boolean "refund_status", default: true
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "event_id"], name: "index_follows_on_user_id_and_event_id"
   end
 
   create_table "registrations", force: :cascade do |t|
