@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import { postUser } from './util/session';
-import { postEvent } from './util/events';
+import { postEvent, postFollow } from './util/events';
 import configureStore from './store/store';
 import { signup, logout, login, verifyUser } from './actions/session';
 import { fetchEvent, fetchEvents, deleteEvent } from './actions/events';
@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchEvents = fetchEvents;
     window.postEvent = postEvent;
     window.deleteEvent = deleteEvent;
+    window.postFollow = postFollow;
+    // testing
     const root = document.getElementById('root');
     let store;
     if (window.currentUser) {
