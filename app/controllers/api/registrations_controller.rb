@@ -6,7 +6,7 @@ class Api::RegistrationsController < ApplicationController
             # render error status -> 422
             render 'api/events/show', status: 422
         else
-            @registration = Registration.create(user_id: current_user.id, event_id: params[:event_id])
+            @registration = Registration.create(user: current_user, event: @event)
             render 'api/events/show'
         end
     end
