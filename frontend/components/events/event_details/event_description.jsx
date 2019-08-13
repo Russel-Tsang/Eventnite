@@ -1,6 +1,27 @@
 import React from 'react';
 
 const EventDescription = (props) => {
+    // return full address or url, depending on whichever is present
+    const addressOrUrl = () => {
+        return props.city ? (
+            <>
+                <span className="location-heading">
+                    <p>{props.venueName}</p>
+                </span>
+                <span className="location-street">
+                    <p>{props.street}</p>
+                </span>
+                <span className="location-city-state">
+                    {`${props.city}, ${props.state} ${props.zipCode}`}
+                </span>
+            </>
+        ) : (
+            <span className="location-heading">
+                <p>{props.venueName}</p>
+            </span>
+        );
+    }
+
     return ( 
         <div className="description-and-location">
             <div className="event-description">
@@ -24,15 +45,7 @@ const EventDescription = (props) => {
                     <span className="location-heading">
                         <h3>Location</h3>
                     </span>
-                    <span className="location-heading">
-                        <p>{props.venueName}</p>
-                    </span>
-                    <span className="location-street">
-                        <p>{props.street}</p>
-                    </span>
-                    <span className="location-city-state">
-                        {`${props.city}, ${props.state} ${props.zipCode}`}
-                    </span>
+                    {addressOrUrl()}
                 </div>
                 <div className="event-refund">
                     <span>

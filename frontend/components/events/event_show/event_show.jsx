@@ -17,6 +17,8 @@ class EventShow extends Component {
 
         this.toggleModal = this.toggleModal.bind(this);
         this.renderEventTags = this.renderEventTags.bind(this);
+        this.handleRegistration = this.handleRegistration.bind(this);
+        this.handleFollow = this.handleFollow.bind(this);
     }
     
     componentDidMount() {
@@ -29,6 +31,7 @@ class EventShow extends Component {
         }
     }
 
+    // re-enable scroll after user closes the modal
     componentWillUnmount() {
         document.body.style.overflow = 'visible';
     }
@@ -37,21 +40,29 @@ class EventShow extends Component {
         this.setState({ modal: !this.state.modal });
     }
 
-    handleRegistration(id) {
+    handleRegistration() {
+        if (!this.props.currentUser) {
+            this.props.history.push('/signin');
+            return;
+        } 
+        this.setState({ modal: !this.state.modal });
+        this.props.postRegistration(this.props.event.id);
+    }
+
+    handleFollow() {
         debugger
-        return () => {
-            if (!this.props.currentUser) {
-                this.props.history.push('/signin');
-                return;
-            } 
-            this.setState({ modal: !this.state.modal });
-            this.props.postRegistration(id);
-        }
+        if (!this.props.currentUser) {
+            this.props.history.push('/signin');
+            return;
+        } 
+        // if followId exists, then the current user must already be following the event
+        let action = this.props.event.followId ? this.props.deleteFollow : this.props.postFollow;
+        action(this.props.event.id, this.props.event.followId)
     }
 
     renderEventTags() {
-        if (this.props.event.tags) {
-            let eventTags = Object.values(this.props.event.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />);
+        if (this.props.tags) {
+            let eventTags = Object.values(this.props.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tagName} />);
             return (
                 <EventTags>
                     {eventTags}
@@ -64,23 +75,22 @@ class EventShow extends Component {
     render() {
         document.body.style.overflow = this.state.modal ? "hidden" : "visible";
         
-        let { id, pictureUrl, title, description, tags, organizer, onlineEvent, street, state, city, begin_day, begin_month, begin_year, endDay, endMonth, endYear, begin_time, endTime, venue_name } = this.props.event;
-        // temporary fix: if there is no physical location, show the online Url
-        if (!street) {
-            street = venue_name;
-            state = '';
-            city = '';
-        }
+        let { id, price, pictureUrl, title, description, tags, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.props.event;
+
         pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
-        const zipCode = this.props.event.zip_code;
-        const eventTags = tags ? Object.values(tags).map((tag, idx) => <EventTag key={idx} tag={tag.tag_name} />) : '';
+
+        let followStatus;
+        // if condition to prevent erroring out on the first render
+        if (this.props.event.followerIds) {
+            followStatus = this.props.event.followerIds.includes(this.props.currentUser) ? true : false;
+        }
 
         // display modal depending on the component state
         const modal = this.state.modal ? (
             <Modal 
                 eventId={id}
                 closeModal={this.toggleModal} 
-                onClick={this.handleRegistration(id)} /> 
+                onClick={this.handleRegistration} /> 
             ) : (
                 null
             )
@@ -103,9 +113,11 @@ class EventShow extends Component {
                             imageSrc={pictureUrl}
                             eventTitle={title}
                             creator={organizer}
-                            month={toMonth(begin_month)}
-                            date={begin_day}
-                            price={`45`}
+                            month={toMonth(beginMonth)}
+                            date={beginDay}
+                            price={price}
+                            onFollowClick={this.handleFollow}
+                            followStatus={followStatus}
                         />
                         {ticketBar}
                         <EventDescription 
@@ -113,13 +125,13 @@ class EventShow extends Component {
                             street={street}
                             city={city}
                             state={state}
-                            venueName={venue_name}
+                            venueName={venueName}
                             zipCode={zipCode}
                             refundStatus={"No Refunds"}
-                            month={toMonth(begin_month)}
-                            day={begin_day}
-                            year={begin_year}
-                            time={toTime(begin_time)}
+                            month={toMonth(beginMonth)}
+                            day={beginDay}
+                            year={beginYear}
+                            time={toTime(beginTime)}
                         />
                         {this.renderEventTags()}
                     </div>

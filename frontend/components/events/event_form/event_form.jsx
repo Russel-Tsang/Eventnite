@@ -9,10 +9,11 @@ import PriceInput from './price_input';
 class EventForm extends Component {
     constructor(props) {
         super(props)
-        const { title, category, tags, eventType, organizer } = this.props.event || '';
-        // begin time and end time data stored as minutes after 12am
+
+        // if params contains an eventId wildcard, then the formtype must be for updating
+        let formType = this.props.match.params.eventId ? "Update" : "Create";
         this.state = {
-            formType: this.props.formType,
+            formType: formType,
             eventId: this.props.eventId,
             title: '',
             eventType: '',
@@ -41,14 +42,14 @@ class EventForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // receive action object from fetchEvent thunk action creator, extracting event from action 
+    // receive action object from fetchEvent thunk action creator, extracting event from action and setting state for prefilling form inputs 
     componentDidMount() {
         if (this.state.formType !== "Update") return;
         this.props.fetchEvent(this.props.match.params.eventId).then(
             (action) => {
-                const { event: { title, event_type, category, tags, organizer, online_event, street, state, city, zip_code, begin_day, begin_month, begin_year, end_day, end_month, end_year, begin_time, end_time, description, id, price, venue_name } } = action;
-                let currentTags = tags ? Object.values(tags).map(tag => tag.tag_name) : [];
-                this.setState({ title, eventType: event_type, category, tags: currentTags, organizer, onlineEvent: online_event, street, state, city, zipCode: zip_code, beginDay: begin_day, beginMonth: begin_month, beginYear: begin_year, endDay: end_day, endMonth: end_month, endYear: end_year, beginTime: begin_time, endTime: end_time, description, eventId: id, price, venueName: venue_name });
+                const { event: { title, eventType, category, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, id, price, venueName } } = action;
+                let currentTags = action.tags ? Object.values(action.tags).map(tag => tag.tagName) : [];
+                this.setState({ title, eventType, category, tags: currentTags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, eventId: id, price, venueName });
             }
         );
     }
@@ -90,8 +91,8 @@ class EventForm extends Component {
                 case "formSubmit":
                     // post or update event depending on the formType
                     let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
-                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId, price: this.state.price }
+                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName, price } = this.state;
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId, price }
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
