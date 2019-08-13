@@ -7,8 +7,18 @@ export const EventCards = (props) => (
     </div>
 );
 
-export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId }) => ( 
-    <div className="event-card">
+export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId }) => { 
+    const addressOrUrl = () => {
+        // if the address does not have a physical location
+        if (!city) {
+            return `${venueName}`;
+        } else {
+            return `${venueName}, ${city}, ${state}`;
+        }
+    }
+
+    return (
+        <div className="event-card">
         <Link to={`events/${eventId}`}>
             <aside className="event-card-picture" 
                 style={{backgroundImage: `url(${cardImage})`}}
@@ -42,7 +52,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                         {`${day}, ${month} ${date}, ${time}`}
                     </span>
                     <span className="event-card-location">
-                        {`${venueName}, ${city}, ${state}`}
+                        {addressOrUrl()}
                     </span>
                     <span className="card-price">
                         {`Starts at $${price}.00`}
@@ -51,6 +61,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
             </div>
         </main>
     </div>
-);
+    );
+};
 
  
