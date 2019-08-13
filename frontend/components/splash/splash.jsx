@@ -46,25 +46,25 @@ class Splash extends Component {
         let filteredEvents = this.props.events.filter(event => this.state.categories.includes(event.category));
         let dates = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
         let eventCards = filteredEvents.map((event, idx) => {
-            let { begin_month, begin_day, title, begin_time, city, state, id, price, pictureUrl, venue_name } = event;
-            if (!begin_month) begin_month = '';
-            if (!begin_day) begin_day = '';
-            if (!begin_time) begin_time = '';
+            let { beginMonth, beginDay, title, beginTime, city, state, id, price, pictureUrl, venueName } = event;
+            if (!beginMonth) beginMonth = '';
+            if (!beginDay) beginDay = '';
+            if (!beginTime) beginTime = '';
             let cardImage = pictureUrl || window.photoBalloons
             let randomDay = dates[Math.floor(Math.random() * dates.length)];
             return (
                 <EventCard
                     key={idx}
                     cardImage={cardImage}
-                    month={toMonth(begin_month)}
+                    month={toMonth(beginMonth)}
                     day={randomDay}
-                    date={begin_day}
+                    date={beginDay}
                     title={title}
-                    time={toTime(begin_time)}
-                    venueName={venue_name}
+                    time={toTime(beginTime)}
+                    venueName={venueName}
                     city={city}
                     state={state}
-                    price={Math.floor(Math.random() * 30)}
+                    price={Math.floor(price)}
                     eventId={id}
                 />
             );
