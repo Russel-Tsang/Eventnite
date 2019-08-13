@@ -1,19 +1,18 @@
 export const RECEIVE_EVENT = 'RECEIVE_EVENT';
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
+export const RECEIVE_TAGS = 'RECEIVE_TAGS';
 import * as ApiEventsUtil from '../util/events';
 
-const receiveEvent = (event) => ({
+const receiveEvent = (eventData) => ({
     type: RECEIVE_EVENT,
-    event
+    event: eventData.event,
+    tags: eventData.tags
 });
 
-const receiveEvents = (events) => {
-    return {
-        type: RECEIVE_EVENTS,
-        events
-    }
-    
-};
+const receiveEvents = (events) => ({
+    type: RECEIVE_EVENTS,
+    events
+});
 
 export const fetchEvent = (id) => dispatch => {
     return ApiEventsUtil.fetchEvent(id).then(
@@ -61,6 +60,18 @@ export const postRegistration = (eventId) => dispatch => {
 
 export const deleteRegistration = (eventId, registrationId) => dispatch => {
     return ApiEventsUtil.deleteRegistration(eventId, registrationId).then(
+        event => dispatch(receiveEvent(event))
+    );
+}
+
+export const postFollow = (eventId) => dispatch => {
+    return ApiEventsUtil.postFollow(eventId).then(
+        event => dispatch(receiveEvent(event))
+    );
+}
+
+export const deleteFollow = (eventId, followId) => dispatch => {
+    return ApiEventsUtil.deleteFollow(eventId, followId).then(
         event => dispatch(receiveEvent(event))
     );
 }

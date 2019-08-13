@@ -73,3 +73,19 @@ export const deleteRegistration = (eventId, registrationId) => {
         url: `/api/events/${eventId}/registrations/${registrationId}`
     })
 }
+
+// follow an event 
+export const postFollow = (eventId) => {
+    return $.ajax({
+        method: 'POST',
+        url: `/api/events/${eventId}/follows`
+    })
+}
+
+// unfollow an event 
+export const deleteFollow = (eventId, followId) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `/api/events/${eventId}/follows/${followId}`
+    })
+}
