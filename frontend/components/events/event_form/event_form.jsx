@@ -96,7 +96,7 @@ class EventForm extends Component {
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
-                            this.props.history.push(`/dashboard/${event.id}`)
+                            this.props.history.push(`/dashboard/details/${event.id}`)
                         }
                     );
                     break;
@@ -157,11 +157,11 @@ class EventForm extends Component {
         
 
     // conditionally render submit bar
-    submitBar() {
-        if (this.state.title.length) {
-            return <SubmitBar onClick={this.handleSubmit("formSubmit")} />
-        }
-    }
+    // submitBar() {
+    //     if (this.state.title.length) {
+    //         return <SubmitBar onClick={this.handleSubmit("formSubmit")} />
+    //     }
+    // }
 
     render() {
         const TYPES = [
@@ -232,8 +232,11 @@ class EventForm extends Component {
             </React.Fragment>
         )));
         
+        let submitBarShow = this.state.title.length ? 'submit-bar-show' : '';
+
         return(
             <>
+            <SubmitBar onClick={this.handleSubmit("formSubmit")} submitBarShow={submitBarShow}/>
             <div className="event-container">
                 <div className="event-form">
                     <div className="section-head flex">
@@ -337,7 +340,6 @@ class EventForm extends Component {
                 </div>
             </div>
             <div className="spacer" />
-            {this.submitBar()}
             </>
         )
     }
