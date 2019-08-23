@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import { postUser } from './util/session';
-import { postEvent, postFollow } from './util/events';
+import { postEvent, postFollow, postLike } from './util/events';
 import configureStore from './store/store';
 import { signup, logout, login, verifyUser } from './actions/session';
 import { fetchEvent, fetchEvents, deleteEvent } from './actions/events';
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.postEvent = postEvent;
     window.deleteEvent = deleteEvent;
     window.postFollow = postFollow;
+    window.postLike = postLike;
     // testing
     const root = document.getElementById('root');
     let store;
