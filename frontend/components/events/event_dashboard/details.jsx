@@ -49,11 +49,6 @@ class Details extends Component {
         this.setState({ photoFile: event.currentTarget.files[0] });
     }
 
-    submitBar() { 
-        // return this.state.description ? <SubmitBar onClick={() => this.props.updateEvent(description)}/> : null
-        return this.state.description ? <SubmitBar onClick={this.handleSubmit}/> : null
-    }
-
     render() {
         let imageSpace = this.state.photoFile ? (
             <ContentBlock imgSrc={window.imageIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
@@ -62,15 +57,20 @@ class Details extends Component {
         ) : (
             <ContentBlock imgSrc={window.imageIcon} heading="Main Event Image" caption="This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio)." >
                 <div className="image-upload-div">
-                    <img src={window.imageIcon} />
-                    <input type="file" onChange={this.handleFile} />
-                    <span className="file-input-text">
-                        <h2>Drag &amp; drop or click to add main event image.</h2>
-                        <p>JPEG or PNG, no larger than 10MB.</p>
-                    </span>
+                    <div className="upload-div-content">
+                        <img src={window.imageIcon} />
+                        <input type="file" onChange={this.handleFile} />
+                        <span className="file-input-text">
+                            <h2>Drag &amp; drop or click to add main event image.</h2>
+                            <p>JPEG or PNG, no larger than 10MB.</p>
+                        </span>
+                    </div>
                 </div>
             </ContentBlock>
         );
+
+        // return this.state.description ? <SubmitBar onClick={() => this.props.updateEvent(description)}/> : null
+        let submitBarShow = this.state.description ? 'submit-bar-show' : '';
 
         return (
             <>
@@ -81,7 +81,7 @@ class Details extends Component {
                     <TextEditor value={this.state.description} onChange={this.handleChange}/>
                 </ContentBlock>
             </div>
-            {this.submitBar()}
+            <SubmitBar onClick={this.handleSubmit} submitBarShow={submitBarShow}/>
             </>
         );
     }

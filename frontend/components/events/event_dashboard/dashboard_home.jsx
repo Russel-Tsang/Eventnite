@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashboardRow from './dashboard_row';
-import { toMonth } from '../../../util/calculations';
+import { toMonth, toTime } from '../../../util/calculations';
 import { withRouter } from 'react-router-dom';
 
 class Dashboard extends Component {
@@ -11,7 +11,7 @@ class Dashboard extends Component {
             searchTerm: ''
         }
 
-        this.handleMenuClick = this.handleMenuClick.bind(this);
+        // this.handleMenuClick = this.handleMenuClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         // this.handleRedirect = this.handleRedirect.bind(this);
     }
@@ -20,9 +20,15 @@ class Dashboard extends Component {
         this.props.fetchCreatedEvents(this.props.currentUser);
     }
 
-    handleMenuClick(id) {
+    onDeleteClick(id) {
         return () => {
             this.props.deleteEvent(id) 
+        }
+    }
+
+    onEditClick(id) {
+        return () => {
+            this.props.history.push(`/dashboard/edit/${id}`);
         }
     }
 
@@ -33,7 +39,7 @@ class Dashboard extends Component {
 
     handleRedirect(id) {
         return () => {
-            this.props.history.push(`/dashboard/${id}`);
+            this.props.history.push(`/dashboard/edit/${id}`);
         }
     }
 
@@ -43,19 +49,20 @@ class Dashboard extends Component {
             events = events.filter(event => event.title.includes(this.state.searchTerm))
         }
 
-        let dashboardRows = events.map((event, idx) => (
-            <DashboardRow
+        let dashboardRows = events.map((event, idx) => {
+            return <DashboardRow
                 key={`row-${idx}`}
                 title={event.title}
-                venueName={event.venue_name}
-                beginMonth={toMonth(event.begin_month)}
-                beginDay={event.begin_day}
-                beginTime={event.begin_time}
+                venueName={event.venueName}
+                beginMonth={toMonth(event.beginMonth)}
+                beginDay={event.beginDay}
+                beginTime={toTime(event.beginTime)}
                 imgSrc={event.pictureUrl}
                 onClick={this.handleRedirect(event.id)}
-                onMenuClick={this.handleMenuClick(event.id)}
+                onEditClick={this.onEditClick(event.id)}
+                onDeleteClick={this.onDeleteClick(event.id)}
             />
-        ));
+        });
 
         return dashboardRows;
     }

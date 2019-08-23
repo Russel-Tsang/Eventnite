@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const CheckBar = (props) => {
     return ( 
-        <a onClick={props.onClick} className="checkbar-selected">
+        <a onClick={props.onClick} className={props.selectedStatus}>
             <div className="check-bar">
                 <img src={window.checkIcon}/>
                 {props.label}

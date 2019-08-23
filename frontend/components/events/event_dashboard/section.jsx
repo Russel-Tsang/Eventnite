@@ -11,7 +11,7 @@ const Section = (props) => {
                 <p>{`${props.month} ${props.date}, ${props.year} ${props.time}`}</p>
             </span>
             <span>
-                <Link to="/dashboard">Switch Event</Link>
+                <Link to="/dashboard/all">Switch Event</Link>
             </span>
         </section>
     );
