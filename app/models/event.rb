@@ -9,6 +9,11 @@ class Event < ApplicationRecord
     has_many :followers,
         through: :follows,
         source: :user
+
+    has_many :likes 
+    has_many :likers,
+        through: :likes,
+        source: :user
         
     has_many :registrations
     has_many :attendees,
