@@ -1,5 +1,6 @@
 json.event do
     json.extract! @event, :id, :title, :description, :category, :organizer, :street, :city, :state, :price
+    json.set! :eventId, @event.id
     json.set! :eventType, @event.event_type
     json.set! :onlineEvent, @event.online_event
     json.set! :venueName, @event.venue_name
@@ -31,6 +32,16 @@ json.tags do
         json.set! tag.id do
             json.extract! tag, :id
             json.set! :tagName, tag.tag_name
+        end
+    end
+end
+
+json.likes do
+    @event.likes.each do |like|
+        json.set! like.id do
+            json.extract! like, :id
+            json.set! :likedEvent, like.event_id
+            json.set! :likeUser, like.user_id
         end
     end
 end
