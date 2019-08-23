@@ -1,6 +1,7 @@
 export const RECEIVE_EVENT = 'RECEIVE_EVENT';
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 export const RECEIVE_TAGS = 'RECEIVE_TAGS';
+export const RECEIVE_LIKES = 'RECEIVE_LIKES';
 import * as ApiEventsUtil from '../util/events';
 
 const receiveEvent = (eventData) => ({
@@ -28,6 +29,12 @@ export const fetchCreatedEvents = (userId) => dispatch => {
 
 export const postEvent = (event) => dispatch => {
     return ApiEventsUtil.postEvent(event).then(
+        event => dispatch(receiveEvent(event))
+    );
+}
+
+export const updatePictureAndDescription = (pictureAndDescription, eventId) => dispatch => {
+    return ApiEventsUtil.updatePictureAndDescription(pictureAndDescription, eventId).then(
         event => dispatch(receiveEvent(event))
     );
 }
@@ -76,8 +83,14 @@ export const deleteFollow = (eventId, followId) => dispatch => {
     );
 }
 
-export const updatePictureAndDescription = (pictureAndDescription, eventId) => dispatch => {
-    return ApiEventsUtil.updatePictureAndDescription(pictureAndDescription, eventId).then(
+export const postLike = (eventId) => dispatch => {
+    return ApiEventsUtil.postLike(eventId).then(
+        event => dispatch(receiveEvent(event))
+    );
+}
+
+export const deleteLike = (eventId, likeId) => dispatch => {
+    return ApiEventsUtil.deleteLike(eventId, likeId).then(
         event => dispatch(receiveEvent(event))
     );
 }
