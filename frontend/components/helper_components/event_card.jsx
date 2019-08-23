@@ -7,7 +7,7 @@ export const EventCards = (props) => (
     </div>
 );
 
-export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId }) => { 
+export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId, onLikeClick }) => { 
     const addressOrUrl = () => {
         // if the address does not have a physical location
         if (!city) {
@@ -26,11 +26,11 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
         </Link>
         <main className="event-card-details">
             <div className="card-buttons">
-                <button className="event-card-share-button">
-                    <img className="share-icon-img" src={window.shareIcon}/>
+                <button className="event-card-button">
+                    <img className="card-button-img" src={window.shareIcon}/>
                 </button>
-                <button className="event-card-heart-button">
-                    <img className="heart-icon-img" src={window.heartIcon}/>
+                <button className="event-card-button">
+                    <img onClick={onLikeClick} className="card-button-img" src={window.heartIcon}/>
                 </button>
             </div>
             <div className="splash-card-details flex">
