@@ -3,6 +3,7 @@ import { EventCards, EventCard } from '../helper_components/event_card';
 import { toMonth } from '../../util/calculations';
 import SearchBar from '../helper_components/search_bar/search_bar';
 import FilterBar from '../splash/filter_bar';
+import MessageBar from '../helper_components/message_bar';
 import { toTime } from '../../util/calculations';
 
 class Splash extends Component {
@@ -32,10 +33,13 @@ class Splash extends Component {
                 'School Activities',
                 'Science & Tech'
             ],
-            searchterm: ''
+            searchterm: '',
+            messageBar: false,
+            liked: false
         }
 
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.handleMessageBar = this.handleMessageBar.bind(this);
     }
 
     componentDidMount() {
@@ -66,6 +70,7 @@ class Splash extends Component {
                     state={state}
                     price={Math.floor(price)}
                     eventId={id}
+                    onLikeClick={this.handleLikeClick(id)}
                 />
             );
         });
@@ -97,7 +102,7 @@ class Splash extends Component {
         ];
     } 
 
-    handleCategoryChange(type) {
+    handleSelectChange(type) {
         return (event) => {
             switch (type) {
                 case "category":
@@ -106,19 +111,36 @@ class Splash extends Component {
                     break;
             }
         }
-        
     }
 
+    handleLikeClick(eventId) {
+        return () => {
+            this.setState({ messageBar: true, liked: true });
+            this.props.postLike(eventId);
+        }
+    }
+
+    handleMessageBar() {
+        this.setState({ messageBar: false });
+    }
 
     // *adjust to camelCase*
     render() {
+        // if this.state.messageBar is true, add "message-bar-show" class to show the bar
+        let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
+
         return (
             <div id="body">
+                <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked}/>
                 <img className="splash-banner" src={window.splashBanner2} /> 
                 <div className="splash-grey-background"></div>  
                 <div className="splash-content">  
                     <SearchBar />
-                    <FilterBar categories={this.generateCategories()} onCategoryChange={this.handleCategoryChange("category")}/>
+                    <FilterBar 
+                        categories={this.generateCategories()} 
+                        onCategoryChange={this.handleSelectChange("category")}
+                        onPriceChange={this.handleSelectChange("price")}
+                    />
                     <EventCards>
                         {this.renderEventCards()}
                     </EventCards>

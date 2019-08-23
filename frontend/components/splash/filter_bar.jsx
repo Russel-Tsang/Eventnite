@@ -11,12 +11,18 @@ const FilterBar = (props) => {
                 <h1>Live your best life</h1>
             </span>
             <span>
-                <select selected="Any Price">
+                <select onChange={props.onPriceChange}>
+                    <option>
+                        Any Price
+                    </option>
                     <option>
                         Free
                     </option>
+                    <option>
+                        Paid
+                    </option>
                 </select>
-                <select selected="Any Category" onChange={props.onCategoryChange}> 
+                <select onChange={props.onCategoryChange}> 
                     {categories}
                 </select>
             </span>
