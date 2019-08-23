@@ -3,7 +3,7 @@ $counter-color: #3a3650;
 $border-style: 2px solid #dbdae3;
 
 .event-container {
-    width: 800px;
+    width: 50%;
     margin: auto;
     padding-top: 42px;
     font-family: Helvetica;
@@ -192,6 +192,8 @@ h1 + p {
     position: fixed;
     width: 119%;
     bottom: 0;
+    transform: translate(0px, 75px);
+    transition: all .5s;
 
     button {
         margin-left: 15px;
@@ -205,6 +207,10 @@ h1 + p {
         border: none;
         width: 150px;
     }
+}
+
+.submit-bar-show {
+    transform: translate(0px, 0px);
 }
 
 #venueNameInput {

@@ -367,4 +367,58 @@ $purple: #1e0a3c;
     }
 }
 
+// popup menu from event dashboard home
+.popup-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 115px;
+    width: 200px;
+    background: #FFFFFF;
+    border: 1px #eaeaeb solid;
+    box-shadow: 0px 0px 15px #d9d9d9;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+.popup-menu-button {
+    background: #FFFFFF;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.popup-menu-button:hover {
+    background: #f8f7fa;
+}
+
+.menu-icon-span {
+    display: inline-block;
+    position: relative;
+    width: 3%;
+    height: 40%;
+}
+
+// message bar
+.message-bar {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    background: #f8f7fa;
+    position: fixed;
+    top: 0px;
+    left: 10%;
+    transform: translate(0px, -50px);
+    transition: all .5s;
+    z-index: 1;
+}
+
+.message-bar-show {
+    transform: translate(0px, 0px);
+}
 

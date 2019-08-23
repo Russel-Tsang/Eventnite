@@ -61,9 +61,16 @@ $red: 1px red solid;
 }
 
 .check-bar {
-
     > * {
         margin-right: 10px;
+    }
+
+    img {
+        height: 20px;
+        width: 20px;
+        border-radius: 40px;
+        border: 1px black solid;
+        background: black;
     }
 }
 
@@ -78,7 +85,8 @@ $red: 1px red solid;
 }
 
 .details {
-    margin-top: 30px;
+    width: 50%;
+    margin: auto;
 
     textarea {
         margin-top: 20px;
@@ -92,11 +100,10 @@ $red: 1px red solid;
     }
 
     .image-upload-div {
-        margin-left: 68px;
+        margin-left: 60px;
         margin-top: 20px;
         height: 200px;
         background: #f8f7fa;
-        width: 80%;
         position: relative;
         display: flex;
 
@@ -138,11 +145,13 @@ $red: 1px red solid;
 .dashboard-home {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 65%;
     margin-top: 40px;
+    padding-top: 20px;
+    margin: auto;
 
     h1 {
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
     }
 
@@ -166,7 +175,7 @@ $red: 1px red solid;
 
     input, select {
         font-size: 14px;
-        padding: 10px;
+        padding: 5px;
         width: 100%;
         height: 20px;
         background: transparent;
@@ -190,17 +199,14 @@ $red: 1px red solid;
     align-items: center;
     justify-content: space-between;
     font-size: 13px;
-    padding-bottom: 15px;
+    // padding-bottom: 15px;
+    padding: 0px 20px 15px 20px;
     border-bottom: 2px #f5f4f7 solid;
     
-    img {
-        width: 60px;
+    .dashboard-row-img {
+        width: 100px;
         height: 50px;
         cursor: pointer;
-    }
-
-    .menu_icon {
-        width: 15%;
     }
 
     span:nth-of-type(1) {
