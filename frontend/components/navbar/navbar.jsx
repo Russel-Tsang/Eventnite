@@ -42,7 +42,7 @@ class NavBar extends Component {
         const { currentUser } = this.props;
         const display = currentUser ? (
                 <>
-                <Link className="btn" to="/dashboard">My Events</Link>
+                <Link className="btn" to="/dashboard/all">My Events</Link>
                 <Link className="create-event btn" to="/create_event">Create Event</Link>
                 <Link className="sign-out-logo btn" to="/" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
                     <img 
