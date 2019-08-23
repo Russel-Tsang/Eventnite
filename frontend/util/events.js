@@ -89,3 +89,20 @@ export const deleteFollow = (eventId, followId) => {
         url: `/api/events/${eventId}/follows/${followId}`
     })
 }
+
+// like an event 
+export const postLike = (eventId) => {
+    return $.ajax({
+        method: 'POST',
+        url: `/api/events/${eventId}/likes`
+    })
+}
+
+// unlike an event 
+export const deleteLike = (eventId, likeId) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `/api/events/${eventId}/likes/${likeId}`
+    })
+}
+
