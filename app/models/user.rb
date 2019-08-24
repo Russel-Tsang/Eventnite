@@ -18,6 +18,11 @@ class User < ApplicationRecord
     through: :follows,
     source: :event
 
+  has_many :likes
+  has_many :liked_events,
+    through: :likes,
+    source: :event
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64
   end
