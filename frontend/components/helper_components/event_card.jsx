@@ -7,15 +7,18 @@ export const EventCards = (props) => (
     </div>
 );
 
-export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId, onLikeClick }) => { 
-    const addressOrUrl = () => {
-        // if the address does not have a physical location
-        if (!city) {
-            return `${venueName}`;
-        } else {
-            return `${venueName}, ${city}, ${state}`;
-        }
-    }
+export const EventCard = ({ cardImage, month, day, date, title, time, venueName, city, state, price, eventId, onLikeClick, liked }) => { 
+    // const addressOrUrl = () => {
+    //     // if the address does not have a physical location
+    //     if (!city) {
+    //         return `${venueName}`;
+    //     } else {
+    //         return `${venueName}, ${city}, ${state}`;
+    //     }
+    // }
+
+    let addressOrUrl = !city ? `${venueName}` : `${venueName}, ${city}, ${state}`;
+    let heartIconImg = liked ? window.redHeartIcon : window.heartIcon;
 
     return (
         <div className="event-card">
@@ -30,7 +33,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                     <img className="card-button-img" src={window.shareIcon}/>
                 </button>
                 <button className="event-card-button">
-                    <img onClick={onLikeClick} className="card-button-img" src={window.heartIcon}/>
+                    <img onClick={onLikeClick} className="card-button-img" src={heartIconImg}/>
                 </button>
             </div>
             <div className="splash-card-details flex">
@@ -52,7 +55,7 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                         {`${day}, ${month} ${date}, ${time}`}
                     </span>
                     <span className="event-card-location">
-                        {addressOrUrl()}
+                        {addressOrUrl}
                     </span>
                     <span className="card-price">
                         {`Starts at $${price}.00`}
