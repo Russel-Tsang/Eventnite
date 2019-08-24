@@ -10,10 +10,14 @@ const receiveEvent = (eventData) => ({
     tags: eventData.tags
 });
 
-const receiveEvents = (events) => ({
-    type: RECEIVE_EVENTS,
-    events
-});
+const receiveEvents = (eventData) => {
+    debugger
+    return {
+        type: RECEIVE_EVENTS,
+        events: eventData.events,
+        likes: eventData.likes
+    }
+};
 
 export const fetchEvent = (id) => dispatch => {
     return ApiEventsUtil.fetchEvent(id).then(
