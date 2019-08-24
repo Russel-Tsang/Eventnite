@@ -46,7 +46,12 @@ class Splash extends Component {
         this.props.fetchEvents();
     }
 
+    componentDidUpdate() {
+        debugger
+    }
+
     renderEventCards() {
+        debugger
         let filteredEvents = this.props.events.filter(event => this.state.categories.includes(event.category));
         let dates = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
         let eventCards = filteredEvents.map((event, idx) => {
@@ -56,6 +61,7 @@ class Splash extends Component {
             if (!beginTime) beginTime = '';
             let cardImage = pictureUrl || window.photoBalloons
             let randomDay = dates[Math.floor(Math.random() * dates.length)];
+            let liked = this.props.likes[id] ? true : false;
             return (
                 <EventCard
                     key={idx}
@@ -71,6 +77,7 @@ class Splash extends Component {
                     price={Math.floor(price)}
                     eventId={id}
                     onLikeClick={this.handleLikeClick(id)}
+                    liked={liked}
                 />
             );
         });
