@@ -217,29 +217,29 @@ $purple: #1e0a3c;
 
 .modal-right-image {
     position: relative;
-
-    .close-icon-span {
-        position: absolute;
-        left: 80%;
-        top: 4px;
-        width: 45px;
-        height: 45px;
-        border-radius: 50px;
-        cursor: pointer;
-        background: rgba(248,247,250,.5);
-        transition: all .3s;
-    }
-
-    .close-icon-span:hover {
-        background: rgba(248,247,250,.9)
-    }
-
-    .close-icon {
-        border-radius: 70px;
-        height: 35%;
-        margin-top: 15px;
-    }
 } 
+
+.close-icon-span {
+    position: absolute;
+    left: 80%;
+    top: 4px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+    background: rgba(248,247,250,.5);
+    transition: all .3s;
+}
+
+.close-icon-span:hover {
+    background: rgba(248,247,250,.9)
+}
+
+.close-icon {
+    border-radius: 70px;
+    height: 30%;
+    margin-top: 15px;
+}
 
 // ticket bar
 .ticket-bar {
@@ -399,26 +399,97 @@ $purple: #1e0a3c;
 .menu-icon-span {
     display: inline-block;
     position: relative;
-    width: 3%;
     height: 40%;
+    width: 20px;
+    cursor: pointer;
 }
 
 // message bar
 .message-bar {
-    width: 80%;
-    height: 50px;
+    width: 82%;
+    height: 45px;
+    font-size: 12px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: #f8f7fa;
     position: fixed;
+    padding: 0px 20px;
     top: 0px;
-    left: 10%;
+    left: 9%;
     transform: translate(0px, -50px);
     transition: all .5s;
     z-index: 1;
+
+    span:nth-of-type(1) {
+        display: flex;
+        justify-content: space-between;
+        width: 150px;
+        align-items: center;
+    }
+
+    .close-icon-span {
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        position: initial;
+
+        img {
+            position: relative;
+            bottom: 1px;
+        }
+    }
+
+    .close-icon-span:hover {
+        background: white;
+    }
 }
 
 .message-bar-show {
     transform: translate(0px, 0px);
 }
+
+// styled select component
+
+.styled-select-container {
+    position: relative;
+
+    .styled-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        // position: absolute;
+        width: 330px;
+        height: 46px;
+        appearance:none;
+        background: transparent;
+        border: 1px #dbdae3 solid;
+        border-radius: 0px;
+        margin-bottom: 8px;
+        padding-left: 10px;
+        cursor: pointer;
+        outline: none;
+        border-radius: 2px;
+        transition: border .2s;
+    }
+
+    .styled-select:hover {
+        box-sizing: border-box;
+        border: 1px #000000 solid;
+    }
+
+    .styled-select:focus {  
+        box-sizing: border-box;
+        border: 2px $input-border-blue solid;
+    }
+
+    img {
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        height: 20px;
+    }
+}
+
 

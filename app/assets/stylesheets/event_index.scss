@@ -1,0 +1,208 @@
+html, body, #root {
+    overflow: auto;
+}
+
+.event-index {
+    margin: auto;
+    width: 65%;
+}
+
+.index-rows-container {
+    display: flex;
+    flex-direction: column;
+    width: 62%;
+    float: left;
+    padding: 10px;
+}
+
+.google-maps {
+    width: 35%;
+    height: 100px;
+    background: blue;
+    float: right;
+    position: sticky;
+    top: 0;
+}
+
+.index-row {
+    display: flex;
+    font-size: 11px;
+    color: #848698;
+    margin-bottom: 40px;
+    letter-spacing: .2px;
+    padding: 20px;
+
+    .index-row-img {
+        width: 200px;
+        height: 100px;
+        cursor: pointer;
+    }
+
+    h2 {
+        color: #000000;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .heart-icon {
+        height: 17px;
+        width: 17px;
+    }
+
+    .index-row-like {
+        position: relative;
+
+        img {
+            position: absolute;
+            bottom: 0px;
+        }
+    }
+}
+
+.index-row:hover {
+    box-shadow: -2px 3px 10px #d9d9d9;
+    transition: box-shadow .4s;
+}
+
+.index-row-main {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding: 0px 15px;
+}
+
+.index-row-details {
+    display: flex;
+    flex-direction: column;
+    
+    > * {
+        margin-bottom: 5px;
+    }
+}
+
+.index-search-location {
+    display: flex;
+
+    p {
+        font-weight: bold;
+        font-size: 26px;
+        color: #c2c2cc;
+    }
+
+    //input container for location search
+    > div {
+        padding-left: 10px;
+        position: relative;
+        bottom: 4px;
+    }
+}
+
+.index-search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85px;
+
+    input {
+        font-size: 28px;
+        border: none;
+        outline: none;
+        font-weight: bold;
+    }
+
+    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        text-decoration: underline;
+    }
+
+    input[placeholder="New York"]::-webkit-input-placeholder {
+        color: black;
+        text-decoration-color: #a9a8b3;
+    }
+
+    input:focus::-webkit-input-placeholder {
+        color: #a9a8b3;
+        text-decoration: none;
+    }
+}
+
+.index-search-section {
+    display: flex;
+}
+
+.index-search-button-div {
+    position: relative;
+
+    .index-search-button {
+        width: 100px;
+        height: 40px;
+        position: absolute;
+        bottom: 0px;
+        background: #d1410b;
+        color: white;
+        border: none;
+    }
+}
+
+.index-filter {
+    display: flex;
+    padding: 15px;
+    
+    > * {
+        margin-right: 15px;
+    }
+}
+
+// aside element for more filters
+
+.filters-aside {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 365px;
+    background: #FFFFFF;
+    box-shadow: -1px 0px 10px #cecece;
+    transform: translate(365px, 0px);
+    transition: transform .4s;
+}
+
+.filters-aside-show {
+    transform: translate(0px, 0px);
+}
+
+.filters-aside-header {
+    border-bottom: 1px #f2f1f5 solid;
+    padding: 16px 8px 18px 24px;
+    font-size: 17px;
+    color: #1e0a3c;
+}
+
+.filters-aside-main {
+    display: flex;
+    flex-direction: column; 
+    padding-top: 10px;
+    
+    .filters-aside-buttons {
+        display: flex;
+        position: absolute;
+        bottom: 15px;
+        width: 93%;
+        justify-content: space-between;
+        padding-right: 5px;
+        padding-top: 15px;
+        border-top: 1px #eeedf2 solid;
+    }
+
+    .button-1 {
+        width: 155px;
+        height: 35px;
+    }
+
+    > * {
+        margin: 0px 14px;
+    }
+
+}
+
