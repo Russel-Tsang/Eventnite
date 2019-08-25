@@ -32,8 +32,8 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
                 <button className="event-card-button">
                     <img className="card-button-img" src={window.shareIcon}/>
                 </button>
-                <button className="event-card-button">
-                    <img onClick={onLikeClick} className="card-button-img" src={heartIconImg}/>
+                <button className="event-card-button" onClick={onLikeClick}>
+                    <img className="card-button-img" src={heartIconImg}/>
                 </button>
             </div>
             <div className="splash-card-details flex">
