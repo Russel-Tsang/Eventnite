@@ -15,9 +15,10 @@ end
 
 json.likes do
   if current_user && !current_user.liked_events.empty?
-    current_user.liked_events.each do |liked_event|
-      json.set! liked_event.id do
-          json.set! :eventId, liked_event.id
+    current_user.likes.each do |like|
+      json.set! like.event_id do
+          json.set! :eventId, like.event_id
+          json.set! :likeId, like.id
       end
     end
   else
