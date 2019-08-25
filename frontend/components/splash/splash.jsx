@@ -51,7 +51,6 @@ class Splash extends Component {
     }
 
     renderEventCards() {
-        debugger
         let filteredEvents = this.props.events.filter(event => this.state.categories.includes(event.category));
         let dates = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
         let eventCards = filteredEvents.map((event, idx) => {
@@ -122,8 +121,17 @@ class Splash extends Component {
 
     handleLikeClick(eventId) {
         return () => {
-            this.setState({ messageBar: true, liked: true });
-            this.props.postLike(eventId);
+            debugger
+            if (this.props.likes[eventId]) {
+                this.setState({messageBar: true, liked: false });
+                this.props.deleteLike(eventId, this.props.likes[eventId].likeId);
+            } else {
+                this.setState({ messageBar: true, liked: true });
+                this.props.postLike(eventId);
+            }
+            setTimeout(() => {
+                this.setState({ messageBar: false });
+            }, 4000);
         }
     }
 
