@@ -89,12 +89,12 @@ export const deleteFollow = (eventId, followId) => dispatch => {
 
 export const postLike = (eventId) => dispatch => {
     return ApiEventsUtil.postLike(eventId).then(
-        event => dispatch(receiveEvent(event))
+        events => dispatch(receiveEvents(events))
     );
 }
 
 export const deleteLike = (eventId, likeId) => dispatch => {
     return ApiEventsUtil.deleteLike(eventId, likeId).then(
-        event => dispatch(receiveEvent(event))
+        events => dispatch(receiveEvents(events))
     );
 }
