@@ -46,7 +46,7 @@ class Dashboard extends Component {
     renderDashboardRows() {
         let events = this.props.events;
         if (this.state.searchTerm) {
-            events = events.filter(event => event.title.includes(this.state.searchTerm))
+            events = events.filter(event => event.title.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
         }
 
         let dashboardRows = events.map((event, idx) => {

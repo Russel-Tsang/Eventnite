@@ -28,7 +28,7 @@ class DashboardRow extends Component {
     }
 
     componentDidMount() {
-        this.mouseDownFunc = this.toggleDisplay(false)
+        this.mouseDownFunc = this.toggleDisplay(false);
         document.body.addEventListener('mousedown', this.mouseDownFunc);
     }
 
