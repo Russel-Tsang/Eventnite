@@ -10,8 +10,20 @@ class EventIndex extends Component {
         super(props);
 
         this.state = {
-            showFiltersAside: false
+            showFiltersAside: false,
+            categoryFilter: '',
+            eventTypeFilter: '',
+            priceFilter: '',
+            
+            filterSelections: {
+                categoryFilter: '',
+                eventTypeFilter: '',
+                priceFilter: '',
+            }
         }
+
+        this.handleFilterChange = this.handleFilterChange.bind(this); 
+        this.handleApplyClick = this.handleApplyClick.bind(this);
     }
 
     componentDidMount() {
@@ -31,18 +43,45 @@ class EventIndex extends Component {
     handleFiltersClick(bool) {
         return () => {
             this.setState({ showFiltersAside: bool });
-        }
+        };
+    }
+
+    handleFilterChange(filter) {
+        return (event) => {
+            let value = event.target.value.split(' ')[0] === "Any" ? '' : event.target.value;
+            let filterSelections = Object.assign(this.state.filterSelections);
+            filterSelections[filter] = value;
+            this.setState({ filterSelections });
+        };
+    }
+
+    handleApplyClick() {
+        let categoryFilter = this.state.filterSelections.categoryFilter;
+        let eventTypeFilter = this.state.filterSelections.eventTypeFilter;
+        let priceFilter = this.state.filterSelections.priceFilter;
+        this.setState({ categoryFilter, eventTypeFilter, priceFilter });
     }
 
     handleEventClick(id) {
         return () => {
             this.props.history.push(`/events/${id}`);
-        }
+        };
     }
 
     render() { 
-        let indexRows = this.props.events.map((event, idx) => {
-            let {title, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id} = event;
+        let { categoryFilter, eventTypeFilter, priceFilter } = this.state; 
+        // if (categoryFilter || eventTypeFilter || priceFilter)
+        let events = this.props.events.filter(event => {
+            if (event.category === categoryFilter || !categoryFilter) {
+                if (event.eventType === eventTypeFilter || !eventTypeFilter) {
+                    if ((event.price > 0 && priceFilter === "Paid") || (event.price === 0 && priceFilter === "Free") || !priceFilter) {
+                        return event;
+                    }
+                }
+            }
+        });
+        let indexRows = events.map((event, idx) => {
+            let { title, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id } = event;
             let liked = this.props.likes[id] ? true : false;
             return (
                 <IndexRow
@@ -78,7 +117,11 @@ class EventIndex extends Component {
                 <FiltersAside
                     showAside={this.state.showFiltersAside}
                     onCloseClick={this.handleFiltersClick(false)}
-                />
+                    onCategoryChange={this.handleFilterChange('categoryFilter')}
+                    onTypeChange={this.handleFilterChange('eventTypeFilter')}
+                    onPriceChange={this.handleFilterChange('priceFilter')}
+                    onApplyClick={this.handleApplyClick}
+            />
             </div> 
         );
     }

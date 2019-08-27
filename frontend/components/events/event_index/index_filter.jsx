@@ -1,12 +1,13 @@
 import React from 'react';
+import StyledSelect from '../../helper_components/styled_select';
 
 const IndexFilter = (props) => {
     return ( 
         <div className="index-filter">
-            <select>
+            <StyledSelect>
                 <option>Any Date</option>
-            </select>
-            <button onClick={props.onFiltersClick}>More filters</button>
+            </StyledSelect>
+            <button className="tag-button" onClick={props.onFiltersClick}>More filters</button>
         </div>
     );
 }
