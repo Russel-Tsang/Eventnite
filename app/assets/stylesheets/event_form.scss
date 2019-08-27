@@ -76,8 +76,8 @@ $border-style: 2px solid #dbdae3;
     .section-head {
         position: relative;
         right: 73px;
-    }
-    .section-head {
+        z-index: -1;
+
         h1  {
             margin-left: 22px;
         }
