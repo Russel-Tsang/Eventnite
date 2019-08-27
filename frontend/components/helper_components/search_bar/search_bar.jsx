@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchSection from './search_section';
+import StyledSelect from '../styled_select';
 
 const SearchBar = (props) => {
     return (
@@ -11,11 +12,11 @@ const SearchBar = (props) => {
                 <input placeholder="New York" type="text" />
             </SearchSection>
             <SearchSection label="On">
-                <select selected="Any Date">
+                <StyledSelect color="white">
                     <option>
                         Any Date
                     </option>
-                </select>
+                </StyledSelect>
             </SearchSection>
             <div className="search-button">
                 <img src={window.searchIconWhite} />
