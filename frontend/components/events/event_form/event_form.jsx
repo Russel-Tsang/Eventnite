@@ -217,7 +217,14 @@ class EventForm extends Component {
         ));
 
         // generate TagButton components for TagButtons component
-        let tags = this.state.tags.map((tag, idx) => <TagButton key={`tag-${idx}`} onClick={this.handleChange("deleteTag", `${tag}`)} tag={tag} />)
+        let tags = this.state.tags.map((tag, idx) => (
+            <TagButton 
+                key={`tag-${idx}`} 
+                onClick={this.handleChange("deleteTag", `${tag}`)} 
+                tag={tag} 
+                color={"black"}
+            />
+        ));
 
         // create option tags with all possible times
         let times = TIMES.map((time, idx) => (
