@@ -95,3 +95,33 @@
     width: 87%;
     max-width: 1080px;
 }
+
+.more-events-div {
+    text-align: center;
+}
+
+.more-events-link {
+    font-size: 20px;
+    border-bottom: 4px #ef5537 solid;
+    cursor: pointer;
+}
+
+.more-events-link:hover {
+    color: #ef5537;
+}
+
+.filter-bar-select-span {
+    display: flex;
+
+    div:nth-of-type(2) select {
+        width: 120px;
+    }
+
+    .styled-select-container img {
+        right: 22px;
+    }
+
+    .tag-button img {
+        top: 2px;
+    }
+}

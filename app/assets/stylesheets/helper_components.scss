@@ -365,6 +365,25 @@ $purple: #1e0a3c;
         margin: 5px 15px 5px 0px;
         font-size: 13px;
     }
+
+    .styled-select {
+        width: 100px;
+        height: 33px;
+        border-radius: 20px;
+    }
+
+    .styled-select:focus {
+        border: none;
+    }
+
+    .styled-select:hover {
+        border: none;
+    }
+
+    .tag-button {
+        background: #ef5537;
+        color: white;
+    }
 }
 
 // popup menu from event dashboard home
@@ -455,33 +474,8 @@ $purple: #1e0a3c;
 .styled-select-container {
     position: relative;
 
-    .styled-select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        // position: absolute;
-        width: 330px;
-        height: 46px;
-        appearance:none;
-        background: transparent;
-        border: 1px #dbdae3 solid;
-        border-radius: 0px;
-        margin-bottom: 8px;
-        padding-left: 10px;
-        cursor: pointer;
-        outline: none;
-        border-radius: 2px;
-        transition: border .2s;
-    }
-
-    .styled-select:hover {
-        box-sizing: border-box;
-        border: 1px #000000 solid;
-    }
-
-    .styled-select:focus {  
-        box-sizing: border-box;
-        border: 2px $input-border-blue solid;
+    .styled-select:focus {
+        background: #e3e1ea;
     }
 
     img {
@@ -489,7 +483,32 @@ $purple: #1e0a3c;
         right: 15px;
         top: 12px;
         height: 20px;
+        pointer-events: none;
     }
+}
+
+.styled-select:focus {  
+    box-sizing: border-box;
+    border: 2px $input-border-blue solid;
+}
+
+.styled-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    // position: absolute;
+    width: 330px;
+    height: 46px;
+    appearance:none;
+    background: transparent;
+    border: 1px #dbdae3 solid;
+    border-radius: 0px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 2px;
+    transition: border .2s;
 }
 
 

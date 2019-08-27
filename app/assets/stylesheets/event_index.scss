@@ -5,6 +5,7 @@ html, body, #root {
 .event-index {
     margin: auto;
     width: 65%;
+    padding-top: 30px;
 }
 
 .index-rows-container {
@@ -149,6 +150,44 @@ html, body, #root {
     
     > * {
         margin-right: 15px;
+    }
+    
+    .styled-select {
+        width: 95px;
+        height: 30px;
+        border-radius: 20px;
+        cursor: pointer;
+        border: none;
+        background: #f8f7fa;
+        transition: all .5s;
+    }
+
+    .styled-select-container .styled-select:hover {
+        background: #e4e0eb;
+        border: none;
+    }
+
+    .styled-select-container img {
+        right: 7px;
+        top: 5px;
+        cursor: pointer;
+    }
+
+    .tag-button {
+        margin: 0;
+        height: 30px;
+        padding: 0px 12px;
+        font-size: 11px;
+        background: none;
+        outline: none;
+        border: 2px #a9a8b3 solid;
+        cursor: pointer;
+        transition: all .5s;
+    }
+
+    .tag-button:hover {
+        border: 2px #6f7287 solid;
+        background: #e4e0eb;
     }
 }
 
