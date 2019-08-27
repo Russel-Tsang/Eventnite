@@ -297,7 +297,7 @@ $purple: #1e0a3c;
         padding: 10px 0 15px 10px;
     }
 
-    div:nth-of-type(2) {
+    .search-section:nth-of-type(2) {
         border-left: 1px white solid;
         border-right: 1px white solid;
     }
@@ -319,6 +319,22 @@ $purple: #1e0a3c;
         width: 85%;
     }
 
+    .styled-select-container .styled-select:focus {
+        background: none;
+        // border-bottom: 1px #f05537 solid;
+    }
+    
+    .styled-select {
+        height: 22px;
+        margin-bottom: 0;
+        padding-left: 2px;
+    }
+
+    .styled-select-container img {
+        right: 50px;
+        top: 0px;
+    }
+
     input:focus {
         outline: none;
     }
@@ -336,6 +352,7 @@ $purple: #1e0a3c;
             border-radius: 4px;
             background: #d1400c;
             position: relative;
+            top: 8px;
             right: 22px;
         }
     }
@@ -489,7 +506,7 @@ $purple: #1e0a3c;
 
 .styled-select:focus {  
     box-sizing: border-box;
-    border: 2px $input-border-blue solid;
+    // border: 2px $input-border-blue solid;
 }
 
 .styled-select {
