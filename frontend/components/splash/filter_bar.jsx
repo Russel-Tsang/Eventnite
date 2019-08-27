@@ -7,8 +7,6 @@ const FilterBar = (props) => {
         <option key={`category-${idx}`}>{category}</option>
     ));
 
-    debugger
-
     // render either the select tag or the button that removes the filter selection
     let categoryFilter, priceFilter;
     if (props.categoryButtonText) {

@@ -4,7 +4,6 @@ import Dashboard from './event_dashboard';
 import { fetchEvent } from '../../../actions/events';
 
 const msp = (state, ownProps) => {
-    debugger
     let pathName = ownProps.location.pathname.split("/");
     let eventId = Number(pathName[pathName.length - 1]);
     return {

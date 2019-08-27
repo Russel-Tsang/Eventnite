@@ -62,7 +62,6 @@ class EventDashboard extends Component {
     } 
 
     render() { 
-        debugger
         let { title, beginMonth, beginDay, beginYear, beginTime } = this.props.event;
         return (
             <aside className="dashboard-panel">

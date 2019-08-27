@@ -11,7 +11,6 @@ const receiveEvent = (eventData) => ({
 });
 
 const receiveEvents = (eventData) => {
-    debugger
     return {
         type: RECEIVE_EVENTS,
         events: eventData.events,

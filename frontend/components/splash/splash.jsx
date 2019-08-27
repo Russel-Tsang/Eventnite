@@ -49,11 +49,9 @@ class Splash extends Component {
     }
 
     componentDidUpdate() {
-        debugger
     }
 
     renderEventCards() {
-        debugger
         let filteredEvents = this.props.events.filter(event => {
             if (this.state.categories.includes(event.category)) {
                 if (
@@ -148,7 +146,6 @@ class Splash extends Component {
 
     handleLikeClick(eventId) {
         return () => {
-            debugger
             if (this.props.likes[eventId]) {
                 this.setState({messageBar: true, liked: false });
                 this.props.deleteLike(eventId, this.props.likes[eventId].likeId);

@@ -14,9 +14,7 @@ class DashboardRow extends Component {
     }
 
     toggleDisplay(bool) {
-        debugger
         return (event) => {
-            debugger
             if (bool === false && event.target.className !== 'popup-menu-button') this.setState({ display: false });
             if (bool === true) this.setState({ display: true });
         }
