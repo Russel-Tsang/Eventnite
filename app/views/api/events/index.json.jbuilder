@@ -2,6 +2,7 @@ json.events do
   @events.each do |event|
     json.set! event.id do 
       json.extract! event, :id, :title, :city, :state, :price, :category
+      json.set! :eventType, event.event_type
       json.set! :beginMonth, event.begin_month 
       json.set! :beginDay, event.begin_day 
       json.set! :beginTime, event.begin_time
