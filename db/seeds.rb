@@ -542,7 +542,7 @@ end
 Zoe = User.create!(email: 'zoe@gmail.com', fname: 'Zoe', lname: 'Wong', password: 'password')
 Rolanda = User.create!(email: 'rolanda@gmail.com', fname: 'Rolanda', lname: 'Wills', password: 'password')
 Alex = User.create!(email: 'alex@gmail.com', fname: 'Alex', lname: 'Liao', password: 'password')
-Lillian = User.create!(email: 'lillian@gmail.com', fname: 'Lillian', lname: 'Wang', password: 'password')
+Lillian = User.create!(email: 'n@gmail.com', fname: 'Lillian', lname: 'Wang', password: 'password')
 Connor = User.create!(email: 'connor@gmail.com', fname: 'Connor', lname: 'Baker', password: 'password')
 Scarlet = User.create!(email: 'scarlet@gmail.com', fname: 'scarlet', lname: 'witch', password: 'password')
 Miles = User.create!(email: 'miles@gmail.com', fname: 'Miles', lname: 'Morales', password: 'password')
