@@ -40,6 +40,7 @@ class EventForm extends Component {
         this.renderAddressInputs = this.renderAddressInputs.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDiscard = this.handleDiscard.bind(this);
     }
 
     // receive action object from fetchEvent thunk action creator, extracting event from action and setting state for prefilling form inputs 
@@ -110,8 +111,34 @@ class EventForm extends Component {
         }
     }
 
-    // converts time as string into integer representing number of minutes past midnight
-
+    handleDiscard() {
+        let formType = this.props.match.params.eventId ? "Update" : "Create";
+        this.setState({
+            formType: formType,
+            eventId: this.props.eventId,
+            title: '',
+            eventType: '',
+            category: '',
+            tag: '',
+            tags: [],
+            organizer: '',
+            onlineEvent: false,
+            street: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            beginDay: '',
+            beginMonth: '',
+            beginYear: '',
+            endDay: '',
+            endMonth: '',
+            endYear: '',
+            beginTime: '',
+            endTime: '',
+            venueName: '',
+            price: ''
+        });
+    }
 
     // ensures no leading/trailing whitespace
     handleAddress(address) {
@@ -154,14 +181,6 @@ class EventForm extends Component {
             </div>
         );
     }
-        
-
-    // conditionally render submit bar
-    // submitBar() {
-    //     if (this.state.title.length) {
-    //         return <SubmitBar onClick={this.handleSubmit("formSubmit")} />
-    //     }
-    // }
 
     render() {
         const TYPES = [
@@ -243,7 +262,11 @@ class EventForm extends Component {
 
         return(
             <>
-            <SubmitBar onClick={this.handleSubmit("formSubmit")} submitBarShow={submitBarShow}/>
+            <SubmitBar 
+                onSubmitClick={this.handleSubmit("formSubmit")} 
+                onDiscardClick={this.handleDiscard}
+                submitBarShow={submitBarShow}
+            />
             <div className="event-container">
                 <div className="event-form">
                     <div className="section-head flex">

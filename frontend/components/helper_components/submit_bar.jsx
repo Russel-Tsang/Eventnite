@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SubmitBar = ({ onClick, submitBarShow }) => {
+const SubmitBar = ({ onSubmitClick, onDiscardClick, submitBarShow }) => {
     return ( 
         <div className={`submit-bar ${submitBarShow}`}>
-            <button className="button-1">Discard</button>
-            <button className="button-1" onClick={onClick}>Submit</button>
+            <button className="button-1" onClick={onDiscardClick}>Discard</button>
+            <button className="button-1" onClick={onSubmitClick}>Submit</button>
         </div>
     );
 }
