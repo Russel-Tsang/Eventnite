@@ -29,9 +29,6 @@ export const EventCard = ({ cardImage, month, day, date, title, time, venueName,
         </Link>
         <main className="event-card-details">
             <div className="card-buttons">
-                <button className="event-card-button">
-                    <img className="card-button-img" src={window.shareIcon}/>
-                </button>
                 <button className="event-card-button" onClick={onLikeClick}>
                     <img className="card-button-img" src={heartIconImg}/>
                 </button>
