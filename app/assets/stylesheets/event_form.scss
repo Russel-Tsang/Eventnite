@@ -76,7 +76,6 @@ $border-style: 2px solid #dbdae3;
     .section-head {
         position: relative;
         right: 73px;
-        z-index: -1;
 
         h1  {
             margin-left: 22px;
@@ -194,6 +193,7 @@ h1 + p {
     bottom: 0;
     transform: translate(0px, 75px);
     transition: all .5s;
+    z-index: 1;
 
     button {
         margin-left: 15px;

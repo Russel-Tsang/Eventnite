@@ -70,6 +70,8 @@ $purple: #1e0a3c;
 .text-editor {
     width: 40%;
     margin-left: 68px;
+    outline: none;
+
     header {
         display: flex;
         justify-content: space-between;
@@ -452,10 +454,10 @@ $purple: #1e0a3c;
     position: fixed;
     padding: 0px 20px;
     top: 0px;
-    left: 9%;
+    left: 8%;
     transform: translate(0px, -50px);
     transition: all .5s;
-    z-index: 1;
+    z-index: 2;
 
     span:nth-of-type(1) {
         display: flex;
