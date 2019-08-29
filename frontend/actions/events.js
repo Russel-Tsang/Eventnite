@@ -4,11 +4,15 @@ export const RECEIVE_TAGS = 'RECEIVE_TAGS';
 export const RECEIVE_LIKES = 'RECEIVE_LIKES';
 import * as ApiEventsUtil from '../util/events';
 
-const receiveEvent = (eventData) => ({
-    type: RECEIVE_EVENT,
-    event: eventData.event,
-    tags: eventData.tags
-});
+const receiveEvent = (eventData) => {
+    return ({
+        type: RECEIVE_EVENT,
+        event: eventData.event,
+        tags: eventData.tags,
+        likes: eventData.likes
+    });
+    
+};
 
 const receiveEvents = (eventData) => {
     return {
@@ -25,7 +29,13 @@ export const fetchEvent = (id) => dispatch => {
 }
 
 export const fetchCreatedEvents = (userId) => dispatch => {
-    return ApiEventsUtil.fetchedCreatedEvents(userId).then(
+    return ApiEventsUtil.fetchCreatedEvents(userId).then(
+        events => dispatch(receiveEvents(events))
+    );
+}
+
+export const fetchLikedEvents = (userId) => dispatch => {
+    return ApiEventsUtil.fetchLikedEvents(userId).then(
         events => dispatch(receiveEvents(events))
     );
 }
@@ -86,14 +96,26 @@ export const deleteFollow = (eventId, followId) => dispatch => {
     );
 }
 
-export const postLike = (eventId) => dispatch => {
-    return ApiEventsUtil.postLike(eventId).then(
-        events => dispatch(receiveEvents(events))
+export const postLike = (eventId, requestPage) => dispatch => {
+    return ApiEventsUtil.postLike(eventId, requestPage).then(
+        eventData => {
+            if (requestPage === "index") {
+                dispatch(receiveEvents(eventData))
+            } else if (requestPage === "show") {
+                dispatch(receiveEvent(eventData))
+            }
+        }
     );
 }
 
-export const deleteLike = (eventId, likeId) => dispatch => {
-    return ApiEventsUtil.deleteLike(eventId, likeId).then(
-        events => dispatch(receiveEvents(events))
+export const deleteLike = (eventId, likeId, requestPage) => dispatch => {
+    return ApiEventsUtil.deleteLike(eventId, likeId, requestPage).then(
+        eventData => {
+            if (requestPage === "index") {
+                dispatch(receiveEvents(eventData))
+            } else if (requestPage === "show") {
+                dispatch(receiveEvent(eventData))
+            }
+        }
     );
 }

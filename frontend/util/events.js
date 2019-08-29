@@ -23,10 +23,18 @@ export const fetchEvents = () => {
     })
 }
 
-export const fetchedCreatedEvents = (userId) => {
+export const fetchCreatedEvents = (userId) => {
     return $.ajax({
         method: 'GET',
         url: `/api/created_events`,
+        data: { userId }
+    })
+}
+
+export const fetchLikedEvents = (userId) => {
+    return $.ajax({
+        method: 'GET',
+        url: `/api/liked_events`,
         data: { userId }
     })
 }
@@ -91,18 +99,20 @@ export const deleteFollow = (eventId, followId) => {
 }
 
 // like an event 
-export const postLike = (eventId) => {
+export const postLike = (eventId, requestPage) => {
     return $.ajax({
         method: 'POST',
-        url: `/api/events/${eventId}/likes`
+        url: `/api/events/${eventId}/likes`,
+        data: { request_page: requestPage }
     })
 }
 
 // unlike an event 
-export const deleteLike = (eventId, likeId) => {
+export const deleteLike = (eventId, likeId, requestPage) => {
     return $.ajax({
         method: 'DELETE',
-        url: `/api/events/${eventId}/likes/${likeId}`
+        url: `/api/events/${eventId}/likes/${likeId}`,
+        data: { request_page: requestPage }
     })
 }
 
