@@ -146,12 +146,16 @@ class Splash extends Component {
 
     handleLikeClick(eventId) {
         return () => {
+            if (!this.props.currentUser) {
+                this.props.history.push('/signin');
+                return;
+            }
             if (this.props.likes[eventId]) {
                 this.setState({messageBar: true, liked: false });
-                this.props.deleteLike(eventId, this.props.likes[eventId].likeId);
+                this.props.deleteLike(eventId, this.props.likes[eventId].likeId, "index");
             } else {
                 this.setState({ messageBar: true, liked: true });
-                this.props.postLike(eventId);
+                this.props.postLike(eventId, "index");
             }
             setTimeout(() => {
                 this.setState({ messageBar: false });
@@ -199,7 +203,7 @@ class Splash extends Component {
                     </EventCards>
                 </div>
                 <div className="more-events-div">
-                    <Link className="more-events-link" to="/more">See more events</Link>
+                    <Link className="more-events-link" to="/all_events">See more events</Link>
                 </div>
                 <div className="spacer"></div>
             </div>
