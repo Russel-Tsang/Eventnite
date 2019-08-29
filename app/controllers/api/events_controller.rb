@@ -54,8 +54,17 @@ class Api::EventsController < ApplicationController
         end
     end
 
-    def show_created_events
+    def created_events_index
         @events = User.find(params[:userId]).events
+        if @events 
+            render :index
+        else
+            render json: @event.errors.full_messages, status: 404
+        end
+    end
+
+    def liked_events_index
+        @events = User.find(params[:userId]).liked_events
         if @events 
             render :index
         else
