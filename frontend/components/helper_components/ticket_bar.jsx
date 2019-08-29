@@ -2,11 +2,11 @@ import React from 'react';
 import TicketButton from './ticket_button';
 
 const TicketBar = (props) => {
+    let heartIcon = props.liked ? window.redHeartIcon : window.heartIcon;
     return ( 
         <div className="ticket-bar">
             <div className="icons">
-                <img className="share-icon" src={window.shareIcon}/>
-                <img className="heart-icon" src={window.heartIcon}/>
+                <img onClick={props.onLikeClick} className="heart-icon" src={heartIcon}/>
             </div>
             <TicketButton 
                 onClick={props.onClick}
