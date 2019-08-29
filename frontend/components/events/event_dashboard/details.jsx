@@ -78,7 +78,7 @@ class Details extends Component {
                 {imageSpace}
                 <hr/>
                 <ContentBlock imgSrc={window.textIcon} heading="Description" caption="Add more details to your event like your schedule, sponsors, or featured guests." >
-                    <TextEditor value={this.state.description} onChange={this.handleChange}/>
+                    <TextEditor value={this.state.description || ""} onChange={this.handleChange}/>
                 </ContentBlock>
             </div>
             <SubmitBar onClick={this.handleSubmit} submitBarShow={submitBarShow}/>

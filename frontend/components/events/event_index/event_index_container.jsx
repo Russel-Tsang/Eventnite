@@ -9,8 +9,8 @@ const msp = state => ({
 
 const mdp = dispatch => ({
     fetchEvents: () => dispatch(fetchEvents()),
-    postLike: (eventId) => dispatch(postLike(eventId)),
-    deleteLike: (eventId, likeId) => dispatch(deleteLike(eventId, likeId))
+    postLike: (eventId, requestPage) => dispatch(postLike(eventId, requestPage)),
+    deleteLike: (eventId, likeId, requestPage) => dispatch(deleteLike(eventId, likeId, requestPage))
 });
 
 export default connect(msp, mdp)(EventIndex);

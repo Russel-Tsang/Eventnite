@@ -6,23 +6,28 @@ import EventDescription from '../event_details/event_description';
 import { EventTags, EventTag } from '../event_details/event_tags';
 import { toMonth, toTime } from '../../../util/calculations';
 import Modal from '../../helper_components/modal/modal';
+import MessageBar from '../../helper_components/message_bar';
 
 class EventShow extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            modal: false
+            modal: false,
+            messageBar: false,
+            liked: false,
         }
 
         this.toggleModal = this.toggleModal.bind(this);
         this.renderEventTags = this.renderEventTags.bind(this);
         this.handleRegistration = this.handleRegistration.bind(this);
         this.handleFollow = this.handleFollow.bind(this);
+        this.handleMessageBar = this.handleMessageBar.bind(this);
     }
     
     componentDidMount() {
         this.props.fetchEvent(this.props.match.params.eventId);
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {
@@ -59,6 +64,29 @@ class EventShow extends Component {
         action(this.props.event.id, this.props.event.followId)
     }
 
+    handleLikeClick(eventId) {
+        return () => {
+            if (!this.props.currentUser) {
+                this.props.history.push('/signin');
+                return;
+            }
+            if (this.props.likes[eventId]) {
+                this.setState({ messageBar: true, liked: false });
+                this.props.deleteLike(eventId, this.props.likes[eventId].likeId, "show");
+            } else {
+                this.setState({ messageBar: true, liked: true });
+                this.props.postLike(eventId, "show");
+            }
+            setTimeout(() => {
+                this.setState({ messageBar: false });
+            }, 4000);
+        }
+    }
+
+    handleMessageBar() {
+        this.setState({ messageBar: false });
+    }
+
     renderEventTags() {
         if (this.props.tags) {
             let eventTags = Object.values(this.props.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tagName} />);
@@ -73,8 +101,9 @@ class EventShow extends Component {
 
     render() {
         document.body.style.overflow = this.state.modal ? "hidden" : "visible";
+        let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
         
-        let { id, price, pictureUrl, title, description, tags, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.props.event;
+        let { id, price, pictureUrl, title, description, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.props.event;
 
         pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
 
@@ -94,15 +123,31 @@ class EventShow extends Component {
                 null
             )
         let ticketBar; 
+        let liked = this.props.likes[id] ? true : false;
         if (this.props.currentUser && this.props.currentUser.id) {
             ticketBar = <TicketBar onClick={this.toggleModal} buttonText={"Sign In"} />
         } else {
-            ticketBar = this.props.event.registrationId ? <TicketBar onClick={() => this.props.deleteRegistration(this.props.event.id, this.props.event.registrationId)} buttonText="Unregister" /> : <TicketBar onClick={this.toggleModal} buttonText={"Register"} />
+            ticketBar = this.props.event.registrationId ? (
+                <TicketBar 
+                    onClick={() => this.props.deleteRegistration(this.props.event.id, this.props.event.registrationId)} 
+                    buttonText="Unregister" 
+                    onLikeClick={this.handleLikeClick(this.props.event.id)}
+                    liked={liked}
+                />
+            ) : (
+                <TicketBar 
+                    onClick={this.toggleModal} 
+                    buttonText={"Register"} 
+                    onLikeClick={this.handleLikeClick(this.props.event.id)}
+                    liked={liked}
+                />
+            )
         }
 
         return (
             <div className="event-show">
                 {modal}
+                <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked} />
                 <Banner
                     backgroundImage={pictureUrl}
                 />

@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EventShow from './event_show';
-import { fetchEvent, postRegistration, deleteRegistration, postFollow, deleteFollow } from '../../../actions/events';
+import { fetchEvent, postRegistration, deleteRegistration, postFollow, deleteFollow, postLike, deleteLike } from '../../../actions/events';
 
 const msp = (state, ownProps) => {
     // receive event
     return {
         event: state.entities.events[ownProps.match.params.eventId] || { title: '', description: '', tags: '', organizer: '', onlineEvent: '', street: '', state: '', city: '', zipCode: '', beginDay: '', beginMonth: '', beginYear: '', endDay: '', endMonth: '', endYear: '', beginTime: '', endTime: '' },
         tags: Object.values(state.entities.tags),
-        currentUser: state.session.id
+        currentUser: state.session.id,
+        likes: state.entities.likes
     }
-    
-    // event: state.entities.events
 }
 
 const mdp = dispatch => ({
@@ -19,7 +18,9 @@ const mdp = dispatch => ({
     postRegistration: (eventId) => dispatch(postRegistration(eventId)),
     deleteRegistration: (eventId, registrationId) => dispatch(deleteRegistration(eventId, registrationId)),
     postFollow: (eventId) => dispatch(postFollow(eventId)),
-    deleteFollow: (eventId, followId) => dispatch(deleteFollow(eventId, followId))
+    deleteFollow: (eventId, followId) => dispatch(deleteFollow(eventId, followId)),
+    postLike: (eventId, requestPage) => dispatch(postLike(eventId, requestPage)),
+    deleteLike: (eventId, likeId, requestPage) => dispatch(deleteLike(eventId, likeId, requestPage))
 })
 
 export default connect(msp, mdp)(EventShow);

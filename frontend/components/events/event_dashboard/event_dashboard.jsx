@@ -22,6 +22,7 @@ class EventDashboard extends Component {
     componentDidMount() {
         this.setEventId();
         this.setSelectedStatus();
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {

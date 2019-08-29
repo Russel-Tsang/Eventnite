@@ -28,14 +28,19 @@ class EventIndex extends Component {
 
     componentDidMount() {
         this.props.fetchEvents();
+        window.scrollTo(0, 0);
     }
 
     handleLikeClick(eventId) {
         return () => {
+            if (!this.props.currentUser) {
+                this.props.history.push('/signin');
+                return;
+            }
             if (this.props.likes[eventId]) {
-                this.props.deleteLike(eventId, this.props.likes[eventId].likeId);
+                this.props.deleteLike(eventId, this.props.likes[eventId].likeId, "index");
             } else {
-                this.props.postLike(eventId);
+                this.props.postLike(eventId, "index");
             }
         }
     }
@@ -101,7 +106,7 @@ class EventIndex extends Component {
                     liked={liked}
                 />
             );
-        })
+        });
 
         return ( 
             <div className="event-index">

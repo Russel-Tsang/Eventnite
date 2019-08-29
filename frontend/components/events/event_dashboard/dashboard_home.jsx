@@ -18,6 +18,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.props.fetchCreatedEvents(this.props.currentUser);
+        window.scrollTo(0, 0);
     }
 
     onDeleteClick(id) {
