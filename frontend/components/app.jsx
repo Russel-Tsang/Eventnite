@@ -11,8 +11,7 @@ import EventShowContainer from './events/event_show/event_show_container';
 import EventDashboardContainer from './events/event_dashboard/dashboard_container';
 import EventDashboardHomeContainer from './events/event_dashboard/dashboard_home_container';
 import DetailsContainer from './events/event_dashboard/details_container';
-import Modal from './helper_components/modal/modal';
-import ProfileDropdown from './helper_components/profile_dropdown';
+import FavoritesContainer from './events/event_favorites/favorites_container';
 
 const App = () => {
     return (
@@ -21,12 +20,13 @@ const App = () => {
             <Route exact path="/" component={ SplashContainer } />
             <AuthRoute path="/signin" component={ SessionContainer } />
             <ProtectedRoute exact path="/create_event" component={ EventFormContainer } />
+            <ProtectedRoute exact path="/favorites" component={ FavoritesContainer } />
             <Route path="/events/:eventId" component={EventShowContainer} />
             <ProtectedRoute path="/dashboard/" component={EventDashboardContainer} />
             <ProtectedRoute exact path="/dashboard/all" component={EventDashboardHomeContainer} />
             <ProtectedRoute exact path="/dashboard/edit/:eventId" component={EventFormContainer} />
             <ProtectedRoute exact path="/dashboard/details/:eventId" component={DetailsContainer} />
-            <Route path="/more" component={ EventIndexContainer } />
+            <Route path="/all_events" component={ EventIndexContainer } />
         </div>
     )
 }
