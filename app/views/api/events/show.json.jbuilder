@@ -35,13 +35,15 @@ json.tags do
         end
     end
 end
-
 json.likes do
-    @event.likes.each do |like|
-        json.set! like.id do
-            json.extract! like, :id
-            json.set! :likedEvent, like.event_id
-            json.set! :likeUser, like.user_id
-        end
+  if current_user && !current_user.liked_events.empty?
+    current_user.likes.each do |like|
+      json.set! like.event_id do
+          json.set! :eventId, like.event_id
+          json.set! :likeId, like.id
+      end
     end
+  else
+    json.set! :noLikedEvents, 'false'
+  end
 end
