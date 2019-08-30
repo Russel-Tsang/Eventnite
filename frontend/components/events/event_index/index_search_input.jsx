@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchSuggestions from './search_suggestions';
 
 const IndexSearchInput = (props) => {
     return ( 
@@ -6,14 +7,14 @@ const IndexSearchInput = (props) => {
             <div className="index-search-event">
                 <div className="index-search-input-container">
                     <input className="index-search-event" placeholder="Search anything"/>
-                    <div className="index-search-suggestions" />
+                    <SearchSuggestions indexRows={props.indexRows} onCategoryClick={props.onCategoryClick}/>
                 </div>
             </div>
             <div className="index-search-location">
                 <p>in </p>
                 <div className="index-search-input-container">
                     <input className="index-search-location" placeholder="New York"/>
-                    <div className="index-search-suggestions"/>
+                    {/* <div className="index-search-suggestions"/> */}
                 </div>
             </div>
         </div>
