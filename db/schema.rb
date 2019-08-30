@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_015931) do
+ActiveRecord::Schema.define(version: 2019_08_29_205412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_08_20_015931) do
     t.integer "price"
     t.string "venue_name", null: false
     t.boolean "refund_status", default: true
+    t.float "lat", null: false
+    t.float "lng", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

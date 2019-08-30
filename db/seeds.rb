@@ -26,10 +26,10 @@ def event1
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '23rd St', 
+        street: '229 W 28th St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11375', 
+        zip_code: '10001', 
         creator: Rolanda, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -40,7 +40,9 @@ def event1
         begin_time: 990,
         end_time: 1050,
         price: rand(30),
-        venue_name: 'Blue Casino'
+        venue_name: 'Flash Factory NY',
+        lat: 40.7474869,
+        lng: -73.9948118
     }
 end
 
@@ -52,10 +54,10 @@ def event2
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '23rd St', 
+        street: '330 W 40th St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11001', 
+        zip_code: '10018', 
         creator: Zoe, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -66,7 +68,9 @@ def event2
         begin_time: 120,
         end_time: 180,
         price: rand(30),
-        venue_name: 'Liquid Lounge'
+        venue_name: 'Sky Room',
+        lat: 40.7571631,
+        lng: -73.9935937
     }
 end
 
@@ -78,10 +82,10 @@ def event3
         category: 'Family & Education', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '23rd St', 
+        street: '48 E 23rd St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11001', 
+        zip_code: '10010', 
         creator: Zoe, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -92,7 +96,9 @@ def event3
         begin_time: 120,
         end_time: 180,
         price: rand(30),
-        venue_name: "George's Bisco Pop"
+        venue_name: "SPIN NYC",
+        lat: 40.7402964,
+        lng: -73.9891548
     }
 end
 
@@ -104,10 +110,10 @@ def event4
         category: 'Auto', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '52nd St', 
+        street: '429 11th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11201', 
+        zip_code: '10001', 
         creator: Alex, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -118,7 +124,9 @@ def event4
         begin_time: 780,
         end_time: 990,
         price: rand(30),
-        venue_name: 'Awesome Bagels'
+        venue_name: 'Jacob K. Javits Convention Center',
+        lat: 40.7459887,
+        lng: -73.9977416
     }
 end
 
@@ -130,10 +138,10 @@ def event5
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '267 5th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11001', 
+        zip_code: '10016', 
         creator: Lillian, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -144,7 +152,9 @@ def event5
         begin_time: 1110,
         end_time: 1170,
         price: rand(30),
-        venue_name: "Banh Mi Memorial Smash"
+        venue_name: "Midtown Loft & Terrace",
+        lat: 40.7466414,
+        lng: -73.9955423
     }
 end
 
@@ -156,10 +166,10 @@ def event6
         category: 'Tournament', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: 'West 27th Street &, 9th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Connor, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -170,7 +180,9 @@ def event6
         begin_time: 1380,
         end_time: 1440,
         price: rand(30),
-        venue_name: "Stanford Hometown"
+        venue_name: "Chelsea Park",
+        lat: 40.7518938,
+        lng: -74.0048808
     }
 end
 
@@ -182,10 +194,10 @@ def event7
         category: 'Health', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '287 10th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Connor, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -196,7 +208,9 @@ def event7
         begin_time: 780,
         end_time: 810,
         price: rand(30),
-        venue_name: "Lildocs Stadium"
+        venue_name: "287 Gallery",
+        lat: 40.7497647,
+        lng: -74.0001041
     }
 end
 
@@ -204,14 +218,14 @@ def event8
     {
         title: 'Hot Dog Eating Contest', 
         description: "Spare ribs pork belly sirloin, burgdoggen landjaeger salami chuck cow ham shoulder leberkas doner jowl. Chicken ham short loin pork chop swine, picanha short ribs fatback buffalo. Tail chuck leberkas cupim beef ribs tenderloin. Prosciutto chicken cupim, boudin bresaola sirloin corned beef strip steak tail short ribs shoulder alcatra tongue capicola swine. Short ribs landjaeger chuck flank. Leberkas jerky beef, venison tri-tip chicken kielbasa corned beef short ribs kevin hamburger buffalo ham drumstick brisket. Cupim tri-tip tail ribeye meatloaf jowl chicken pancetta kevin porchetta swine beef ribs ham hock pastrami shankle.", 
-        event_type: 'Race or Endurance Event', 
+        event_type: 'Attraction', 
         category: 'Health', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '415 5th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10016', 
         creator: Capy, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -222,7 +236,9 @@ def event8
         begin_time: 1320,
         end_time: 1350,
         price: rand(30),
-        venue_name: "Henry's Hens"
+        venue_name: "AES NYC",
+        lat: 40.7497305,
+        lng: -73.9917574
     }
 end
 
@@ -234,10 +250,10 @@ def event9
         category: 'Science & Tech', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: 'Central Park West & 79th St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10024', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -248,22 +264,24 @@ def event9
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Mr Ram's Rodeo"
+        venue_name: "American Museum of Natural History",
+        lat: 40.7813241,
+        lng: -73.9761769
     }
 end
 
 def event10
     {
-        title: 'Subway Musuem', 
+        title: 'Neural Science Showcase', 
         description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
         event_type: 'Convention', 
         category: 'Science & Tech', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '4 Washington Pl #809', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10003', 
         creator: Zoe, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -274,22 +292,24 @@ def event10
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Mr Ram's Rodeo"
+        venue_name: "Center for Neural Science New York University",
+        lat: 40.7291908,
+        lng: -73.9965267
     }
 end
 
 def event11
     {
-        title: 'Pimp my Ride', 
+        title: 'Taco Tuesday', 
         description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
-        event_type: 'Convention', 
-        category: 'Auto', 
+        event_type: 'Attraction', 
+        category: 'Health', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '166 West 4th Street', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10014', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -300,7 +320,9 @@ def event11
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Mr Ram's Rodeo"
+        venue_name: "The Taco Shop",
+        lat: 40.7304919,
+        lng: -74.0010621
     }
 end
 
@@ -312,10 +334,10 @@ def event12
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '11th St', 
+        street: '151 W 34th St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11911', 
+        zip_code: '10001', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -326,7 +348,9 @@ def event12
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "De Gustibus Cooking School",
+        lat: 40.7296466,
+        lng: -73.9896913
     }
 end
 
@@ -338,10 +362,10 @@ def event13
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '133 W 25th St #2E', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -352,7 +376,9 @@ def event13
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Dmitriy & Co",
+        lat: 40.7446691,
+        lng: -73.9911428
     }
 end
 
@@ -364,10 +390,10 @@ def event14
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '12th St', 
+        street: '109 W 17th St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '11911', 
+        zip_code: '10011', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -378,7 +404,9 @@ def event14
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Haven's Kitchen",
+        lat: 40.7446689,
+        lng: -73.9911428
     }
 end
 
@@ -386,14 +414,14 @@ def event15
     {
         title: 'Popcorn and a Movie', 
         description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
-        event_type: 'Convention', 
-        category: 'Home & Lifestyle', 
+        event_type: 'Screening', 
+        category: 'Film & Media', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '14th St', 
+        street: '260 W 23rd St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10011', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -404,7 +432,9 @@ def event15
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Cinépolis Chelsea",
+        lat: 40.7438261,
+        lng: -73.9917288
     }
 end
 
@@ -416,10 +446,10 @@ def event16
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '54th St', 
+        street: '11 Madison Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10010', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -430,7 +460,9 @@ def event16
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Madison Square Park",
+        lat: 40.7442645,
+        lng: -73.9906244
     }
 end
 
@@ -442,10 +474,10 @@ def event17
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '5th St', 
+        street: '849 6th Ave', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -456,22 +488,24 @@ def event17
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "SECOND floor nyc",
+        lat: 40.7460187,
+        lng: -73.9910783
     }
 end
 
 def event18
     {
-        title: 'Prancing and Dancing', 
+        title: 'Dance Lessons', 
         description: "There are many variations of dancing ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
         event_type: 'Class, Training, or Workshop', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '9th St', 
+        street: '25 W 31st St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -482,7 +516,9 @@ def event18
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Adelante Studios",
+        lat: 40.7460181,
+        lng: -73.9910783
     }
 end
 
@@ -494,10 +530,10 @@ def event19
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
         online_event: false, 
-        street: '9th St', 
+        street: '35 W 32nd St', 
         city: 'New York', 
         state: 'NY', 
-        zip_code: '31811', 
+        zip_code: '10001', 
         creator: Tiffany, 
         begin_day: rand(1..28),
         begin_month: rand(1..12),
@@ -508,7 +544,9 @@ def event19
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Lax Lounge"
+        venue_name: "Koryo Books",
+        lat: 40.7460175,
+        lng: -73.9910783
     }
 end
 
@@ -534,7 +572,9 @@ def event20
         begin_time: 1380,
         end_time: 1410,
         price: rand(30),
-        venue_name: "Blue Casino"
+        venue_name: "Grand Army Plaza",
+        lat: 40.7645341,
+        lng: -73.9758027
     }
 end
 
