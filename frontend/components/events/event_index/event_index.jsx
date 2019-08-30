@@ -4,6 +4,8 @@ import IndexFilter from './index_filter';
 import IndexRow from './index_row';
 import FiltersAside from './index_filters_aside';
 import { toTime, toMonth } from '../../../util/calculations';
+import Map from '../../helper_components/google_map';
+import MessageBar from '../../helper_components/message_bar';
 
 class EventIndex extends Component {
     constructor(props) {
@@ -14,13 +16,18 @@ class EventIndex extends Component {
             categoryFilter: '',
             eventTypeFilter: '',
             priceFilter: '',
+            messageBar: false,
+            liked: false,
             
             filterSelections: {
                 categoryFilter: '',
                 eventTypeFilter: '',
                 priceFilter: '',
             }
+
         }
+
+        this.events = [];
 
         this.handleFilterChange = this.handleFilterChange.bind(this); 
         this.handleApplyClick = this.handleApplyClick.bind(this);
@@ -33,15 +40,21 @@ class EventIndex extends Component {
 
     handleLikeClick(eventId) {
         return () => {
+            debugger
             if (!this.props.currentUser) {
                 this.props.history.push('/signin');
                 return;
             }
             if (this.props.likes[eventId]) {
+                this.setState({ messageBar: true, liked: false });
                 this.props.deleteLike(eventId, this.props.likes[eventId].likeId, "index");
             } else {
+                this.setState({ messageBar: true, liked: true });
                 this.props.postLike(eventId, "index");
             }
+            setTimeout(() => {
+                this.setState({ messageBar: false });
+            }, 4000);
         }
     }
 
@@ -85,6 +98,9 @@ class EventIndex extends Component {
                 }
             }
         });
+
+        this.events = events;
+
         let indexRows = events.map((event, idx) => {
             let { title, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id } = event;
             let liked = this.props.likes[id] ? true : false;
@@ -108,17 +124,20 @@ class EventIndex extends Component {
             );
         });
 
+        let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
+
         return ( 
             <div className="event-index">
-                <IndexSearch />
+                <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked} />
+                <IndexSearch indexRows={indexRows}/>
                 <IndexFilter 
                     onFiltersClick={this.handleFiltersClick(true)}
+                    onCategoryClick={this.handleFilterChange('categoryFilter')}
                 />
                 <div className="index-rows-container">
                     {indexRows}
                 </div>
-                <div className="google-maps">
-                </div>
+                {/* <Map events={this.events} /> */}
                 <FiltersAside
                     showAside={this.state.showFiltersAside}
                     onCloseClick={this.handleFiltersClick(false)}
@@ -126,7 +145,7 @@ class EventIndex extends Component {
                     onTypeChange={this.handleFilterChange('eventTypeFilter')}
                     onPriceChange={this.handleFilterChange('priceFilter')}
                     onApplyClick={this.handleApplyClick}
-            />
+                />
             </div> 
         );
     }

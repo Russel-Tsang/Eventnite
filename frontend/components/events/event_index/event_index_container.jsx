@@ -4,7 +4,8 @@ import EventIndex from './event_index';
 
 const msp = state => ({
     events: Object.values(state.entities.events) || { beginMonth: '', beginDay: '', title: '', city: '', state: '', category: '' },
-    likes: state.entities.likes
+    likes: state.entities.likes,
+    currentUser: state.session.id
 });
 
 const mdp = dispatch => ({
