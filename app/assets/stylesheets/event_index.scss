@@ -4,8 +4,8 @@
 
 .event-index {
     margin: auto;
-    width: 65%;
-    padding-top: 30px;
+    width: 85%;
+    padding-top: 15px;
 }
 
 .index-rows-container {
@@ -18,8 +18,7 @@
 
 .google-maps {
     width: 35%;
-    height: 100px;
-    background: blue;
+    height: 350px;
     float: right;
     position: sticky;
     top: 0;
@@ -69,7 +68,7 @@
     display: flex;
     justify-content: space-between;
     width: 90%;
-    padding: 0px 15px;
+    padding: 0px 20px;
 }
 
 .index-row-details {
@@ -102,7 +101,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 85px;
+    height: 95px;
 
     input {
         font-size: 28px;
@@ -126,6 +125,14 @@
     }
 }
 
+.index-search-input-container {
+    position: relative;
+
+    .index-search-suggestions {
+        position: absolute;
+    }
+}
+
 .index-search-section {
     display: flex;
 }
@@ -138,6 +145,7 @@
         height: 40px;
         position: absolute;
         bottom: 0px;
+        left: 25px;
         background: #d1410b;
         color: white;
         border: none;
@@ -146,7 +154,7 @@
 
 .index-filter {
     display: flex;
-    padding: 15px;
+    padding: 25px 0px;
     
     > * {
         margin-right: 15px;
@@ -242,6 +250,60 @@
     > * {
         margin: 0px 14px;
     }
+
+}
+
+.index-search-suggestions {
+    width: 370px;
+    height: 400px;
+    background: #FFFFFF;
+    border: 1px black solid;
+    z-index: 1;
+    overflow: scroll;
+    left: -12px;
+    top: 45px;
+
+    .index-row {
+        padding: 0px 15px;
+        margin-bottom: 20px;
+        font-size: 10px;
+        align-items: center;
+
+        .index-row-title {
+            font-size: 12px;
+        }
+
+        .index-row-price {
+            display: none;
+        }
+        
+        .index-row-like {
+            display: none;
+        }
+
+        .index-row-details > * {
+            margin-bottom: 3px;
+        }   
+    }
+
+    .index-row-img {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+.search-suggestion-header {
+    font-weight: bold;
+    padding: 15px;
+}
+
+.search-suggestion-row {
+    font-size: 13px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.index-search-suggestions-show {
 
 }
 
