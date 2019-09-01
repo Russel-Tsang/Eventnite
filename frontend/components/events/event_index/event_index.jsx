@@ -12,6 +12,8 @@ class EventIndex extends Component {
         super(props);
 
         this.state = {
+            mainSearchValue: '',
+            mainSearchValueHolder: '',
             showFiltersAside: false,
             categoryFilter: '',
             eventTypeFilter: '',
@@ -24,13 +26,15 @@ class EventIndex extends Component {
                 eventTypeFilter: '',
                 priceFilter: '',
             }
-
         }
 
         this.events = [];
 
         this.handleFilterChange = this.handleFilterChange.bind(this); 
         this.handleApplyClick = this.handleApplyClick.bind(this);
+        this.handleClearSelection = this.handleClearSelection.bind(this);
+        this.handleMainSearchChange = this.handleMainSearchChange.bind(this);
+        this.handleSearchClick = this.handleSearchClick.bind(this);
     }
 
     componentDidMount() {
@@ -40,7 +44,6 @@ class EventIndex extends Component {
 
     handleLikeClick(eventId) {
         return () => {
-            debugger
             if (!this.props.currentUser) {
                 this.props.history.push('/signin');
                 return;
@@ -66,12 +69,29 @@ class EventIndex extends Component {
 
     handleFilterChange(filter) {
         return (event) => {
-            let value = event.target.value.split(' ')[0] === "Any" ? '' : event.target.value;
-            let filterSelections = Object.assign(this.state.filterSelections);
-            filterSelections[filter] = value;
-            this.setState({ filterSelections });
+            if (event.currentTarget.className === "search-suggestion-row") {
+                this.setState({ mainSearchValueHolder: event.currentTarget.innerText })
+                switch(event.currentTarget.innerText) {
+                    case "Business":
+                        this.setState({ categoryFilter: "Business & Professional" });
+                        break;
+                    default:
+                        this.setState({ categoryFilter: event.currentTarget.innerText});
+                        break;
+                }
+            } else {
+                let value = event.target.value.split(' ')[0] === "Any" ? '' : event.target.value;
+                let filterSelections = Object.assign(this.state.filterSelections);
+                filterSelections[filter] = value;
+                this.setState({ filterSelections });
+            }
         };
     }
+
+    handleClearSelection() {
+        event.target.parentElement.innerText
+    }
+
 
     handleApplyClick() {
         let categoryFilter = this.state.filterSelections.categoryFilter;
@@ -86,14 +106,25 @@ class EventIndex extends Component {
         };
     }
 
+    handleMainSearchChange(event) {
+        this.setState({ mainSearchValueHolder: event.target.value });
+    }
+
+    handleSearchClick() {
+        this.setState({ mainSearchValue: this.state.mainSearchValueHolder });
+    }
+
     render() { 
-        let { categoryFilter, eventTypeFilter, priceFilter } = this.state; 
-        // if (categoryFilter || eventTypeFilter || priceFilter)
+        let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
         let events = this.props.events.filter(event => {
-            if (event.category === categoryFilter || !categoryFilter) {
-                if (event.eventType === eventTypeFilter || !eventTypeFilter) {
-                    if ((event.price > 0 && priceFilter === "Paid") || (event.price === 0 && priceFilter === "Free") || !priceFilter) {
-                        return event;
+            if (mainSearchValue) {
+                if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase())) return event;
+            } else {
+                if (event.category === categoryFilter || !categoryFilter) {
+                    if (event.eventType === eventTypeFilter || !eventTypeFilter) {
+                        if ((event.price > 0 && priceFilter === "Paid") || (event.price === 0 && priceFilter === "Free") || !priceFilter) {
+                            return event;
+                        }
                     }
                 }
             }
@@ -125,27 +156,37 @@ class EventIndex extends Component {
         });
 
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
-
         return ( 
             <div className="event-index">
-                <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked} />
-                <IndexSearch indexRows={indexRows}/>
-                <IndexFilter 
-                    onFiltersClick={this.handleFiltersClick(true)}
-                    onCategoryClick={this.handleFilterChange('categoryFilter')}
-                />
-                <div className="index-rows-container">
-                    {indexRows}
+                <div className="event-index-main">
+                    <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked} />
+                    <IndexSearch 
+                        indexRows={indexRows}
+                        onCategoryClick={this.handleFilterChange('categoryFilter')}
+                        onMainSearchChange={this.handleMainSearchChange}
+                        mainSearchValue={this.state.mainSearchValueHolder}
+                        onSearchClick={this.handleSearchClick}
+                    />
+                    <IndexFilter 
+                        onShowFiltersClick={this.handleFiltersClick(true)}
+                        filters={this.state.filterSelections}
+                        onClearSelection={this.handleClearSelection}
+                    />
+                    <div className="index-rows-container">
+                        {indexRows}
+                    </div>
+                    <FiltersAside
+                        showAside={this.state.showFiltersAside}
+                        onCloseClick={this.handleFiltersClick(false)}
+                        onCategoryChange={this.handleFilterChange('categoryFilter')}
+                        onTypeChange={this.handleFilterChange('eventTypeFilter')}
+                        onPriceChange={this.handleFilterChange('priceFilter')}
+                        onApplyClick={this.handleApplyClick}
+                    />
+                    </div>
+                <div className="event-index-map">
+                    <Map events={this.events} />
                 </div>
-                {/* <Map events={this.events} /> */}
-                <FiltersAside
-                    showAside={this.state.showFiltersAside}
-                    onCloseClick={this.handleFiltersClick(false)}
-                    onCategoryChange={this.handleFilterChange('categoryFilter')}
-                    onTypeChange={this.handleFilterChange('eventTypeFilter')}
-                    onPriceChange={this.handleFilterChange('priceFilter')}
-                    onApplyClick={this.handleApplyClick}
-                />
             </div> 
         );
     }

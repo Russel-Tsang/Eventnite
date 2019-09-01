@@ -5,7 +5,6 @@ const FiltersAside = (props) => {
     let showAside = props.showAside ? 'filters-aside-show' : '';
     
     const CATEGORIES = [
-        'Category',
         'Auto',
         'Boat & Air',
         'Business & Professional',
