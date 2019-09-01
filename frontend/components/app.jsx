@@ -20,7 +20,7 @@ const App = () => {
             <Route exact path="/" component={ SplashContainer } />
             <AuthRoute path="/signin" component={ SessionContainer } />
             <ProtectedRoute exact path="/create_event" component={ EventFormContainer } />
-            <ProtectedRoute exact path="/favorites" component={ FavoritesContainer } />
+            <ProtectedRoute path="/favorites" component={ FavoritesContainer } />
             <Route path="/events/:eventId" component={EventShowContainer} />
             <ProtectedRoute path="/dashboard/" component={EventDashboardContainer} />
             <ProtectedRoute exact path="/dashboard/all" component={EventDashboardHomeContainer} />

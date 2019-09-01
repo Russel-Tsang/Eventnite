@@ -19,30 +19,11 @@ class EventFavorites extends Component {
         window.onbeforeunload = () => this.handleDeletes();
         this.props.fetchLikedEvents(this.props.currentUser)
             .then(action => this.setState({ likedEvents: action.likes }));
-
-        if (this.props.location.pathname !== '/favorites') this.props.history.push('/favorites');
     }
 
     componentWillUnmount() {
         window.onbeforeunload = null;
-        if (Object.values(this.state.eventsToDelete).length) {
-            let eventIds = Object.keys(this.state.eventsToDelete);
-            let likeIds = Object.values(this.state.eventsToDelete);
-            for (let i = 0; i < eventIds.length; i++) {
-                this.props.deleteLike(eventIds[i], likeIds[i], "favorites");
-            }
-        }
-    }
-
-    componentDidUpdate() {
-        debugger
-        if (Object.values(this.state.eventsToDelete).length && this.props.location.pathname !== '/favorites/dl') {
-            let eventIds = Object.keys(this.state.eventsToDelete);
-            let likeIds = Object.values(this.state.eventsToDelete);
-            for (let i = 0; i < eventIds.length; i++) {
-                this.props.deleteLike(eventIds[i], likeIds[i], "favorites");
-            }
-        }
+        this.handleDeletes();
     }
 
     // stores event ids and like ids into state so likes can be deleted from DB upon page leave / refresh
@@ -54,7 +35,6 @@ class EventFavorites extends Component {
             if (likedEvents[eventId]) {
                 debugger
                 eventsToDelete[eventId] = this.props.likes[eventId].likeId;
-                this.props.history.push('/favorites/dl');
                 delete likedEvents[eventId];
             } else {
                 debugger
