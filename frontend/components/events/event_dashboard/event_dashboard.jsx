@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Section from './section';
+import DashboardSection from './section';
 import CheckBar from './check_bar';
 import { toMonth, toTime } from '../../../util/calculations';
 import { Link, withRouter } from 'react-router-dom';
@@ -9,7 +9,6 @@ class EventDashboard extends Component {
         super(props);    
 
         this.handleRender = this.handleRender.bind(this);
-
         this.state = {
             eventId: '',
             selectedStatuses: {
@@ -64,10 +63,13 @@ class EventDashboard extends Component {
 
     render() { 
         let { title, beginMonth, beginDay, beginYear, beginTime } = this.props.event;
+        debugger
+        let eventChosen = this.props.location.pathname === "/dashboard/all" ? false : true;
+        let selectedStatus = this.props.location.pathname === "/dashboard/all" ? 'checkbar-selected' : '';
         return (
             <aside className="dashboard-panel">
-                <Section heading={title} month={toMonth(beginMonth)} date={beginDay} year={beginYear} time={toTime(beginTime)}/>
-                <Link to="/dashboard/all"><div className="dashboard-link">Dashboard</div></Link>
+                <DashboardSection heading={title} month={toMonth(beginMonth)} date={beginDay} year={beginYear} time={toTime(beginTime)} eventChosen={eventChosen}/>
+                <Link className={selectedStatus} to="/dashboard/all"><div className="dashboard-link">Dashboard</div></Link>
                 <CheckBar onClick={() => this.handleRender("EditForm")} label={"Basic Info"} selectedStatus={this.state.selectedStatuses.edit}/>
                 <CheckBar onClick={() => this.handleRender("Details")} label={"Details"} selectedStatus={this.state.selectedStatuses.details}/>
                 <CheckBar label={"Tickets"} selectedStatus={this.state.selectedStatus}/>

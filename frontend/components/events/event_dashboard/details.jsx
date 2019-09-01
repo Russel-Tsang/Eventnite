@@ -18,6 +18,7 @@ class Details extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.props.fetchEvent(this.props.match.params.eventId).then(
             action => {
                 this.setState({ description: action.event.description, photoFile: action.event.pictureUrl })
