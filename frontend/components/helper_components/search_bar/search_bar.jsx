@@ -9,7 +9,7 @@ const SearchBar = (props) => {
                 <input placeholder="Event" type="text"/>
             </SearchSection>
             <SearchSection label="In">
-                <input placeholder="New York" type="text" />
+                <input className="search-bar-input-location" value="New York" type="text" />
             </SearchSection>
             <SearchSection label="On">
                 <StyledSelect color="white">
