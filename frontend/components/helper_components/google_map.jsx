@@ -14,7 +14,7 @@ class Map extends Component {
         });
         this.props.events.forEach(event => {
             let latlng = new google.maps.LatLng(event.lat, event.lng);
-            let marker = new google.maps.Marker({
+            let marker = new google.maps.MarkerImage({
                 position: latlng,
                 map: map,
                 title: 'Hello World!',
@@ -42,9 +42,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div className="test">
-                <div id="google-map" style={{ "height": "400px" }}></div>
-            </div>
+            <div id="google-map" style={{ "height": "400px" }} />
         );
     }
 
