@@ -6,23 +6,42 @@
     margin: auto;
     width: 85%;
     padding-top: 15px;
+    padding-left: 50px;
+    display: flex;
+}
+
+.event-index-main {
+    width: 55%;
+}
+
+.event-index-map {
+    padding-top: 180px;
 }
 
 .index-rows-container {
     display: flex;
     flex-direction: column;
-    width: 62%;
-    float: left;
+    width: 95%;
+    // float: left;
     padding: 10px;
 }
 
-.google-maps {
-    width: 35%;
-    height: 350px;
-    float: right;
-    position: sticky;
-    top: 0;
+#google-map {
+    position: sticky !important;
+    height: 400px;
+    overflow: hidden;
+    top: 0px;
+    right: 0;
+    width: 400px;
 }
+// element.style {
+//     height: 400px;
+//     position: fixed;
+//     overflow: hidden;
+//     top: 30px;
+//     right: 0;
+//     width: 400px;
+// }
 
 .index-row {
     display: flex;
@@ -83,6 +102,10 @@
 .index-search-location {
     display: flex;
 
+    :focus {
+        outline:none;
+    }
+
     p {
         font-weight: bold;
         font-size: 26px;
@@ -95,6 +118,17 @@
         position: relative;
         bottom: 4px;
     }
+}
+
+// make location search input appear uneditable 
+.index-search-location-input {
+    cursor: default;
+}
+
+// effect for removing blinking cursor on input focus
+.index-search-location-input:focus {
+    color: transparent;
+    text-shadow: 0px 0px 0px #000000;
 }
 
 .index-search-container {
@@ -213,6 +247,7 @@
     box-shadow: -1px 0px 10px #cecece;
     transform: translate(365px, 0px);
     transition: transform .4s;
+    z-index: 1;
 }
 
 .filters-aside-show {
@@ -257,7 +292,8 @@
     width: 370px;
     height: 400px;
     background: #FFFFFF;
-    border: 1px black solid;
+    border: 1px #f8f7fa solid;
+    box-shadow: -2px 3px 10px #e6e6e6;
     z-index: 1;
     overflow: scroll;
     left: -12px;
