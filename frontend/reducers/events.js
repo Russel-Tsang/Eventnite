@@ -8,7 +8,11 @@ export const eventsReducer = (oldState = {}, action) => {
             newEvent = { [action.event.id]: action.event } 
             return newEvent;
         case RECEIVE_EVENTS:
-            return action.events
+            if (action.events) {
+                return action.events;    
+            } else {
+                return {};
+            }
         default:
             return oldState;
     }
