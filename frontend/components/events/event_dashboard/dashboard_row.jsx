@@ -52,7 +52,7 @@ class DashboardRow extends Component {
                         onClick={this.props.onClick}
                         className="dashboard-row-img"
                     />
-                    <span>
+                    <span className="dashboard-row-details">
                         <span>{this.props.title}</span>
                         <span>
                             <p>{this.props.venueName}</p>

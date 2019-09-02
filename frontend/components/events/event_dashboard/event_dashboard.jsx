@@ -72,7 +72,6 @@ class EventDashboard extends Component {
                 <Link className={selectedStatus} to="/dashboard/all"><div className="dashboard-link">Dashboard</div></Link>
                 <CheckBar onClick={() => this.handleRender("EditForm")} label={"Basic Info"} selectedStatus={this.state.selectedStatuses.edit}/>
                 <CheckBar onClick={() => this.handleRender("Details")} label={"Details"} selectedStatus={this.state.selectedStatuses.details}/>
-                <CheckBar label={"Tickets"} selectedStatus={this.state.selectedStatus}/>
             </aside>
         );
     }
