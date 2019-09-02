@@ -36,7 +36,8 @@ class Splash extends Component {
             searchterm: '',
             messageBar: false,
             liked: false,
-            priceFilter: 'Any price'
+            priceFilter: 'Any price',
+            dayFilter: 'Any day'
         }
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -60,24 +61,70 @@ class Splash extends Component {
                     this.state.priceFilter === "Free" && event.price === 0
                     ||
                     this.state.priceFilter === "Any price"
-                ) return event;
+                ) {
+                    if (this.state.dayFilter === "Any day") {
+                        return event;
+                    } else {
+                        let { beginYear, beginMonth, beginDay } = event;
+                        beginMonth -= 1;
+                        let eventDate = new Date(beginYear, beginMonth, beginDay);
+                        let today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        let tomorrow = new Date();
+                        tomorrow.setDate(today.getDate() + 1);
+                        tomorrow.setHours(0, 0, 0, 0);
+                        let upcomingSaturday = new Date();
+                        let upcomingSunday = new Date();
+                        upcomingSaturday.setDate(today.getDate() + (6 - today.getDay()));
+                        upcomingSunday.setDate(today.getDate() + (7 - today.getDay()));
+                        upcomingSaturday.setHours(0, 0, 0, 0);
+                        upcomingSunday.setHours(0, 0, 0, 0);
+                        switch(this.state.dayFilter) {
+                            case "Today": 
+                                if (today.toString() === eventDate.toString()) return event;
+                                break;
+                            case "Tomorrow":
+                                if (eventDate.toString() === tomorrow.toString()) {
+                                    debugger
+                                    console.log('here');
+                                    return event;
+                                }
+                                break;
+                            case "This Weekend": 
+                                if (eventDate.getDay() === 0 || eventDate.getDay() === 6) {
+                                    if (eventDate.toString() === today.toString() || eventDate.toString() === tomorrow.toString()) {
+                                        return event;
+                                    }
+                                } else {
+                                    if (eventDate.toString() === upcomingSaturday.toString() || eventDate.toString() === upcomingSunday.toString()) {
+                                        return event;
+    
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                }
             };
         });
-        let dates = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+        let dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+
         let eventCards = filteredEvents.map((event, idx) => {
-            let { beginMonth, beginDay, title, beginTime, city, state, id, price, pictureUrl, venueName } = event;
+            let { beginYear, beginMonth, beginDay, title, beginTime, city, state, id, price, pictureUrl, venueName } = event;
             if (!beginMonth) beginMonth = '';
             if (!beginDay) beginDay = '';
             if (!beginTime) beginTime = '';
             let cardImage = pictureUrl || window.photoBalloons
-            let randomDay = dates[Math.floor(Math.random() * dates.length)];
+            // let randomDay = dates[Math.floor(Math.random() * dates.length)];
+            let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
+            let day = dates[dayIdx];
             let liked = this.props.likes[id] ? true : false;
             return (
                 <EventCard
                     key={idx}
                     cardImage={cardImage}
                     month={toMonth(beginMonth)}
-                    day={randomDay}
+                    day={day}
                     date={beginDay}
                     title={title}
                     time={toTime(beginTime)}
@@ -127,6 +174,11 @@ class Splash extends Component {
                     break;
                 case "price":
                     this.setState({ priceFilter: event.target.value });
+                    break;
+                case "day":
+                    debugger
+                    this.setState({ dayFilter: event.target.value });
+                    break;
             }
         }
     }
@@ -170,7 +222,7 @@ class Splash extends Component {
     render() {
         // if this.state.messageBar is true, add "message-bar-show" class to show the bar
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
-        let categoryButtonText, priceButtonText;
+        let categoryButtonText, priceButtonText, dayButtonText;
         // if a category was selected, then this.state.categories will be an array with length of 1
         if (this.state.categories.length > 1) {
             console.log('do something');
@@ -180,6 +232,10 @@ class Splash extends Component {
 
         if (this.state.priceFilter !== "Any price") {
             priceButtonText = this.state.priceFilter;
+        }
+
+        if (this.state.dayFilter !== "Any day") {
+            dayButtonText = this.state.dayButtonText;
         }
 
         return (
@@ -192,11 +248,14 @@ class Splash extends Component {
                     <FilterBar 
                         categories={this.generateCategories()} 
                         onCategoryChange={this.handleSelectChange("category")}
-                        onPriceChange={this.handleSelectChange("price")}
                         categoryButtonText={categoryButtonText}
+                        onPriceChange={this.handleSelectChange("price")}
                         priceButtonText={priceButtonText}
+                        onDayChange={this.handleSelectChange("day")}
+                        dayButtonText={dayButtonText}
                         onCategoryButtonClose={this.unfilter("category")}
                         onPriceButtonClose={this.unfilter("price")}
+                        onDayButtonClose={this.unfilter("day")}
                     />
                     <EventCards>
                         {this.renderEventCards()}
