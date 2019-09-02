@@ -8,7 +8,7 @@ const FilterBar = (props) => {
     ));
 
     // render either the select tag or the button that removes the filter selection
-    let categoryFilter, priceFilter;
+    let categoryFilter, priceFilter, dayFilter;
     if (props.categoryButtonText) {
         categoryFilter = (
             <TagButton
@@ -42,6 +42,25 @@ const FilterBar = (props) => {
             </StyledSelect>
         );
     }
+
+    if (props.dayButtonText) {
+        dayFilter = (
+            <TagButton
+                tag={props.dayButtonText}
+                onClick={props.onDayButtonClose}
+                color={"white"}
+            />
+        );
+    } else {
+        dayFilter = (
+            <StyledSelect onChange={props.onDayChange}>
+                <option>Any day</option>
+                <option>Today</option>
+                <option>Tomorrow</option>
+                <option>This Weekend</option>
+            </StyledSelect>
+        );
+    }
     
     return (  
         <div className="filter-bar">
@@ -49,11 +68,7 @@ const FilterBar = (props) => {
                 <h1>Live your best life</h1>
             </span>
             <span className="filter-bar-select-span">
-                {/* <StyledSelect onChange={props.onPriceChange}>
-                    <option>Any price</option>
-                    <option>Free</option>
-                    <option>Paid</option>
-                </StyledSelect> */}
+                {dayFilter}
                 {priceFilter}
                 {categoryFilter}
             </span>
