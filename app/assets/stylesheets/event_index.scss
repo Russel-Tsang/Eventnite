@@ -227,6 +227,26 @@
         transition: all .5s;
     }
 
+    .orange-button {
+        display: flex;
+        align-items: center;
+        background: #ef5537;
+        color: white;
+        border: none;
+        margin-right: 10px;
+        cursor: text;
+
+        img {
+            top: 0px;
+        }
+    }
+
+    .tag-button.orange-button:hover {
+        background: #ef5537;
+        color: white;
+        border: none;
+    }
+
     .tag-button:hover {
         border: 2px #6f7287 solid;
         background: #e4e0eb;

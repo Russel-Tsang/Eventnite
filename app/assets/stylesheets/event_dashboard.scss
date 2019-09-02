@@ -214,14 +214,9 @@ $red: 1px red solid;
         display: flex;
         // align-items: center;
         justify-content: space-between;
-        padding-right: 5px;
-
-        > * {
-            margin-right: 5px;
-        }
 
         img {
-            margin-right: 10px;
+            margin: 0 15px;
         }
     }
 
@@ -249,6 +244,13 @@ $red: 1px red solid;
             text-align: center;
             font-size: 18px;
         }
+    }
+}
+
+.dashboard-row-details {
+    span:nth-of-type(1) {
+        font-weight: bold;
+        padding-bottom: 4px;
     }
 }
 

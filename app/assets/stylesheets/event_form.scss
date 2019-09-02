@@ -18,6 +18,11 @@ $border-style: 2px solid #dbdae3;
 }
 
 .event-form {
+    #autocomplete {
+        width: 100%;
+        height: 46px;
+    }
+
     h1 {
         font-size: 27px;
         font-weight: bold;
@@ -141,24 +146,6 @@ hr {
 
 h1 + p {
     margin-bottom: 10px;
-}
-
-.tag-button {
-    display: inline-block;
-    background-color: #f8f7fa;
-    padding: 8px 12px;
-    border-radius: 18px;
-    margin-right: 15px;
-    margin: 5px 15px 5px 0px;
-    font-size: 13px;
-    
-    img {
-        width: 12px;
-        cursor: pointer;
-        position: relative;
-        top: 1px;
-        margin-left: 10px;
-    }
 }
 
 .tag-counts {
