@@ -85,7 +85,6 @@ class Splash extends Component {
                                 break;
                             case "Tomorrow":
                                 if (eventDate.toString() === tomorrow.toString()) {
-                                    debugger
                                     console.log('here');
                                     return event;
                                 }
@@ -176,7 +175,6 @@ class Splash extends Component {
                     this.setState({ priceFilter: event.target.value });
                     break;
                 case "day":
-                    debugger
                     this.setState({ dayFilter: event.target.value });
                     break;
             }

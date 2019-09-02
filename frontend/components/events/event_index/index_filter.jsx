@@ -8,7 +8,6 @@ const IndexFilter = (props) => {
         let filterText = buttonDetails[1];
         return <TagButton key={idx} tag={filterText} onClick={props.onClearSelection(filterType)}/>
     });
-    debugger
     return ( 
         <div className="index-filter">
             <StyledSelect>

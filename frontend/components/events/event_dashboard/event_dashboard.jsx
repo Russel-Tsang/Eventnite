@@ -63,7 +63,6 @@ class EventDashboard extends Component {
 
     render() { 
         let { title, beginMonth, beginDay, beginYear, beginTime } = this.props.event;
-        debugger
         let eventChosen = this.props.location.pathname === "/dashboard/all" ? false : true;
         let selectedStatus = this.props.location.pathname === "/dashboard/all" ? 'checkbar-selected' : '';
         return (

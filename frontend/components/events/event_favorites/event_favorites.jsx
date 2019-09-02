@@ -29,15 +29,12 @@ class EventFavorites extends Component {
     // stores event ids and like ids into state so likes can be deleted from DB upon page leave / refresh
     handleLikeClick(eventId) {
         return () => {
-            debugger
             let eventsToDelete = merge({}, this.state.eventsToDelete);
             let likedEvents = merge({}, this.state.likedEvents);
             if (likedEvents[eventId]) {
-                debugger
                 eventsToDelete[eventId] = this.props.likes[eventId].likeId;
                 delete likedEvents[eventId];
             } else {
-                debugger
                 likedEvents[eventId] = this.props.likes[eventId];
                 delete eventsToDelete[eventId];
             }

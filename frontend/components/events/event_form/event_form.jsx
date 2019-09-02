@@ -60,14 +60,12 @@ class EventForm extends Component {
         let autocomplete = new google.maps.places.Autocomplete(input, options);
 
         google.maps.event.addListener(autocomplete, 'place_changed', () => {
-            debugger
             let venueJSON = autocomplete.getPlace();
             let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
             let [street, city] = [addressArray[0], addressArray[1]];
             let [state, zipCode] = addressArray[2].split(" ");
             let venueName = venueJSON.name;
             this.setState({ street, city, state, zipCode, venueName });
-            debugger
         });
 
         // if formtype is update, then fetch relevant event and set state for event information 
@@ -175,7 +173,6 @@ class EventForm extends Component {
     }
 
     handleAddressChange(event) {
-        debugger
         console.log(event);
     }
 
