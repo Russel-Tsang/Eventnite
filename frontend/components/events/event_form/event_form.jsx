@@ -187,7 +187,7 @@ class EventForm extends Component {
                 <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
                 <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} /> */}
                 {/* <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} /> */}
-                <input type="text" placeholder="Test Input" id="autocomplete" />
+                <input type="text" placeholder="Search for a venue or address" id="autocomplete" />
             </div>
         ) : (
             <div className="address-inputs">
