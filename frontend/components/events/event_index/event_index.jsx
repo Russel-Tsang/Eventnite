@@ -88,8 +88,10 @@ class EventIndex extends Component {
         };
     }
 
-    handleClearSelection() {
-        event.target.parentElement.innerText
+    handleClearSelection(filterType) {
+        return () => {
+            this.setState({ [filterType]: '' });
+        }
     }
 
 
@@ -97,7 +99,7 @@ class EventIndex extends Component {
         let categoryFilter = this.state.filterSelections.categoryFilter;
         let eventTypeFilter = this.state.filterSelections.eventTypeFilter;
         let priceFilter = this.state.filterSelections.priceFilter;
-        this.setState({ categoryFilter, eventTypeFilter, priceFilter });
+        this.setState({ categoryFilter, eventTypeFilter, priceFilter, showFiltersAside: false });
     }
 
     handleEventClick(id) {
@@ -155,6 +157,12 @@ class EventIndex extends Component {
             );
         });
 
+        let filterButtons = [
+            ['categoryFilter', categoryFilter], 
+            ['eventTypeFilter', eventTypeFilter], 
+            ['priceFilter', priceFilter]
+        ].filter(buttonDetails => buttonDetails[1] !== '');
+
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
         return ( 
             <div className="event-index">
@@ -169,7 +177,7 @@ class EventIndex extends Component {
                     />
                     <IndexFilter 
                         onShowFiltersClick={this.handleFiltersClick(true)}
-                        filters={this.state.filterSelections}
+                        filterButtons={filterButtons}
                         onClearSelection={this.handleClearSelection}
                     />
                     <div className="index-rows-container">
