@@ -11,7 +11,8 @@ export const TagButtons = (props) => {
 
 export const TagButton = ({ tag, onClick, color }) => {
     let closeIcon = color === "black" ? window.closeIcon : window.closeIconWhite;
+    let orange = color === "black" ? '' : 'orange-button';
     return (
-        <div className="tag-button">{tag}<img onClick={onClick} src={closeIcon} /></div>
+        <div className={`tag-button ${orange}`}>{tag}<img onClick={onClick} src={closeIcon} /></div>
     )
 }
