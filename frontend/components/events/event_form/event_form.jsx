@@ -35,7 +35,9 @@ class EventForm extends Component {
             beginTime: '',
             endTime: '',
             venueName: '',
-            price: ''
+            price: '',
+            lat: '',
+            lng: ''
         }
         this.renderAddressInputs = this.renderAddressInputs.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -57,27 +59,45 @@ class EventForm extends Component {
             bounds: defaultBounds,
             types: ['establishment']
         };
-        let autocomplete = new google.maps.places.Autocomplete(input, options);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', () => {
-            let venueJSON = autocomplete.getPlace();
-            let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
-            let [street, city] = [addressArray[0], addressArray[1]];
-            let [state, zipCode] = addressArray[2].split(" ");
-            let venueName = venueJSON.name;
-            this.setState({ street, city, state, zipCode, venueName });
-        });
+        if (this.state.formType === "Create") {
+            let autocomplete = new google.maps.places.Autocomplete(input, options);
+    
+            google.maps.event.addListener(autocomplete, 'place_changed', () => {
+                let venueJSON = autocomplete.getPlace();
+                let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
+                let [street, city] = [addressArray[0], addressArray[1]];
+                let [state, zipCode] = addressArray[2].split(" ");
+                let lat = venueJSON.geometry.location.lat();
+                let lng = venueJSON.geometry.location.lng();
+                let venueName = venueJSON.name;
+                this.setState({ street, city, state, zipCode, venueName, lat, lng });
+            });
+        }
 
         // if formtype is update, then fetch relevant event and set state for event information 
         if (this.state.formType !== "Update") return;
         this.props.fetchEvent(this.props.match.params.eventId).then(
             (action) => {
-                const { event: { title, eventType, category, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, id, price, venueName } } = action;
+                const { event: { title, eventType, category, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, id, price, venueName, lat, lng } } = action;
                 let currentTags = action.tags ? Object.values(action.tags).map(tag => tag.tagName) : [];
-                this.setState({ title, eventType, category, tags: currentTags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, eventId: id, price, venueName });
+                // let addressInput = document.querySelector('#autocomplete');
+                // addressInput.value = `${venueName}, ${street}, ${city}, ${state}, USA`;
+                this.setState({ title, eventType, category, tags: currentTags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, eventId: id, price, venueName, lat, lng });
             }
         );
-        
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params !== prevProps.match.params && this.state.formType == "Update") {
+            this.props.fetchEvent(this.props.match.params.eventId).then(
+                (action) => {
+                    const { event: { title, eventType, category, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, id, price, venueName } } = action;
+                    let currentTags = action.tags ? Object.values(action.tags).map(tag => tag.tagName) : [];
+                    this.setState({ title, eventType, category, tags: currentTags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, eventId: id, price, venueName });
+                }
+            );
+        }
     }
 
     handleChange(type, payload) {
@@ -117,8 +137,8 @@ class EventForm extends Component {
                 case "formSubmit":
                     // post or update event depending on the formType
                     let action = this.state.formType === "Update" ? this.props.updateEvent : this.props.postEvent;
-                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName, price } = this.state;
-                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId, price }
+                    const { title, eventType, category, tags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName, price, lat, lng } = this.state;
+                    let requestParams = { title, event_type: eventType, category, tags, organizer, online_event: onlineEvent, venue_name: venueName, street, state, city, zip_code: zipCode, begin_day: beginDay, begin_month: beginMonth, begin_year: beginYear, end_day: endDay, end_month: endMonth, end_year: endYear, begin_time: beginTime, end_time: endTime, user_id: this.props.currentUser, id: this.state.eventId, price, lat, lng }
                     action(requestParams).then(
                         (action) => {
                             const { event } = action
@@ -178,13 +198,19 @@ class EventForm extends Component {
 
     // conditionally render address inputs
     renderAddressInputs() {
+        let addressInput = this.state.formType === "Update" ? (
+            <>
+            <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
+            <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
+            <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
+            <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} /> 
+            </>
+        ) : (
+            <input type = "text" placeholder = "Search for a venue or address" id = "autocomplete"/>
+        );
         return !this.state.onlineEvent ? (
             <div className="address-inputs">
-                {/* <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
-                <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
-                <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} /> */}
-                {/* <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} /> */}
-                <input type="text" placeholder="Search for a venue or address" id="autocomplete" />
+                {addressInput}
             </div>
         ) : (
             <div className="address-inputs">
