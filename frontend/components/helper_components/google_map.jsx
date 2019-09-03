@@ -10,16 +10,7 @@ class Map extends Component {
         let latlng = new google.maps.LatLng(40.747198, -73.994533);
         let map = new google.maps.Map(document.getElementById('google-map'), {
             center: latlng,
-            zoom: 10
-        });
-        this.props.events.forEach(event => {
-            let latlng = new google.maps.LatLng(event.lat, event.lng);
-            let marker = new google.maps.MarkerImage({
-                position: latlng,
-                map: map,
-                title: 'Hello World!',
-                visible: true
-            });
+            zoom: 13
         });
     }
 
@@ -27,17 +18,32 @@ class Map extends Component {
         let latlng = new google.maps.LatLng(40.747198, -73.994533);
         let map = new google.maps.Map(document.getElementById('google-map'), {
             center: latlng,
-            zoom: 10
+            zoom: 13
         });
         this.props.events.forEach(event => {
-            let latlng = new google.maps.LatLng(event.lat, event.lng);
+            let iconSize = [30, 30];
+            let iconUrl = window.googleMapsIcon;
+
+            if (event.venueName === this.props.hoveredLocation) {
+                iconSize = [30, 50];
+                iconUrl = window.googleMapsIconOrange;
+            }
+
+            let icon = {
+                url: iconUrl, 
+                scaledSize: new google.maps.Size(...iconSize)
+            };
+
+            let eventlatlng = new google.maps.LatLng(event.lat, event.lng);
+            
             let marker = new google.maps.Marker({
-                position: latlng,
+                position: eventlatlng,
                 map: map,
-                title: 'Hello World!',
-                visible: true
+                icon: icon,
             });
         });
+
+        
     }
 
     render() {
