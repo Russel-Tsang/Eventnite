@@ -6,19 +6,20 @@ const SearchBar = (props) => {
     return (
         <div className="search-bar">
             <SearchSection label="Looking for">
-                <input placeholder="Event" type="text"/>
+                <input placeholder="Event" type="text" onChange={props.onSearchInputChange('searchTerm')}/>
             </SearchSection>
             <SearchSection label="In">
-                <input className="search-bar-input-location" value="New York" type="text" />
+                <input className="search-bar-input-location" value="New York" onChange={() => {}} type="text" />
             </SearchSection>
             <SearchSection label="On">
-                <StyledSelect color="white">
-                    <option>
-                        Any Date
-                    </option>
+                <StyledSelect color="white" onChange={props.onSearchInputChange('searchDayFilter')}>
+                    <option>Any Date</option>
+                    <option>Today</option>
+                    <option>Tomorrow</option>
+                    <option>This weekend</option>
                 </StyledSelect>
             </SearchSection>
-            <div className="search-button">
+            <div className="search-button" onClick={props.onSearchClick}>
                 <img src={window.searchIconWhite} />
             </div>
         </div>
