@@ -23,7 +23,8 @@ class Dashboard extends Component {
 
     onDeleteClick(id) {
         return () => {
-            this.props.deleteEvent(id) 
+            this.props.deleteEvent(id);
+            document.querySelector('.popup-menu').remove();
         }
     }
 
