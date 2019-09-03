@@ -8,6 +8,7 @@ json.events do
       json.set! :beginDay, event.begin_day 
       json.set! :beginTime, event.begin_time
       json.set! :venueName, event.venue_name
+      json.set! :onlineEvent, event.online_event
       json.set! :lat, event.lat
       json.set! :lng, event.lng
       if event.picture.attached?

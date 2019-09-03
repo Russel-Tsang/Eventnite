@@ -35,6 +35,7 @@ json.tags do
         end
     end
 end
+
 json.likes do
   if current_user && !current_user.liked_events.empty?
     current_user.likes.each do |like|
