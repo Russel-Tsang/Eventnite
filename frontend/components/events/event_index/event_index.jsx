@@ -37,6 +37,7 @@ class EventIndex extends Component {
         this.handleMainSearchChange = this.handleMainSearchChange.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleIndexRowHover = this.handleIndexRowHover.bind(this);
+        this.handleMessageBarClose = this.handleMessageBarClose.bind(this);
     }
 
     componentDidMount() {
@@ -149,6 +150,10 @@ class EventIndex extends Component {
         this.setState({ hoveredLocation });
     }
 
+    handleMessageBarClose() {
+        this.setState({ messageBar: false });
+    }
+
     render() { 
         let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
         let events = this.props.events.filter(event => {
@@ -245,7 +250,7 @@ class EventIndex extends Component {
         return ( 
             <div className="event-index">
                 <div className="event-index-main">
-                    <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked} />
+                    <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBarClose} liked={this.state.liked} />
                     <IndexSearch 
                         indexRows={indexRows}
                         onCategoryClick={this.handleFilterChange('categoryFilter')}
