@@ -11,8 +11,7 @@ class NavBar extends Component {
         }
 
         this.toggleDisplay = this.toggleDisplay.bind(this);
-        this.displayNone = this.displayNone.bind(this);
-        this.displayTrue = this.displayTrue.bind(this);
+        this.handleDropdownDisplay = this.handleDropdownDisplay.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -21,12 +20,8 @@ class NavBar extends Component {
         this.setState({ display: nextState });
     }
 
-    displayNone() {
-        this.setState({ display: 'display-none' });
-    }
-
-    displayTrue() {
-        this.setState({ display: 'display' });
+    handleDropdownDisplay(value) {
+        return () => this.setState({ display: value });
     }
 
     handleLogout() {
@@ -67,8 +62,8 @@ class NavBar extends Component {
                         user={this.props.currentUserObj.fname} 
                         userEmail={this.props.currentUserObj.email} 
                         display={this.state.display} 
-                        onMouseEnter={this.displayTrue} 
-                        onMouseLeave={this.displayNone} 
+                        onMouseEnter={this.handleDropdownDisplay('display')} 
+                        onMouseLeave={this.handleDropdownDisplay('display-none')} 
                         onLogout={this.handleLogout}
                     />
                 )
@@ -77,7 +72,6 @@ class NavBar extends Component {
             }
         }
         
-
         return (
             <>
             <header className="navbar">
