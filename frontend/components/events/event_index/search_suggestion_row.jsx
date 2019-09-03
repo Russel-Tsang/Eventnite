@@ -6,7 +6,7 @@ const SearchSuggestionRow = (props) => {
             <span>
                 {props.img}
             </span>
-            <span>
+            <span className="search-suggestion-label">
                 {props.label}
             </span>
         </div>

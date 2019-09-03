@@ -13,14 +13,22 @@ class SearchSuggestions extends Component {
 
     componentDidMount() {
         this.mousedownFunc = () => {
-            // prevents clicking on suggestion div from hiding suggestion div
-            if (!event.target.className.split('-').includes('search')) {
+            let searchSuggestions = document.querySelector('.index-search-suggestions');
+            if (event.target.className === 'index-search-event-input') {
+                this.setState({ searchSuggestionDisplay: '' });
+                searchSuggestions.classList.remove('display-none');
+            // if mouse clicks anywhere outside of search-suggestions div, close the div
+            } else if (!event.path.includes(searchSuggestions)) {
                 this.setState({ searchSuggestionDisplay: 'display-none' });
-            } else if (event.target.className === 'index-search-event-input') {
-                this.setState({ searchSuggestionDisplay: '' })
-            }
+            } 
         }
         document.addEventListener('mousedown', this.mousedownFunc);
+
+        debugger
+        let indexRows = this.props.indexRows.filter(row => {
+            if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
+        });
+        this.setState({ indexRows });
     }
 
     componentWillUnmount() {
