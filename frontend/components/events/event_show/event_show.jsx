@@ -102,10 +102,11 @@ class EventShow extends Component {
     render() {
         document.body.style.overflow = this.state.modal ? "hidden" : "visible";
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
-        
-        let { id, price, pictureUrl, title, description, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, venueName } = this.props.event;
+        debugger
+        let { id, price, pictureUrl, title, description, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, beginTime, venueName, onlineEvent } = this.props.event;
 
         pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
+        beginDay = beginDay < 10 ? `0${beginDay}` : beginDay;
 
         let followStatus;
         // if condition to prevent erroring out on the first render
@@ -176,6 +177,7 @@ class EventShow extends Component {
                             day={beginDay}
                             year={beginYear}
                             time={toTime(beginTime)}
+                            onlineEvent={onlineEvent}
                         />
                         {this.renderEventTags()}
                     </div>
