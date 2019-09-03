@@ -320,6 +320,8 @@
     top: 45px;
 
     .index-row {
+        cursor: pointer;
+
         padding: 0px 15px;
         margin-bottom: 20px;
         font-size: 10px;
@@ -359,7 +361,7 @@
     cursor: pointer;
 }
 
-.index-search-suggestions-show {
-
+.search-suggestion-label {
+    pointer-events: none;
 }
 

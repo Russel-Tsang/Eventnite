@@ -28,15 +28,6 @@ input {
     cursor: pointer;
 }
 
-.follow-button {
-    border: 2px $follow-button-color solid;
-    border-radius: $follow-button-border-radius;
-    color: $follow-button-color;
-    width: 55px;
-    padding: 4px;
-    margin-left: 10px;
-}
-
 .icons {
     display: flex;
     width: 65px;

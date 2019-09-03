@@ -90,8 +90,7 @@ $purple: #1e0a3c;
 
 .modal-pane {
     display: flex;
-    width: 55%;
-    height: 70%;
+    width: 800px;
     background-color: white;
     z-index: 1;
 }
@@ -108,15 +107,10 @@ $purple: #1e0a3c;
         display: none;
     }
 
-    > * {
-        padding: 0px 24px;
-    }
-
     header {
         text-align: center;
         font-size: 19px;
         padding-top: 10px;
-        height: 8%;
         border-bottom: 1px #f8f8f9 solid;
     }
 
@@ -138,6 +132,7 @@ $purple: #1e0a3c;
 
             hr {
                 width: 100%;
+                margin: 30px auto 10px auto;
             }
         }
     }
@@ -147,7 +142,6 @@ $purple: #1e0a3c;
         text-align: right;
         justify-content: flex-end;
         margin-right: 150px;
-        height: 10%;
         padding: 0;
         border-top: #EEEDF2;
     }
@@ -276,7 +270,6 @@ a.checkbar-selected {
     color: $search-bar-font-color;
     font-size: 12px;
     font-weight: 0;
-    min-width: 1050px;
 
     > div {
         width: 30%;
@@ -340,6 +333,11 @@ a.checkbar-selected {
             position: relative;
             top: 8px;
             right: 22px;
+            cursor: pointer;
+            transition: background .3s;
+        }
+        img:hover {
+            background: #f05437;
         }
     }
 
@@ -372,8 +370,6 @@ a.checkbar-selected {
         display: inline-block;
         background-color: #eeedf2;
         border-radius: 100px;
-        width: 110px;
-        height: 30px;
         margin: 5px 15px 5px 0px;
         font-size: 13px;
     }
@@ -540,6 +536,12 @@ a.checkbar-selected {
         top: 1px;
         margin-left: 10px;
     }
+}
+
+// event card button
+.event-card-button:hover {
+    transition: background .3s;
+    background: #f8f7fa;
 }
 
 

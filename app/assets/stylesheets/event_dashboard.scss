@@ -269,8 +269,36 @@ $red: 1px red solid;
 }
 
 .dashboard-picture {
-    width: 70%;
-    max-width: 600px;
-    margin-top: 20px;
-    margin-left: 13%;
+    width: 100%;
+}
+
+.details-image-container {
+    position: relative;
+    left: 58px;
+    top: 15px;
+}
+
+.details-image-overlay {
+    position: absolute;
+    // text-align: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+        background: white;
+        position: absolute;
+        top: 140px;
+        left: 260px;
+        width: 30px;
+        padding: 10px;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+}
+
+.details-image-overlay:hover {
+    background: rgba(0, 0, 0, 0.5);
 }

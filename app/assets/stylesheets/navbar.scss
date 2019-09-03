@@ -47,8 +47,7 @@ $navbar-text: #717388;
     }
 
     .sign-out-logo {
-        padding: 8px;
-        padding-right: 16px;
+        padding: 6px 14px;
     }
 
     .create-event {
@@ -56,7 +55,7 @@ $navbar-text: #717388;
     }
 
     .create-event:hover {
-        color: #3c64ff;
+        color: #0033ff;
     }
 
 }
@@ -72,7 +71,7 @@ $navbar-text: #717388;
     position: absolute;
     right: 0px;
     border: 1px #f8f7fa solid;
-    box-shadow: -2px 3px 10px #e6e6e6;
+    box-shadow: -2px 3px 10px #989898;
     background: white;
     z-index: 3;
 

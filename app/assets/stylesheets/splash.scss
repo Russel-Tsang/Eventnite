@@ -92,8 +92,8 @@
 
 .splash-content {
     margin: auto;
-    width: 87%;
-    max-width: 1080px;
+    width: 94%;
+    max-width: 1200px;
 }
 
 .more-events-div {
@@ -113,8 +113,16 @@
 .filter-bar-select-span {
     display: flex;
 
+    div:nth-of-type(1) select {
+        width: 85px;
+    }
+
     div:nth-of-type(2) select {
-        width: 120px;
+        width: 95px;
+    }
+
+    div:nth-of-type(3) select {
+        width: 117px;
     }
 
     .styled-select-container img {
