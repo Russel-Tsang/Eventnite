@@ -3,7 +3,11 @@ import React from 'react';
 const EventDescription = (props) => {
     // return full address or url, depending on whichever is present
     const addressOrUrl = () => {
-        return props.city ? (
+        return props.onlineEvent ? (
+            <span className="location-heading">
+                <p>{props.venueName}</p>
+            </span>
+        ) : (
             <>
                 <span className="location-heading">
                     <p>{props.venueName}</p>
@@ -15,10 +19,6 @@ const EventDescription = (props) => {
                     {`${props.city}, ${props.state} ${props.zipCode}`}
                 </span>
             </>
-        ) : (
-            <span className="location-heading">
-                <p>{props.venueName}</p>
-            </span>
         );
     }
 
