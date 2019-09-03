@@ -33,7 +33,8 @@ class Splash extends Component {
                 'School Activities',
                 'Science & Tech'
             ],
-            searchterm: '',
+            searchTerm: '',
+            searchDayFilter: '',
             messageBar: false,
             liked: false,
             priceFilter: 'Any price',
@@ -41,15 +42,14 @@ class Splash extends Component {
         }
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+        this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleMessageBar = this.handleMessageBar.bind(this);
         this.unfilter = this.unfilter.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvents();
-    }
-
-    componentDidUpdate() {
     }
 
     renderEventCards() {
@@ -106,17 +106,17 @@ class Splash extends Component {
                 }
             };
         });
-        let dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+        let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
         let eventCards = filteredEvents.map((event, idx) => {
             let { beginYear, beginMonth, beginDay, title, beginTime, city, state, id, price, pictureUrl, venueName } = event;
             if (!beginMonth) beginMonth = '';
             if (!beginDay) beginDay = '';
             if (!beginTime) beginTime = '';
-            let cardImage = pictureUrl || window.photoBalloons
+            let cardImage = pictureUrl || window.splashBanner
             // let randomDay = dates[Math.floor(Math.random() * dates.length)];
             let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
-            let day = dates[dayIdx];
+            let day = days[dayIdx];
             let liked = this.props.likes[id] ? true : false;
             return (
                 <EventCard
@@ -190,6 +190,9 @@ class Splash extends Component {
                 case "price":
                     this.setState({ priceFilter: "Any price" });
                     break;
+                case "day":
+                    this.setState({ dayFilter: 'Any day'});
+                    break;
             }
         }
     }
@@ -213,6 +216,18 @@ class Splash extends Component {
         }
     }
 
+    handleSearchInputChange(type) {
+        return () => {
+            this.setState({ [type]: event.target.value });
+        }
+    }
+
+    handleSearchClick() {
+        let keyword = this.state.searchTerm ? this.state.searchTerm : 'all';
+        let time = this.state.searchDayFilter ? this.state.searchDayFilter : 'any_date';
+        this.props.history.push(`/all_events/${keyword}/${time}`);
+    }
+
     handleMessageBar() {
         this.setState({ messageBar: false });
     }
@@ -233,7 +248,8 @@ class Splash extends Component {
         }
 
         if (this.state.dayFilter !== "Any day") {
-            dayButtonText = this.state.dayButtonText;
+            debugger
+            dayButtonText = this.state.dayFilter;
         }
 
         return (
@@ -242,7 +258,10 @@ class Splash extends Component {
                 <img className="splash-banner" src={window.splashBanner2} /> 
                 <div className="splash-grey-background"></div>  
                 <div className="splash-content">  
-                    <SearchBar />
+                    <SearchBar 
+                        onSearchInputChange={this.handleSearchInputChange}
+                        onSearchClick={this.handleSearchClick}
+                    />
                     <FilterBar 
                         categories={this.generateCategories()} 
                         onCategoryChange={this.handleSelectChange("category")}
@@ -260,7 +279,7 @@ class Splash extends Component {
                     </EventCards>
                 </div>
                 <div className="more-events-div">
-                    <Link className="more-events-link" to="/all_events">See more events</Link>
+                    <Link className="more-events-link" to="/all_events/all/any_date">See more events</Link>
                 </div>
                 <div className="spacer"></div>
             </div>
