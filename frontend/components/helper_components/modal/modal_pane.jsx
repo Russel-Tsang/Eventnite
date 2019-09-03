@@ -10,7 +10,7 @@ class ModalPane extends Component {
 
     render() {
         const event = this.props.events[0];
-        const { title, beginMonth, beginDay, beginYear, beginTime, endMonth, endDay, endYear, endTime, description } = event
+        const { title, beginMonth, beginDay, beginYear, beginTime, endMonth, endDay, endYear, endTime, description, pictureUrl } = event
         return (
             <div className="modal-pane">
                 <div className="modal-left">
@@ -31,21 +31,21 @@ class ModalPane extends Component {
                             </span>
                             <hr/>
                         </div>
-                    </main>
                     <TicketBar buttonText={"Register"} onClick={this.props.onClick} />
+                    </main>
                 </div>
                 <aside className="modal-right">
                     <div className="modal-right-image">
                         <span onClick={this.props.closeModal} className="close-icon-span">
                             <img className="close-icon" src={window.closeIcon} />
                         </span>
-                        <img src={window.photoBalloons} />
+                        <img src={pictureUrl} />
                     </div>
                     <div className="order-summary">
                         <div>Order Summary</div>
                         <div>
                             <span>
-                                price: 
+                                Price: 
                             </span>
                             <span>
                                 {`$${event.price}.00`}
