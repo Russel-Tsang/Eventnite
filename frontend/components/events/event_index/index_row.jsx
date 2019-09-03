@@ -2,8 +2,15 @@ import React from 'react';
 
 const IndexRow = (props) => {
     let heartIcon = props.liked ? window.redHeartIcon : window.heartIcon;
+
+    let location = props.onlineEvent ? (
+        `${props.venueName}`
+    ) : (
+        `${props.venueName}, ${props.city}, ${props.state}`
+    );
+    
     return (  
-        <div className="index-row">
+        <div className="index-row" onMouseEnter={props.handleMouseEnter}>
             <img className="index-row-img" src={props.pictureUrl} onClick={props.onEventClick}/>
             <div className="index-row-main">
                 <div className="index-row-details">
@@ -12,7 +19,7 @@ const IndexRow = (props) => {
                         {`${props.day}, ${props.beginMonth} ${props.beginDay}, ${props.beginTime}`}
                     </span>
                     <span className="index-row-location">
-                        {`${props.venueName}, ${props.city}, ${props.state}`}
+                        {location}
                     </span>
                     <span className="index-row-price">
                         {`Starts at $${props.price}`}

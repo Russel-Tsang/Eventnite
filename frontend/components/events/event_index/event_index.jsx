@@ -14,11 +14,13 @@ class EventIndex extends Component {
         this.state = {
             mainSearchValue: '',
             mainSearchValueHolder: '',
+            dayFilter: '',
             showFiltersAside: false,
             categoryFilter: '',
             eventTypeFilter: '',
             priceFilter: '',
             messageBar: false,
+            hoveredLocation: '',
             liked: false,
             
             filterSelections: {
@@ -28,18 +30,31 @@ class EventIndex extends Component {
             }
         }
 
-        this.events = [];
-
         this.handleFilterChange = this.handleFilterChange.bind(this); 
+        this.handleDayFilterChange = this.handleDayFilterChange.bind(this);
         this.handleApplyClick = this.handleApplyClick.bind(this);
         this.handleClearSelection = this.handleClearSelection.bind(this);
         this.handleMainSearchChange = this.handleMainSearchChange.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
+        this.handleIndexRowHover = this.handleIndexRowHover.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvents();
         window.scrollTo(0, 0);
+    }
+
+    componentDidUpdate() {
+        debugger
+        let keyword = this.props.match.params.keyword;
+        let keywordHolder = keyword === "all" ? '' : keyword;
+        let dayFilter = this.props.match.params.time;
+        if (keyword && this.state.mainSearchValue !== keyword) {
+            this.setState({ mainSearchValue: keyword, mainSearchValueHolder: keywordHolder });
+        } 
+        if (dayFilter && this.state.dayFilter !== dayFilter) {
+            this.setState({ dayFilter: dayFilter });
+        }
     }
 
     handleLikeClick(eventId) {
@@ -69,8 +84,8 @@ class EventIndex extends Component {
 
     handleFilterChange(filter) {
         return (event) => {
+            document.querySelector('.index-search-suggestions').classList.add('display-none');
             if (event.currentTarget.className === "search-suggestion-row") {
-                this.setState({ mainSearchValueHolder: event.currentTarget.innerText })
                 switch(event.currentTarget.innerText) {
                     case "Business":
                         this.setState({ categoryFilter: "Business & Professional" });
@@ -90,10 +105,19 @@ class EventIndex extends Component {
 
     handleClearSelection(filterType) {
         return () => {
-            this.setState({ [filterType]: '' });
+            if (filterType === 'dayFilter') {
+                this.props.history.push(`/all_events/${this.state.mainSearchValue}/any_date`);
+            } else {
+                this.setState({ [filterType]: '' });
+            }
         }
     }
 
+    handleDayFilterChange(event) {
+        let keyword = this.state.mainSearchValue ? this.state.mainSearchValue : 'all';
+        let dayFilter = event.target.value === "Any Date" ? 'any_date' : event.target.value;
+        this.props.history.push(`/all_events/${keyword}/${dayFilter}`);
+    }
 
     handleApplyClick() {
         let categoryFilter = this.state.filterSelections.categoryFilter;
@@ -113,35 +137,87 @@ class EventIndex extends Component {
     }
 
     handleSearchClick() {
-        this.setState({ mainSearchValue: this.state.mainSearchValueHolder });
+        if (this.state.mainSearchValueHolder) {
+            this.props.history.push(`/all_events/${this.state.mainSearchValueHolder}/${this.state.dayFilter.toLowerCase()}`);
+        } else {
+            this.props.history.push(`/all_events/all/${this.state.dayFilter.toLowerCase()}`);
+        }
+    }
+
+    handleIndexRowHover() {
+        debugger
+        let hoveredLocation = event.relatedTarget.outerHTML.split('location">')[1];
+        hoveredLocation = hoveredLocation.slice(0, hoveredLocation.indexOf(','));
+        this.setState({ hoveredLocation });
     }
 
     render() { 
         let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
         let events = this.props.events.filter(event => {
-            if (mainSearchValue) {
-                if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase())) return event;
-            } else {
+            if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase()) || this.state.mainSearchValue === 'all') {
                 if (event.category === categoryFilter || !categoryFilter) {
                     if (event.eventType === eventTypeFilter || !eventTypeFilter) {
                         if ((event.price > 0 && priceFilter === "Paid") || (event.price === 0 && priceFilter === "Free") || !priceFilter) {
-                            return event;
+                            // return event;
+                            if (this.state.dayFilter === 'any_date') {
+                                return event;
+                            } else {
+                                let { beginYear, beginMonth, beginDay } = event;
+                                beginMonth -= 1;
+                                let eventDate = new Date(beginYear, beginMonth, beginDay);
+                                let today = new Date();
+                                today.setHours(0, 0, 0, 0);
+                                let tomorrow = new Date();
+                                tomorrow.setDate(today.getDate() + 1);
+                                tomorrow.setHours(0, 0, 0, 0);
+                                let upcomingSaturday = new Date();
+                                let upcomingSunday = new Date();
+                                upcomingSaturday.setDate(today.getDate() + (6 - today.getDay()));
+                                upcomingSunday.setDate(today.getDate() + (7 - today.getDay()));
+                                upcomingSaturday.setHours(0, 0, 0, 0);
+                                upcomingSunday.setHours(0, 0, 0, 0);
+                                switch (this.state.dayFilter) {
+                                    case "Today":
+                                        if (today.toString() === eventDate.toString()) return event;
+                                        break;
+                                    case "Tomorrow":
+                                        if (eventDate.toString() === tomorrow.toString()) {
+                                            console.log('here');
+                                            return event;
+                                        }
+                                        break;
+                                    case "This weekend":
+                                        if (eventDate.getDay() === 0 || eventDate.getDay() === 6) {
+                                            if (eventDate.toString() === today.toString() || eventDate.toString() === tomorrow.toString()) {
+                                                return event;
+                                            }
+                                        } else {
+                                            if (eventDate.toString() === upcomingSaturday.toString() || eventDate.toString() === upcomingSunday.toString()) {
+                                                return event;
+
+                                            }
+                                        }
+                                        break;
+                                }
+                            }
                         }
                     }
                 }
             }
         });
 
-        this.events = events;
-
         let indexRows = events.map((event, idx) => {
-            let { title, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id } = event;
+            let { title, beginYear, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id, onlineEvent } = event;
+            pictureUrl = pictureUrl || window.splashBanner;
             let liked = this.props.likes[id] ? true : false;
+            let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+            let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
+            let day = days[dayIdx];
             return (
                 <IndexRow
                     pictureUrl = {pictureUrl}
                     key={idx}
-                    day={"Mon"}
+                    day={day}
                     title={title}
                     beginMonth={toMonth(beginMonth)}
                     beginDay={beginDay}
@@ -150,6 +226,8 @@ class EventIndex extends Component {
                     city={city}
                     state={state}
                     price={price}
+                    handleMouseEnter={this.handleIndexRowHover}
+                    onlineEvent={onlineEvent}
                     onLikeClick={this.handleLikeClick(id)}
                     onEventClick={this.handleEventClick(id)}
                     liked={liked}
@@ -164,6 +242,9 @@ class EventIndex extends Component {
         ].filter(buttonDetails => buttonDetails[1] !== '');
 
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
+        debugger
+        let dayFilterButtonText;
+        if (this.state.dayFilter && this.state.dayFilter !== 'any_date') dayFilterButtonText = this.state.dayFilter;
         return ( 
             <div className="event-index">
                 <div className="event-index-main">
@@ -179,6 +260,9 @@ class EventIndex extends Component {
                         onShowFiltersClick={this.handleFiltersClick(true)}
                         filterButtons={filterButtons}
                         onClearSelection={this.handleClearSelection}
+                        onDayFilterChange={this.handleDayFilterChange}
+                        dayFilterButtonText={dayFilterButtonText}
+                        onClearDayFilter={this.handleClearSelection}
                     />
                     <div className="index-rows-container">
                         {indexRows}
@@ -193,7 +277,7 @@ class EventIndex extends Component {
                     />
                     </div>
                 <div className="event-index-map">
-                    <Map events={this.events} />
+                    <Map events={events} hoveredLocation={this.state.hoveredLocation}/>
                 </div>
             </div> 
         );

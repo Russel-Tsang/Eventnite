@@ -8,11 +8,22 @@ const IndexFilter = (props) => {
         let filterText = buttonDetails[1];
         return <TagButton key={idx} tag={filterText} onClick={props.onClearSelection(filterType)}/>
     });
+
+    debugger
+    let dayFilter = props.dayFilterButtonText ? (
+        <TagButton tag={props.dayFilterButtonText} onClick={props.onClearSelection('dayFilter')} />
+    ) : (
+        <StyledSelect onChange = {props.onDayFilterChange}>
+            <option>Any Date</option>
+            <option>Today</option>
+            <option>Tomorrow</option>
+            <option>This weekend</option>
+        </StyledSelect >
+    );
+
     return ( 
         <div className="index-filter">
-            <StyledSelect>
-                <option>Any Date</option>
-            </StyledSelect>
+            {dayFilter}
             {filterButtons}
             <button className="tag-button" onClick={props.onShowFiltersClick}>More filters</button>
         </div>

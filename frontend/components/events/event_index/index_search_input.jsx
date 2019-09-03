@@ -22,7 +22,7 @@ const IndexSearchInput = (props) => {
             <div className="index-search-location">
                 <p>in </p>
                 <div className="index-search-input-container">
-                    <input className="index-search-location-input" value="New York"/>
+                    <input className="index-search-location-input" value="New York" onChange={() => {}}/>
                 </div>
             </div>
         </div>
