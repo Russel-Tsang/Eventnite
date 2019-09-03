@@ -30,7 +30,6 @@ class Api::EventsController < ApplicationController
     end
 
     def update 
-        debugger
         @event = Event.find(params[:id])
         if @event.update(event_params.except(:tags, :id))
             # keep only the tags defined in event_params[:tags]

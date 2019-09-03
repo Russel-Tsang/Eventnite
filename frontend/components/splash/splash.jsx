@@ -248,7 +248,6 @@ class Splash extends Component {
         }
 
         if (this.state.dayFilter !== "Any day") {
-            debugger
             dayButtonText = this.state.dayFilter;
         }
 

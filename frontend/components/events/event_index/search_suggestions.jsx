@@ -24,7 +24,6 @@ class SearchSuggestions extends Component {
         }
         document.addEventListener('mousedown', this.mousedownFunc);
 
-        debugger
         let indexRows = this.props.indexRows.filter(row => {
             if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
         });

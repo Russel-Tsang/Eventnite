@@ -56,7 +56,6 @@ class Details extends Component {
 
     // submitting a photo
     handleSubmit(event) {
-        debugger
         event.preventDefault();
         const formData = new FormData();
         formData.append('event[description]', this.state.description);
@@ -81,7 +80,6 @@ class Details extends Component {
     }
 
     render() {
-        debugger
         let showOverlayImage = this.state.showOverlayImage ? true : false;
         
         let imageSpace = this.state.photoUrl ? (

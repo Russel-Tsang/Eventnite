@@ -45,7 +45,6 @@ class EventIndex extends Component {
     }
 
     componentDidUpdate() {
-        debugger
         let keyword = this.props.match.params.keyword;
         let keywordHolder = keyword === "all" ? '' : keyword;
         let dayFilter = this.props.match.params.time;
@@ -145,7 +144,6 @@ class EventIndex extends Component {
     }
 
     handleIndexRowHover() {
-        debugger
         let hoveredLocation = event.relatedTarget.outerHTML.split('location">')[1];
         hoveredLocation = hoveredLocation.slice(0, hoveredLocation.indexOf(','));
         this.setState({ hoveredLocation });
@@ -242,7 +240,6 @@ class EventIndex extends Component {
         ].filter(buttonDetails => buttonDetails[1] !== '');
 
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
-        debugger
         let dayFilterButtonText;
         if (this.state.dayFilter && this.state.dayFilter !== 'any_date') dayFilterButtonText = this.state.dayFilter;
         return ( 

@@ -9,7 +9,6 @@ const IndexFilter = (props) => {
         return <TagButton key={idx} tag={filterText} onClick={props.onClearSelection(filterType)}/>
     });
 
-    debugger
     let dayFilter = props.dayFilterButtonText ? (
         <TagButton tag={props.dayFilterButtonText} onClick={props.onClearSelection('dayFilter')} />
     ) : (
