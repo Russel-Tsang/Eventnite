@@ -55,8 +55,33 @@ end
 def event1 
     {
         title: 'Night Life', 
-        description: "The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.
-        The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. Today it's seen all around the web; on templates, websites, and stock designs.", 
+        description: "We Invite All Of Our Dance Partners To Join Us For A Night Of Classic Dance Music Inspired By The Loft And Paradise Garage, Including Many Of Our Favorite Club Songs Of Today.
+
+Program Performed From the Vinyl Collections Of Our Musical Host's: DJ Coney And Trevor Fox.
+
+Satuday, October 5th, 2019
+
+9:00PM x 3:00AM
+
+347 West 34th Street,
+
+New York, NY
+
+Between 8th And 9th Avenues
+
+Don’t Forget To Bring Your Party Refreshments/Supplies and Dance Partners.
+
+No Coolers
+
+Tables Are Limited, Be There Early.
+
+Your Contribution: $19.99
+
+Questions, Contact Us:
+Email: party.guestinfo@gmail.com
+Text: (646) 235-9563
+
+See You On The Dance Floor!", 
         event_type: 'Party or Social Gathering', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -74,7 +99,7 @@ def event1
         end_year: 2019,
         begin_time: 990,
         end_time: 1050,
-        price: rand(30),
+        price: 0,
         venue_name: 'Flash Factory NY',
         lat: 40.7474869,
         lng: -73.9948118
@@ -111,7 +136,7 @@ end
 
 def event3
     {
-        title: 'New Years Eve Party', 
+        title: 'Fireworks', 
         description: "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with", 
         event_type: 'Party or Social Gathering', 
         category: 'Family & Education', 
@@ -270,7 +295,7 @@ def event8
         end_year: 2019,
         begin_time: 1320,
         end_time: 1350,
-        price: rand(30),
+        price: 0,
         venue_name: "AES NYC",
         lat: 40.7497305,
         lng: -73.9917574
@@ -354,7 +379,7 @@ def event11
         end_year: 2019,
         begin_time: 1380,
         end_time: 1410,
-        price: rand(30),
+        price: 0,
         venue_name: "The Taco Shop",
         lat: 40.7304919,
         lng: -74.0010621
@@ -494,7 +519,7 @@ def event16
         end_year: 2019,
         begin_time: 1380,
         end_time: 1410,
-        price: rand(30),
+        price: 0,
         venue_name: "Madison Square Park",
         lat: 40.7442645,
         lng: -73.9906244
@@ -550,7 +575,7 @@ def event18
         end_year: 2019,
         begin_time: 1380,
         end_time: 1410,
-        price: rand(30),
+        price: 0,
         venue_name: "Adelante Studios",
         lat: 40.7460181,
         lng: -73.9910783
@@ -614,16 +639,16 @@ def event20
 end
 
 
-Zoe = User.create!(email: 'zoe@gmail.com', fname: 'Zoe', lname: 'Wong', password: 'password')
-Rolanda = User.create!(email: 'rolanda@gmail.com', fname: 'Rolanda', lname: 'Wills', password: 'password')
-Alex = User.create!(email: 'alex@gmail.com', fname: 'Alex', lname: 'Liao', password: 'password')
-Lillian = User.create!(email: 'n@gmail.com', fname: 'Lillian', lname: 'Wang', password: 'password')
-Connor = User.create!(email: 'connor@gmail.com', fname: 'Connor', lname: 'Baker', password: 'password')
-Scarlet = User.create!(email: 'scarlet@gmail.com', fname: 'scarlet', lname: 'witch', password: 'password')
-Miles = User.create!(email: 'miles@gmail.com', fname: 'Miles', lname: 'Morales', password: 'password')
-Capy = User.create!(email: 'capy@gmail.com', fname: 'Capy', lname: 'Bara', password: 'password')
-Tiffany = User.create!(email: 'tiff@gmail.com', fname: 'Tiffany', lname: 'Liao', password: 'password')
-Demo = User.create!(email: 'demo@gmail.com'), fname: 'Demo', lname: 'User', password: 'password')
+Zoe = User.create!(email: 'zoe@gmail.com', fname: 'Zoe', lname: 'Wong', password: 'password', confirm_email: 'zoe@gmail.com')
+Rolanda = User.create!(email: 'rolanda@gmail.com', fname: 'Rolanda', lname: 'Wills', password: 'password', confirm_email: 'rolanda@gmail.com')
+Alex = User.create!(email: 'alex@gmail.com', fname: 'Alex', lname: 'Liao', password: 'password', confirm_email: 'alex@gmail.com')
+Lillian = User.create!(email: 'lillian@gmail.com', fname: 'Lillian', lname: 'Wang', password: 'password', confirm_email: 'lillian@gmail.com')
+Connor = User.create!(email: 'connor@gmail.com', fname: 'Connor', lname: 'Baker', password: 'password', confirm_email: 'connor@gmail.com')
+Scarlet = User.create!(email: 'scarlet@gmail.com', fname: 'scarlet', lname: 'witch', password: 'password', confirm_email: 'scarlet@gmail.com')
+Miles = User.create!(email: 'miles@gmail.com', fname: 'Miles', lname: 'Morales', password: 'password', confirm_email: 'miles@gmail.com')
+Capy = User.create!(email: 'capy@gmail.com', fname: 'Capy', lname: 'Bara', password: 'password', confirm_email: 'capy@gmail.com')
+Tiffany = User.create!(email: 'tiff@gmail.com', fname: 'Tiffany', lname: 'Liao', password: 'password', confirm_email: 'tiff@gmail.com')
+Demo = User.create!(email: 'demo@gmail.com', fname: 'Demo', lname: 'User', password: 'password', confirm_email: 'demo@gmail.com')
 
 night_club_file = open("https://aa-file-upload-dev.s3.amazonaws.com/night_life.png")
 grad_party_file = open("https://aa-file-upload-dev.s3.amazonaws.com/grad_party.png")
