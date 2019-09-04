@@ -623,7 +623,7 @@ Scarlet = User.create!(email: 'scarlet@gmail.com', fname: 'scarlet', lname: 'wit
 Miles = User.create!(email: 'miles@gmail.com', fname: 'Miles', lname: 'Morales', password: 'password')
 Capy = User.create!(email: 'capy@gmail.com', fname: 'Capy', lname: 'Bara', password: 'password')
 Tiffany = User.create!(email: 'tiff@gmail.com', fname: 'Tiffany', lname: 'Liao', password: 'password')
-
+Demo = User.create!(email: 'demo@gmail.com'), fname: 'Demo', lname: 'User', password: 'password')
 
 night_club_file = open("https://aa-file-upload-dev.s3.amazonaws.com/night_life.png")
 grad_party_file = open("https://aa-file-upload-dev.s3.amazonaws.com/grad_party.png")
