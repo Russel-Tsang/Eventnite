@@ -45,13 +45,13 @@ class SearchSuggestions extends Component {
 
     render() {
         let categories = [
-            'Music',
-            'Food & Drink',
-            'Business',
-            'Performing and Visual Arts',
-            'Health'
+            ['Music', window.musicIcon],
+            ['Food & Drink', window.drinkIcon],
+            ['Business', window.businessIcon],
+            ['Performing and Visual Arts', window.theatreIcon],
+            ['Health', window.heartIcon]
         ]
-        .map((category, idx) => <SearchSuggestionRow key={idx} label={category} onCategoryClick={this.props.onCategoryClick} />)
+        .map((category, idx) => <SearchSuggestionRow key={idx} img={category[1]} label={category[0]} onCategoryClick={this.props.onCategoryClick} />)
 
         return (
             <div className={`index-search-suggestions ${this.state.searchSuggestionDisplay}`}>

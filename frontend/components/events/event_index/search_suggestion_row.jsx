@@ -1,10 +1,11 @@
 import React from 'react';
 
 const SearchSuggestionRow = (props) => {
+    debugger
     return ( 
         <div className="search-suggestion-row" onClick={props.onCategoryClick}>
             <span>
-                {props.img}
+                <img src={props.img} />
             </span>
             <span className="search-suggestion-label">
                 {props.label}
