@@ -18,7 +18,7 @@ const App = () => {
         <div>
             <Route path="/" component={ NavBarContainer } />
             <Route exact path="/" component={ SplashContainer } />
-            <AuthRoute path="/signin" component={ SessionContainer } />
+            <AuthRoute path="/signin/" component={ SessionContainer } />
             <ProtectedRoute exact path="/create_event" component={ EventFormContainer } />
             <ProtectedRoute path="/favorites" component={ FavoritesContainer } />
             <Route path="/events/:eventId" component={EventShowContainer} />
