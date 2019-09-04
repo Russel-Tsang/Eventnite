@@ -66,6 +66,13 @@
     .heart-icon {
         height: 17px;
         width: 17px;
+        padding: 8px;
+        border-radius: 30px;
+        transition: background .3s;
+    }
+
+    .heart-icon:hover {
+        background: #f8f7fa;
     }
 
     .index-row-like {
@@ -359,6 +366,13 @@
     font-size: 13px;
     padding: 15px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 25px;
+        margin-right: 15px;
+    }
 }
 
 .search-suggestion-label {

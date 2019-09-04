@@ -1,6 +1,44 @@
-.splash-banner {
+// .carousel {
+//     position: relative;
+//     width: 100%;
+//     // height: 540px;
+// }
+
+.carousel {
+    position: relative;
     width: 100%;
-    top: -200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 0;
+    padding-top: 28%;
+}
+
+.carousel-mic {
+    background-image: url('https://aa-file-upload-dev.s3.amazonaws.com/splash_banner_2.jpg');
+    transition: all 2s;
+}
+
+.carousel-yoga {
+    background-image: url('https://aa-file-upload-dev.s3.amazonaws.com/splash_banner_yoga.jpg');
+    transition: all 2s;
+}
+
+.carousel-food {
+    background-image: url('https://aa-file-upload-dev.s3.amazonaws.com/splash_banner_food.jpg');
+    transition: all 2s;
+}
+
+.splash-banner-img {
+    width: 100%;
+    transition: all 3s;
+    // position: absolute;
+    height: 100%;
+}
+
+.splash-banner-img-yoga {
+    transition: all 3s;
+    position: absolute;
+    height: 100%;
 }
 
 .events-cards {
@@ -133,3 +171,10 @@
         top: 2px;
     }
 }
+
+
+
+// .splash-banner-yoga {
+//     position: absolute;
+//     width: 100%;
+// }
