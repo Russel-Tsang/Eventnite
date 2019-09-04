@@ -258,7 +258,7 @@ def event7
         city: 'New York', 
         state: 'NY', 
         zip_code: '10001', 
-        creator: Connor, 
+        creator: Demo, 
         begin_day: next_week()[:date],
         begin_month: next_week()[:month],
         begin_year: 2019,
