@@ -49,11 +49,11 @@ class DashboardRow extends Component {
                     </span>
                     <img 
                         src={this.props.imgSrc} 
-                        onClick={this.props.onClick}
+                        onClick={this.props.onImgClick}
                         className="dashboard-row-img"
                     />
                     <span className="dashboard-row-details">
-                        <span>{this.props.title}</span>
+                        <span onClick={this.props.onTitleClick}>{this.props.title}</span>
                         <span>
                             <p>{this.props.venueName}</p>
                             <p>{this.props.beginTime}</p>

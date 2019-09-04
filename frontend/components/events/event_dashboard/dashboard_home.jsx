@@ -60,7 +60,8 @@ class Dashboard extends Component {
                 beginDay={event.beginDay}
                 beginTime={toTime(event.beginTime)}
                 imgSrc={event.pictureUrl}
-                onClick={this.handleRedirect(event.id)}
+                onImgClick={this.handleRedirect(event.id)}
+                onTitleClick={this.handleRedirect(event.id)}
                 onEditClick={this.onEditClick(event.id)}
                 onDeleteClick={this.onDeleteClick(event.id)}
             />
