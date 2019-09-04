@@ -43,6 +43,7 @@ class Splash extends Component {
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleMessageBar = this.handleMessageBar.bind(this);
         this.unfilter = this.unfilter.bind(this);
@@ -223,6 +224,11 @@ class Splash extends Component {
         }
     }
 
+    handleKeyPress(event) {
+        debugger
+        if (event.key === 'Enter') this.handleSearchClick();
+    }
+
     handleSearchClick() {
         let keyword = this.state.searchTerm ? this.state.searchTerm : 'all';
         let time = this.state.searchDayFilter ? this.state.searchDayFilter : 'any_date';
@@ -261,6 +267,7 @@ class Splash extends Component {
                     <SearchBar 
                         onSearchInputChange={this.handleSearchInputChange}
                         onSearchClick={this.handleSearchClick}
+                        onKeyPress={this.handleKeyPress}
                     />
                     <FilterBar 
                         categories={this.generateCategories()} 
