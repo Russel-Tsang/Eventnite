@@ -230,6 +230,16 @@ $purple: #1e0a3c;
     justify-content: space-between;
     border-top: 1px #dbdae3 solid;
     border-bottom: 1px #dbdae3 solid; 
+
+    .heart-icon {
+        padding: 10px;
+        border-radius: 30px;
+        transition: background .3s;
+    }
+
+    .heart-icon:hover {
+        background: #f8f7fa;
+    }
 }
 
 .ticket-button {
