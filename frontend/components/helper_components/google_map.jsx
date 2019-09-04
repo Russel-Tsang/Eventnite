@@ -23,7 +23,7 @@ class Map extends Component {
         this.props.events.forEach(event => {
             let iconSize = [30, 30];
             let iconUrl = window.googleMapsIcon;
-
+            debugger
             if (event.venueName === this.props.hoveredLocation) {
                 iconSize = [30, 50];
                 iconUrl = window.googleMapsIconOrange;
