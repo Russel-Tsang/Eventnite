@@ -7,41 +7,47 @@ class SessionForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formType: this.props.formType,
             email: '',
             password: '',
-            confirmEmail: '',
+            confirm_email: '',
             fname: '',
             lname: ''
         };
+        debugger
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // if email = "no email", must mean no email in the database, change formType to "Sign Up"
+    componentDidMount() {
+        debugger    
+    }
+
+    componentDidUpdate() {
+        debugger   
+    }
+
+    // if email = "no email", then email is not in the database, change formType to "Sign Up"
     // otherwise, email is in the database, change formType to "Log In"
     handleFormType(email) {
-        let formType = email === "no email" ? "Sign Up" : "Log In";
-        this.setState({ formType });
+        let formType = email === "no email" ? "signup" : "login";
+        this.props.history.push(`/signin/${formType}`);
+        // this.setState({ formType });
     }
 
     // handle whether the submit button performs sign in or sign up action
     handleSubmit(event) {
+        debugger
         event.preventDefault();
-        switch (this.state.formType) {
-            case "Get Started":
-                this.props.verifyUser(this.state.email).then(
-                    res => {
-                        this.handleFormType(res.email)
-                    }
-                )
-                break
-            case "Sign Up":
+        debugger
+        switch (this.props.location.pathname.split('/')[2]) {
+            case "signup":
                 this.props.signUp(this.state);
                 break;
-            case "Log In":
-                let emailAndPassword = { email: this.state.email, password: this.state.password }
-                this.props.logIn(emailAndPassword);
+            case "login":
+                this.props.logIn({ email: this.state.email, password: this.state.password });
                 break;
+            default:
+                this.props.verifyUser(this.state.email).then(res => this.handleFormType(res.email));
+                break
         }
     }
 
@@ -65,47 +71,38 @@ class SessionForm extends Component {
 
     render() {
         let formErrors = this.handleErrors();
-        const { fname, lname, email, password, formType, confirmEmail } = this.state;
+        const { fname, lname, email, password, formType, confirm_email } = this.state;
         let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, firstNameError, lastNameError, passwordError;
-        
         // change display of form depending on formType
-        switch (this.state.formType) {
-            case "Get Started":
-                imageSrc = window.logo;
-                alt = "session icon";
-                greetingHeaderText = "Let's get started";
-                greetingMessage = "Enter your email to get started.";
-                fontSize = "12px";
-                message = "By continuing, I accept the Eventnite terms of service, community guidelines and have read the privacy policy."
-                break;
-            case "Log In":
+        debugger
+        switch (this.props.location.pathname.split('/')[2]) {
+            case "login":
                 imageSrc = window.signinIcon;
                 alt = "signin icon";
                 greetingHeaderText = "Welcome Back";
                 greetingMessage = "Please enter your password to log in.";
-                message = "Forgot password";
                 fontSize = "14px";
                 formError = formErrors ? formErrors["Invalid"] : "";
 
-                extraInputs = 
+                extraInputs =
                     <StyledInput
                         className="password"
-                        type="password" 
-                        label="Password" 
-                        onChange={this.handleChange("password")} 
-                        value={password} 
-                        error={formError} 
+                        type="password"
+                        label="Password"
+                        onChange={this.handleChange("password")}
+                        value={password}
+                        error={formError}
                     />
                 break;
-            case "Sign Up":
+            case "signup":
                 imageSrc = window.signinIcon;
                 alt = "signup icon";
                 greetingHeaderText = "Welcome";
                 greetingMessage = "Create an Account";
                 message = "Log In Instead";
                 fontSize = "14px";
-                if (formErrors && formErrors["Fname"]) firstNameError = formErrors["Fname"];
-                if (formErrors && formErrors["Lname"]) lastNameError = formErrors["Lname"];
+                if (formErrors && formErrors["Fname"]) firstNameError = "First name can't be blank";
+                if (formErrors && formErrors["Lname"]) lastNameError = "Last name can't be blank";
                 if (formErrors && formErrors["Password"]) passwordError = formErrors["Password"];
                 if (formErrors && formErrors["Email"]) emailError = formErrors["Email"];
                 extraInputs =
@@ -113,8 +110,8 @@ class SessionForm extends Component {
                         <StyledInput 
                             type="text" 
                             label="Confirm Email"
-                            onChange={this.handleChange("confirmEmail")}
-                            value={confirmEmail} 
+                            onChange={this.handleChange("confirm_email")}
+                            value={confirm_email} 
                         />
                         <div className="first-last-name">
                             <StyledInput 
@@ -140,6 +137,14 @@ class SessionForm extends Component {
                             error={passwordError}
                         />
                     </div>;
+                break;
+            default:
+                imageSrc = window.logo;
+                alt = "session icon";
+                greetingHeaderText = "Let's get started";
+                greetingMessage = "Enter your email to get started.";
+                fontSize = "12px";
+                message = "By continuing, I accept the Eventnite terms of service, community guidelines and have read the privacy policy."
                 break;
         }
 
