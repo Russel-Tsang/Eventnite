@@ -6,6 +6,7 @@ import FilterBar from '../splash/filter_bar';
 import MessageBar from '../helper_components/message_bar';
 import { toTime } from '../../util/calculations';
 import { Link } from 'react-router-dom';
+import SplashCarousel from './splash_carousel';
 
 class Splash extends Component {
     constructor(props) {
@@ -261,7 +262,7 @@ class Splash extends Component {
         return (
             <div id="body">
                 <MessageBar messageBarShow={messageBarShow} onCloseClick={this.handleMessageBar} liked={this.state.liked}/>
-                <img className="splash-banner" src={window.splashBanner2} /> 
+                <SplashCarousel /> 
                 <div className="splash-grey-background"></div>  
                 <div className="splash-content">  
                     <SearchBar 
