@@ -72,7 +72,7 @@ class SessionForm extends Component {
     render() {
         let formErrors = this.handleErrors();
         const { fname, lname, email, password, formType, confirm_email } = this.state;
-        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, firstNameError, lastNameError, passwordError;
+        let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, emailErrors, firstNameError, lastNameError, passwordError;
         // change display of form depending on formType
         debugger
         switch (this.props.location.pathname.split('/')[2]) {
@@ -105,6 +105,7 @@ class SessionForm extends Component {
                 if (formErrors && formErrors["Lname"]) lastNameError = "Last name can't be blank";
                 if (formErrors && formErrors["Password"]) passwordError = formErrors["Password"];
                 if (formErrors && formErrors["Email"]) emailError = formErrors["Email"];
+                if (formErrors && formErrors["Emails"]) emailErrors = formErrors["Emails"];
                 extraInputs =
                     <div className="signup-div">
                         <StyledInput 
@@ -112,6 +113,7 @@ class SessionForm extends Component {
                             label="Confirm Email"
                             onChange={this.handleChange("confirm_email")}
                             value={confirm_email} 
+                            error={emailErrors}
                         />
                         <div className="first-last-name">
                             <StyledInput 

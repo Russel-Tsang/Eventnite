@@ -26,7 +26,7 @@ class NavBar extends Component {
     }
 
     logInDemo() {
-        this.props.login({ email: 'tiff@gmail.com', password: 'password'});
+        this.props.login({ email: 'demo@gmail.com', password: 'password'});
     }
 
     handleLogout() {
@@ -35,10 +35,11 @@ class NavBar extends Component {
     }
 
     render() {
-        let createEvent = '';
+        let createEvent, demoUser;
         if (this.props.location.pathname != '/signin') {
             createEvent = <Link className="create-event btn" to="/create_event">Create Event</Link>;
-        }
+        } 
+        if (this.props.location.pathname.includes('signin')) demoUser = <Link className="btn" onClick={this.logInDemo}>Demo User</Link>;
         const { currentUser } = this.props;
         const display = currentUser ? (
                 <>
@@ -55,7 +56,7 @@ class NavBar extends Component {
         ) : (
                 <>
                 {createEvent}
-                <Link className="btn" onClick={this.logInDemo}>Demo User</Link>
+                {demoUser}
                 <Link className="btn" to="/signin">Sign In</Link>
                 </>
         );
