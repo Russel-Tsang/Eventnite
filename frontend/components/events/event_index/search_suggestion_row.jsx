@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SearchSuggestionRow = (props) => {
-    debugger
     return ( 
         <div className="search-suggestion-row" onClick={props.onCategoryClick}>
             <span>

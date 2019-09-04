@@ -50,7 +50,6 @@ class EventIndex extends Component {
         let keyword = this.props.match.params.keyword;
         let keywordHolder = keyword === "all" ? '' : keyword;
         let dayFilter = this.props.match.params.time;
-        debugger
         if (keyword && this.state.mainSearchValue !== keyword) {
             this.setState({ mainSearchValue: keyword, mainSearchValueHolder: keywordHolder });
         } 
@@ -155,7 +154,6 @@ class EventIndex extends Component {
 
     handleIndexRowHover(venueName) {
         return () => {
-            debugger
             this.setState({ hoveredLocation: venueName });
         }
     }
@@ -166,7 +164,6 @@ class EventIndex extends Component {
 
     render() { 
         let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
-        debugger
         let events = this.props.events.filter(event => {
             if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase()) || this.state.mainSearchValue === 'all') {
                 if (event.category === categoryFilter || !categoryFilter) {

@@ -259,23 +259,17 @@ class EventForm extends Component {
         ]
         const CATEGORIES = [
             'Category',
-            'Auto', 
-            'Boat & Air', 
+            'Auto',  
             'Business & Professional', 
-            'Charities & Causes', 
             'Community & Culture', 
             'Family & Education',
-            'Fashion',
             'Film & Media',
             'Food & Drink',
-            'Government',
             'Health',
             'Hobbies',
-            'Holiday',
             'Home & Lifestyle',
             'Music',
             'Performing and Visual Arts',
-            'School Activities',
             'Science & Tech'
         ]
 

@@ -58,8 +58,9 @@ class Details extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData();
+        let photoFile = this.state.photoFile ? this.state.photoFile : this.state.photoUrl;
         formData.append('event[description]', this.state.description);
-        formData.append('event[picture]', this.state.photoFile);
+        if (this.state.photoFile) formData.append('event[picture]', this.state.photoFile);
         this.props.updatePictureAndDescription(formData, this.props.match.params.eventId);    
     }
 

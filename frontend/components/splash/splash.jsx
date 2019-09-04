@@ -16,22 +16,16 @@ class Splash extends Component {
             categories: [
                 'Category',
                 'Auto',
-                'Boat & Air',
                 'Business & Professional',
-                'Charities & Causes',
                 'Community & Culture',
                 'Family & Education',
-                'Fashion',
                 'Film & Media',
                 'Food & Drink',
-                'Government',
                 'Health',
                 'Hobbies',
-                'Holiday',
                 'Home & Lifestyle',
                 'Music',
                 'Performing and Visual Arts',
-                'School Activities',
                 'Science & Tech'
             ],
             searchTerm: '',
@@ -115,7 +109,6 @@ class Splash extends Component {
             if (!beginMonth) beginMonth = '';
             if (!beginDay) beginDay = '';
             if (!beginTime) beginTime = '';
-            debugger
             let cardImage = pictureUrl || window.splashBanner
             // let randomDay = dates[Math.floor(Math.random() * dates.length)];
             let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
@@ -147,22 +140,16 @@ class Splash extends Component {
         return [
             'Any category',
             'Auto',
-            'Boat & Air',
             'Business & Professional',
-            'Charities & Causes',
             'Community & Culture',
             'Family & Education',
-            'Fashion',
             'Film & Media',
             'Food & Drink',
-            'Government',
             'Health',
             'Hobbies',
-            'Holiday',
             'Home & Lifestyle',
             'Music',
             'Performing and Visual Arts',
-            'School Activities',
             'Science & Tech'
         ];
     } 
@@ -226,7 +213,6 @@ class Splash extends Component {
     }
 
     handleKeyPress(event) {
-        debugger
         if (event.key === 'Enter') this.handleSearchClick();
     }
 

@@ -13,16 +13,7 @@ class SessionForm extends Component {
             fname: '',
             lname: ''
         };
-        debugger
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    componentDidMount() {
-        debugger    
-    }
-
-    componentDidUpdate() {
-        debugger   
     }
 
     // if email = "no email", then email is not in the database, change formType to "Sign Up"
@@ -35,9 +26,7 @@ class SessionForm extends Component {
 
     // handle whether the submit button performs sign in or sign up action
     handleSubmit(event) {
-        debugger
         event.preventDefault();
-        debugger
         switch (this.props.location.pathname.split('/')[2]) {
             case "signup":
                 this.props.signUp(this.state);
@@ -74,7 +63,6 @@ class SessionForm extends Component {
         const { fname, lname, email, password, formType, confirm_email } = this.state;
         let imageSrc, alt, greetingHeaderText, greetingMessage, extraInputs, message, fontSize, formError, emailError, emailErrors, firstNameError, lastNameError, passwordError;
         // change display of form depending on formType
-        debugger
         switch (this.props.location.pathname.split('/')[2]) {
             case "login":
                 imageSrc = window.signinIcon;
