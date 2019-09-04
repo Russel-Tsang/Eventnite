@@ -2,8 +2,10 @@ class User < ApplicationRecord
   validates :fname, :lname, :password_digest, :session_token, :email, presence: true
   validates :session_token, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validate :confirm_email
 
   attr_reader :password
+  attr_reader :confirm_email
   after_initialize :ensure_session_token
 
   has_many :events
@@ -30,6 +32,10 @@ class User < ApplicationRecord
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)    
+  end
+
+  def confirm_email=(confirm_email)
+    errors.add(:Emails, "must match") if (self.email != confirm_email) 
   end
 
   def self.find_by_credentials(email, password)
