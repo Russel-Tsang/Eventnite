@@ -12,6 +12,7 @@ class NavBar extends Component {
 
         this.toggleDisplay = this.toggleDisplay.bind(this);
         this.handleDropdownDisplay = this.handleDropdownDisplay.bind(this);
+        this.logInDemo = this.logInDemo.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -22,6 +23,10 @@ class NavBar extends Component {
 
     handleDropdownDisplay(value) {
         return () => this.setState({ display: value });
+    }
+
+    logInDemo() {
+        this.props.login({ email: 'tiff@gmail.com', password: 'password'});
     }
 
     handleLogout() {
@@ -50,6 +55,7 @@ class NavBar extends Component {
         ) : (
                 <>
                 {createEvent}
+                <Link className="btn" onClick={this.logInDemo}>Demo User</Link>
                 <Link className="btn" to="/signin">Sign In</Link>
                 </>
         );
