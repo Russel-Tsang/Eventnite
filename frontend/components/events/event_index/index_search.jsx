@@ -9,6 +9,7 @@ const IndexSearch = (props) => {
                 onCategoryClick={props.onCategoryClick}
                 mainSearchValue={props.mainSearchValue}
                 onMainSearchChange={props.onMainSearchChange}
+                onKeyPress={props.onKeyPress}
             />
             <div className="index-search-button-div">
                 <div className="button-1 index-search-button" onClick={props.onSearchClick}>

@@ -35,6 +35,7 @@ class EventIndex extends Component {
         this.handleApplyClick = this.handleApplyClick.bind(this);
         this.handleClearSelection = this.handleClearSelection.bind(this);
         this.handleMainSearchChange = this.handleMainSearchChange.bind(this);
+        this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleIndexRowHover = this.handleIndexRowHover.bind(this);
         this.handleMessageBarClose = this.handleMessageBarClose.bind(this);
@@ -49,6 +50,7 @@ class EventIndex extends Component {
         let keyword = this.props.match.params.keyword;
         let keywordHolder = keyword === "all" ? '' : keyword;
         let dayFilter = this.props.match.params.time;
+        debugger
         if (keyword && this.state.mainSearchValue !== keyword) {
             this.setState({ mainSearchValue: keyword, mainSearchValueHolder: keywordHolder });
         } 
@@ -136,6 +138,13 @@ class EventIndex extends Component {
         this.setState({ mainSearchValueHolder: event.target.value });
     }
 
+    handleSearchKeyPress() {
+        if (event.key === 'Enter') {
+            this.handleSearchClick();
+            document.querySelector('.index-search-suggestions').classList.add('display-none');
+        }
+    }
+
     handleSearchClick() {
         if (this.state.mainSearchValueHolder) {
             this.props.history.push(`/all_events/${this.state.mainSearchValueHolder}/${this.state.dayFilter.toLowerCase()}`);
@@ -144,10 +153,11 @@ class EventIndex extends Component {
         }
     }
 
-    handleIndexRowHover() {
-        let hoveredLocation = event.relatedTarget.outerHTML.split('location">')[1];
-        hoveredLocation = hoveredLocation.slice(0, hoveredLocation.indexOf(','));
-        this.setState({ hoveredLocation });
+    handleIndexRowHover(venueName) {
+        return () => {
+            debugger
+            this.setState({ hoveredLocation: venueName });
+        }
     }
 
     handleMessageBarClose() {
@@ -156,6 +166,7 @@ class EventIndex extends Component {
 
     render() { 
         let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
+        debugger
         let events = this.props.events.filter(event => {
             if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase()) || this.state.mainSearchValue === 'all') {
                 if (event.category === categoryFilter || !categoryFilter) {
@@ -229,7 +240,7 @@ class EventIndex extends Component {
                     city={city}
                     state={state}
                     price={price}
-                    handleMouseEnter={this.handleIndexRowHover}
+                    handleMouseEnter={this.handleIndexRowHover(venueName)}
                     onlineEvent={onlineEvent}
                     onLikeClick={this.handleLikeClick(id)}
                     onEventClick={this.handleEventClick(id)}
@@ -256,6 +267,7 @@ class EventIndex extends Component {
                         onCategoryClick={this.handleFilterChange('categoryFilter')}
                         onMainSearchChange={this.handleMainSearchChange}
                         mainSearchValue={this.state.mainSearchValueHolder}
+                        onKeyPress={this.handleSearchKeyPress}
                         onSearchClick={this.handleSearchClick}
                     />
                     <IndexFilter 

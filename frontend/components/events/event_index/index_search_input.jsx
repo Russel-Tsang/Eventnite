@@ -11,6 +11,7 @@ const IndexSearchInput = (props) => {
                         value={props.mainSearchValue} 
                         onChange={props.onMainSearchChange}
                         placeholder="Search anything"
+                        onKeyPress={props.onKeyPress}
                     />
                     <SearchSuggestions 
                         indexRows={props.indexRows} 
