@@ -8,6 +8,11 @@ class ModalPane extends Component {
         this.props.fetchEvent(this.props.match.params.eventId);
     }
 
+    componentDidUpdate() {
+        let description = document.querySelector('.modal-details-description');
+        if (description.innerText.includes('<p>')) description.innerHTML = description.innerText.split("</p>").join("</p> <br>");
+    }
+
     render() {
         const event = this.props.events[0];
         const { title, beginMonth, beginDay, beginYear, beginTime, endMonth, endDay, endYear, endTime, description, pictureUrl } = event
@@ -26,7 +31,7 @@ class ModalPane extends Component {
                             <span>
                                 <h3>***{title}***</h3>
                             </span>
-                            <span>
+                            <span className="modal-details-description">
                                 {description}
                             </span>
                             <hr/>

@@ -79,8 +79,7 @@ class SessionForm extends Component {
                         label="Password"
                         onChange={this.handleChange("password")}
                         value={password}
-                        error={formError}
-                    />
+                        error={formError} />
                 break;
             case "signup":
                 imageSrc = window.signinIcon;
@@ -101,31 +100,27 @@ class SessionForm extends Component {
                             label="Confirm Email"
                             onChange={this.handleChange("confirm_email")}
                             value={confirm_email} 
-                            error={emailErrors}
-                        />
+                            error={emailErrors} />
                         <div className="first-last-name">
                             <StyledInput 
                                 type="text" 
                                 label="First Name" 
                                 onChange={this.handleChange("fname")} 
                                 value={fname} 
-                                error={firstNameError}
-                            />
+                                error={firstNameError} />
                             <StyledInput 
                                 type="text" 
                                 label="Last Name" 
                                 onChange={this.handleChange("lname")} 
                                 value={lname} 
-                                error={lastNameError}
-                            />
+                                error={lastNameError} />
                         </div>
                         <StyledInput 
                             type="password" 
                             label="Password" 
                             onChange={this.handleChange("password")} 
                             value={password} 
-                            error={passwordError}
-                        />
+                            error={passwordError} />
                     </div>;
                 break;
             default:
@@ -144,25 +139,22 @@ class SessionForm extends Component {
                     imageSrc={imageSrc}
                     alt={alt}
                     greetingHeaderText={greetingHeaderText}
-                    greetingMessage={greetingMessage} 
-                />
+                    greetingMessage={greetingMessage} />
 
                 <form onSubmit={this.handleSubmit}>
                     <StyledInput 
-                        type={"text"} 
+                        type={"email"} 
                         value={email} 
                         onChange={this.handleChange("email")} 
                         label="Email Address" 
-                        error={emailError}
-                    />
+                        error={emailError} />
 
                     {extraInputs}
                     <ButtonAndMessage 
                         type={"submit"}
                         value={formType}
                         message={message} 
-                        fontSize={fontSize} 
-                    />
+                        fontSize={fontSize} />
                 </form>
             </div>
         )
