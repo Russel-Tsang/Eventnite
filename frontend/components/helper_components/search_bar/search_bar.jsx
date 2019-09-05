@@ -7,19 +7,19 @@ const SearchBar = (props) => {
         <div className="search-bar">
             <SearchSection label="Looking for">
                 <input 
-                placeholder="Event" 
-                type="text" 
-                onChange={props.onSearchInputChange('searchTerm')}
-                onKeyPress={props.onKeyPress}
-            />
+                    placeholder="Event" 
+                    type="text" 
+                    onChange={props.onSearchInputChange('searchTerm')}
+                    onKeyPress={props.onKeyPress}
+                />
             </SearchSection>
             <SearchSection label="In">
                 <input 
-                className="search-bar-input-location" 
-                value="New York" 
-                onChange={() => {}} type="text" 
-                onKeyPress={props.onKeyPress}
-            />
+                    className="search-bar-input-location" 
+                    value="New York" 
+                    onChange={() => {}} type="text" 
+                    onKeyPress={props.onKeyPress}
+                />
             </SearchSection>
             <SearchSection label="On">
                 <StyledSelect color="white" onChange={props.onSearchInputChange('searchDayFilter')}>

@@ -27,13 +27,16 @@ class EventShow extends Component {
     
     componentDidMount() {
         this.props.fetchEvent(this.props.match.params.eventId);
+
         window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {
+        let paragraph = document.querySelector('.description p');
         if (this.props.match.params.eventId !== prevProps.match.params.eventId) {
             this.props.fetchEvent(this.props.match.params.eventId);
         }
+        if (paragraph.innerText.includes('<p>')) paragraph.outerHTML = paragraph.innerText.split("</p>").join("</p> <br>");
     }
 
     // re-enable scroll after user closes the modal
@@ -143,7 +146,6 @@ class EventShow extends Component {
                 />
             )
         }
-
         return (
             <div className="event-show">
                 {modal}
@@ -165,7 +167,7 @@ class EventShow extends Component {
                         />
                         {ticketBar}
                         <EventDescription 
-                            description={description}
+                            description={unescape(description)}
                             street={street}
                             city={city}
                             state={state}

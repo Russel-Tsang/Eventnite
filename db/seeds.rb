@@ -55,33 +55,35 @@ end
 def event1 
     {
         title: 'Night Life', 
-        description: "We Invite All Of Our Dance Partners To Join Us For A Night Of Classic Dance Music Inspired By The Loft And Paradise Garage, Including Many Of Our Favorite Club Songs Of Today.
+        description: 
+        "We Invite All Of Our Dance Partners To Join Us For A Night Of Classic Dance Music Inspired By The Loft And Paradise Garage, Including Many Of Our Favorite Club Songs Of Today.
 
-Program Performed From the Vinyl Collections Of Our Musical Host's: DJ Coney And Trevor Fox.
+        Program Performed From the Vinyl Collections Of Our Musical Host's: DJ Coney And Trevor Fox.
 
-Satuday, October 5th, 2019
+        Satuday, October 5th, 2019
 
-9:00PM x 3:00AM
+        9:00PM x 3:00AM
 
-347 West 34th Street,
+        347 West 34th Street,
 
-New York, NY
+        New York, NY
 
-Between 8th And 9th Avenues
+        Between 8th And 9th Avenues
 
-Don’t Forget To Bring Your Party Refreshments/Supplies and Dance Partners.
+        Don’t Forget To Bring Your Party Refreshments/Supplies and Dance Partners.
 
-No Coolers
+        No Coolers
 
-Tables Are Limited, Be There Early.
+        Tables Are Limited, Be There Early.
 
-Your Contribution: $19.99
+        Your Contribution: $19.99
 
-Questions, Contact Us:
-Email: party.guestinfo@gmail.com
-Text: (646) 235-9563
+        Questions, Contact Us:
+        Email: party.guestinfo@gmail.com
+        Text: (646) 235-9563
 
-See You On The Dance Floor!", 
+        See You On The Dance Floor!", 
+
         event_type: 'Party or Social Gathering', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -109,7 +111,15 @@ end
 def event2
     {
         title: 'Grad Party', 
-        description: "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with", 
+        description: 
+        "You’re Invited to a History Party
+
+        In Honor of Rick Peterson’s College Graduation
+
+        Help Rick Celebrate His New History Degree
+
+        Come Dressed As Your Favorite Historical Figure", 
+
         event_type: 'Party or Social Gathering', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -137,7 +147,13 @@ end
 def event3
     {
         title: 'Fireworks', 
-        description: "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with", 
+        description: 
+        "Fireworks are a class of low explosive pyrotechnic devices used for aesthetic and entertainment purposes. The most common use of a firework is as part of a fireworks display (also called a fireworks show or pyrotechnics), a display of the effects produced by firework devices.
+        
+        Fireworks take many forms to produce the four primary effects: noise, light, smoke, and floating materials (confetti for example). They may be designed to burn with colored flames and sparks including red, orange, yellow, green, blue, purple, and silver. Displays are common throughout the world and are the focal point of many cultural and religious celebrations.
+
+        Fireworks are generally classified as to where they perform, either as a ground or aerial firework. In the latter case they may provide their own propulsion (skyrocket) or be shot into the air by a mortar (aerial shell).", 
+        
         event_type: 'Party or Social Gathering', 
         category: 'Family & Education', 
         organizer: Faker::Name.name, 
@@ -165,7 +181,19 @@ end
 def event4
     {
         title: 'Car Show', 
-        description: "Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore. While lorem ipsum's still resembles classical Latin, it actually has no meaning whatsoever. As Cicero's text doesn't contain the letters K, W, or Z, alien to latin, these, and others are often inserted randomly to mimic the typographic appearence of European languages, as are digraphs not to be found in the original.", 
+        description: 
+        "AGENDA
+        
+        10am a private 60 min professional tour of the award winning English Gardens in full bloom we will see the best of the 216 acres of gardens, rolling fields and woodlands.
+        
+        Old Westbury Gardens is a New York State Historic Site, listed on the National Register of Historic Places. Former Gold Coast home of John S. Phipps, his wife, Margarita Grace Phipps and their four children.
+
+        SELF GUIDED TOUR of House after Gardens *Due to the restoration of its roof and other conservation projects there is limited access to Westbury House. Grab a new friend and see what is available to see to the public in the house
+
+        CAR SHOW 11am-1pm Your admission includes entrance into the CAR SHOW being held that day on the grounds Porsche, Mercedes, BMW available to view - chat with the owners
+
+        FOOD AVAILABLE *at your own expense the CAFE in the WOODS to relax with new single friends after tour and show", 
+
         event_type: 'Conference', 
         category: 'Auto', 
         organizer: Faker::Name.name, 
@@ -193,7 +221,15 @@ end
 def event5
     {
         title: 'Birthday Bash', 
-        description: "It's difficult to find examples of lorem ipsum in use before Letraset made it popular as a dummy text in the 1960s, although McClintock says he remembers coming across the lorem ipsum passage in a book of old metal type samples. So far he hasn't relocated where he once saw the passage, but the popularity of Cicero in the 15th century supports the theory that the filler text has been used for centuries. And anyways, as Cecil Adams reasoned, “[Do you really] think graphic arts supply houses were hiring classics scholars in the 1960s?” Perhaps. But it seems reasonable to imagine that there was a version in use far before the age of Letraset.", 
+        description: 
+        "Crazy Science Show is a new and surprising format of a kids’ party! On-site science laboratory, where science fiction becomes a reality!
+
+        1. Dry Ice Discovery party (100% interactive show. 45 min show. 10-25 group of kids)
+        
+        2.Slime Party (making slime with your kids. 45 min. 10-25 group of kids)
+        
+        3.Liquid nitrogen party (party with Ice Cream in the end. 45 min. 10-25 group of kids)",
+
         event_type: 'Party or Social Gathering', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -221,7 +257,8 @@ end
 def event6
     {
         title: 'Baseball @ Nite', 
-        description: "It's difficult to find examples of lorem ipsum in use before Letraset made it popular as a dummy text in the 1960s, although McClintock says he remembers coming across the lorem ipsum passage in a book of old metal type samples. So far he hasn't relocated where he once saw the passage, but the popularity of Cicero in the 15th century supports the theory that the filler text has been used for centuries. And anyways, as Cecil Adams reasoned, “[Do you really] think graphic arts supply houses were hiring classics scholars in the 1960s?” Perhaps. But it seems reasonable to imagine that there was a version in use far before the age of Letraset.", 
+        description: 
+        "The Rockland Boulders are back in the playoffs and this year's ticket deal is better than ever! You can get 4 ticket vouchers for a 2019 playoff home game plus 4 ticket vouchers for Opening Day 2020 for only $29!", 
         event_type: 'Party or Social Gathering', 
         category: 'Tournament', 
         organizer: Faker::Name.name, 
@@ -249,7 +286,15 @@ end
 def event7
     {
         title: 'Beyond Meat Taste Testing', 
-        description: "Spare ribs pork belly sirloin, burgdoggen landjaeger salami chuck cow ham shoulder leberkas doner jowl. Chicken ham short loin pork chop swine, picanha short ribs fatback buffalo. Tail chuck leberkas cupim beef ribs tenderloin. Prosciutto chicken cupim, boudin bresaola sirloin corned beef strip steak tail short ribs shoulder alcatra tongue capicola swine. Short ribs landjaeger chuck flank. Leberkas jerky beef, venison tri-tip chicken kielbasa corned beef short ribs kevin hamburger buffalo ham drumstick brisket. Cupim tri-tip tail ribeye meatloaf jowl chicken pancetta kevin porchetta swine beef ribs ham hock pastrami shankle.", 
+        description: 
+        "Beyond Meat is a Los Angeles-based producer of plant-based meat substitutes founded in 2009 by Ethan Brown. The company's products became available across the United States in 2013.[2][3][4] In May 2016, it released the first plant-based burger to be sold in the meat section of grocery stores, on an international basis.[5] The company has products designed to replace beef and pork sausage.
+            
+        The company was founded as a California-based startup by Ethan Brown in 2009.[6] The company has received venture funding from Kleiner Perkins, Obvious Corporation, Bill Gates, Biz Stone, the Humane Society[7][8] and Tyson Foods.[9] The company began selling its chicken-free mock chicken products in Whole Foods supermarkets across the US in April 2013.[10][11] In 2014, it developed a beef product.
+
+        The People for the Ethical Treatment of Animals named Beyond Meat as its company of the year for 2013.[12][13]
+
+        Tyson Foods purchased a 5% stake in Beyond Meat in October 2016.[14] It sold its 6.5% stake and exited the investment in April 2019, ahead of the company's initial public offering",
+
         event_type: 'Atraction', 
         category: 'Health', 
         organizer: Faker::Name.name, 
@@ -277,7 +322,11 @@ end
 def event8
     {
         title: 'Hot Dog Eating Contest', 
-        description: "Spare ribs pork belly sirloin, burgdoggen landjaeger salami chuck cow ham shoulder leberkas doner jowl. Chicken ham short loin pork chop swine, picanha short ribs fatback buffalo. Tail chuck leberkas cupim beef ribs tenderloin. Prosciutto chicken cupim, boudin bresaola sirloin corned beef strip steak tail short ribs shoulder alcatra tongue capicola swine. Short ribs landjaeger chuck flank. Leberkas jerky beef, venison tri-tip chicken kielbasa corned beef short ribs kevin hamburger buffalo ham drumstick brisket. Cupim tri-tip tail ribeye meatloaf jowl chicken pancetta kevin porchetta swine beef ribs ham hock pastrami shankle.", 
+        description: 
+        "The Nathan's Hot Dog Eating Contest is an annual American hot dog competitive eating competition. It is held each year on Independence Day at Nathan's Famous Corporation's original, and best-known restaurant at the corner of Surf and Stillwell Avenues in Coney Island, a neighborhood of Brooklyn, New York City.
+
+        The contest has gained public attention in recent years due to the stardom of Takeru Kobayashi and Joey Chestnut. The defending men's champion is Joey Chestnut, who ate 71 hot dogs in the 2019 contest. The defending women's champion is Miki Sudo, who ate 31 hot dogs in the 2019 contest.", 
+
         event_type: 'Attraction', 
         category: 'Health', 
         organizer: Faker::Name.name, 
@@ -305,7 +354,8 @@ end
 def event9
     {
         title: 'Astrophysical Anomalies', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "While astronomy is one of the oldest sciences, theoretical astrophysics began with Isaac Newton. Prior to Newton, astronomers described the motions of heavenly bodies using complex mathematical models without a physical basis. Newton showed that a single theory simultaneously explains the orbits of moons and planets in space and the trajectory of a cannonball on Earth. This added to the body of evidence for the (then) startling conclusion that the heavens and Earth are subject to the same physical laws.", 
         event_type: 'Convention', 
         category: 'Science & Tech', 
         organizer: Faker::Name.name, 
@@ -333,7 +383,11 @@ end
 def event10
     {
         title: 'Neural Science Showcase', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Natural science is a branch of science concerned with the description, prediction, and understanding of natural phenomena, based on empirical evidence from observation and experimentation. Mechanisms such as peer review and repeatability of findings are used to try to ensure the validity of scientific advances.
+
+        Natural science can be divided into two main branches: life science (or biological science) and physical science. Physical science is subdivided into branches, including physics, chemistry, astronomy and earth science. These branches of natural science may be further divided into more specialized branches (also known as fields). As empirical sciences, natural sciences use tools from the formal sciences, such as mathematics and logic, converting information about nature into measurements which can be explained as clear statements of the laws of nature", 
+
         event_type: 'Convention', 
         category: 'Science & Tech', 
         organizer: Faker::Name.name, 
@@ -361,7 +415,15 @@ end
 def event11
     {
         title: 'Taco Tuesday', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Each and Every Thursday Until The End Of Summer We Will Be Taking Over The Suede Garden (outdoors)
+
+        For #TBT TACO BOUT THURSDAYS
+
+        Doors Open 4:00 pm AfterWorkVibes!!!
+
+        With All The Top DJ's Roating On A Weekly Basis!", 
+
         event_type: 'Attraction', 
         category: 'Health', 
         organizer: Faker::Name.name, 
@@ -389,7 +451,15 @@ end
 def event12
     {
         title: 'Cooking on a Budget', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Learn the basics of vegan cooking and how Yondu, our plant-based umami seasoning sauce, can make vegan cooking easy and delicious!
+
+        To start, our chefs will demonstrate the various ways Yondu can elevate your everyday cooking with three simple vegan recipes. Then, you will replicate the recipes in the hands-on portion of the class using seasonal produce from the Union Square farmer's market.
+
+        The workshop will conclude with a vibrant family-style dinner (prepared by you!) paired with local beer, wine and non-alcoholic refreshments.
+
+        *Please note, we do not allow outside alcoholic beverages.", 
+
         event_type: 'Convention', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -417,7 +487,10 @@ end
 def event13
     {
         title: 'Minimalist Furniture Auction', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "People have been using natural objects, such as tree stumps, rocks and moss, as furniture since the beginning of human civilisation. Archaeological research shows that from around 30,000 years ago, people began constructing and carving their own furniture, using wood, stone, and animal bones. Early furniture from this period is known from artwork such as a Venus figurine found in Russia, depicting the goddess on a throne. 
+        
+        The first surviving extant furniture is in the homes of Skara Brae in Scotland, and includes cupboards, dressers and beds all constructed from stone. Complex construction techniques such as joinery began in the early dynastic period of ancient Egypt. This era saw constructed wooden pieces, including stools and tables, sometimes decorated with valuable metals or ivory.", 
         event_type: 'Convention', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -445,7 +518,12 @@ end
 def event14
     {
         title: "Martha Cooks", 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: "Kick off at 6:00 with a quick round of introductions then get hands-on in the Coltivare culinary lab in a fun and interactive class complete with tastings, takeaways and an adult beverage pairing. An ideal class for couples, friends, and the outgoing solo cook looking to meet new people. No experience or expertise necessary.
+
+        **Please note this class takes place on the second FRIDAY of the month instead of the traditional Saturday**
+
+        $50 price per person is all inclusive (food/adult beverage/take-home recipe). Expect to leave full, happy, and likely with leftovers!", 
+
         event_type: 'Convention', 
         category: 'Home & Lifestyle', 
         organizer: Faker::Name.name, 
@@ -473,7 +551,15 @@ end
 def event15
     {
         title: 'Popcorn and a Movie', 
-        description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Join New York- Presbyterian Westchester Division and NAMI Westchester for a free movie screening of 'The Soloist', a film about friendship, support and mental illness.
+        
+        Wednesday, October 2, 2019
+        Movie starts at 6:00PM
+        Panel discussion to follow, 
+
+        Admission is free, registration is required.",
+
         event_type: 'Screening', 
         category: 'Film & Media', 
         organizer: Faker::Name.name, 
@@ -501,7 +587,15 @@ end
 def event16
     {
         title: 'Community Potluck', 
-        description: "There are many variations of yogurt available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Please join us for our annual Picnic in the Park to celebrate our SIV community and generous volunteers.
+
+        We request you bring a favorite dish to share. Beverages will be provided.
+
+
+
+        Registration for this event is free, but if you would like to help offset the cost of the picnic, you can feel free to bring a donation the day of the event.", 
+
         event_type: 'Convention', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
@@ -529,7 +623,17 @@ end
 def event17
     {
         title: 'DIY Kombucha', 
-        description: "There are many variations of kombucha available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Fermentation has been used for centuries to help preserve food and make some foods easier to digest. Most commercial offerings are loaded with unwanted chemicals and corn syrup. In this workshop you will learn some of the history behind fermented foods as well as the numerous health benefits of introducing more probiotic foods into your diet. After getting excited about eating all these delicious ferments, participants will get learn via an interactive kombucha and kraut making demo and leave with a starter kombucha kit w/ kraut on the side.
+
+        Details
+        ---> $25/ person
+        ---> Walkins welcome but limited
+        ---> No previous experience in anything is necessary.
+        ---> Al materials and supplies will be provided
+        ---> ASL interpreting provided with 10 days notice
+        ---> Once registered course fees are non-refundable and cannot be applied to a future class.", 
+
         event_type: 'Convention', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
@@ -557,7 +661,13 @@ end
 def event18
     {
         title: 'Dance Lessons', 
-        description: "There are many variations of dancing ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Dance as if UCARE! (Understanding Consciously and Releasing Emotions). Join us every Saturday at 4:30PM for a dance class that will help you develop mindfulness, improve self-expression and emotional stability.
+
+        Prior dance experience is not required. Each week you will learn a new routine that layers in the basics of hip hop!
+
+        These classes are a partnership between Brooklyn Community Pride Center and Bot n Sole, Inc. and facilitated by choreographer and owner", 
+
         event_type: 'Class, Training, or Workshop', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
@@ -585,7 +695,11 @@ end
 def event19
     {
         title: 'Book Club', 
-        description: "There are many variations of dancing ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "The BBBC is a group where business owners can go to learn about best practices by hearing and participating in conversations through reading selected texts. The BBBC is a member-run group for business owners who want to benefit from their fellow members’ knowledge and expertise.
+
+        The book for the next meeting is Atomic Habits by James Clear. There are copies available from the Brooklyn Publc Librabry in print and ebook format.", 
+
         event_type: 'Class, Training, or Workshop', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 
@@ -613,7 +727,11 @@ end
 def event20
     {
         title: 'Bird Watching', 
-        description: "There are many variations of dancing ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.", 
+        description: 
+        "Before our gates open to the general public, birding expert Rob Jett leads these peaceful Sunday morning walking tours to discover the birds that make Green-Wood their home – at least temporarily. By September, offspring of these nesting birds will be on their own. Returning warblers will be in their less flamboyant fall plumage. Large numbers of blackbirds, flycatchers, sparrows, vireos, and swallows will also be passing through. By October, waterfowl are returning, and we’ll look for raptors heading south. November will bring back our overwintering feathered denizens from the north.
+ 
+        All walks are at a slow pace on easy to moderate terrain, but proper, close toed footwear is suggested.", 
+        
         event_type: 'Class, Training, or Workshop', 
         category: 'Community & Culture', 
         organizer: Faker::Name.name, 

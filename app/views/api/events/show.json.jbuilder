@@ -1,7 +1,8 @@
 json.event do
-    json.extract! @event, :id, :title, :description, :category, :organizer, :street, :city, :state, :price
+    json.extract! @event, :id, :title, :category, :organizer, :street, :city, :state, :price
     json.set! :eventId, @event.id
     json.set! :eventType, @event.event_type
+    json.set! :description, simple_format(@event.description)
     json.set! :onlineEvent, @event.online_event
     json.set! :venueName, @event.venue_name
     json.set! :zipCode, @event.zip_code

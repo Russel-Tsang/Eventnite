@@ -33,12 +33,16 @@ class Details extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        let textEditorDescription = document.querySelector('.text-editor').value;
         if (this.props.match.params.eventId !== prevProps.match.params.eventId) {
             this.props.fetchEvent(this.props.match.params.eventId).then(
                 action => {
                     this.setState({ description: action.event.description, photoUrl: action.event.pictureUrl })
                 }
             );
+        }
+        if (textEditorDescription.includes('<p>')) {
+            document.querySelector('.text-editor').value = textEditorDescription.replace(/(<([^>]+)>)/ig, "");
         }
     }
 

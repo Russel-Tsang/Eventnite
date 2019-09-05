@@ -5,8 +5,7 @@ class SearchSuggestions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            indexRows: '',
-            mainSearchValue: this.props.mainSearchValue,
+            mainSearchValue: this.props.mainSearchValue || '',
             searchSuggestionDisplay: 'display-none'
         }
     }
@@ -23,24 +22,10 @@ class SearchSuggestions extends Component {
             } 
         }
         document.addEventListener('mousedown', this.mousedownFunc);
-
-        let indexRows = this.props.indexRows.filter(row => {
-            if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
-        });
-        this.setState({ indexRows });
     }
 
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.mousedownFunc);
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.mainSearchValue !== prevProps.mainSearchValue) {
-            let indexRows = this.props.indexRows.filter(row => {
-                if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
-            });
-            this.setState({ indexRows });
-        }
     }
 
     render() {
@@ -53,17 +38,27 @@ class SearchSuggestions extends Component {
         ]
         .map((category, idx) => <SearchSuggestionRow key={idx} img={category[1]} label={category[0]} onCategoryClick={this.props.onCategoryClick} />)
 
-        return (
-            <div className={`index-search-suggestions ${this.state.searchSuggestionDisplay}`}>
+        let indexRows = this.props.indexRows.filter(row => {
+            if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
+        });
+
+        debugger
+        let categoryRows = this.props.mainSearchValue ? null : (
+            <>
                 <header className="search-suggestion-header">
                     Categories
-            </header>
+                </header>
                 {categories}
+            </>
+        );
 
+        return (
+            <div className={`index-search-suggestions ${this.state.searchSuggestionDisplay}`}>
+                {categoryRows}
                 <header className="search-suggestion-header">
                     Events
-            </header>
-                {this.state.indexRows}
+                </header>
+                {indexRows}
             </div>
         );
     }
