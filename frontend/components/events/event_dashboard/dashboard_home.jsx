@@ -21,6 +21,12 @@ class Dashboard extends Component {
         window.scrollTo(0, 0);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.location.pathname != prevProps.location.pathname) {
+            this.props.fetchCreatedEvents(this.props.currentUser);
+        }
+    }
+
     onDeleteClick(id) {
         return () => {
             this.props.deleteEvent(id);

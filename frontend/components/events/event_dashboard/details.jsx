@@ -65,6 +65,7 @@ class Details extends Component {
         formData.append('event[description]', this.state.description);
         if (this.state.photoFile) formData.append('event[picture]', this.state.photoFile);
         this.props.updatePictureAndDescription(formData, this.props.match.params.eventId);    
+        this.props.history.push('/dashboard/all');
     }
 
     handleFile(event) {
