@@ -55,7 +55,7 @@ class Api::EventsController < ApplicationController
     end
 
     def created_events_index
-        @events = User.find(params[:userId]).events
+        @events = User.find(params[:userId]).events.with_attached_picture
         if @events 
             render :index
         else
@@ -64,7 +64,7 @@ class Api::EventsController < ApplicationController
     end
 
     def liked_events_index
-        @events = User.find(params[:userId]).liked_events
+        @events = User.find(params[:userId]).liked_events.with_attached_picture
         if @events 
             render :index
         else
