@@ -33,10 +33,12 @@ class Api::EventsController < ApplicationController
         @event = Event.find(params[:id])
         if @event.update(event_params.except(:tags, :id))
             # keep only the tags defined in event_params[:tags]
-            if event_params[:tags]
-                @event.tag_ids = event_params[:tags].map { |tag| Tag.create(tag_name: tag).id }
-            else
-                @event.tags.destroy_all
+            if (!event_params[:description])
+                if event_params[:tags]
+                    @event.tag_ids = event_params[:tags].map { |tag| Tag.create(tag_name: tag).id }
+                else
+                    @event.tags.destroy_all
+                end
             end
             render :show
         elsif !@event.valid?
