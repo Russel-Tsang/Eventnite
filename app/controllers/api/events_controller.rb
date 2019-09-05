@@ -1,6 +1,6 @@
 class Api::EventsController < ApplicationController
     def index
-        @events = Event.all
+        @events = Event.all.with_attached_picture
         render :index
     end
 
