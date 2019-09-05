@@ -26,7 +26,6 @@ const SearchBar = (props) => {
                     <option>Any Date</option>
                     <option>Today</option>
                     <option>Tomorrow</option>
-                    <option>This weekend</option>
                 </StyledSelect>
             </SearchSection>
             <div className="search-button" onClick={props.onSearchClick}>

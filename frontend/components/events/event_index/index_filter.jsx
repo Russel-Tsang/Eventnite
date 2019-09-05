@@ -16,7 +16,6 @@ const IndexFilter = (props) => {
             <option>Any Date</option>
             <option>Today</option>
             <option>Tomorrow</option>
-            <option>This weekend</option>
         </StyledSelect >
     );
 

@@ -145,6 +145,7 @@ class EventShow extends Component {
                     liked={liked}
                 />
             )
+            if (pictureUrl === "undefined") pictureUrl = window.photoBalloons;
         }
         return (
             <div className="event-show">

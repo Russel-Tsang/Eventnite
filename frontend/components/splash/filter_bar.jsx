@@ -57,7 +57,6 @@ const FilterBar = (props) => {
                 <option>Any day</option>
                 <option>Today</option>
                 <option>Tomorrow</option>
-                <option>This Weekend</option>
             </StyledSelect>
         );
     }

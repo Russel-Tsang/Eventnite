@@ -42,7 +42,6 @@ class SearchSuggestions extends Component {
             if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
         });
 
-        debugger
         let categoryRows = this.props.mainSearchValue ? null : (
             <>
                 <header className="search-suggestion-header">
