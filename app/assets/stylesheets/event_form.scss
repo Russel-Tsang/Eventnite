@@ -19,7 +19,7 @@ $border-style: 2px solid #dbdae3;
 
 .event-form {
     #autocomplete {
-        width: 100%;
+        width: 97%;
         height: 46px;
     }
 
@@ -41,7 +41,6 @@ $border-style: 2px solid #dbdae3;
         margin-bottom: 15px;
     }
     input {
-        width: 97%;
         height: 35px;
         margin: 10px 0px;
         padding-left: 15px;
@@ -56,6 +55,9 @@ $border-style: 2px solid #dbdae3;
     }
     input[placeholder="Search for Address"] {
         height: 43px;
+    }
+    input[placeholder="Be clear and descriptive."], input[placeholder=" Price per ticket"], input[placeholder="e.g. 155 5th Street"], input[placeholder="Tell attendees who is organizing this event."] {
+        width: 97%;
     }
     input[type="date"] {
         height: 43px;
@@ -160,12 +162,10 @@ h1 + p {
 }
 
 .address-inputs {
-    // border: 1px red solid;
-    display: flex;
     justify-content: space-between;
-    // flex-wrap: wrap;
-    input {
-        width: 45%;
+
+    .city-state-zip {
+        display: flex;
     }
 }
 
