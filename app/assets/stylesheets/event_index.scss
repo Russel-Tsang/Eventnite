@@ -182,8 +182,6 @@
     position: relative;
 
     .index-search-button {
-        width: 100px;
-        height: 40px;
         position: absolute;
         bottom: 0px;
         left: 25px;
@@ -305,8 +303,8 @@
     }
 
     .button-1 {
-        width: 155px;
-        height: 35px;
+        padding-left: 63px;
+        padding-right: 63px;
     }
 
     > * {
