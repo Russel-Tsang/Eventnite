@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MessagedInput from '../../helper_components/messagedInput';
+import StyledInput from '../../helper_components/styled_input';
 import { TagButton, TagButtons }from '../../helper_components/tag_button';
 import SubmitBar from '../../helper_components/submit_bar';
 import { toMinutes, toTime } from '../../../util/calculations';
@@ -37,7 +38,8 @@ class EventForm extends Component {
             venueName: '',
             price: '',
             lat: '',
-            lng: ''
+            lng: '',
+            extraAddressInfo: false
         }
         this.renderAddressInputs = this.renderAddressInputs.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -66,12 +68,27 @@ class EventForm extends Component {
             google.maps.event.addListener(autocomplete, 'place_changed', () => {
                 let venueJSON = autocomplete.getPlace();
                 let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
-                let [street, city] = [addressArray[0], addressArray[1]];
-                let [state, zipCode] = addressArray[2].split(" ");
                 let lat = venueJSON.geometry.location.lat();
                 let lng = venueJSON.geometry.location.lng();
                 let venueName = venueJSON.name;
-                this.setState({ street, city, state, zipCode, venueName, lat, lng });
+                if (addressArray.length === 3) {
+                    debugger
+                    let city = addressArray[0];
+                    let state, zipCode;
+                    if (addressArray[1].split(" ").length === 2) {
+                        state = addressArray[1].split(" ")[0];
+                        zipCode = addressArray[1].split(" ")[1];
+                        this.setState({ zipCode });
+                    } else {
+                        state = addressArray[1];
+                    }
+                    this.setState({ venueName, city, state, extraAddressInfo: true });
+                } else {
+                    debugger
+                    let [street, city] = [addressArray[0], addressArray[1]];
+                    let [state, zipCode] = addressArray[2].split(" ");
+                    this.setState({ street, city, state, zipCode, venueName, lat, lng });
+                }
             });
         }
 
@@ -198,16 +215,19 @@ class EventForm extends Component {
 
     // conditionally render address inputs
     renderAddressInputs() {
-        let addressInput = this.state.formType === "Update" ? (
+        let addressInput = this.state.formType === "Update" || this.state.extraAddressInfo === true ? (
             <>
-            <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
-            <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
-            <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
-            <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} /> 
+                <MessagedInput caption="Address" placeholder="e.g. 155 5th Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
+                <div className="city-state-zip">
+                    <MessagedInput caption="City" placeholder="e.g. New York" value={this.state.city} onChange={this.handleChange("text", "city")} />
+                    <MessagedInput caption="State" placeholder="e.g. NY" value={this.state.state} onChange={this.handleChange("text", "state")} />
+                    <MessagedInput caption="Zip Code" placeholder="e.g. 11101" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} /> 
+                </div>
             </>
         ) : (
             <input type = "text" placeholder = "Search for a venue or address" id = "autocomplete"/>
         );
+
         return !this.state.onlineEvent ? (
             <div className="address-inputs">
                 {addressInput}
@@ -220,7 +240,6 @@ class EventForm extends Component {
     }
 
     renderOnlineOrVenue() {
-
         let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
             <option key={`venue-${idx}`}>{option}</option>
         ));
