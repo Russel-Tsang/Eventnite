@@ -8,15 +8,15 @@ const IndexSearchInput = (props) => {
                 <div className="index-search-input-container">
                     <input 
                         className="index-search-event-input" 
-                        value={props.mainSearchValue} 
-                        onChange={props.onMainSearchChange}
+                        value={props.searchValue} 
+                        onChange={props.onSearchChange}
                         placeholder="Search anything"
                         onKeyPress={props.onKeyPress}
                     />
                     <SearchSuggestions 
                         indexRows={props.indexRows} 
                         onCategoryClick={props.onCategoryClick}
-                        mainSearchValue={props.mainSearchValue}
+                        searchValue={props.searchValue}
                     />
                 </div>
             </div>

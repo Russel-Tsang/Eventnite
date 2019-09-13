@@ -5,7 +5,7 @@ class SearchSuggestions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mainSearchValue: this.props.mainSearchValue || '',
+            searchValue: this.props.searchValue || '',
             searchSuggestionDisplay: 'display-none'
         }
     }
@@ -39,10 +39,10 @@ class SearchSuggestions extends Component {
         .map((category, idx) => <SearchSuggestionRow key={idx} img={category[1]} label={category[0]} onCategoryClick={this.props.onCategoryClick} />)
 
         let indexRows = this.props.indexRows.filter(row => {
-            if (row.props.title.toLowerCase().includes(this.props.mainSearchValue.toLowerCase())) return row;
+            if (row.props.title.toLowerCase().includes(this.props.searchValue.toLowerCase())) return row;
         });
 
-        let categoryRows = this.props.mainSearchValue ? null : (
+        let categoryRows = this.props.searchValue ? null : (
             <>
                 <header className="search-suggestion-header">
                     Categories

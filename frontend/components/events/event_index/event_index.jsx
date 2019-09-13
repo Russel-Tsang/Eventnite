@@ -12,8 +12,8 @@ class EventIndex extends Component {
         super(props);
 
         this.state = {
-            mainSearchValue: '',
-            mainSearchValueHolder: '',
+            searchValue: '',
+            searchValueHolder: '',
             dayFilter: '',
             showFiltersAside: false,
             categoryFilter: '',
@@ -34,7 +34,7 @@ class EventIndex extends Component {
         this.handleDayFilterChange = this.handleDayFilterChange.bind(this);
         this.handleApplyClick = this.handleApplyClick.bind(this);
         this.handleClearSelection = this.handleClearSelection.bind(this);
-        this.handleMainSearchChange = this.handleMainSearchChange.bind(this);
+        this.handleSearchChange = this.handleSearchChange.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleIndexRowHover = this.handleIndexRowHover.bind(this);
@@ -47,11 +47,11 @@ class EventIndex extends Component {
     }
 
     componentDidUpdate() {
-        let keyword = this.props.match.params.keyword;
-        let keywordHolder = keyword === "all" ? '' : keyword;
-        let dayFilter = this.props.match.params.time;
-        if (keyword && this.state.mainSearchValue !== keyword) {
-            this.setState({ mainSearchValue: keyword, mainSearchValueHolder: keywordHolder });
+        let searchValue = this.props.match.params.searchValue;
+        let searchValueHolder = searchValue === "all" ? '' : searchValue;
+        let dayFilter = this.props.match.params.dayFilter;
+        if (searchValue && this.state.searchValue !== searchValue) {
+            this.setState({ searchValue, searchValueHolder });
         } 
         if (dayFilter && this.state.dayFilter !== dayFilter) {
             this.setState({ dayFilter: dayFilter });
@@ -107,7 +107,7 @@ class EventIndex extends Component {
     handleClearSelection(filterType) {
         return () => {
             if (filterType === 'dayFilter') {
-                this.props.history.push(`/all_events/${this.state.mainSearchValue}/any_date`);
+                this.props.history.push(`/all_events/${this.state.searchValue}/any_date`);
             } else {
                 this.setState({ [filterType]: '' });
             }
@@ -115,9 +115,9 @@ class EventIndex extends Component {
     }
 
     handleDayFilterChange(event) {
-        let keyword = this.state.mainSearchValue ? this.state.mainSearchValue : 'all';
+        let searchValue = this.state.searchValue ? this.state.searchValue : 'all';
         let dayFilter = event.target.value === "Any Date" ? 'any_date' : event.target.value;
-        this.props.history.push(`/all_events/${keyword}/${dayFilter}`);
+        this.props.history.push(`/all_events/${searchValue}/${dayFilter}`);
     }
 
     handleApplyClick() {
@@ -133,8 +133,8 @@ class EventIndex extends Component {
         };
     }
 
-    handleMainSearchChange(event) {
-        this.setState({ mainSearchValueHolder: event.target.value });
+    handleSearchChange(event) {
+        this.setState({ searchValueHolder: event.target.value });
     }
 
     handleSearchKeyPress() {
@@ -145,8 +145,8 @@ class EventIndex extends Component {
     }
 
     handleSearchClick() {
-        if (this.state.mainSearchValueHolder) {
-            this.props.history.push(`/all_events/${this.state.mainSearchValueHolder}/${this.state.dayFilter.toLowerCase()}`);
+        if (this.state.searchValueHolder) {
+            this.props.history.push(`/all_events/${this.state.searchValueHolder}/${this.state.dayFilter.toLowerCase()}`);
         } else {
             this.props.history.push(`/all_events/all/${this.state.dayFilter.toLowerCase()}`);
         }
@@ -163,9 +163,9 @@ class EventIndex extends Component {
     }
 
     render() { 
-        let { categoryFilter, eventTypeFilter, priceFilter, mainSearchValue } = this.state; 
+        let { categoryFilter, eventTypeFilter, priceFilter, searchValue } = this.state; 
         let events = this.props.events.filter(event => {
-            if (event.title.toLowerCase().includes(mainSearchValue.toLowerCase()) || this.state.mainSearchValue === 'all') {
+            if (event.title.toLowerCase().includes(searchValue.toLowerCase()) || this.state.searchValue === 'all') {
                 if (event.category === categoryFilter || !categoryFilter) {
                     if (event.eventType === eventTypeFilter || !eventTypeFilter) {
                         if ((event.price > 0 && priceFilter === "Paid") || (event.price === 0 && priceFilter === "Free") || !priceFilter) {
@@ -262,8 +262,8 @@ class EventIndex extends Component {
                     <IndexSearch 
                         indexRows={indexRows}
                         onCategoryClick={this.handleFilterChange('categoryFilter')}
-                        onMainSearchChange={this.handleMainSearchChange}
-                        mainSearchValue={this.state.mainSearchValueHolder}
+                        onSearchChange={this.handleSearchChange}
+                        searchValue={this.state.searchValueHolder}
                         onKeyPress={this.handleSearchKeyPress}
                         onSearchClick={this.handleSearchClick}
                     />
