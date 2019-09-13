@@ -59,7 +59,7 @@ componentDidUpdate() {
 }
 ```
 
-### Future implementations
+### Future Implementations
 
 - show event creator all of his/her event attendees
 - improve usage of Google Maps api to show more information about venues 
