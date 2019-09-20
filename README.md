@@ -27,7 +27,9 @@ Eventnite is an Eventbrite clone, originally intended for night-time events but 
 
 ### Filtering Events
 
-When I first implemented searching/filtering features, I realized that the filter options would not persist on page refresh. I concluded that the best way to tackle this would be to make use of the url string. To allow persistence of search options upon page refresh, I stored options as parameters in the format of:
+<img src="https://github.com/Russel-Tsang/Eventnite/blob/master/app/assets/images/searching_filtering.gif" />
+
+When I first implemented searching/filtering features, I realized that the filter options would not persist on page refresh. I found that the best way to tackle this would be to make use of the url string. To allow persistence of search options upon page refresh, I stored options as parameters in the format of:
 
 ```javascript
 `/all_events/:searchValue/:dayFilter`
