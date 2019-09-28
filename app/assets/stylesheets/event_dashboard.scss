@@ -306,3 +306,9 @@ $red: 1px red solid;
 .details-image-overlay:hover {
     background: rgba(0, 0, 0, 0.5);
 }
+
+@media only screen and (max-width: 1500px) {
+    .dashboard-panel {
+        height: 200vh;
+    }
+}
