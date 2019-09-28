@@ -219,14 +219,13 @@ class EventIndex extends Component {
 
         let indexRows = events.map((event, idx) => {
             let { title, beginYear, beginMonth, beginDay, beginTime, venueName, city, state, price, pictureUrl, id, onlineEvent } = event;
-            pictureUrl = pictureUrl || window.splashBanner;
             let liked = this.props.likes[id] ? true : false;
             let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
             let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
             let day = days[dayIdx];
             return (
                 <IndexRow
-                    pictureUrl = {pictureUrl}
+                    pictureUrl={pictureUrl || window.photoBalloons}
                     key={idx}
                     day={day}
                     title={title}

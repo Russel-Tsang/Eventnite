@@ -65,7 +65,7 @@ class Dashboard extends Component {
                 beginMonth={toMonth(event.beginMonth)}
                 beginDay={event.beginDay}
                 beginTime={toTime(event.beginTime)}
-                imgSrc={event.pictureUrl}
+                imgSrc={event.pictureUrl || window.photoBalloons}
                 onImgClick={this.handleRedirect(event.id)}
                 onTitleClick={this.handleRedirect(event.id)}
                 onEditClick={this.onEditClick(event.id)}

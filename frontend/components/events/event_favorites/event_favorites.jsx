@@ -66,7 +66,7 @@ class EventFavorites extends Component {
             let liked = this.state.likedEvents[id] ? true : false;
             return (
                 <IndexRow
-                    pictureUrl={pictureUrl}
+                    pictureUrl={pictureUrl || window.photoBalloons}
                     key={idx}
                     day={"Mon"}
                     title={title}

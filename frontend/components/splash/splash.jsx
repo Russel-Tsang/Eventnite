@@ -109,7 +109,6 @@ class Splash extends Component {
             if (!beginMonth) beginMonth = '';
             if (!beginDay) beginDay = '';
             if (!beginTime) beginTime = '';
-            let cardImage = pictureUrl || window.splashBanner
             // let randomDay = dates[Math.floor(Math.random() * dates.length)];
             let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
             let day = days[dayIdx];
@@ -117,7 +116,7 @@ class Splash extends Component {
             return (
                 <EventCard
                     key={idx}
-                    cardImage={cardImage}
+                    cardImage={pictureUrl || window.photoBalloons}
                     month={toMonth(beginMonth)}
                     day={day}
                     date={beginDay}

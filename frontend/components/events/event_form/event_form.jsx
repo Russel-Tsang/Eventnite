@@ -45,52 +45,15 @@ class EventForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDiscard = this.handleDiscard.bind(this);
+        this.enableGooglePlaces = this.enableGooglePlaces.bind(this);
     }
 
     // receive action object from fetchEvent thunk action creator, extracting event from action and setting state for prefilling form inputs 
     componentDidMount() {
         window.scrollTo(0, 0);
-        // google address autocomplete search bar
-        let input = document.getElementById('autocomplete');
-        // default boundaries within NYC
-        let defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(40.705722, -74.022880),
-            new google.maps.LatLng(40.801793, -73.928715)
-        );
-        let options = {
-            bounds: defaultBounds,
-            types: ['establishment']
-        };
 
-        if (this.state.formType === "Create") {
-            let autocomplete = new google.maps.places.Autocomplete(input, options);
-    
-            google.maps.event.addListener(autocomplete, 'place_changed', () => {
-                let venueJSON = autocomplete.getPlace();
-                let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
-                let lat = venueJSON.geometry.location.lat();
-                let lng = venueJSON.geometry.location.lng();
-                let venueName = venueJSON.name;
-                if (addressArray.length === 3) {
-                    debugger
-                    let city = addressArray[0];
-                    let state, zipCode;
-                    if (addressArray[1].split(" ").length === 2) {
-                        state = addressArray[1].split(" ")[0];
-                        zipCode = addressArray[1].split(" ")[1];
-                        this.setState({ zipCode });
-                    } else {
-                        state = addressArray[1];
-                    }
-                    this.setState({ venueName, city, state, extraAddressInfo: true });
-                } else {
-                    debugger
-                    let [street, city] = [addressArray[0], addressArray[1]];
-                    let [state, zipCode] = addressArray[2].split(" ");
-                    this.setState({ street, city, state, zipCode, venueName, lat, lng });
-                }
-            });
-        }
+        // google address autocomplete search bar
+        this.enableGooglePlaces();
 
         // if formtype is update, then fetch relevant event and set state for event information 
         if (this.state.formType !== "Update") return;
@@ -117,6 +80,53 @@ class EventForm extends Component {
         }
     }
 
+    enableGooglePlaces() {
+        let input = document.getElementById('autocomplete');
+        // default boundaries within NYC
+        let defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(40.705722, -74.022880),
+            new google.maps.LatLng(40.801793, -73.928715)
+        );
+        let options = {
+            bounds: defaultBounds,
+            types: ['establishment']
+        };
+
+        if (this.state.formType === "Create") {
+            let autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            this.autocompletelistener = google.maps.event.addListener(autocomplete, 'place_changed', () => {
+                let venueJSON = autocomplete.getPlace();
+                let addressArray = venueJSON.formatted_address.split(",").map(string => string.trim());
+                let lat = venueJSON.geometry.location.lat();
+                let lng = venueJSON.geometry.location.lng();
+                let venueName = venueJSON.name;
+                if (addressArray.length === 3) {
+                    let city = addressArray[0];
+                    let state, zipCode;
+                    if (addressArray[1].split(" ").length === 2) {
+                        state = addressArray[1].split(" ")[0];
+                        zipCode = addressArray[1].split(" ")[1];
+                        this.setState({ zipCode });
+                    } else {
+                        state = addressArray[1];
+                    }
+                    this.setState({ venueName, city, state, extraAddressInfo: true });
+                } else {
+                    let [street, city] = [addressArray[0], addressArray[1]];
+                    let [state, zipCode] = addressArray[2].split(" ");
+                    this.setState({ street, city, state, zipCode, venueName, lat, lng });
+                }
+            });
+        }
+    }
+
+    disableGooglePlaces() {
+        debugger
+        let input = document.querySelector('.url-input');
+        google.maps.event.clearInstanceListeners(input);
+    }
+
     handleChange(type, payload) {
         return ({ target }) => {
             event.preventDefault();
@@ -128,7 +138,8 @@ class EventForm extends Component {
                     this.setState({ [payload]: target.value });
                     break;
                 case 'venueSelect':
-                    let boolValue = target.value === 'Online' ? true : false; 
+                    let boolValue = target.value === 'Online' ? true : false;
+                    boolValue ? window.setTimeout(this.disableGooglePlaces, 0) : window.setTimeout(this.enableGooglePlaces, 0)
                     this.setState({ onlineEvent: boolValue });
                     break;
                 case 'date':
@@ -225,32 +236,31 @@ class EventForm extends Component {
                 </div>
             </>
         ) : (
-            <input type = "text" placeholder = "Search for a venue or address" id = "autocomplete"/>
+            <input type="text" placeholder="Search for a venue or address" id="autocomplete"/>
         );
 
-        return !this.state.onlineEvent ? (
+        return this.state.onlineEvent ? (
             <div className="address-inputs">
-                {addressInput}
+                <input className="url-input" placeholder="URL" onChange={this.handleChange("text", "venueName")} />
             </div>
         ) : (
             <div className="address-inputs">
-                <input placeholder="URL" value={this.state.venueName} onChange={this.handleChange("text", "venueName")}/>
+                {addressInput}
             </div>
         );
     }
 
     renderOnlineOrVenue() {
-        let onlineOrVenue = ['Venue', 'Online'].map((option, idx) => (
-            <option key={`venue-${idx}`}>{option}</option>
-        ));
         return this.state.onlineEvent ? (
-            <select onChange={this.handleChange("venueSelect")}>
-                {onlineOrVenue}
+            <select onChange={this.handleChange("venueSelect")} defaultValue='Online'>
+                <option key={`venue-1`}>Venue</option>
+                <option key={`venue-2`}>Online</option>
             </select>
         ) : (
             <div className="flex">
-                <select onChange={this.handleChange("venueSelect")}>
-                    {onlineOrVenue}
+                <select onChange={this.handleChange("venueSelect")} defaultValue='Venue'>
+                    <option key={`venue-1`}>Venue</option>
+                    <option key={`venue-2`}>Online</option>
                 </select>
                 <input type="text" id="venueNameInput" placeholder="Venue Name" value={this.state.venueName} onChange={this.handleChange("text", "venueName")} />
             </div>
@@ -258,6 +268,7 @@ class EventForm extends Component {
     }
 
     render() {
+        debugger
         const TYPES = [
             'Type',
             'Appearance or Signing', 
@@ -278,7 +289,7 @@ class EventForm extends Component {
         ]
         const CATEGORIES = [
             'Category',
-            'Auto',  
+            'Garbage Can',  
             'Business & Professional', 
             'Community & Culture', 
             'Family & Education',
@@ -396,16 +407,6 @@ class EventForm extends Component {
                         <h1>Location</h1>
                     </div>   
                     <p>Help people in the area discover your event and let attendees know where to show up.</p>
-                    {/* <select onChange={this.handleChange("venueSelect")}>
-                        {onlineOrVenue}
-                    </select> */}
-                    {/* <input id="address-search" placeholder="Search for Address" onChange={this.handleChange("address")}/> */}
-                    {/* <div className="address-inputs">
-                        <input placeholder="Street" value={this.state.street} onChange={this.handleChange("text", "street")} />
-                        <input placeholder="City" value={this.state.city} onChange={this.handleChange("text", "city")} />
-                        <input placeholder="State" value={this.state.state} onChange={this.handleChange("text", "state")} />
-                        <input placeholder="Zip Code" value={this.state.zipCode} onChange={this.handleChange("text", "zipCode")} />
-                    </div> */}
                     {this.renderOnlineOrVenue()}
                     {this.renderAddressInputs()}
                 </div>
