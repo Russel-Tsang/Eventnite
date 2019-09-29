@@ -7,6 +7,7 @@ import MessageBar from '../helper_components/message_bar';
 import { toTime } from '../../util/calculations';
 import { Link } from 'react-router-dom';
 import SplashCarousel from './splash_carousel';
+import NoEvents from './no_events';
 
 class Splash extends Component {
     constructor(props) {
@@ -81,7 +82,6 @@ class Splash extends Component {
                                 break;
                             case "Tomorrow":
                                 if (eventDate.toString() === tomorrow.toString()) {
-                                    console.log('here');
                                     return event;
                                 }
                                 break;
@@ -229,12 +229,19 @@ class Splash extends Component {
         // if this.state.messageBar is true, add "message-bar-show" class to show the bar
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
         let categoryButtonText, priceButtonText, dayButtonText;
+        let eventsContent = this.renderEventCards();
         // if a category was selected, then this.state.categories will be an array with length of 1
-        if (this.state.categories.length > 1) {
-            console.log('do something');
-        } else {
+        if (this.state.categories.length === 1) {
             categoryButtonText = this.state.categories;
         }
+
+        if (eventsContent.length === 0) {
+            eventsContent = 
+                <NoEvents 
+                    category={this.state.categories.length === 1 ? this.state.categories[0] : ''}
+                    day={this.state.dayFilter !== 'Any day' ? this.state.dayFilter : ''}
+                />;
+        } 
 
         if (this.state.priceFilter !== "Any price") {
             priceButtonText = this.state.priceFilter;
@@ -268,7 +275,7 @@ class Splash extends Component {
                         onDayButtonClose={this.unfilter("day")}
                     />
                     <EventCards>
-                        {this.renderEventCards()}
+                        {eventsContent}
                     </EventCards>
                 </div>
                 <div className="more-events-div">
