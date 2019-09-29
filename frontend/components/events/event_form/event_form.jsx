@@ -50,7 +50,6 @@ class EventForm extends Component {
 
     // receive action object from fetchEvent thunk action creator, extracting event from action and setting state for prefilling form inputs 
     componentDidMount() {
-        debugger
         window.scrollTo(0, 0);
 
         // google address autocomplete search bar
