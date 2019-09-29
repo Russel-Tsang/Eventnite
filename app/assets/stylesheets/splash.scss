@@ -172,9 +172,20 @@
     }
 }
 
+.no-events {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
+    p {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+}
 
-// .splash-banner-yoga {
-//     position: absolute;
-//     width: 100%;
-// }
+.orange {
+    color: #ef5537;
+}
