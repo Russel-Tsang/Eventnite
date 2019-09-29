@@ -50,11 +50,14 @@ class EventForm extends Component {
 
     // receive action object from fetchEvent thunk action creator, extracting event from action and setting state for prefilling form inputs 
     componentDidMount() {
+        debugger
         window.scrollTo(0, 0);
 
         // google address autocomplete search bar
         this.enableGooglePlaces();
 
+        if (this.props.location.state) this.populateDate();
+            
         // if formtype is update, then fetch relevant event and set state for event information 
         if (this.state.formType !== "Update") return;
         this.props.fetchEvent(this.props.match.params.eventId).then(
@@ -77,6 +80,23 @@ class EventForm extends Component {
                     this.setState({ title, eventType, category, tags: currentTags, organizer, onlineEvent, street, state, city, zipCode, beginDay, beginMonth, beginYear, endDay, endMonth, endYear, beginTime, endTime, description, eventId: id, price, venueName });
                 }
             );
+        }
+    }
+
+    populateDate() {
+        let { category, day } = this.props.location.state;
+        if (category) document.querySelectorAll('select')[1].value = category;
+        if (day) {
+            let today = new Date();
+            let tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            let selectedDay = day === 'Tomorrow' ? tomorrow : today;
+            let year = '20' + selectedDay.getYear().toString().slice(1);
+            let month = selectedDay.getMonth().toString();
+            let date = selectedDay.getDate().toString();
+            month = month.length === 1 ? `0${month}` : month;
+            date = date.length === 1 ? `0${date}` : date;
+            document.querySelectorAll('input')[6].value = `${year}-${month}-${date}`;
         }
     }
 
@@ -122,7 +142,6 @@ class EventForm extends Component {
     }
 
     disableGooglePlaces() {
-        debugger
         let input = document.querySelector('.url-input');
         google.maps.event.clearInstanceListeners(input);
     }
@@ -220,10 +239,6 @@ class EventForm extends Component {
         return [street, city, state, zipCode];
     }
 
-    handleAddressChange(event) {
-        console.log(event);
-    }
-
     // conditionally render address inputs
     renderAddressInputs() {
         let addressInput = this.state.formType === "Update" || this.state.extraAddressInfo === true ? (
@@ -268,7 +283,6 @@ class EventForm extends Component {
     }
 
     render() {
-        debugger
         const TYPES = [
             'Type',
             'Appearance or Signing', 
@@ -289,7 +303,6 @@ class EventForm extends Component {
         ]
         const CATEGORIES = [
             'Category',
-            'Garbage Can',  
             'Business & Professional', 
             'Community & Culture', 
             'Family & Education',
