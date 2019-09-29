@@ -193,7 +193,6 @@ class EventIndex extends Component {
                                         break;
                                     case "Tomorrow":
                                         if (eventDate.toString() === tomorrow.toString()) {
-                                            console.log('here');
                                             return event;
                                         }
                                         break;
