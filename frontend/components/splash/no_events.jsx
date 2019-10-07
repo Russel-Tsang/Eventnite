@@ -10,7 +10,7 @@ const NoEvents = (props) => {
     return (  
         <div className="no-events">
             <p>Whoops! No events.</p>
-            <p>Make {'AEIOU'.includes(props.category[0]) ? 'an' : 'a'}<span className="orange">{categorySuggestion}</span> event{daySuggestion}?</p> 
+            <p>Make {'AEIOU'.includes(props.category[0]) || !props.category ? 'an' : 'a'}<span className="orange">{categorySuggestion}</span> event{daySuggestion}?</p> 
             <Link className="button-1" to={{ pathname: "/create_event", state: { day: props.day, category: props.category } }}>
                 Create Event
             </Link>
