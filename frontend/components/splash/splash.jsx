@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EventCards, EventCard } from '../helper_components/event_card';
+import { EventCards, EventCard } from '../helper_components/event_card/event_card';
 import { toMonth } from '../../util/calculations';
 import SearchBar from '../helper_components/search_bar/search_bar';
 import FilterBar from '../splash/filter_bar';

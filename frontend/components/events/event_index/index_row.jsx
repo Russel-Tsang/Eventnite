@@ -22,7 +22,7 @@ const IndexRow = (props) => {
                         {location}
                     </span>
                     <span className="index-row-price">
-                        {`Starts at $${props.price}`}
+                        {props.price === 0 ? 'FREE' : `Starts at $${props.price}`}
                     </span>
                 </div>
                 <div className="index-row-like">

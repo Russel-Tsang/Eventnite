@@ -28,7 +28,7 @@ const Preview = ({ imageSrc, eventTitle, creator, price, month, date, onFollowCl
                     </span>
                 </div>
                 <div className="description-card-price">
-                    {`US $${price}`}
+                    {price === 0 ? 'FREE' : `US $${price}`}
                 </div>
             </div>
         </div>
