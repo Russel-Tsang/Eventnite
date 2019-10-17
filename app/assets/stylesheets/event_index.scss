@@ -4,14 +4,14 @@
 
 .event-index {
     margin: auto;
-    width: 85%;
+    // width: 100%;
     padding-top: 15px;
     padding-left: 50px;
     display: flex;
 }
 
 .event-index-main {
-    width: 55%;
+    width: 65%;
 }
 
 .event-index-map {
@@ -34,39 +34,37 @@
     right: 0;
     width: 400px;
 }
-// element.style {
-//     height: 400px;
-//     position: fixed;
-//     overflow: hidden;
-//     top: 30px;
-//     right: 0;
-//     width: 400px;
-// }
 
 .index-row {
     display: flex;
-    font-size: 11px;
+    font-size: 12px;
     color: #848698;
     margin-bottom: 40px;
     letter-spacing: .2px;
     padding: 20px;
+    border-radius: 5px;
+    
+    .index-row-img-container {
+        position: relative;
+    }
 
     .index-row-img {
-        width: 200px;
-        height: 100px;
+        width: 235px;
+        height: 115px;
+        border-radius: 5px;
         cursor: pointer;
     }
 
     h2 {
-        color: #000000;
-        font-size: 18px;
+        color: #39364f;
+        font-size: 20px;
         cursor: pointer;
     }
 
     .heart-icon {
-        height: 17px;
-        width: 17px;
-        padding: 8px;
+        height: 21px;
+        width: 21px;
+        padding: 12px;
         border-radius: 30px;
         transition: background .3s;
     }
@@ -94,7 +92,7 @@
     display: flex;
     justify-content: space-between;
     width: 90%;
-    padding: 0px 20px;
+    padding: 0px 40px 0px 30px;
 }
 
 .index-row-details {
@@ -142,10 +140,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 95px;
+    height: 110px;
 
     input {
-        font-size: 28px;
+        font-size: 32px;
         border: none;
         outline: none;
         font-weight: bold;
