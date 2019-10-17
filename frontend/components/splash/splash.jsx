@@ -7,7 +7,7 @@ import MessageBar from '../helper_components/message_bar';
 import { toTime } from '../../util/calculations';
 import { Link } from 'react-router-dom';
 import SplashCarousel from './splash_carousel';
-import NoEvents from './no_events';
+import NoEventsBanner from './no_events_banner';
 
 class Splash extends Component {
     constructor(props) {
@@ -15,18 +15,14 @@ class Splash extends Component {
 
         this.state = {
             categories: [
-                'Category',
-                'Auto',
+                'Category', 'Auto',
                 'Business & Professional',
                 'Community & Culture',
                 'Family & Education',
-                'Film & Media',
-                'Food & Drink',
-                'Health',
-                'Hobbies',
+                'Film & Media', 'Food & Drink',
+                'Health', 'Hobbies',
                 'Home & Lifestyle',
-                'Music',
-                'Performing and Visual Arts',
+                'Music', 'Performing and Visual Arts',
                 'Science & Tech'
             ],
             searchTerm: '',
@@ -42,7 +38,7 @@ class Splash extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleMessageBar = this.handleMessageBar.bind(this);
-        this.unfilter = this.unfilter.bind(this);
+        // this.unfilter = this.unfilter.bind(this);
     }
 
     componentDidMount() {
@@ -153,34 +149,19 @@ class Splash extends Component {
         ];
     } 
 
-    handleSelectChange(type) {
+    // handles filtering or unfiltering of events 
+    handleSelectChange(type, action) {
         return (event) => {
+            debugger
             switch (type) {
                 case "category":
-                    if (event.target.value === "Category") return;
-                    event.target.value === "All" ? this.setState({ categories: this.generateCategories() }) : this.setState({ categories: [event.target.value] });
+                    action === 'unfilter' ? this.setState({ categories: this.generateCategories() }) : this.setState({ categories: [event.target.value] });
                     break;
                 case "price":
-                    this.setState({ priceFilter: event.target.value });
+                    action === 'unfilter' ? this.setState({ priceFilter: "Any price" }) : this.setState({ priceFilter: event.target.value });
                     break;
                 case "day":
-                    this.setState({ dayFilter: event.target.value });
-                    break;
-            }
-        }
-    }
-
-    unfilter(type) {
-        return () => {
-            switch(type) {
-                case "category": 
-                    this.setState({ categories: this.generateCategories() });
-                    break;
-                case "price":
-                    this.setState({ priceFilter: "Any price" });
-                    break;
-                case "day":
-                    this.setState({ dayFilter: 'Any day'});
+                    action === 'unfilter' ? this.setState({ dayFilter: 'Any day' }) : this.setState({ dayFilter: event.target.value });
                     break;
             }
         }
@@ -237,7 +218,7 @@ class Splash extends Component {
 
         if (eventsContent.length === 0) {
             eventsContent = 
-                <NoEvents 
+                <NoEventsBanner
                     category={this.state.categories.length === 1 ? this.state.categories[0] : ''}
                     day={this.state.dayFilter !== 'Any day' ? this.state.dayFilter : ''}
                 />;
@@ -264,15 +245,15 @@ class Splash extends Component {
                     />
                     <FilterBar 
                         categories={this.generateCategories()} 
-                        onCategoryChange={this.handleSelectChange("category")}
                         categoryButtonText={categoryButtonText}
-                        onPriceChange={this.handleSelectChange("price")}
                         priceButtonText={priceButtonText}
-                        onDayChange={this.handleSelectChange("day")}
                         dayButtonText={dayButtonText}
-                        onCategoryButtonClose={this.unfilter("category")}
-                        onPriceButtonClose={this.unfilter("price")}
-                        onDayButtonClose={this.unfilter("day")}
+                        onCategoryChange={this.handleSelectChange("category", "filter")}
+                        onPriceChange={this.handleSelectChange("price", "filter")}
+                        onDayChange={this.handleSelectChange("day", "filter")}
+                        onCategoryButtonClose={this.handleSelectChange("category", "unfilter")}
+                        onPriceButtonClose={this.handleSelectChange("price", "unfilter")}
+                        onDayButtonClose={this.handleSelectChange("day", "unfilter")}
                     />
                     <EventCards>
                         {eventsContent}

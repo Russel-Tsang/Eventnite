@@ -46,12 +46,12 @@ class NavBar extends Component {
                 <Link className="create-event btn" to="/create_event">Create Event</Link>
                 <Link className="btn" to="/dashboard/all">My Events</Link>
                 <Link className="btn" to="/favorites">Favorites</Link>
-                <Link className="sign-out-logo btn" to="/" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
+                <a className="sign-out-logo btn" onMouseEnter={this.toggleDisplay} onMouseLeave={this.toggleDisplay}>
                     <img 
                         className="dropdown-logo" 
                         src={"https://aa-file-upload-dev.s3.amazonaws.com/profile_icon.svg"} 
                     />
-                </Link>
+                </a>
                 </>
         ) : (
                 <>
@@ -62,34 +62,28 @@ class NavBar extends Component {
         );
 
         // prevents attempt to read this.props.currentUserObj upon logging out, which results in an error
-        const ProfileDropdown = () => {
-            if (this.props.currentUserObj) {
-                return (
-                    <ProfileDropDown 
-                        user={this.props.currentUserObj.fname} 
-                        userEmail={this.props.currentUserObj.email} 
-                        display={this.state.display} 
-                        onMouseEnter={this.handleDropdownDisplay('display')} 
-                        onMouseLeave={this.handleDropdownDisplay('display-none')} 
-                        onLogout={this.handleLogout}
-                    />
-                )
-            } else {
-                return null
-            }
-        }
+        let ProfileDropdown = this.props.currentUserObj ? (
+            <ProfileDropDown
+                user={this.props.currentUserObj.fname}
+                userEmail={this.props.currentUserObj.email}
+                display={this.state.display}
+                onMouseEnter={this.handleDropdownDisplay('display')}
+                onMouseLeave={this.handleDropdownDisplay('display-none')}
+                onLogout={this.handleLogout}
+            />
+        ) : null;
         
         return (
             <>
             <header className="navbar">
                 <Link to="/">
-                        <img src={"https://aa-file-upload-dev.s3.amazonaws.com/eventnite_logo.png"} className="logo" />
+                    <img src={"https://aa-file-upload-dev.s3.amazonaws.com/eventnite_logo.png"} className="logo" />
                 </Link>
                 <div className="navbar-right">
                     {display}
                 </div>
             </header>
-            {ProfileDropdown()}
+            {ProfileDropdown}
             </>
         );
     }    

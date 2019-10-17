@@ -1,4 +1,5 @@
 import React from 'react';
+import FreeTag from '../../helper_components/event_card/free_tag';
 
 const IndexRow = (props) => {
     let heartIcon = props.liked ? window.redHeartIcon : window.heartIcon;
@@ -8,10 +9,15 @@ const IndexRow = (props) => {
     ) : (
         `${props.venueName}, ${props.city}, ${props.state}`
     );
+
+    let freeTag = props.price === 0 ? <FreeTag /> : null;
     
     return (  
         <div className="index-row" onMouseEnter={props.handleMouseEnter}>
-            <img className="index-row-img" src={props.pictureUrl} onClick={props.onEventClick}/>
+            <div className="index-row-img-container">
+                {freeTag}
+                <img className="index-row-img" src={props.pictureUrl} onClick={props.onEventClick}/>
+            </div>
             <div className="index-row-main">
                 <div className="index-row-details">
                     <h2 className="index-row-title" onClick={props.onEventClick}>{props.title}</h2>
