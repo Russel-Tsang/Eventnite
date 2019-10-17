@@ -14,23 +14,13 @@ class Splash extends Component {
         super(props)
 
         this.state = {
-            categories: [
-                'Category', 'Auto',
-                'Business & Professional',
-                'Community & Culture',
-                'Family & Education',
-                'Film & Media', 'Food & Drink',
-                'Health', 'Hobbies',
-                'Home & Lifestyle',
-                'Music', 'Performing and Visual Arts',
-                'Science & Tech'
-            ],
+            categories: this.generateCategories(),
             searchTerm: '',
             searchDayFilter: '',
-            messageBar: false,
-            liked: false,
             priceFilter: 'Any price',
-            dayFilter: 'Any day'
+            dayFilter: 'Any day',
+            messageBar: false,
+            liked: false
         }
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -38,66 +28,33 @@ class Splash extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleMessageBar = this.handleMessageBar.bind(this);
-        // this.unfilter = this.unfilter.bind(this);
+        this.filterEvents = this.filterEvents.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvents();
     }
 
+    generateCategories() {
+        return [
+            'Any category',
+            'Auto',
+            'Business & Professional',
+            'Community & Culture',
+            'Family & Education',
+            'Film & Media',
+            'Food & Drink',
+            'Health',
+            'Hobbies',
+            'Home & Lifestyle',
+            'Music',
+            'Performing and Visual Arts',
+            'Science & Tech'
+        ];
+    } 
+
     renderEventCards() {
-        let filteredEvents = this.props.events.filter(event => {
-            if (this.state.categories.includes(event.category)) {
-                if (
-                    this.state.priceFilter === "Paid" && event.price > 0 
-                    || 
-                    this.state.priceFilter === "Free" && event.price === 0
-                    ||
-                    this.state.priceFilter === "Any price"
-                ) {
-                    if (this.state.dayFilter === "Any day") {
-                        return event;
-                    } else {
-                        let { beginYear, beginMonth, beginDay } = event;
-                        beginMonth -= 1;
-                        let eventDate = new Date(beginYear, beginMonth, beginDay);
-                        let today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        let tomorrow = new Date();
-                        tomorrow.setDate(today.getDate() + 1);
-                        tomorrow.setHours(0, 0, 0, 0);
-                        let upcomingSaturday = new Date();
-                        let upcomingSunday = new Date();
-                        upcomingSaturday.setDate(today.getDate() + (6 - today.getDay()));
-                        upcomingSunday.setDate(today.getDate() + (7 - today.getDay()));
-                        upcomingSaturday.setHours(0, 0, 0, 0);
-                        upcomingSunday.setHours(0, 0, 0, 0);
-                        switch(this.state.dayFilter) {
-                            case "Today": 
-                                if (today.toString() === eventDate.toString()) return event;
-                                break;
-                            case "Tomorrow":
-                                if (eventDate.toString() === tomorrow.toString()) {
-                                    return event;
-                                }
-                                break;
-                            case "This Weekend": 
-                                if (eventDate.getDay() === 0 || eventDate.getDay() === 6) {
-                                    if (eventDate.toString() === today.toString() || eventDate.toString() === tomorrow.toString()) {
-                                        return event;
-                                    }
-                                } else {
-                                    if (eventDate.toString() === upcomingSaturday.toString() || eventDate.toString() === upcomingSunday.toString()) {
-                                        return event;
-    
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                }
-            };
-        });
+        let filteredEvents = this.filterEvents();
         let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
         let eventCards = filteredEvents.map((event, idx) => {
@@ -105,7 +62,6 @@ class Splash extends Component {
             if (!beginMonth) beginMonth = '';
             if (!beginDay) beginDay = '';
             if (!beginTime) beginTime = '';
-            // let randomDay = dates[Math.floor(Math.random() * dates.length)];
             let dayIdx = new Date(beginYear, beginMonth - 1, beginDay).getDay();
             let day = days[dayIdx];
             let liked = this.props.likes[id] ? true : false;
@@ -128,26 +84,64 @@ class Splash extends Component {
                 />
             );
         });
+        // slice eventCards to only show 9 cards on splash page
         return eventCards.slice(0, 9);
     }
 
-    generateCategories() {
-        return [
-            'Any category',
-            'Auto',
-            'Business & Professional',
-            'Community & Culture',
-            'Family & Education',
-            'Film & Media',
-            'Food & Drink',
-            'Health',
-            'Hobbies',
-            'Home & Lifestyle',
-            'Music',
-            'Performing and Visual Arts',
-            'Science & Tech'
-        ];
-    } 
+    filterEvents() {
+        return this.props.events.filter(event => {
+            if (this.state.categories.includes(event.category)) {
+                if (
+                    this.state.priceFilter === "Paid" && event.price > 0
+                    ||
+                    this.state.priceFilter === "Free" && event.price === 0
+                    ||
+                    this.state.priceFilter === "Any price"
+                ) {
+                    if (this.state.dayFilter === "Any day") {
+                        return event;
+                    } else {
+                        let { beginYear, beginMonth, beginDay } = event;
+                        beginMonth -= 1;
+                        let eventDate = new Date(beginYear, beginMonth, beginDay);
+                        let today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        let tomorrow = new Date();
+                        tomorrow.setDate(today.getDate() + 1);
+                        tomorrow.setHours(0, 0, 0, 0);
+                        let upcomingSaturday = new Date();
+                        let upcomingSunday = new Date();
+                        upcomingSaturday.setDate(today.getDate() + (6 - today.getDay()));
+                        upcomingSunday.setDate(today.getDate() + (7 - today.getDay()));
+                        upcomingSaturday.setHours(0, 0, 0, 0);
+                        upcomingSunday.setHours(0, 0, 0, 0);
+                        switch (this.state.dayFilter) {
+                            case "Today":
+                                if (today.toString() === eventDate.toString()) return event;
+                                break;
+                            case "Tomorrow":
+                                if (eventDate.toString() === tomorrow.toString()) {
+                                    return event;
+                                }
+                                break;
+                            case "This Weekend":
+                                if (eventDate.getDay() === 0 || eventDate.getDay() === 6) {
+                                    if (eventDate.toString() === today.toString() || eventDate.toString() === tomorrow.toString()) {
+                                        return event;
+                                    }
+                                } else {
+                                    if (eventDate.toString() === upcomingSaturday.toString() || eventDate.toString() === upcomingSunday.toString()) {
+                                        return event;
+
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                }
+            };
+        });
+    }
 
     // handles filtering or unfiltering of events 
     handleSelectChange(type, action) {
@@ -224,13 +218,8 @@ class Splash extends Component {
                 />;
         } 
 
-        if (this.state.priceFilter !== "Any price") {
-            priceButtonText = this.state.priceFilter;
-        }
-
-        if (this.state.dayFilter !== "Any day") {
-            dayButtonText = this.state.dayFilter;
-        }
+        if (this.state.priceFilter !== 'Any price') priceButtonText = this.state.priceFilter;
+        if (this.state.dayFilter !== 'Any day') dayButtonText = this.state.dayFilter;
 
         return (
             <div id="body">
@@ -262,7 +251,7 @@ class Splash extends Component {
                 <div className="more-events-div">
                     <Link className="more-events-link" to="/all_events/all/any_date">See more events</Link>
                 </div>
-                <div className="spacer"></div>
+                <div className="spacer" />
             </div>
         )
     }
