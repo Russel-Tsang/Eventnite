@@ -27,7 +27,6 @@ class EventShow extends Component {
     
     componentDidMount() {
         this.props.fetchEvent(this.props.match.params.eventId);
-
         window.scrollTo(0, 0);
     }
 
@@ -92,7 +91,12 @@ class EventShow extends Component {
 
     renderEventTags() {
         if (this.props.tags) {
-            let eventTags = Object.values(this.props.tags).map((tag, idx) => <EventTag key={idx} tag={tag.tagName} />);
+            let eventTags = Object.values(this.props.tags).map((tag, idx) => (
+                <EventTag 
+                    key={idx} 
+                    tag={tag.tagName} 
+                />
+            ));
             return (
                 <EventTags>
                     {eventTags}
@@ -107,7 +111,10 @@ class EventShow extends Component {
         let messageBarShow = this.state.messageBar ? 'message-bar-show' : '';
         let { id, price, pictureUrl, title, description, organizer, street, state, city, zipCode, beginDay, beginMonth, beginYear, beginTime, venueName, onlineEvent } = this.props.event;
 
+        // if event does not have picture attached, show default picture
         pictureUrl = !pictureUrl ? `${window.splashBanner}` : pictureUrl;
+
+        //add 0 in the case that the date is single-digit
         beginDay = beginDay < 10 ? `0${beginDay}` : beginDay;
 
         let followStatus;
@@ -145,7 +152,6 @@ class EventShow extends Component {
                     liked={liked}
                 />
             )
-            if (pictureUrl === "undefined") pictureUrl = window.photoBalloons;
         }
         return (
             <div className="event-show">

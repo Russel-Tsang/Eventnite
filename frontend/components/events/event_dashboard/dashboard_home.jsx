@@ -6,14 +6,10 @@ import { withRouter } from 'react-router-dom';
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             searchTerm: ''
         }
-
-        // this.handleMenuClick = this.handleMenuClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        // this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     componentDidMount() {
@@ -82,7 +78,11 @@ class Dashboard extends Component {
                 <div><h1>Events</h1></div>
                 <div className="dashboard-search">
                     <img src={window.searchIcon}/>
-                    <input type="text" placeholder="Search events" onChange={this.handleChange} />
+                    <input 
+                        type="text" 
+                        placeholder="Search events" 
+                        onChange={this.handleChange} 
+                    />
                 </div>
                 <header className="dashboard-index-head">
                     <span>Event</span>
