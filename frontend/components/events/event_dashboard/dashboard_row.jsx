@@ -8,8 +8,6 @@ class DashboardRow extends Component {
         this.state = {
             display: false
         }
-
-        this.handleDisplay = this.handleDisplay.bind(this);
         this.toggleDisplay = this.toggleDisplay.bind(this);
     }
 
@@ -19,10 +17,6 @@ class DashboardRow extends Component {
             if (bool === true) this.setState({ display: true });
         }
         // if (event.target.className !== 'popup-menu-button') this.setState({ display: false });
-    }
-
-    handleDisplay() {
-        this.setState({ display: true });
     }
 
     componentDidMount() {
