@@ -35,11 +35,13 @@ class Details extends Component {
     componentDidUpdate(prevProps) {
         let textEditorDescription = document.querySelector('.text-editor').value;
         if (this.props.match.params.eventId !== prevProps.match.params.eventId) {
-            this.props.fetchEvent(this.props.match.params.eventId).then(
-                action => {
-                    this.setState({ description: action.event.description, photoUrl: action.event.pictureUrl })
-                }
-            );
+            this.props.fetchEvent(this.props.match.params.eventId)
+                .then(action => {
+                    this.setState({ 
+                        description: action.event.description, 
+                        photoUrl: action.event.pictureUrl 
+                    });
+                });
         }
         if (textEditorDescription.includes('<p>')) {
             document.querySelector('.text-editor').value = textEditorDescription.replace(/(<([^>]+)>)/ig, "");
@@ -109,8 +111,6 @@ class Details extends Component {
                     </div>
                 </div>
         );
-
-        // return this.state.description ? <SubmitBar onClick={() => this.props.updateEvent(description)}/> : null
         let submitBarShow = this.state.description ? 'submit-bar-show' : '';
 
         return (
@@ -123,7 +123,6 @@ class Details extends Component {
                 <ContentBlock imgSrc={window.textIcon} heading="Description" caption="Add more details to your event like your schedule, sponsors, or featured guests." >
                     <TextEditor value={this.state.description || ""} onChange={this.handleChange}/>
                 </ContentBlock>
-                {/* <div className="spacer"/> */}
             </div>
             <SubmitBar onSubmitClick={this.handleSubmit} submitBarShow={submitBarShow} onDiscardClick={this.handleImageReplace('restore')}/>
             </>

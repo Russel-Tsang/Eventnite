@@ -13,10 +13,9 @@ class DashboardRow extends Component {
 
     toggleDisplay(bool) {
         return (event) => {
-            if (bool === false && event.target.className !== 'popup-menu-button') this.setState({ display: false });
             if (bool === true) this.setState({ display: true });
+            else if (bool === false && event.target.className !== 'popup-menu-button') this.setState({ display: false });
         }
-        // if (event.target.className !== 'popup-menu-button') this.setState({ display: false });
     }
 
     componentDidMount() {
@@ -54,7 +53,6 @@ class DashboardRow extends Component {
                         </span>
                     </span>
                 </span>
-                {/* <span onClick={this.props.onMenuClick}> */}
                 <span className="menu-icon-span">
                     <img 
                         className="menu_icon" 
